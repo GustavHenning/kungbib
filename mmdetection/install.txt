@@ -1,0 +1,4 @@
+https://github.com/open-mmlab/mmdetection/blob/master/docs/get_started.md
+
+configs -> /data/gustav/anaconda3/envs/openmmlab/lib/python3.8/site-packages/mmdet/.mim/configs
+checkpoints -> /data/gustav/checkpoints
