@@ -1,0 +1,388 @@
+[
+  {
+    "id": 17271,
+    "annotations": [
+      {
+        "id": 3,
+        "completed_by": {
+          "id": 1,
+          "email": "ghenning@kth.se",
+          "first_name": "",
+          "last_name": ""
+        },
+        "result": [
+          {
+            "original_width": 1139,
+            "original_height": 1600,
+            "image_rotation": 0,
+            "value": {
+              "points": [
+                [
+                  6.8,
+                  18.500948766603415
+                ],
+                [
+                  6.8,
+                  79.5066413662239
+                ],
+                [
+                  30.266666666666662,
+                  79.5066413662239
+                ],
+                [
+                  30.266666666666662,
+                  18.500948766603415
+                ]
+              ],
+              "polygonlabels": [
+                "News Article"
+              ]
+            },
+            "id": "NBlg8Fjawg",
+            "from_name": "label",
+            "to_name": "image",
+            "type": "polygonlabels"
+          },
+          {
+            "original_width": 1139,
+            "original_height": 1600,
+            "image_rotation": 0,
+            "value": {
+              "points": [
+                [
+                  31.466666666666665,
+                  18.500948766603415
+                ],
+                [
+                  31.466666666666665,
+                  36.527514231499055
+                ],
+                [
+                  43.599999999999994,
+                  36.527514231499055
+                ],
+                [
+                  43.599999999999994,
+                  18.500948766603415
+                ]
+              ],
+              "polygonlabels": [
+                "News Article"
+              ]
+            },
+            "id": "5KcfDjbjPl",
+            "from_name": "label",
+            "to_name": "image",
+            "type": "polygonlabels"
+          }
+        ],
+        "was_cancelled": false,
+        "ground_truth": false,
+        "created_at": "2021-09-09T10:08:40.595457Z",
+        "updated_at": "2021-09-09T10:08:40.595498Z",
+        "lead_time": 55.05,
+        "prediction": {},
+        "result_count": 0,
+        "task": 17271
+      }
+    ],
+    "predictions": [],
+    "file_upload": "dark-3885446_part01_page002_DqfsOq9.jpg",
+    "data": {
+      "image": "/data/upload/dark-3885446_part01_page002_DqfsOq9.jpg"
+    },
+    "meta": {},
+    "created_at": "2021-09-09T10:07:22.244675Z",
+    "updated_at": "2021-09-09T10:07:22.244722Z",
+    "project": 3
+  },
+  {
+    "id": 17269,
+    "annotations": [
+      {
+        "id": 1,
+        "completed_by": {
+          "id": 1,
+          "email": "ghenning@kth.se",
+          "first_name": "",
+          "last_name": ""
+        },
+        "result": [
+          {
+            "original_width": 1139,
+            "original_height": 1600,
+            "image_rotation": 0,
+            "value": {
+              "points": [
+                [
+                  3.599999999999999,
+                  13.18785578747628
+                ],
+                [
+                  3.599999999999999,
+                  29.127134724857683
+                ],
+                [
+                  51.333333333333336,
+                  29.127134724857683
+                ],
+                [
+                  51.333333333333336,
+                  13.18785578747628
+                ]
+              ],
+              "polygonlabels": [
+                "News Article"
+              ]
+            },
+            "id": "FuI7vtdRsn",
+            "from_name": "label",
+            "to_name": "image",
+            "type": "polygonlabels"
+          },
+          {
+            "original_width": 1139,
+            "original_height": 1600,
+            "image_rotation": 0,
+            "value": {
+              "points": [
+                [
+                  51.733333333333334,
+                  13.18785578747628
+                ],
+                [
+                  51.733333333333334,
+                  21.157495256166982
+                ],
+                [
+                  92.80000000000001,
+                  21.157495256166982
+                ],
+                [
+                  92.80000000000001,
+                  13.18785578747628
+                ]
+              ],
+              "polygonlabels": [
+                "News Article"
+              ]
+            },
+            "id": "Jcl9cIouUI",
+            "from_name": "label",
+            "to_name": "image",
+            "type": "polygonlabels"
+          },
+          {
+            "original_width": 1139,
+            "original_height": 1600,
+            "image_rotation": 0,
+            "value": {
+              "points": [
+                [
+                  51.86666666666667,
+                  21.07843185511667
+                ],
+                [
+                  51.86666666666667,
+                  29.222011385199245
+                ],
+                [
+                  92.79999999999998,
+                  29.222011385199245
+                ],
+                [
+                  92.79999999999998,
+                  21.07843185511667
+                ]
+              ],
+              "polygonlabels": [
+                "News Article"
+              ]
+            },
+            "id": "guwKKNprOA",
+            "from_name": "label",
+            "to_name": "image",
+            "type": "polygonlabels"
+          },
+          {
+            "original_width": 1139,
+            "original_height": 1600,
+            "image_rotation": 0,
+            "value": {
+              "points": [
+                [
+                  3.599999999999999,
+                  30.07590132827325
+                ],
+                [
+                  3.599999999999999,
+                  83.96584440227704
+                ],
+                [
+                  92.93333333333332,
+                  83.96584440227704
+                ],
+                [
+                  92.93333333333332,
+                  30.07590132827325
+                ]
+              ],
+              "polygonlabels": [
+                "News Article"
+              ]
+            },
+            "id": "tlIV7UpJZu",
+            "from_name": "label",
+            "to_name": "image",
+            "type": "polygonlabels"
+          },
+          {
+            "original_width": 1139,
+            "original_height": 1600,
+            "image_rotation": 0,
+            "value": {
+              "points": [
+                [
+                  3.733333333333334,
+                  85.48387096774194
+                ],
+                [
+                  3.733333333333334,
+                  97.24857685009488
+                ],
+                [
+                  20.666666666666668,
+                  97.24857685009488
+                ],
+                [
+                  20.666666666666668,
+                  85.48387096774194
+                ]
+              ],
+              "polygonlabels": [
+                "News Article"
+              ]
+            },
+            "id": "4sCmiEcOve",
+            "from_name": "label",
+            "to_name": "image",
+            "type": "polygonlabels"
+          },
+          {
+            "original_width": 1139,
+            "original_height": 1600,
+            "image_rotation": 0,
+            "value": {
+              "points": [
+                [
+                  21.600000000000005,
+                  85.67362428842505
+                ],
+                [
+                  21.600000000000005,
+                  97.53320683111954
+                ],
+                [
+                  38.400000000000006,
+                  97.53320683111954
+                ],
+                [
+                  38.400000000000006,
+                  85.67362428842505
+                ]
+              ],
+              "polygonlabels": [
+                "News Article"
+              ]
+            },
+            "id": "kaLKDsF3_r",
+            "from_name": "label",
+            "to_name": "image",
+            "type": "polygonlabels"
+          },
+          {
+            "original_width": 1139,
+            "original_height": 1600,
+            "image_rotation": 0,
+            "value": {
+              "points": [
+                [
+                  57.06666666666667,
+                  85.67362428842505
+                ],
+                [
+                  57.06666666666667,
+                  97.34345351043643
+                ],
+                [
+                  74.93333333333334,
+                  97.34345351043643
+                ],
+                [
+                  74.93333333333334,
+                  85.67362428842505
+                ]
+              ],
+              "polygonlabels": [
+                "News Article"
+              ]
+            },
+            "id": "dHknlZeM5r",
+            "from_name": "label",
+            "to_name": "image",
+            "type": "polygonlabels"
+          },
+          {
+            "original_width": 1139,
+            "original_height": 1600,
+            "image_rotation": 0,
+            "value": {
+              "points": [
+                [
+                  76,
+                  85.48387096774194
+                ],
+                [
+                  76,
+                  97.34345351043643
+                ],
+                [
+                  93.20000000000002,
+                  97.34345351043643
+                ],
+                [
+                  93.20000000000002,
+                  85.48387096774194
+                ]
+              ],
+              "polygonlabels": [
+                "News Article"
+              ]
+            },
+            "id": "J9oVdqWiMi",
+            "from_name": "label",
+            "to_name": "image",
+            "type": "polygonlabels"
+          }
+        ],
+        "was_cancelled": false,
+        "ground_truth": false,
+        "created_at": "2021-09-09T09:59:16.159243Z",
+        "updated_at": "2021-09-09T09:59:27.602120Z",
+        "lead_time": 6884.322,
+        "prediction": {},
+        "result_count": 0,
+        "task": 17269
+      }
+    ],
+    "predictions": [],
+    "file_upload": "dark-3885446_part01_page001_s3YzAsB.jpg",
+    "data": {
+      "image": "/data/upload/dark-3885446_part01_page001_s3YzAsB.jpg"
+    },
+    "meta": {},
+    "created_at": "2021-09-09T09:53:49.644872Z",
+    "updated_at": "2021-09-09T09:59:27.561515Z",
+    "project": 3
+  }
+]
