@@ -21,6 +21,8 @@ def relabel_rect(tar_poly_id, rect_indexed, img_id):
     rect_result = rect_indexed[img_id]["annotations"][0]["result"]
     poly = []
     for rect in rect_result:
+        if "image_rotation" not in rect: # Relationships between segmentation boxes get stuck here... not implemented
+            continue
         if rect["image_rotation"] != 0 or rect["value"]["rotation"] != 0:
             print("Image rotation is not 0 for %s. Exiting...".format(img_id))
             sys.exit(1)
