@@ -20,14 +20,15 @@ import cv2
 import matplotlib
 import matplotlib.pyplot as plt
 
+
 # Root directory of the project
 ROOT_DIR = os.path.abspath("./Mask_RCNN/")
 
 # Import shapes
 sys.path.append(os.path.join(ROOT_DIR, "samples/shapes/"))  # To find local version
 
-from shapes_config_ndim import ShapesConfig
-from shapes_config_ndim import ShapesDataset
+from shapes import ShapesConfig
+from shapes import ShapesDataset
 
 # Import Mask RCNN
 sys.path.append(ROOT_DIR)  # To find local version of the library
@@ -36,7 +37,6 @@ from mrcnn import utils
 import mrcnn.model as modellib
 from mrcnn import visualize
 from mrcnn.model import log
-
 
 # Directory to save logs and trained model
 MODEL_DIR = os.path.join(ROOT_DIR, "logs")
