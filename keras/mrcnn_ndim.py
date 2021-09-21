@@ -51,20 +51,20 @@ class_names = ['BG', 'person', 'bicycle', 'car', 'motorcycle', 'airplane',
                'teddy bear', 'hair drier', 'toothbrush']
 
 
-
+TF_DIMS=5
 class InferenceConfig(coco.CocoConfig):
     # Set batch size to 1 since we'll be running inference on
     # one image at a time. Batch size = GPU_COUNT * IMAGES_PER_GPU
     GPU_COUNT = 1
     IMAGES_PER_GPU = 1
-    IMAGE_CHANNEL_COUNT = 103
-    MEAN_PIXEL = np.concatenate([np.array([123.7, 116.8, 103.9]), np.repeat(0,100)])
+    IMAGE_CHANNEL_COUNT = 3 + TF_DIMS
+    MEAN_PIXEL = np.concatenate([np.array([123.7, 116.8, 103.9]), np.repeat(0, TF_DIMS)])
 
 
     # TODO Test train mrcnn_vanilla on shapes, also run inference
     # TODO Test add 100 empty channels to mrcnn_ndim, try to train, and run inference
     # TODO Add real data with 3 channels
-    # TODO Add real data with 100 channels from text embeddings. 
+    # TODO Add real data with 100 channels from text embeddings.
 def inference():
     config = InferenceConfig()
     print("MRCNN loaded with inference config.")
@@ -75,25 +75,28 @@ def inference():
     # when training for the first time.
     model.load_weights(COCO_MODEL_PATH, exclude="conv1", by_name=True)
 
-
     #model.keras_model.summary()
     #object_methods = [method_name for method_name in dir(model)
     #              if callable(getattr(model, method_name))]
     #print(object_methods)
-    return model
-    """
-    # Load a random image from the images folder
-    file_names = next(os.walk(IMAGE_DIR))[2]
-    image = skimage.io.imread(os.path.join(IMAGE_DIR, random.choice(file_names)))
-    print(type(image))
-    # Run detection
-    results = model.detect([image], verbose=1)
+    #return model
 
-    # Visualize results
-    r = results[0]
-    visualize.display_instances(image, r['rois'], r['masks'], r['class_ids'],
-                                class_names, r['scores'])
-    """
+    # Load a random image from the images folder
+    while True:
+        file_names = next(os.walk(IMAGE_DIR))[2]
+        image = skimage.io.imread(os.path.join(IMAGE_DIR, random.choice(file_names)))
+        # add 100 empty channels to the image
+        print(np.shape(image))
+        tf_image = np.dstack((image, np.zeros((np.shape(image)[0],np.shape(image)[1], TF_DIMS))))
+        print(np.shape(image))
+        # Run detection
+        results = model.detect([tf_image], verbose=1)
+
+        # Visualize results
+        r = results[0]
+        visualize.display_instances(image, r['rois'], r['masks'], r['class_ids'],
+                                    class_names, r['scores'])
+
 
 if __name__ == "__main__":
     inference()
