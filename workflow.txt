@@ -1,0 +1,6 @@
+Starting with a number of labelsudio rectangle labeled (RL) projects:
+
+1) Export the RL projects to json, run rect2poly on them and import them into polygon labelled(PL) projects
+2) Export the PL projects as COCO
+2a) If its one large project to train on, use traintestsplit to categorize.
+2b) If its multiple projects, use traintestsplit and TODO find a way to merge two coco exports.

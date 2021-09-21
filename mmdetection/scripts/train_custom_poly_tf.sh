@@ -1,0 +1,1 @@
+python -W ignore tools/train.py configs/gustav/kungbib-cascade-mask-tf.py --work-dir=checkpoints/custom/tf
