@@ -27,11 +27,11 @@ ROOT_DIR = os.path.abspath("./Mask_RCNN/")
 # Import shapes
 sys.path.append(os.path.join(ROOT_DIR, "samples/shapes/"))  # To find local version
 
+# Import Mask RCNN
+sys.path.append(ROOT_DIR)  # To find local version of the library
 from shapes import ShapesConfig
 from shapes import ShapesDataset
 
-# Import Mask RCNN
-sys.path.append(ROOT_DIR)  # To find local version of the library
 from mrcnn.config import Config
 from mrcnn import utils
 import mrcnn.model as modellib
