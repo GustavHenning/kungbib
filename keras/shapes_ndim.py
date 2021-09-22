@@ -27,7 +27,7 @@ from mrcnn.model import log
 
 
 # Directory to save logs and trained model
-MODEL_DIR = os.path.join(ROOT_DIR, "logs")
+MODEL_DIR = os.path.join(ROOT_DIR, "logs/ndim_shapes")
 
 # Local path to trained weights file
 COCO_MODEL_PATH = os.path.join(ROOT_DIR, "mask_rcnn_coco.h5")
@@ -232,40 +232,41 @@ model = modellib.MaskRCNN(mode="training", config=config,
                           model_dir=MODEL_DIR)
 # Which weights to start with?
 init_with = "coco"  # imagenet, coco, or last
+SHOULD_TRAIN=True
+if SHOULD_TRAIN:
+    if init_with == "imagenet":
+        model.load_weights(model.get_imagenet_weights(), exclude="conv1", by_name=True)
+    elif init_with == "coco":
+        # Load weights trained on MS COCO, but skip layers that
+        # are different due to the different number of classes
+        # See README for instructions to download the COCO weights
+        model.load_weights(COCO_MODEL_PATH, by_name=True,
+                        exclude=["conv1", "mrcnn_class_logits", "mrcnn_bbox_fc",
+                                    "mrcnn_bbox", "mrcnn_mask"])
+    elif init_with == "last":
+        # Load the last model you trained and continue training
+        model.load_weights(model.find_last(), exclude="conv1", by_name=True)
 
-if init_with == "imagenet":
-    model.load_weights(model.get_imagenet_weights(), exclude="conv1", by_name=True)
-elif init_with == "coco":
-    # Load weights trained on MS COCO, but skip layers that
-    # are different due to the different number of classes
-    # See README for instructions to download the COCO weights
-    model.load_weights(COCO_MODEL_PATH, by_name=True,
-                       exclude=["conv1", "mrcnn_class_logits", "mrcnn_bbox_fc",
-                                "mrcnn_bbox", "mrcnn_mask"])
-elif init_with == "last":
-    # Load the last model you trained and continue training
-    model.load_weights(model.find_last(), exclude="conv1", by_name=True)
+    # Train the head branches
+    # Passing layers="heads" freezes all layers except the head
+    # layers. You can also pass a regular expression to select
+    # which layers to train by name pattern.
+    model.train(dataset_train, dataset_val,
+                learning_rate=config.LEARNING_RATE,
+                epochs=1,
+                layers='heads') #keepdims warning => upgrade to tensorflow==1.5.0 https://github.com/matterport/Mask_RCNN/issues/572
 
-# Train the head branches
-# Passing layers="heads" freezes all layers except the head
-# layers. You can also pass a regular expression to select
-# which layers to train by name pattern.
-model.train(dataset_train, dataset_val,
-            learning_rate=config.LEARNING_RATE,
-            epochs=1,
-            layers='heads') #keepdims warning => upgrade to tensorflow==1.5.0 https://github.com/matterport/Mask_RCNN/issues/572
+    # Fine tune all layers
+    # Passing layers="all" trains all layers. You can also
+    # pass a regular expression to select which layers to
+    # train by name pattern.
+    model.train(dataset_train, dataset_val,
+                learning_rate=config.LEARNING_RATE / 10,
+                epochs=2,
+                layers="all")
 
-# Fine tune all layers
-# Passing layers="all" trains all layers. You can also
-# pass a regular expression to select which layers to
-# train by name pattern.
-model.train(dataset_train, dataset_val,
-            learning_rate=config.LEARNING_RATE / 10,
-            epochs=2,
-            layers="all")
 
 inference_config = InferenceConfig()
-
 # Recreate the model in inference mode
 model = modellib.MaskRCNN(mode="inference",
                           config=inference_config,
@@ -278,14 +279,14 @@ model_path = model.find_last()
 
 # Load trained weights
 print("Loading weights from ", model_path)
-model.load_weights(model_path, exclude="conv1", by_name=True)
+model.load_weights(model_path, exclude="conv1", by_name=True) 
 
 # Test on a random image
 image_id = random.choice(dataset_val.image_ids)
 original_image, image_meta, gt_class_id, gt_bbox, gt_mask =\
     modellib.load_image_gt(dataset_val, inference_config,
                            image_id, use_mini_mask=False)
-
+"""
 log("original_image", original_image)
 log("image_meta", image_meta)
 log("gt_class_id", gt_class_id)
@@ -294,6 +295,7 @@ log("gt_mask", gt_mask)
 
 visualize.display_instances(original_image, gt_bbox, gt_mask, gt_class_id,
                             dataset_train.class_names, figsize=(8, 8))
+                            """
 # Compute VOC-Style mAP @ IoU=0.5
 # Running on 10 images. Increase for better accuracy.
 image_ids = np.random.choice(dataset_val.image_ids, 10)
@@ -303,10 +305,10 @@ for image_id in image_ids:
     image, image_meta, gt_class_id, gt_bbox, gt_mask =\
         modellib.load_image_gt(dataset_val, inference_config,
                                image_id, use_mini_mask=False)
-    tf_image = np.dstack((image, np.zeros((np.shape(image)[0],np.shape(image)[1], TF_DIMS))))
     molded_images = np.expand_dims(modellib.mold_image(image, inference_config), 0)
+
     # Run object detection
-    results = model.detect([tf_image], verbose=0)
+    results = model.detect([image], verbose=0)
     r = results[0]
     # Compute AP
     AP, precisions, recalls, overlaps =\
