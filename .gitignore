@@ -1,12 +1,9 @@
 # mmdetection stuff
 
 mmdetection/checkpoints
-mmdetection/configs/*.*
-!mmdetection/configs/*-tf.py	
+mmdetection/configs
 mmdetection/tools
 mmdetection/pipelines
-!mmdetection/pipelines/__init__.py
-!mmdetection/pipelines/text_features.py	
 
 traintestsplit/**/images/*
 keras/Mask_RCNN
