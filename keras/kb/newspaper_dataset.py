@@ -1,127 +1,143 @@
 
-class ShapesDataset(utils.Dataset):
+from newspaper_config import NewspaperConfig
+import os, sys
+import numpy as np
+from pycocotools import mask as maskUtils
 
-    def load_shapes(self, count, height, width):
-        """Generate the requested number of synthetic images.
-        count: number of images to generate.
-        height, width: the size of the generated images.
+# Root directory of the project
+ROOT_DIR = os.path.abspath("../Mask_RCNN/")
+# Import Mask RCNN
+sys.path.append(ROOT_DIR)  # To find local version of the library
+
+from mrcnn import utils
+import skimage, json
+
+class NewspaperDataset(utils.Dataset):
+    
+    def load_newspaper(self, config, dataset_dir, dataset_type="train", class_ids=None):
+        """Load a kb newspaper dataset
+        dataset_type: "train", "test" or "valid". Corresponding annotations should exist within the dataset_dir.
+        class_ids: If provided, only loads images that have the given classes.
         """
-        # Add classes
-        self.add_class("newspaper", 1, "News Article")
-        self.add_class("newspaper", 2, "Ad")
+        image_dir = dataset_dir + "/images"
+        text_dir = dataset_dir + "/text"
 
+        data = {}
+        with open(os.path.join(dataset_dir, dataset_type + "_annotations.json")) as json_file:
+             data = json.load(json_file)
+        if len(data.keys()) == 0:
+            print("Cant find any data within dataset_dir, dataset_type {} {}".format(dataset_dir, dataset_type))
+        
+        # Add classes
+        # TODO Load all classes or a subset?
+
+        categories = data["categories"] 
+        self.add_class(config.NAME, 0, "BG")
+        for cat in categories:
+            self.add_class(config.NAME, cat["id"] + 1, cat["name"]) # Real categories start at 1
+
+        image_info = {}
+        for info in data["images"]:
+            image_info[info["id"]] = {}
+            image_info[info["id"]]["width"] = info["width"]
+            image_info[info["id"]]["height"] = info["height"]
+            image_info[info["id"]]["file_name"] = info["file_name"]
+        # append annotations for ez
+        for ann in data["annotations"]:
+            if not "annotations" in image_info[ann["image_id"]]:
+                image_info[ann["image_id"]]["annotations"] = []
+            image_info[ann["image_id"]]["annotations"].append(ann)
         # Add images
-        # Generate random specifications of images (i.e. color and
-        # list of shapes sizes and locations). This is more compact than
-        # actual images. Images are generated on the fly in load_image().
-        for i in range(count):
-            bg_color, shapes = self.random_image(height, width)
-            self.add_image("shapes", image_id=i, path=None,
-                           width=width, height=height,
-                           bg_color=bg_color, shapes=shapes)
+        for id in image_info:
+            self.add_image(
+                config.NAME, image_id=id,
+                path=os.path.join(dataset_dir, image_info[id]["file_name"]),
+                width=image_info[id]["width"],
+                height=image_info[id]["height"],
+                annotations=image_info[id]["annotations"] # TODO coco uses iscrowd == false, problem?
+            )
+    
+    def load_mask(self, image_id):
+        """
+        Returns:
+        masks: A bool array of shape [height, width, instance count] with
+            one mask per instance.
+        class_ids: a 1D array of class IDs of the instance masks.
+        """
+        image_info = self.image_info[image_id]
+        instance_masks = []
+        class_ids = []
+        annotations = self.image_info[image_id]["annotations"]
+
+        for annotation in annotations:
+            class_id = annotation["category_id"] + 1 # bg is 0.
+            m = self.annToMask(annotation, image_info["height"], image_info["width"])
+            # Note: some arbitrary stuff is skipped here that is checked for is coco
+            instance_masks.append(m)
+            class_ids.append(class_id)
+        
+        # Pack instance masks into an array
+        if class_ids:
+            mask = np.stack(instance_masks, axis=2).astype(np.bool)
+            class_ids = np.array(class_ids, dtype=np.int32)
+            return mask, class_ids
+        else:
+            return super(NewspaperDataset, self).load_mask(image_id)
+    
+    # The following two functions are from pycocotools with a few changes.
+
+    def annToRLE(self, ann, height, width):
+        """
+        Convert annotation which can be polygons, uncompressed RLE to RLE.
+        :return: binary mask (numpy 2D array)
+        """
+        segm = ann['segmentation']
+        if isinstance(segm, list):
+            # polygon -- a single object might consist of multiple parts
+            # we merge all parts into one mask rle code
+            rles = maskUtils.frPyObjects(segm, height, width)
+            rle = maskUtils.merge(rles)
+        elif isinstance(segm['counts'], list):
+            # uncompressed RLE
+            rle = maskUtils.frPyObjects(segm, height, width)
+        else:
+            # rle
+            rle = ann['segmentation']
+        return rle
+
+    def annToMask(self, ann, height, width):
+        """
+        Convert annotation which can be polygons, uncompressed RLE, or RLE to binary mask.
+        :return: binary mask (numpy 2D array)
+        """
+        rle = self.annToRLE(ann, height, width)
+        m = maskUtils.decode(rle)
+        return m
 
     def load_image(self, image_id):
-        """Generate an image from the specs of the given image ID.
-        Typically this function loads the image from a file, but
-        in this case it generates the image on the fly from the
-        specs in image_info.
+        """Load the specified image and return a [H,W,3] Numpy array.
         """
-        info = self.image_info[image_id]
-        bg_color = np.array(info['bg_color']).reshape([1, 1, 3])
-        image = np.ones([info['height'], info['width'], 3], dtype=np.uint8)
-        image = image * bg_color.astype(np.uint8)
-        for shape, color, dims in info['shapes']:
-            image = self.draw_shape(image, shape, dims, color)
+        # Load image
+        image = skimage.io.imread(self.image_info[image_id]['path'])
+        # If grayscale. Convert to RGB for consistency.
+        if image.ndim != 3:
+            image = skimage.color.gray2rgb(image)
+        # If has an alpha channel, remove it for consistency
+        if image.shape[-1] == 4:
+            image = image[..., :3]
         
-        tf_image = np.dstack((image, np.zeros((np.shape(image)[0],np.shape(image)[1], TF_DIMS))))
-        return tf_image
+        ## TODO add support for multidimensional text
 
-    def image_reference(self, image_id):
-        """Return the shapes data of the image."""
-        info = self.image_info[image_id]
-        if info["source"] == "shapes":
-            return info["shapes"]
-        else:
-            super(self.__class__).image_reference(self, image_id)
-
-    def load_mask(self, image_id):
-        """Generate instance masks for shapes of the given image ID.
-        """
-        info = self.image_info[image_id]
-        shapes = info['shapes']
-        count = len(shapes)
-        mask = np.zeros([info['height'], info['width'], count], dtype=np.uint8)
-        for i, (shape, _, dims) in enumerate(info['shapes']):
-            mask[:, :, i:i + 1] = self.draw_shape(mask[:, :, i:i + 1].copy(),
-                                                  shape, dims, 1)
-        # Handle occlusions
-        occlusion = np.logical_not(mask[:, :, -1]).astype(np.uint8)
-        for i in range(count - 2, -1, -1):
-            mask[:, :, i] = mask[:, :, i] * occlusion
-            occlusion = np.logical_and(
-                occlusion, np.logical_not(mask[:, :, i]))
-        # Map class names to class IDs.
-        class_ids = np.array([self.class_names.index(s[0]) for s in shapes])
-        return mask, class_ids.astype(np.int32)
-
-    def draw_shape(self, image, shape, dims, color):
-        """Draws a shape from the given specs."""
-        # Get the center x, y and the size s
-        x, y, s = dims
-        if shape == 'square':
-            image = cv2.rectangle(image, (x - s, y - s),
-                                  (x + s, y + s), color, -1)
-        elif shape == "circle":
-            image = cv2.circle(image, (x, y), s, color, -1)
-        elif shape == "triangle":
-            points = np.array([[(x, y - s),
-                                (x - s / math.sin(math.radians(60)), y + s),
-                                (x + s / math.sin(math.radians(60)), y + s),
-                                ]], dtype=np.int32)
-            image = cv2.fillPoly(image, points, color)
         return image
 
-    def random_shape(self, height, width):
-        """Generates specifications of a random shape that lies within
-        the given height and width boundaries.
-        Returns a tuple of three valus:
-        * The shape name (square, circle, ...)
-        * Shape color: a tuple of 3 values, RGB.
-        * Shape dimensions: A tuple of values that define the shape size
-                            and location. Differs per shape type.
-        """
-        # Shape
-        shape = random.choice(["square", "circle", "triangle"])
-        # Color
-        color = tuple([random.randint(0, 255) for _ in range(3)])
-        # Center x, y
-        buffer = 20
-        y = random.randint(buffer, height - buffer - 1)
-        x = random.randint(buffer, width - buffer - 1)
-        # Size
-        s = random.randint(buffer, height // 4)
-        return shape, color, (x, y, s)
+    def image_reference(self, image_id):
+        info = self.image_info[image_id]
+        if "path" in info:
+            return info["path"] # TODO maybe append file:///?
+        else:
+            super(NewspaperDataset, self).image_reference(image_id)
 
-    def random_image(self, height, width):
-        """Creates random specifications of an image with multiple shapes.
-        Returns the background color of the image and a list of shape
-        specifications that can be used to draw the image.
-        """
-        # Pick random background color
-        bg_color = np.array([random.randint(0, 255) for _ in range(3)])
-        # Generate a few random shapes and record their
-        # bounding boxes
-        shapes = []
-        boxes = []
-        N = random.randint(1, 4)
-        for _ in range(N):
-            shape, color, dims = self.random_shape(height, width)
-            shapes.append((shape, color, dims))
-            x, y, s = dims
-            boxes.append([y - s, x - s, y + s, x + s])
-        # Apply non-max suppression wit 0.3 threshold to avoid
-        # shapes covering each other
-        keep_ixs = utils.non_max_suppression(
-            np.array(boxes), np.arange(N), 0.3)
-        shapes = [s for i, s in enumerate(shapes) if i in keep_ixs]
-        return bg_color, shapes
+#for testing
+if __name__ == '__main__': 
+    config = NewspaperConfig(dimensions=3)
+    NewspaperDataset().load_newspaper(config, "/data/gustav/datalab_data/poly-dn-2010-2020-720/")

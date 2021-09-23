@@ -1,12 +1,23 @@
 import numpy as np
 
-TF_DIMS=100
+import os, sys
 
-class Newspaper(Config):
+# Root directory of the project
+ROOT_DIR = os.path.abspath("../Mask_RCNN/")
+# Import Mask RCNN
+sys.path.append(ROOT_DIR)  # To find local version of the library
 
-    """Configuration for training on the toy shapes dataset.
-    Derives from the base Config class and overrides values specific
-    to the toy shapes dataset.
+from mrcnn.config import Config
+
+class NewspaperConfig(Config):
+
+    def __init__(self, dimensions):
+        TF_DIMS = dimensions
+        # the ndim special
+        normal_mean_img = np.array([123.7, 116.8, 103.9])
+        IMAGE_CHANNEL_COUNT = 3 + dimensions if dimensions > 3 else 3
+        MEAN_PIXEL = np.concatenate([normal_mean_img, np.repeat(0,dimensions)]) if dimensions > 3 else normal_mean_img
+    """Configuration for training on the newspaper dataset
     """
     # Give the configuration a recognizable name
     NAME = "newspaper"
@@ -37,6 +48,3 @@ class Newspaper(Config):
     # use small validation steps since the epoch is small
     VALIDATION_STEPS = 5
 
-    # the ndim special
-    IMAGE_CHANNEL_COUNT = 3 + TF_DIMS
-    MEAN_PIXEL = np.concatenate([np.array([123.7, 116.8, 103.9]), np.repeat(0,TF_DIMS)])
