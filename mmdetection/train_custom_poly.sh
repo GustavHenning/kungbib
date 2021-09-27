@@ -3,7 +3,7 @@
 #
 BASE_CHANNELS=3
 
-declare -a dimensions=(3 6 10 50 100)
+declare -a dimensions=(3 6 10 50 100 384)
 #
 #   Model
 #
@@ -21,10 +21,15 @@ do
 
         python3 -W ignore tools/train.py \
         configs/gustav/kungbib-cascade-mask-tf.py \
+        --seed=0 \
         --work-dir=checkpoints/custom/tf/$MODEL_DIR \
         --cfg-options model.backbone.in_channels=$TOTAL_CHANNELS \
         data.train.pipeline.3.dimensions=$d \
-        data.test.pipeline.1.transforms.1.dimensions=$d
+        data.test.pipeline.1.transforms.1.encoder=$e \
+        data.test.pipeline.1.transforms.1.dimensions=$d \
+        data.val.pipeline.1.transforms.1.encoder=$e \
+        data.val.pipeline.1.transforms.1.dimensions=$d
+
     done
 done
 

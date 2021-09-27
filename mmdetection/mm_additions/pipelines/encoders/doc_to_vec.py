@@ -9,6 +9,7 @@ from tqdm import tqdm
 
 class Doc2Vec(Encoder):
     def __init__(self, dimensions, texts_location="/data/gustav/datalab_data/poly-dn-2010-2020-720/text"):
+        print("initializing Doc2Vec")
         self.pattern = re.compile('[^\w\d ]+')
         sentences = self.build_corpus(texts_location)
         documents = [TaggedDocument(doc, [i]) for i, doc in enumerate(sentences)]

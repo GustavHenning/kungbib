@@ -14,9 +14,10 @@ class TextFeatures:
                 dimensions=3,
                 encoder="doc2vec"):
         self.dimensions = dimensions
-        if encoder is "bert":
+        print("encoder is {} with {} dimensions".format(encoder, dimensions))
+        if encoder == "bert":
             self.encoder = BERT(dimensions)
-        elif encoder is "doc2vec":
+        elif encoder == "doc2vec":
             self.encoder = Doc2Vec(dimensions)
         else:
             print("Unrecognized text features encoder {}, using BERT instead.".format(encoder))

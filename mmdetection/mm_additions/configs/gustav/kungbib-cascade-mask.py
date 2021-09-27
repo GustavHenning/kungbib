@@ -3,6 +3,10 @@ _base_ = '../mask_rcnn/mask_rcnn_r50_caffe_fpn_mstrain-poly_1x_coco.py'
 
 TRAIN_TEST_VALID_FOLDERS="/data/gustav/datalab_data/poly-dn-2010-2020-720/"
 
+# Adds more epochs as per 2x_coco
+lr_config = dict(step=[16, 23])
+runner = dict(type='EpochBasedRunner', max_epochs=24)
+
 # We also need to change the num_classes in head to match the dataset's annotation
 model = dict(
     roi_head=dict(
