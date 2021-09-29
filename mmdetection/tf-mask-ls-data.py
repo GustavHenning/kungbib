@@ -3,8 +3,10 @@ import os, json
 
 DATASET="/data/gustav/datalab_data/poly-dn-2010-2020-720"
 
-config_file = 'configs/gustav/kungbib-cascade-mask-tf.py'
-checkpoint_file = 'checkpoints/custom/tf/latest.pth'
+config_file = 'checkpoints/custom/tf/bert_dim_384/kungbib-cascade-mask-tf.py'
+checkpoint_file = 'checkpoints/custom/tf/bert_dim_384/latest.pth'
+#config_file = 'configs/gustav/kungbib-cascade-mask-tf.py'
+#checkpoint_file = 'checkpoints/custom/tf/latest.pth'
 device = 'cuda:0'
 
 
