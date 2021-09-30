@@ -9,7 +9,7 @@ model = dict(
             ))
 # use caffe img_norm
 img_norm_cfg = dict(
-    mean=[103.530, 116.280, 123.675], std=[1.0, 1.0, 1.0], to_rgb=False)
+    mean=[103.530, 116.280, 123.675], std=[1.0, 1.0, 1.0], to_rgb=False, extra_dims=384) # TODO make extra_dims a cfg option
 train_pipeline = [
     dict(type='LoadImageFromFile'),
     dict(
@@ -18,7 +18,7 @@ train_pipeline = [
         with_mask=True,
         poly2mask=False),
     dict(type='Normalize', **img_norm_cfg), #TODO in place cv2.subtract doesnt work well with additional channels.
-    dict(type='TextFeatures', dimensions=3, encoder=""),
+    dict(type='TextFeatures', dimensions=3, encoder="", model_name=""),
     dict(
         type='Resize',
         img_scale=[(1333, 640), (1333, 672), (1333, 704), (1333, 736),
@@ -38,12 +38,12 @@ test_pipeline = [
         flip=False,
         transforms=[
             dict(type='Normalize', **img_norm_cfg),
-            dict(type='TextFeatures', dimensions=3, encoder=""),
+            dict(type='TextFeatures', dimensions=3, encoder="", model_name=""),
             dict(type='Resize', keep_ratio=True),
             dict(type='RandomFlip'),
             dict(type='Pad', size_divisor=32),
             dict(type='ImageToTensor', keys=['img']),
-            dict(type='Collect', keys=['img']),
+            dict(type='Collect', keys=['img']), 
         ])
 ]
 data = dict(

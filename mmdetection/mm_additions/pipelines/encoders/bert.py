@@ -5,7 +5,9 @@ from sentence_transformers import SentenceTransformer
 class BERT(Encoder):
     def __init__(self, dimensions, model_name='multi-qa-MiniLM-L6-cos-v1'): # TODO other models?
         self.dimensions = dimensions
+        print("Model name is {}".format(model_name))
         self.model = SentenceTransformer(model_name, device="cpu") # cpu because we are already using the cuda device :(
+        
     """
     Returns an (1,n)-dimensional array of vectorized text where n is the dimensions passed to the constructor
     """

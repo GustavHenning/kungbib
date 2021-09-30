@@ -12,16 +12,17 @@ BASE_CHANNELS=3
 class TextFeatures:
     def __init__(self,
                 dimensions=3,
-                encoder="doc2vec"):
+                encoder="doc2vec",
+                model_name="multi-qa-MiniLM-L6-cos-v1"): # only for bert
         self.dimensions = dimensions
-        print("encoder is {} with {} dimensions".format(encoder, dimensions))
+        print("encoder is {} with {} dimensions and model_name {}".format(encoder, dimensions, model_name))
         if encoder == "bert":
-            self.encoder = BERT(dimensions)
+            self.encoder = BERT(dimensions=dimensions, model_name=model_name)
         elif encoder == "doc2vec":
-            self.encoder = Doc2Vec(dimensions)
+            self.encoder = Doc2Vec(dimensions, model_name=model_name)
         else:
             print("Unrecognized text features encoder {}, using BERT instead.".format(encoder))
-            self.encoder = BERT(dimensions)
+            self.encoder = BERT(dimensions, model_name=model_name)
         
 
     def __call__(self, results):
@@ -37,6 +38,7 @@ class TextFeatures:
             text_feature_array[block["x"]:block["width"]][block["y"]:block["height"]] = encoded_vector
 
         rgbtf = np.concatenate((results["img"], text_feature_array), axis=2)
+        results["img_rgb"] = results["img"]
         results["img"] = rgbtf
         
         # set image shape
@@ -48,3 +50,9 @@ class TextFeatures:
         with open(text_file_path, encoding='utf-8') as fh:
             data = json.load(fh)
             return data
+
+
+@PIPELINES.register_module()
+class RemoveTextFeatures:
+    def __call__(self, results):
+        results["img"] = results["img"][:,:,0:3]
