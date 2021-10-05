@@ -4,6 +4,7 @@ mmdetection/checkpoints
 mmdetection/configs
 mmdetection/tools
 mmdetection/pipelines
+mmdetection/mm_additions/**/*.bin
 
 traintestsplit/**/images/*
 keras/Mask_RCNN
