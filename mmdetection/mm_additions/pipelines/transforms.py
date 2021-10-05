@@ -72,7 +72,7 @@ class Resize:
                  ratio_range=None,
                  keep_ratio=True,
                  bbox_clip_border=True,
-                 backend='cv2',
+                 backend='cv2', 
                  override=False):
         if img_scale is None:
             self.img_scale = None
@@ -301,7 +301,7 @@ class Resize:
                 if 'scale_factor' in results:
                     results.pop('scale_factor')
                 self._random_scale(results)
-
+                
         self._resize_img(results)
         self._resize_bboxes(results)
         self._resize_masks(results)

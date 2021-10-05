@@ -1,5 +1,5 @@
 from .encoder import Encoder
-import torch
+import numpy as np
 from sentence_transformers import SentenceTransformer
 
 class BERT(Encoder):
