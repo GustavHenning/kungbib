@@ -2,7 +2,8 @@
 #   Dimensions
 #
 BASE_CHANNELS=3
-# NOTE: mask_rcnn_r50_caffe_fpn_mstrain-poly_1x_coco-tf contains img_norm_cfg with extra_dims that needs to correspond to this value
+# TODO: mask_rcnn_r50_caffe_fpn_mstrain-poly_1x_coco-tf contains img_norm_cfg with extra_dims that needs to correspond to this value
+# CHECK THIS FILE BEFORE RUNNING !!!!!!!!!!!!!!!!!!!!!!!1
 declare -a dimensions=(384) #3 6 10 50 100 384 
 #
 #   Model
@@ -36,20 +37,20 @@ do
             #   2 classes
             #
 
-            # python3 -W ignore tools/train.py \
-            # configs/gustav/kungbib-cascade-mask-tf.py \
-            # --seed=0 \
-            # --work-dir=checkpoints/custom/tf/$MODEL_DIR \
-            # --cfg-options model.backbone.in_channels=$TOTAL_CHANNELS \
-            # data.train.pipeline.6.dimensions=$d \
-            # data.train.pipeline.6.encoder=$e \
-            # data.train.pipeline.6.model_name=$m \
-            # data.test.pipeline.1.transforms.4.encoder=$e \
-            # data.test.pipeline.1.transforms.4.dimensions=$d \
-            # data.test.pipeline.1.transforms.4.model_name=$m \
-            # data.val.pipeline.1.transforms.4.encoder=$e \
-            # data.val.pipeline.1.transforms.4.dimensions=$d \
-            # data.val.pipeline.1.transforms.4.model_name=$m
+            python3 -W ignore tools/train.py \
+            configs/gustav/kungbib-cascade-mask-tf.py \
+            --seed=0 \
+            --work-dir=checkpoints/custom/tf/$MODEL_DIR \
+            --cfg-options model.backbone.in_channels=$TOTAL_CHANNELS \
+            data.train.pipeline.6.dimensions=$d \
+            data.train.pipeline.6.encoder=$e \
+            data.train.pipeline.6.model_name=$m \
+            data.test.pipeline.1.transforms.4.encoder=$e \
+            data.test.pipeline.1.transforms.4.dimensions=$d \
+            data.test.pipeline.1.transforms.4.model_name=$m \
+            data.val.pipeline.1.transforms.4.encoder=$e \
+            data.val.pipeline.1.transforms.4.dimensions=$d \
+            data.val.pipeline.1.transforms.4.model_name=$m
 
 
             python3 tools/test.py \
