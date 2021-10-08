@@ -7,8 +7,11 @@ from .encoders.doc_to_vec import Doc2Vec
 import matplotlib.pyplot as plt
 import matplotlib.patches as patches
 
+from timeit import default_timer as timer
+
 BASE_CHANNELS = 3
 DEBUG_IMAGE = False
+DEBUG_TIME = False
 
 
 @PIPELINES.register_module()
@@ -29,6 +32,8 @@ class TextFeatures:
         
 
     def __call__(self, results):
+        if DEBUG_TIME:
+            start = timer()
 
         if DEBUG_IMAGE:
             fig, ax = self.draw_base_image(results)
@@ -41,16 +46,20 @@ class TextFeatures:
         if DEBUG_IMAGE:
             #print(results)
             print("size of img is {}, pad_h, pad_w is {} {}, ori_shape is {}".format(results["img_shape"], pad_h, pad_w, results["ori_shape"]))
-            
+        if DEBUG_TIME:    
+            print("intiialize array at {}".format(timer() - start))
         text_feature_array = np.zeros((pad_h, pad_w, 
-            self.dimensions), dtype=np.float32)
-
+            self.dimensions + 3), dtype=np.float32)
+        if DEBUG_TIME:
+            print("read text at {}".format(timer() - start))
         texts = self.get_text_json(results["filename"])
+        if DEBUG_TIME:
+            print("text read done at {}".format(timer() - start))
         # for each text block, encode it and stick it into the text_feature_array between x, y, width and height.
         # TODO how do we handle set dimensional sizes from the encoders?
         for block in texts["content"]:
             text = block["text"]
-            encoded_vector = self.encoder.encode(text)
+            encoded_vector = np.pad(self.encoder.encode(text), (3,0), 'constant') # prepad rbg channels 
             x = int(block["x"] * scaleX) if results["flip_direction"] != 'horizontal' else pad_w - int(block["x"] * scaleX) - int(block["width"] * scaleX) 
             y = int(block["y"] * scaleY) 
             w = int(block["width"] * scaleX) 
@@ -58,11 +67,20 @@ class TextFeatures:
             text_feature_array[x:w][y:h] = encoded_vector
             if DEBUG_IMAGE:
                 self.draw_rect(ax,x,y,w,h)
-
+        if DEBUG_TIME:
+            print("blocks done at {}".format(timer() - start))
         self.show_plot()
-        rgbtf = np.concatenate((results["img"], text_feature_array), axis=2)
+        #rgbtf = np.concatenate((results["img"], text_feature_array), axis=2) # TODO make this faster
+        len_x = results["img"].shape[0]
+        len_y = results["img"].shape[1]
+        text_feature_array[0:len_x,0:len_y,0:3] = results["img"]
+
+        if DEBUG_TIME:
+            print("concatenate done at {}".format(timer() - start))
         results["img_rgb"] = results["img"]
-        results["img"] = rgbtf
+        results["img"] = text_feature_array
+        if DEBUG_TIME:
+            print("reassign at {}".format(timer() - start))
         # set image shape
         results["img_shape"] = results["img_shape"][0], results["img_shape"][1], BASE_CHANNELS + self.dimensions
 
@@ -96,3 +114,5 @@ class TextFeatures:
 class RemoveTextFeatures:
     def __call__(self, results):
         results["img"] = results["img"][:,:,0:3]
+        results["img_shape"] = results["img_shape"][0], results["img_shape"][1], 3
+        return results

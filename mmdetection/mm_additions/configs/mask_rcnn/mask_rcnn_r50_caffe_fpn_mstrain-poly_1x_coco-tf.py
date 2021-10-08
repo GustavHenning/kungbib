@@ -37,6 +37,7 @@ test_pipeline = [
         img_scale=(1333, 800),
         flip=False,
         transforms=[
+           # dict(type='RemoveTextFeatures'),
             dict(type='Normalize', **img_norm_cfg),
             dict(type='Resize', keep_ratio=True),
             dict(type='RandomFlip'),

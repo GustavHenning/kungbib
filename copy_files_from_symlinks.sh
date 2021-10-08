@@ -7,3 +7,5 @@ cp -rf /home/gush/git/kungbib/mmdetection/pipelines/text_features.py /home/gush/
 cp -rf /home/gush/git/kungbib/mmdetection/pipelines/transforms.py /home/gush/git/kungbib/mmdetection/mm_additions/pipelines/transforms.py
 cp -rf /home/gush/git/kungbib/mmdetection/pipelines/encoders/* /home/gush/git/kungbib/mmdetection/mm_additions/pipelines/encoders
 cp -rf /data/gustav/anaconda3/envs/openmmlab/lib/python3.8/site-packages/mmdet/apis/test.py /home/gush/git/kungbib/mmdetection/mm_additions/tools/test.py
+cp -rf /data/gustav/anaconda3/envs/openmmlab/lib/python3.8/site-packages/mmcv/image/misc.py /home/gush/git/kungbib/mmdetection/mm_additions/mmcv/image/misc.py
+cp -rf /data/gustav/anaconda3/envs/openmmlab/lib/python3.8/site-packages/mmcv/image/photometric.py /home/gush/git/kungbib/mmdetection/mm_additions/mmcv/image/photometric.py 
