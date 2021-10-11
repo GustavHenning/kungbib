@@ -683,7 +683,6 @@ class Normalize:
         self.std = np.array(std, dtype=np.float32)
         self.to_rgb = to_rgb
         self.extra_dims = extra_dims
-        print("extra dims: {}".format(self.extra_dims))
 
     def __call__(self, results):
         """Call function to normalize images.

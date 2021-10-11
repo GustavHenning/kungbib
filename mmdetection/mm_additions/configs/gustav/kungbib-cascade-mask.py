@@ -1,22 +1,24 @@
-# The new config inherits a base config to highlight the necessary modification
 _base_ = '../mask_rcnn/mask_rcnn_r50_caffe_fpn_mstrain-poly_1x_coco.py'
 
 TRAIN_TEST_VALID_FOLDERS="/data/gustav/datalab_data/poly-dn-2010-2020-720/"
 
-# Adds more epochs as per 2x_coco
-lr_config = dict(step=[16, 23])
-runner = dict(type='EpochBasedRunner', max_epochs=24)
+MAX_EPOCHS=36
 
-# We also need to change the num_classes in head to match the dataset's annotation
+# learning policy
+lr_config = dict(step=[28, 34])
+runner = dict(type='EpochBasedRunner', max_epochs=MAX_EPOCHS)
+
 model = dict(
     roi_head=dict(
         bbox_head=dict(num_classes=2),
         mask_head=dict(num_classes=2)))
 
-# Modify dataset related settings
 dataset_type = 'COCODataset'
 classes = ('News Article', 'Ad',)
 data = dict(
+    max_epochs=MAX_EPOCHS,
+    samples_per_gpu=2,  # Batch size of a single GPU
+    workers_per_gpu=12,  # Worker to pre-fetch data for each single GPU
     train=dict(
         img_prefix=TRAIN_TEST_VALID_FOLDERS,
         classes=classes,
