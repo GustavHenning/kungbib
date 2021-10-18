@@ -9,6 +9,8 @@ mmdetection/mm_additions/**/*.bin
 traintestsplit/**/images/*
 traintestsplit/**/*.json
 
+rect2poly/**/*.json
+
 keras/Mask_RCNN
 keras/Pipfile
 keras/Pipfile.lock
