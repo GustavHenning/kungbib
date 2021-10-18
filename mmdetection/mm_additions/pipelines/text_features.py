@@ -10,7 +10,7 @@ import matplotlib.patches as patches
 from timeit import default_timer as timer
 
 BASE_CHANNELS = 3
-DEBUG_IMAGE = False
+DEBUG_IMAGE = True
 DEBUG_TIME = False
 
 
@@ -60,7 +60,7 @@ class TextFeatures:
         for block in texts["content"]:
             text = block["text"]
             encoded_vector = np.pad(self.encoder.encode(text), (3,0), 'constant') # prepad rbg channels 
-            x = int(block["x"] * scaleX) if results["flip_direction"] != 'horizontal' else pad_w - int(block["x"] * scaleX) - int(block["width"] * scaleX) 
+            x = int(block["x"] * scaleX) if results["flip_direction"] != 'horizontal' else pad_w - int(np.ceil(block["x"] * scaleX)) - int(block["width"] * scaleX) 
             y = int(block["y"] * scaleY) 
             w = int(block["width"] * scaleX) 
             h = int(block["height"] * scaleY)
