@@ -18,7 +18,8 @@ def convert_to_poly(value):
 """
 def relabel_rect(tar_poly_id, rect_indexed, img_id):
     rect_indexed[img_id]["project"] = int(tar_poly_id)
-    rect_result = rect_indexed[img_id]["annotations"][0]["result"]
+    rect_latest = rect_indexed[img_id]["annotations"][-1] # Keep the latest annotation only
+    rect_result = rect_latest["result"]
     poly = []
     for rect in rect_result:
         if "image_rotation" not in rect: # Relationships between segmentation boxes get stuck here... not implemented
@@ -29,6 +30,8 @@ def relabel_rect(tar_poly_id, rect_indexed, img_id):
         rect["type"] = "polygonlabels"
         rect["value"] = convert_to_poly(rect["value"])
         poly.append(rect)
+    rect_indexed[img_id]["annotations"] = []
+    rect_indexed[img_id]["annotations"].append(rect_latest)
     rect_indexed[img_id]["annotations"][0]["result"] = poly
     
 
