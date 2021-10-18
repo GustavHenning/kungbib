@@ -10,7 +10,7 @@ import matplotlib.patches as patches
 from timeit import default_timer as timer
 
 BASE_CHANNELS = 3
-DEBUG_IMAGE = True
+DEBUG_IMAGE = False
 DEBUG_TIME = False
 
 
@@ -32,6 +32,7 @@ class TextFeatures:
         
 
     def __call__(self, results):
+        
         if DEBUG_TIME:
             start = timer()
 

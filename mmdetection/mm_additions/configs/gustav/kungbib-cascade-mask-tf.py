@@ -1,22 +1,23 @@
 _base_ = '../mask_rcnn/mask_rcnn_r50_caffe_fpn_mstrain-poly_1x_coco-tf.py'
 
-TRAIN_TEST_VALID_FOLDERS="/data/gustav/datalab_data/poly-dn-2010-2020-720/"
-
-MAX_EPOCHS=36
+TRAIN_TEST_VALID_FOLDERS="/data/gustav/datalab_data/poly-dn-2010-2020-729/"
+MAX_EPOCHS=64
 
 # learning policy
 lr_config = dict(step=[28, 34])
 runner = dict(type='EpochBasedRunner', max_epochs=MAX_EPOCHS)
 
+evaluation = dict(interval=4)
+
 # We also need to change the num_classes in head to match the dataset's annotation
 model = dict(
     roi_head=dict(
-        bbox_head=dict(num_classes=2),
-        mask_head=dict(num_classes=2)))
+        bbox_head=dict(num_classes=6),
+        mask_head=dict(num_classes=6)))
 
 # Modify dataset related settings
 dataset_type = 'COCODataset'
-classes = ('News Article', 'Ad',)
+classes = ('News Article', 'Ad', 'Listing', 'Weather', 'Death', 'Crossword',)
 data = dict(
     max_epochs=MAX_EPOCHS,
     samples_per_gpu=2,  # Batch size of a single GPU

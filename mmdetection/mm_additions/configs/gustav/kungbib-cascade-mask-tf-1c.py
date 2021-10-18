@@ -1,11 +1,13 @@
 _base_ = './kungbib-cascade-mask-tf.py'
 
-TRAIN_TEST_VALID_FOLDERS="/data/gustav/datalab_data/poly-dn-2010-2020-720/"
-MAX_EPOCHS=36
+TRAIN_TEST_VALID_FOLDERS="/data/gustav/datalab_data/poly-dn-2010-2020-729/"
+MAX_EPOCHS=64
 
 # learning policy
 lr_config = dict(step=[28, 34])
 runner = dict(type='EpochBasedRunner', max_epochs=MAX_EPOCHS)
+
+evaluation = dict(interval=4)
 
 model = dict(
     roi_head=dict(
