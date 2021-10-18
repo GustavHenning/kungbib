@@ -10,3 +10,4 @@ cp -rf /data/gustav/anaconda3/envs/openmmlab/lib/python3.8/site-packages/mmdet/a
 cp -rf /data/gustav/anaconda3/envs/openmmlab/lib/python3.8/site-packages/mmcv/image/misc.py /home/gush/git/kungbib/mmdetection/mm_additions/mmcv/image/misc.py
 cp -rf /data/gustav/anaconda3/envs/openmmlab/lib/python3.8/site-packages/mmcv/image/photometric.py /home/gush/git/kungbib/mmdetection/mm_additions/mmcv/image/photometric.py 
 cp -rf /data/gustav/anaconda3/envs/openmmlab/lib/python3.8/site-packages/mmdet/.mim/tools/analysis_tools/coco_error_analysis.py /home/gush/git/kungbib/mmdetection/mm_additions/tools/analysis_tools/coco_error_analysis.py
+cp -rf /data/gustav/anaconda3/envs/openmmlab/lib/python3.8/site-packages/mmdet/datasets/coco.py /home/gush/git/kungbib/mmdetection/mm_additions/mmdet/datasets/coco.py

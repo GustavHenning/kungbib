@@ -1,3 +1,6 @@
+#!/bin/bash
+
+DATASET=poly-dn-2010-2020-729
 #
 #   Dimensions
 #
@@ -51,6 +54,7 @@ do
             data.val.pipeline.1.transforms.4.dimensions=$d \
             data.val.pipeline.1.transforms.4.model_name=$m
 
+            rm -rf checkpoints/custom/tf/$MODEL_DIR/analysis && mkdir -p checkpoints/custom/tf/$MODEL_DIR/analysis
 
             python3 -W ignore tools/test.py \
             configs/gustav/kungbib-cascade-mask-tf-768.py \
@@ -89,7 +93,7 @@ do
             python3 tools/analysis_tools/coco_error_analysis.py \
                 ./checkpoints/custom/tf/$MODEL_DIR/results.bbox.json \
                 ./checkpoints/custom/tf/$MODEL_DIR/results \
-                --ann=/data/gustav/datalab_data/poly-dn-2010-2020-720/test_annotations.json \
+                --ann=/data/gustav/datalab_data/$DATASET/test_annotations.json \
                 --extraplots\
                 --areas 80000 360000 10000000000
 
@@ -97,7 +101,7 @@ do
             python3 tools/analysis_tools/coco_error_analysis.py \
                 ./checkpoints/custom/tf/$MODEL_DIR/results.segm.json \
                 ./checkpoints/custom/tf/$MODEL_DIR/results \
-                --ann=/data/gustav/datalab_data/poly-dn-2010-2020-720/test_annotations.json \
+                --ann=/data/gustav/datalab_data/$DATASET/test_annotations.json \
                --types='segm' \
                --extraplots\
                 --areas 80000 360000 10000000000
@@ -121,6 +125,7 @@ do
             # data.val.pipeline.1.transforms.4.dimensions=$d \
             # data.val.pipeline.1.transforms.4.model_name=$m
 
+            # rm -rf checkpoints/custom/tf/$MODEL_DIR-1c/analysis && mkdir -p checkpoints/custom/tf/$MODEL_DIR-1c/analysis
 
             # python3 tools/test.py \
             # configs/gustav/kungbib-cascade-mask-tf-1c.py \
