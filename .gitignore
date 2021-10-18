@@ -7,6 +7,8 @@ mmdetection/pipelines
 mmdetection/mm_additions/**/*.bin
 
 traintestsplit/**/images/*
+traintestsplit/**/*.json
+
 keras/Mask_RCNN
 keras/Pipfile
 keras/Pipfile.lock
