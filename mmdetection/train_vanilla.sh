@@ -51,7 +51,7 @@ python3 tools/analysis_tools/coco_error_analysis.py \
 # --seed=0 \
 # --work-dir=checkpoints/custom/tf/vanilla-1c
 
-rm -rf checkpoints/custom/tf/vanilla-1c/analysis && mkdir -p checkpoints/custom/tf/vanilla-1c/analysis
+# rm -rf checkpoints/custom/tf/vanilla-1c/analysis && mkdir -p checkpoints/custom/tf/vanilla-1c/analysis
 
 # python3 tools/test.py \
 # configs/gustav/kungbib-cascade-mask-1c.py \
