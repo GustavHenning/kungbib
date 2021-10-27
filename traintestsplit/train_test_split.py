@@ -69,6 +69,17 @@ def create_annotations(dataset_folder_path, annotations_prefix, images, data):
     with open(file_name, "w") as f:
         json.dump(data, f, indent=4)
 
+    data_single_category = data.copy()
+    for annotation in data_single_category["annotations"]:
+        annotation["category_id"] = 0
+
+    data_single_category["categories"] = [{"id" : 0, "name": "Publication Unit"}]
+    file_name = dataset_folder_path + "/" + annotations_prefix + "_1c_annotations.json"
+    with open(file_name, "w") as f:
+        json.dump(data_single_category, f, indent=4)
+    
+
+
 def train_val_split(dataset_folder_path, json_filename, train_prop=0.8, test_prop=None, seed=None):
     """
     Create random train, test and optionally validation split from a COCO annotation json file.
