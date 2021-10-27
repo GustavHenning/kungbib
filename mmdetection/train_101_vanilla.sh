@@ -70,7 +70,7 @@ python3 tools/analysis_tools/coco_error_analysis.py \
 # python3 tools/analysis_tools/coco_error_analysis.py \
 # ./checkpoints/custom/tf/vanilla-101-1c/results.bbox.json \
 # ./checkpoints/custom/tf/vanilla-101-1c/results \
-# --ann=/data/gustav/datalab_data/$DATASET/test_annotations.json \
+# --ann=/data/gustav/datalab_data/$DATASET/test_1c_annotations.json \
 # --extraplots \
 # --areas 80000 360000 10000000000
 
@@ -78,7 +78,7 @@ python3 tools/analysis_tools/coco_error_analysis.py \
 # python3 tools/analysis_tools/coco_error_analysis.py \
 # ./checkpoints/custom/tf/vanilla-101-1c/results.segm.json \
 # ./checkpoints/custom/tf/vanilla-101-1c/results \
-# --ann=/data/gustav/datalab_data/$DATASET/test_annotations.json \
+# --ann=/data/gustav/datalab_data/$DATASET/test_1c_annotations.json \
 # --types='segm' \
 # --extraplots \
 # --areas 80000 360000 10000000000

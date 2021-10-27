@@ -34,7 +34,8 @@ test_pipeline = [
     dict(type='LoadImageFromFile'),
     dict(
         type='MultiScaleFlipAug',
-        img_scale=(1333, 800),
+        #img_scale=(1333, 800),
+        img_scale=(1248, 1600),
         flip=False,
         transforms=[
             dict(type='Normalize', **img_norm_cfg),

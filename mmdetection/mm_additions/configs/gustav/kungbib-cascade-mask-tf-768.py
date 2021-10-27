@@ -1,7 +1,7 @@
 _base_ = '../mask_rcnn/mask_rcnn_r50_caffe_fpn_mstrain-poly_1x_coco-tf-768.py'
 
 TRAIN_TEST_VALID_FOLDERS="/data/gustav/datalab_data/poly-dn-2010-2020-729/"
-MAX_EPOCHS=64
+MAX_EPOCHS=32
 
 # learning policy
 lr_config = dict(step=[28, 34])
@@ -35,16 +35,16 @@ data = dict(
         classes=classes,
         ann_file=TRAIN_TEST_VALID_FOLDERS + '/test_annotations.json'))
 
+optimizer = dict(type='SGD', lr=0.005, momentum=0.9, weight_decay=0.0001)
+optimizer_config = dict(_delete_=True, grad_clip=dict(max_norm=35, norm_type=2))
 
-optimizer = dict(type='SGD', lr=0.015, momentum=0.9, weight_decay=0.0001)
-optimizer_config = dict(grad_clip=None)
 # learning policy
 lr_config = dict(
     policy='step',
     warmup='linear',
     warmup_iters=500,
     warmup_ratio=0.001,
-    step=[7])
+    step=[9,11])
 
 
 # We can use the pre-trained Mask RCNN model to obtain higher performance 
