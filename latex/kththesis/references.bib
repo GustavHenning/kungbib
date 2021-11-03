@@ -1,6 +1,9 @@
 %% jdmdh:7097
 %% https://jdmdh.episciences.org/7097
 %% 
+@phdthesis{Rekathati_2020, title={Curating news sections in a historical Swedish news corpus}, url={http://urn.kb.se/resolve?urn=urn:nbn:se:liu:diva-166313}, abstractNote={The National Library of Sweden uses optical character recognition software to digitize their collections of historical newspapers. The purpose of such software is first to automatically segment text and images from scanned newspaper pages, and second to read the contents of the identified text regions. While the raw text is often digitized successfully, important contextual information regarding whether the text constitutes for example a header, a section title or the body text of an article is not captured. These characteristics are easy for a human to distinguish, yet they remain difficult for a machine to recognize.The main purpose of this thesis is to investigate how well section titles in the newspaper Svenska Dagbladet can be classified by using so called image embeddings as features. A secondary aim is to examine whether section titles become harder to classify in older newspaper data. Lastly, we explore if manual annotation work can be reduced using the predictions of a semi-supervised classifier to help in the labeling process. Results indicate the use of image embeddings help quite substantially in classifying section titles. Datasets from three different time periods: 1990-1997, 2004-2013, and 2017 and onwards were sampled and annotated. The best performing model (Xgboost) achieved macro F1 scores of 0.886, 0.936 and 0.980 for the respective time periods. The results also showed classification became more difficult on older newspapers. Furthermore, a semi-supervised classifier managed an average precision of 83% with only single section title examples, showing promise as way to speed up manual annotation of data.}, author={Rekathati, Faton}, year={2020} }
+
+
 @article{jdmdh:7097,
   TITLE = {{Combining Visual and Textual Features for Semantic Segmentation of
   Historical Newspapers}},
@@ -28,114 +31,411 @@ keywords = {Document, Segmentation, Survey, Evaluation, Trends, Typology},
 abstract = {In document image analysis, segmentation is the task that identifies the regions of a document. The increasing number of applications of document analysis requires a good knowledge of the available technologies. This survey highlights the variety of the approaches that have been proposed for document image segmentation since 2008. It provides a clear typology of documents and of document image segmentation algorithms. We also discuss the technical limitations of these algorithms, the way they are evaluated and the general trends of the community.}
 }
 
-%% Templated stuff - irrelevant to us
+@INPROCEEDINGS{8270006,
+  author={Meier, Benjamin and Stadelmann, Thilo and Stampfli, Jan and Arnold, Marek and Cieliebak, Mark},
+  booktitle={2017 14th IAPR International Conference on Document Analysis and Recognition (ICDAR)}, 
+  title={Fully Convolutional Neural Networks for Newspaper Article Segmentation}, 
+  year={2017},
+  volume={01},
+  number={},
+  pages={414-419},
+  doi={10.1109/ICDAR.2017.75}}
 
-@inproceedings{farshin_make_2019,
-	address = {Dresden, Germany},
-	title = {Make the {Most} out of {Last} {Level} {Cache} in {Intel} {Processors}},
-	isbn = {978-1-4503-6281-8},
-	url = {http://dl.acm.org/citation.cfm?doid=3302424.3303977},
-	doi = {10.1145/3302424.3303977},
-	language = {english},
-	urldate = {2020-01-22},
-	booktitle = {Proceedings of the {Fourteenth} {EuroSys} {Conference} 2019 {CD}-{ROM} on {ZZZ} - {EuroSys} '19},
-	publisher = {ACM Press},
-	author = {Farshin, Alireza and Roozbeh, Amir and Maguire, Gerald Q. and Kostić, Dejan},
-	year = {2019},
-	pages = {1--17}
-}
-                  
-@article{ioannidis_coherent_1991,
-	title = {Coherent {File} {Distribution} {Protocol}},
-	volume = {RFC 1235 (Experimental)},
-	issn = {2070-1721},
-	url = {http://www.rfc-editor.org/rfc/rfc1235.txt},
-	doi = {10.17487/RFC1235},
-	abstract = {This memo describes the Coherent File Distribution Protocol (CFDP). This is an Experimental Protocol for the Internet community. It does not specify an Internet standard.},
-	journal = {Internet Request for Comments},
-	author = {Ioannidis, J. and Maguire, G.},
-	month = jun,
-	year = {1991}
-}
-                  
-@article{kim_small-mass_2016,
-	title = {Do {Small}-{Mass} {Neutrinos} {Participate} in {Gauge} {Transformations}?},
-	volume = {2016},
-	issn = {1687-7357, 1687-7365},
-	url = {http://www.hindawi.com/journals/ahep/2016/1847620/},
-	doi = {10.1155/2016/1847620},
-	abstract = {Neutrino oscillation experiments presently suggest that neutrinos have a small but finite mass. If neutrinos have mass, there should be a Lorentz frame in which they can be brought to rest. This paper discusses how Wigner’s little groups can be used to distinguish between massive and massless particles. We derive a representation of the SL(2,c) group which separates out the two sets of spinors: one set is gauge dependent and the other set is gauge invariant and represents polarized neutrinos. We show that a similar calculation can be done for the Dirac equation. In the large-momentum/zero-mass limit, the Dirac spinors can be separated into large and small components. The large components are gauge invariant, while the small components are not. These small components represent spin-1/2 non-zero-mass particles. If we renormalize the large components, these gauge invariant spinors represent the polarization of neutrinos. Massive neutrinos cannot be invariant under gauge transformations.},
-	language = {english},
-	urldate = {2020-02-14},
-	journal = {Advances in High Energy Physics},
-	author = {Kim, Y. S. and Maguire, G. Q. and Noz, M. E.},
-	year = {2016},
-	pages = {1--7}
+@ARTICLE{lecun1989,  
+author={LeCun, Y. and Boser, B. and Denker, J. S. and Henderson, D. and Howard, R. E. and Hubbard, W. and Jackel, L. D.},  
+journal={Neural Computation},   
+title={Backpropagation Applied to Handwritten Zip Code Recognition},   
+year={1989},  
+volume={1},  
+number={4},  
+pages={541-551},  
+doi={10.1162/neco.1989.1.4.541}}
+
+@inproceedings{deng2009,
+author = {Deng, Jia and Dong, Wei and Socher, Richard and Li, Li-Jia and Li, Kai and Li, Fei-Fei},
+year = {2009},
+month = {06},
+pages = {248-255},
+title = {ImageNet: a Large-Scale Hierarchical Image Database},
+journal = {IEEE Conference on Computer Vision and Pattern Recognition},
+doi = {10.1109/CVPR.2009.5206848}
 }
 
-@article{maguire_jr_new_2014,
-	title = {A {New} {Automated} {Way} to {Measure} {Polyethylene} {Wear} in {THA} {Using} a {High} {Resolution} {CT} {Scanner}: {Method} and {Analysis}},
-	volume = {2014},
-	issn = {2356-6140, 1537-744X},
-	shorttitle = {A {New} {Automated} {Way} to {Measure} {Polyethylene} {Wear} in {THA} {Using} a {High} {Resolution} {CT} {Scanner}},
-	url = {http://www.hindawi.com/journals/tswj/2014/528407/},
-	doi = {10.1155/2014/528407},
-	abstract = {As the most advantageous total hip arthroplasty (THA) operation is the first, timely replacement of only the liner is socially and economically important because the utilization of THA is increasing as younger and more active patients are receiving implants and they are living longer. Automatic algorithms were developed to infer liner wear by estimating the separation between the acetabular cup and femoral component head given a computed tomography (CT) volume. Two series of CT volumes of a hip phantom were acquired with the femoral component head placed at 14 different positions relative to the acetabular cup. The mean and standard deviation (SD) of the diameter of the acetabular cup and femoral component head, in addition to the range of error in the expected wear values and the repeatability of all the measurements, were calculated. The algorithms resulted in a mean (±SD) for the diameter of the acetabular cup of 54.21 (±0.011) mm and for the femoral component head of 22.09 (±0.02) mm. The wear error was ±0.1 mm and the repeatability was 0.077 mm. This approach is applicable clinically as it utilizes readily available computed tomography imaging systems and requires only five minutes of human interaction.},
-	language = {english},
-	urldate = {2020-02-14},
-	journal = {The Scientific World Journal},
-	author = {Maguire Jr., Gerald Q. and Noz, Marilyn E. and Olivecrona, Henrik and Zeleznik, Michael P. and Weidenhielm, Lars},
-	year = {2014},
-	pages = {1--9}
+@article{DBLP:journals/corr/GuWKMSSLWW15,
+  author    = {Jiuxiang Gu and
+               Zhenhua Wang and
+               Jason Kuen and
+               Lianyang Ma and
+               Amir Shahroudy and
+               Bing Shuai and
+               Ting Liu and
+               Xingxing Wang and
+               Gang Wang},
+  title     = {Recent Advances in Convolutional Neural Networks},
+  journal   = {CoRR},
+  volume    = {abs/1512.07108},
+  year      = {2015},
+  url       = {http://arxiv.org/abs/1512.07108},
+  eprinttype = {arXiv},
+  eprint    = {1512.07108},
+  timestamp = {Mon, 13 Aug 2018 16:49:11 +0200},
+  biburl    = {https://dblp.org/rec/journals/corr/GuWKMSSLWW15.bib},
+  bibsource = {dblp computer science bibliography, https://dblp.org}
 }
 
-
-@inproceedings{bogdanov_nearest_2015,
-	address = {Kohala Coast, Hawaii},
-	title = {The nearest replica can be farther than you think},
-	isbn = {978-1-4503-3651-2},
-	url = {http://dl.acm.org/citation.cfm?doid=2806777.2806939},
-	doi = {10.1145/2806777.2806939},
-	language = {english},
-	urldate = {2020-02-14},
-	booktitle = {Proceedings of the {Sixth} {ACM} {Symposium} on {Cloud} {Computing} - {SoCC} '15},
-	publisher = {ACM Press},
-	author = {Bogdanov, Kirill and Peón-Quirós, Miguel and Maguire, Gerald Q. and Kostć, Dejan},
-	year = {2015},
-	pages = {16--29}
-}
-
-@inproceedings{roozbeh_resource_2013,
-	address = {Dresden, Germany},
-	title = {Resource {Monitoring} in a {Network} {Embedded} {Cloud}: {An} {Extension} to {OSPF}-{TE}},
-	isbn = {978-0-7695-5152-4},
-	shorttitle = {Resource {Monitoring} in a {Network} {Embedded} {Cloud}},
-	url = {http://ieeexplore.ieee.org/document/6809350/},
-	doi = {10.1109/UCC.2013.36},
-	urldate = {2020-02-14},
-	booktitle = {2013 {IEEE}/{ACM} 6th {International} {Conference} on {Utility} and {Cloud} {Computing}},
-	publisher = {IEEE},
-	author = {Roozbeh, Amir and Sefidcon, Azimeh and Maguire, Gerald Q.},
-	month = dec,
-	year = {2013},
-	pages = {139--146}
+@article{DBLP:journals/corr/0011S17,
+  author    = {Kai Chen and
+               Mathias Seuret},
+  title     = {Convolutional Neural Networks for Page Segmentation of Historical
+               Document Images},
+  journal   = {CoRR},
+  volume    = {abs/1704.01474},
+  year      = {2017},
+  url       = {http://arxiv.org/abs/1704.01474},
+  eprinttype = {arXiv},
+  eprint    = {1704.01474},
+  timestamp = {Mon, 13 Aug 2018 16:48:41 +0200},
+  biburl    = {https://dblp.org/rec/journals/corr/0011S17.bib},
+  bibsource = {dblp computer science bibliography, https://dblp.org}
 }
 
 
-@Article{einstein2016,
-  author = 	 {Einstein, Albert},
-  title = 	 {On the Relative Value of Relatives},
-  journal = 	 {J. Irreproducible Results},
-  year = 	 {2016},
-  volume = 	 {17},
-  pages = 	 {4711--4721}
+@article{DBLP:journals/corr/LongSD14,
+  author    = {Jonathan Long and
+               Evan Shelhamer and
+               Trevor Darrell},
+  title     = {Fully Convolutional Networks for Semantic Segmentation},
+  journal   = {CoRR},
+  volume    = {abs/1411.4038},
+  year      = {2014},
+  url       = {http://arxiv.org/abs/1411.4038},
+  eprinttype = {arXiv},
+  eprint    = {1411.4038},
+  timestamp = {Mon, 13 Aug 2018 16:48:17 +0200},
+  biburl    = {https://dblp.org/rec/journals/corr/LongSD14.bib},
+  bibsource = {dblp computer science bibliography, https://dblp.org}
 }
 
-@InProceedings{heisenberg2015,
-  author = 	 {Heisenberg, Werner and Dirac, Paul},
-  title = 	 {To be or not to be},
-  booktitle =    {Proceedings of the Uncertain Society Annual Meeting},
-  year = 	 {2015},
-  editor = 	 {Schrödinger, Erwin},
-  pages =	 {21--22}
+@INPROCEEDINGS{he2017,  author={He, Dafang and Cohen, Scott and Price, Brian and Kifer, Daniel and Giles, C. Lee},  booktitle={2017 14th IAPR International Conference on Document Analysis and Recognition (ICDAR)},   title={Multi-Scale Multi-Task FCN for Semantic Page Segmentation and Table Detection},   year={2017},  volume={01},  number={},  pages={254-261},  doi={10.1109/ICDAR.2017.50}}
+
+@INPROCEEDINGS{xu2017,  author={Xu, Yue and He, Wenhao and Yin, Fei and Liu, Cheng-Lin},  booktitle={2017 14th IAPR International Conference on Document Analysis and Recognition (ICDAR)},   title={Page Segmentation for Historical Handwritten Documents Using Fully Convolutional Networks},   year={2017},  volume={01},  number={},  pages={541-546},  doi={10.1109/ICDAR.2017.94}}
+
+@article{wickpuppe2018,
+  author    = {Christoph Wick and
+               Frank Puppe},
+  title     = {Fully Convolutional Neural Networks for Page Segmentation of Historical
+               Document Images},
+  journal   = {CoRR},
+  volume    = {abs/1711.07695},
+  year      = {2017},
+  url       = {http://arxiv.org/abs/1711.07695},
+  eprinttype = {arXiv},
+  eprint    = {1711.07695},
+  timestamp = {Mon, 13 Aug 2018 16:48:56 +0200},
+  biburl    = {https://dblp.org/rec/journals/corr/abs-1711-07695.bib},
+  bibsource = {dblp computer science bibliography, https://dblp.org}
 }
+@INPROCEEDINGS{oliveira2018,  author={Ares Oliveira, Sofia and Seguin, Benoit and Kaplan, Frederic},  booktitle={2018 16th International Conference on Frontiers in Handwriting Recognition (ICFHR)},   title={dhSegment: A Generic Deep-Learning Approach for Document Segmentation},   year={2018},  volume={},  number={},  pages={7-12},  doi={10.1109/ICFHR-2018.2018.00011}}
+
+@article{katti2018,
+  author    = {Anoop R. Katti and
+               Christian Reisswig and
+               Cordula Guder and
+               Sebastian Brarda and
+               Steffen Bickel and
+               Johannes H{\"{o}}hne and
+               Jean Baptiste Faddoul},
+  title     = {Chargrid: Towards Understanding 2D Documents},
+  journal   = {CoRR},
+  volume    = {abs/1809.08799},
+  year      = {2018},
+  url       = {http://arxiv.org/abs/1809.08799},
+  eprinttype = {arXiv},
+  eprint    = {1809.08799},
+  timestamp = {Fri, 05 Oct 2018 11:34:52 +0200},
+  biburl    = {https://dblp.org/rec/journals/corr/abs-1809-08799.bib},
+  bibsource = {dblp computer science bibliography, https://dblp.org}
+}
+
+
+@article{DBLP:journals/corr/abs-2106-00952,
+  author    = {Tuan Anh Nguyen Dang and
+               Dat Thanh Nguyen},
+  title     = {End-to-End Information Extraction by Character-Level Embedding and
+               Multi-Stage Attentional U-Net},
+  journal   = {CoRR},
+  volume    = {abs/2106.00952},
+  year      = {2021},
+  url       = {https://arxiv.org/abs/2106.00952},
+  eprinttype = {arXiv},
+  eprint    = {2106.00952},
+  timestamp = {Wed, 09 Jun 2021 18:45:08 +0200},
+  biburl    = {https://dblp.org/rec/journals/corr/abs-2106-00952.bib},
+  bibsource = {dblp computer science bibliography, https://dblp.org}
+}
+@article{DBLP:journals/corr/abs-1909-04948,
+  author    = {Timo I. Denk and
+               Christian Reisswig},
+  title     = {BERTgrid: Contextualized Embedding for 2D Document Representation
+               and Understanding},
+  journal   = {CoRR},
+  volume    = {abs/1909.04948},
+  year      = {2019},
+  url       = {http://arxiv.org/abs/1909.04948},
+  eprinttype = {arXiv},
+  eprint    = {1909.04948},
+  timestamp = {Tue, 17 Sep 2019 11:23:44 +0200},
+  biburl    = {https://dblp.org/rec/journals/corr/abs-1909-04948.bib},
+  bibsource = {dblp computer science bibliography, https://dblp.org}
+}
+
+
+
+﻿@Article{Rumelhart1986,
+author={Rumelhart, David E. and Hinton, Geoffrey E. and Williams, Ronald J.},
+title={Learning representations by back-propagating errors},
+journal={Nature},
+year={1986},
+month={Oct},
+day={01},
+volume={323},
+number={6088},
+pages={533-536},
+abstract={We describe a new learning procedure, back-propagation, for networks of neurone-like units. The procedure repeatedly adjusts the weights of the connections in the network so as to minimize a measure of the difference between the actual output vector of the net and the desired output vector. As a result of the weight adjustments, internal `hidden' units which are not part of the input or output come to represent important features of the task domain, and the regularities in the task are captured by the interactions of these units. The ability to create useful new features distinguishes back-propagation from earlier, simpler methods such as the perceptron-convergence procedure1.},
+issn={1476-4687},
+doi={10.1038/323533a0},
+url={https://doi.org/10.1038/323533a0}
+}
+
+ @phdthesis{Wang_2019, series={TRITA-EECS-EX}, title={SEG-YOLO: Real-Time Instance Segmentation Using YOLOv3 and Fully Convolutional Network}, url={http://urn.kb.se/resolve?urn=urn:nbn:se:kth:diva-271652}, abstractNote={Computer vision technology has been widely applied to augment sports TV broadcast experience.  Some of these broadcasts require accurate fore- ground segmentation on the outdoor sports scene, i.e., segmentation of po- tential sports players and highlight them. Segmentation on a full-HD video (1080p) resolution video stream with a high frame rate leads big challenge on the segmentation model.  In this thesis, a deep learning-based frame- work is proposed for real-time instance segmentation.Many traditional computer vision algorithms for segmentation based on background subtraction techniques, which are affected a lot by light-switch and  targets’  movements.   On  the  other  hand,  most  of  the  modern  deep learning-based frameworks run at a deficient speed that cannot support real-time usage, although they have better robustness against scene changes. The proposed model, SEG-YOLO, is an extension of YOLO(You Only Look Once) version 3, which is one of the state of the art object detection model. The extension part is FCN(Fully Convolution Network), which is used for semantic segmentation. SEG-YOLO aims to overcome both the speed and accuracy problems on the specific outdoor sports scene, while its usage can also be generalized to some extent.SEG-YOLO is an end to end model that consists of two neural networks: (a) YOLOv3, for object detection to generate instance bounding boxes and also for feature maps extraction as the input of phase b; (b) FCN, takes bound- ing boxes and feature maps as input and output segmentation masks of the objects.For instance, segmentation in the specific outdoor sport like golf, the frame- work shows an excellent performance both in speed and accuracy accord- ing to the experiments, and it’s superior to the state-of-the-art model. More- over,  it is proved that it can be used in real-time (30 FPS) broadcast TV with GPU acceleration.  For non-specific scenes of the benchmark COCO dataset, its performance does not exceed the current state-of-the-art withrespect to accuracy, but still has advantages regarding speed.}, author={Wang, Zhuoyue}, year={2019}, collection={TRITA-EECS-EX} }
+
+@inproceedings{Kang2020DeepCN,
+  title={Deep Convolution Neural Network Based Breast Cancer Bigdata Analysis for Crowd Cloud Sourcing},
+  author={Jeong-Jin Kang},
+  year={2020}
+}
+
+@article{DBLP:journals/corr/LinDGHHB16,
+  author    = {Tsung{-}Yi Lin and
+               Piotr Doll{\'{a}}r and
+               Ross B. Girshick and
+               Kaiming He and
+               Bharath Hariharan and
+               Serge J. Belongie},
+  title     = {Feature Pyramid Networks for Object Detection},
+  journal   = {CoRR},
+  volume    = {abs/1612.03144},
+  year      = {2016},
+  url       = {http://arxiv.org/abs/1612.03144},
+  eprinttype = {arXiv},
+  eprint    = {1612.03144},
+  timestamp = {Mon, 13 Aug 2018 16:48:50 +0200},
+  biburl    = {https://dblp.org/rec/journals/corr/LinDGHHB16.bib},
+  bibsource = {dblp computer science bibliography, https://dblp.org}
+}
+
+@article{DBLP:journals/corr/YangYAKKG17,
+  author    = {Xiao Yang and
+               Mehmet Ersin Y{\"{u}}mer and
+               Paul Asente and
+               Mike Kraley and
+               Daniel Kifer and
+               C. Lee Giles},
+  title     = {Learning to Extract Semantic Structure from Documents Using Multimodal
+               Fully Convolutional Neural Network},
+  journal   = {CoRR},
+  volume    = {abs/1706.02337},
+  year      = {2017},
+  url       = {http://arxiv.org/abs/1706.02337},
+  eprinttype = {arXiv},
+  eprint    = {1706.02337},
+  timestamp = {Tue, 24 Nov 2020 16:57:44 +0100},
+  biburl    = {https://dblp.org/rec/journals/corr/YangYAKKG17.bib},
+  bibsource = {dblp computer science bibliography, https://dblp.org}
+}
+
+@article{mikolov2013,
+author = {Mikolov, Tomas and Chen, Kai and Corrado, G.s and Dean, Jeffrey},
+year = {2013},
+month = {01},
+pages = {},
+title = {Efficient Estimation of Word Representations in Vector Space},
+volume = {2013},
+journal = {Proceedings of Workshop at ICLR}
+}
+
+@article{rosenblatt1958perceptron,
+  title={The perceptron: a probabilistic model for information storage and organization in the brain.},
+  author={Rosenblatt, Frank},
+  journal={Psychological review},
+  volume={65},
+  number={6},
+  pages={386},
+  year={1958},
+  publisher={American Psychological Association}
+}
+
+@article{DBLP:journals/corr/HeGDG17,
+  author    = {Kaiming He and
+               Georgia Gkioxari and
+               Piotr Doll{\'{a}}r and
+               Ross B. Girshick},
+  title     = {Mask {R-CNN}},
+  journal   = {CoRR},
+  volume    = {abs/1703.06870},
+  year      = {2017},
+  url       = {http://arxiv.org/abs/1703.06870},
+  eprinttype = {arXiv},
+  eprint    = {1703.06870},
+  timestamp = {Mon, 13 Aug 2018 16:46:36 +0200},
+  biburl    = {https://dblp.org/rec/journals/corr/HeGDG17.bib},
+  bibsource = {dblp computer science bibliography, https://dblp.org}
+}
+
+@InProceedings{Girshick_2014_CVPR,
+author = {Girshick, Ross and Donahue, Jeff and Darrell, Trevor and Malik, Jitendra},
+title = {Rich Feature Hierarchies for Accurate Object Detection and Semantic Segmentation},
+booktitle = {Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition (CVPR)},
+month = {June},
+year = {2014}
+} 
+
+@InProceedings{Girshick_2015_ICCV,
+author = {Girshick, Ross},
+title = {Fast R-CNN},
+booktitle = {Proceedings of the IEEE International Conference on Computer Vision (ICCV)},
+month = {December},
+year = {2015}
+} 
+
+@ARTICLE{7485869,  author={Ren, Shaoqing and He, Kaiming and Girshick, Ross and Sun, Jian},  journal={IEEE Transactions on Pattern Analysis and Machine Intelligence},   title={Faster R-CNN: Towards Real-Time Object Detection with Region Proposal Networks},   year={2017},  volume={39},  number={6},  pages={1137-1149},  doi={10.1109/TPAMI.2016.2577031}}
+
+@article{doi:10.1021/ci0342472,
+author = {Hawkins, Douglas M.},
+title = {The Problem of Overfitting},
+journal = {Journal of Chemical Information and Computer Sciences},
+volume = {44},
+number = {1},
+pages = {1-12},
+year = {2004},
+doi = {10.1021/ci0342472},
+    note ={PMID: 14741005},
+
+URL = { https://doi.org/10.1021/ci0342472 },
+eprint = { https://doi.org/10.1021/ci0342472 }
+}
+
+@article{10.1038/317314a0,
+author = {Poggio, Tomaso and Torre, Vincent and Koch, Christof},
+title = {Computational Vision and Regularization Theory},
+year = {1985},
+issue_date = {Sept. 1985},
+publisher = {Macmillan Press Ltd.},
+address = {GBR},
+volume = {317},
+number = {26},
+issn = {0028-0836},
+url = {https://doi.org/10.1038/317314a0},
+doi = {10.1038/317314a0},
+journal = {Nature},
+month = sep,
+pages = {314–319},
+numpages = {6}
+}
+
+@Inbook{Prechelt2012,
+author="Prechelt, Lutz",
+editor="Montavon, Gr{\'e}goire
+and Orr, Genevi{\`e}ve B.
+and M{\"u}ller, Klaus-Robert",
+title="Early Stopping --- But When?",
+bookTitle="Neural Networks: Tricks of the Trade: Second Edition",
+year="2012",
+publisher="Springer Berlin Heidelberg",
+address="Berlin, Heidelberg",
+pages="55--69",
+abstract="Validation can be used to detect when overfitting starts during supervised training of a neural network; training is then stopped before convergence to avoid the overfitting (``early stopping''). The exact criterion used for validation-based early stopping, however, is usually chosen in an ad-hoc fashion or training is stopped interactively. This trick describes how to select a stopping criterion in a systematic fashion; it is a trick for either speeding learning procedures or improving generalization, whichever is more important in the particular situation. An empirical investigation on multi-layer perceptrons shows that there exists a tradeoff between training time and generalization: From the given mix of 1296 training runs using different 12 problems and 24 different network architectures I conclude slower stopping criteria allow for small improvements in generalization (here: about 4{\%} on average), but cost much more training time (here: about factor 4 longer on average).",
+isbn="978-3-642-35289-8",
+doi="10.1007/978-3-642-35289-8_5",
+url="https://doi.org/10.1007/978-3-642-35289-8_5"
+}
+
+@article{JMLR:v15:srivastava14a,
+  author  = {Nitish Srivastava and Geoffrey Hinton and Alex Krizhevsky and Ilya Sutskever and Ruslan Salakhutdinov},
+  title   = {Dropout: A Simple Way to Prevent Neural Networks from Overfitting},
+  journal = {Journal of Machine Learning Research},
+  year    = {2014},
+  volume  = {15},
+  number  = {56},
+  pages   = {1929-1958},
+  url     = {http://jmlr.org/papers/v15/srivastava14a.html}
+}
+
+@article{10.2307/2289457,
+ ISSN = {01621459},
+ URL = {http://www.jstor.org/stable/2289457},
+ abstract = {The idea of data augmentation arises naturally in missing value problems, as exemplified by the standard ways of filling in missing cells in balanced two-way tables. Thus data augmentation refers to a scheme of augmenting the observed data so as to make it more easy to analyze. This device is used to great advantage by the EM algorithm (Dempster, Laird, and Rubin 1977) in solving maximum likelihood problems. In situations when the likelihood cannot be approximated closely by the normal likelihood, maximum likelihood estimates and the associated standard errors cannot be relied upon to make valid inferential statements. From the Bayesian point of view, one must now calculate the posterior distribution of parameters of interest. If data augmentation can be used in the calculation of the maximum likelihood estimate, then in the same cases one ought to be able to use it in the computation of the posterior distribution. It is the purpose of this article to explain how this can be done. The basic idea is quite simple. The observed data y is augmented by the quantity z, which is referred to as the latent data. It is assumed that if y and z are both known, then the problem is straightforward to analyze, that is, the augmented data posterior p(θ ∣ y, z) can be calculated. But the posterior density that we want is p(θ ∣ y), which may be difficult to calculate directly. If, however, one can generate multiple values of z from the predictive distribution p(z ∣ y) (i.e., multiple imputations of z), then p(θ ∣ y) can be approximately obtained as the average of p(θ ∣ y, z) over the imputed z's. However, p(z ∣ y) depends, in turn, on p(θ ∣ y). Hence if p(θ ∣ y) was known, it could be used to calculate p(z ∣ y). This mutual dependency between p(θ ∣ y) and p(z ∣ y) leads to an iterative algorithm to calculate p(θ ∣ y). Analytically, this algorithm is essentially the method of successive substitution for solving an operator fixed point equation. We exploit this fact to prove convergence under mild regularity conditions. Typically, to implement the algorithm, one must be able to sample from two distributions, namely p(θ ∣ y, z) and p(z ∣ θ, y). In many cases, it is straightforward to sample from either distribution. In general, though, either sampling can be difficult, just as either the E or the M step can be difficult to implement in the EM algorithm. For p(θ ∣ y, z) arising from parametric submodels of the multinomial, we develop a primitive but generally applicable way to approximately sample θ. The idea is first to sample from the posterior distribution of the cell probabilities and then to project to the parametric surface that is specified by the submodel, giving more weight to those observations lying closer to the surface. This procedure should cover many of the common models for categorical data. There are several examples given in this article. First, the algorithm is introduced and motivated in the context of a genetic linkage example. Second, we apply this algorithm to an example of inference from incomplete data regarding the correlation coefficient of the bivariate normal distribution. It is seen that the algorithm recovers the bimodal nature of the posterior distribution. Finally, the algorithm is used in the analysis of the traditional latent-class model as applied to data from the General Social Survey.},
+ author = {Martin A. Tanner and Wing Hung Wong},
+ journal = {Journal of the American Statistical Association},
+ number = {398},
+ pages = {528--540},
+ publisher = {[American Statistical Association, Taylor & Francis, Ltd.]},
+ title = {The Calculation of Posterior Distributions by Data Augmentation},
+ volume = {82},
+ year = {1987}
+}
+@inproceedings{maas2013rectifier,
+  title={Rectifier nonlinearities improve neural network acoustic models},
+  author={Maas, Andrew L and Hannun, Awni Y and Ng, Andrew Y and others},
+  booktitle={Proc. icml},
+  volume={30},
+  number={1},
+  pages={3},
+  year={2013},
+  organization={Citeseer}
+}
+
+@article{quintana1974clipping,
+  title={Clipping-off gradient algorithms to compute optimal controls with constrained magnitude},
+  author={Quintana, VH and Davison, Edward J},
+  journal={International Journal of Control},
+  volume={20},
+  number={2},
+  pages={243--255},
+  year={1974},
+  publisher={Taylor \& Francis}
+}
+
+@inproceedings{ioffe2015batch,
+  title={Batch normalization: Accelerating deep network training by reducing internal covariate shift},
+  author={Ioffe, Sergey and Szegedy, Christian},
+  booktitle={International conference on machine learning},
+  pages={448--456},
+  year={2015},
+  organization={PMLR}
+}
+
+
+@article{doi:10.1142/S0218488598000094,
+author = {Hochreiter, Sepp},
+title = {The Vanishing Gradient Problem During Learning Recurrent Neural Nets  and Problem Solutions},
+journal = {International Journal of Uncertainty, Fuzziness and Knowledge-Based Systems},
+volume = {06},
+number = {02},
+pages = {107-116},
+year = {1998},
+doi = {10.1142/S0218488598000094},
+URL = { https://doi.org/10.1142/S0218488598000094 },
+eprint = { https://doi.org/10.1142/S0218488598000094 },
+abstract = { Recurrent nets are in principle capable to store past inputs to produce the currently desired output. Because of this property recurrent nets are used in time series prediction and process control. Practical applications involve temporal dependencies spanning many time steps, e.g. between relevant inputs and desired outputs. In this case, however, gradient based learning methods take too much time. The extremely increased learning time arises because the error vanishes as it gets propagated back. In this article the de-caying error flow is theoretically analyzed. Then methods trying to overcome vanishing gradients are briefly discussed. Finally, experiments comparing conventional algorithms and alternative methods are presented. With advanced methods long time lag problems can be solved in reasonable time. }
+}
+
+@inproceedings{he2016deep,
+  title={Deep residual learning for image recognition},
+  author={He, Kaiming and Zhang, Xiangyu and Ren, Shaoqing and Sun, Jian},
+  booktitle={Proceedings of the IEEE conference on computer vision and pattern recognition},
+  pages={770--778},
+  year={2016}
+}
+
+

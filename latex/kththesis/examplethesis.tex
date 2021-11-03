@@ -304,7 +304,7 @@ Historiska tidningar, Bildsegmentering, Multimodal inlärning, Djupinlärning, D
 \end{scontents}
 \begin{scontents}[store-env=abstracts,print-env=true]
 
-I detta och det förra århundradet har allvarliga åtaganden gjorts för att digitalisera traditionellt medieinnehåll som tidigare endast tryckts i pappersformat. För att kunna stödja sökningar och fasetter i detta innehåll krävs bearbetning på semantisk nivå, det vill säga att innehållet styckas upp på artikelnivå, istället för per sida. Trots att människor har lätt att dela upp innehåll på semantisk nivå, även på ett främmande språk, fortsätter arbetet för automatisering av denna uppgift. Utmaningen i att segmentera nyhetsartiklar återfinns i den otroliga mångfald av utseende och format. Innehållet är även detta väldigt mångfaldigt, där man återfinner allt ifrån faktamässiga artiklar, till debatter, listor av fakta och upplysningar, reklam och väder bland annat. Otroliga framsteg har gjorts inom djupinlärning just för objektdetektering och semantisk segmentering bara de senaste årtiondet. Frågan vi ställer oss är: \textit{Kan samma metodik appliceras inom domänen nyhetsartiklar?} Dessa modeller är skapta för att klassificera världsliga ting. I denna domän har vi tillgång till texten och dess koordinater via en potentiellt bristfällig optisk teckenigenkänning. Vi undersöker ett sätt att utnyttja denna textinformation i ett försök att förbättra resultatet i denna specifika domän. Baserat på data från Kungliga Biblioteket undersöker vi hur väl denna metod lämpar sig för uppstyckandet av innehåll i tidningar längsmed tidsperioder där designen förändrar sig markant. Resultaten visar....
+I detta och det förra århundradet har kraftiga åtaganden gjorts för att digitalisera traditionellt medieinnehåll som tidigare endast tryckts i pappersformat. För att kunna stödja sökningar och fasetter i detta innehåll krävs bearbetning på semantisk nivå, det vill säga att innehållet styckas upp på artikelnivå, istället för per sida. Trots att människor har lätt att dela upp innehåll på semantisk nivå, även på ett främmande språk, fortsätter arbetet för automatisering av denna uppgift. Utmaningen i att segmentera nyhetsartiklar återfinns i den otroliga mångfald av utseende och format. Innehållet är även detta väldigt mångfaldigt, där man återfinner allt ifrån faktamässiga artiklar, till debatter, listor av fakta och upplysningar, reklam och väder bland annat. Otroliga framsteg har gjorts inom djupinlärning just för objektdetektering och semantisk segmentering bara de senaste årtiondet. Frågan vi ställer oss är: \textit{Kan samma metodik appliceras inom domänen nyhetsartiklar?} Dessa modeller är skapta för att klassificera världsliga ting. I denna domän har vi tillgång till texten och dess koordinater via en potentiellt bristfällig optisk teckenigenkänning. Vi undersöker ett sätt att utnyttja denna textinformation i ett försök att förbättra resultatet i denna specifika domän. Baserat på data från Kungliga Biblioteket undersöker vi hur väl denna metod lämpar sig för uppstyckandet av innehåll i tidningar längsmed tidsperioder där designen förändrar sig markant. Resultaten visar....
 
 \end{scontents}
 \subsection*{Nyckelord}
@@ -364,7 +364,7 @@ In this section, I would like to acknowledge the people who have encouraged, inf
 \chapter{Introduction}
 \label{ch:introduction}
 
-Nowadays it is commonplace for many memory institutions to create and maintain large digital repositories that offer rapid, time- and location-independent access to documents. This is the continuous culmination of a digitization effort spanning several decades of a great achievement in terms of preservation and accessibility. The real promise of digitization however, is the exploitation of the contents of these digital assets. \cite{jdmdh:7097} As we will see in this chapter and the next, there are many challenges yet to be addressed before exploitation will be seamless and fully automatic. 
+Nowadays it is commonplace for many memory institutions to create and maintain large digital repositories that offer rapid, time- and location-independent access to documents. This is the continuous culmination of a digitization effort spanning several decades of a great achievement in terms of preservation and accessibility. The real promise of digitization however, is the exploitation of the contents of these digital assets\cite{jdmdh:7097}. As we will see in this chapter and the next, there are many challenges yet to be addressed before exploitation will be seamless and fully automatic. 
 
 \section{Background and problem context}
 \label{sec:background}
@@ -377,7 +377,7 @@ The processing of historical newspapers consists of three steps:
 \item Exploration support: To enable searching and visualizing the contents.  
 \end{enumerate}
 
-]Document layout analysis (Facsimile processing) aims at segmenting a document image into meaningful segments and at classifying those segments according to their contents. \cite{ESKENAZI20171} 
+Document layout analysis (Facsimile processing) aims at segmenting a document image into meaningful segments and at classifying those segments according to their contents. \cite{ESKENAZI20171} 
     
 Within the domain of newspapers, the task of image segmentation and classification is particularly difficult due to the complexity and diversity of content across several typographic designs. Layout analysis is however essential for historical newspaper exploitation. From an information retrieval perspective, being able to query articles instead of whole pages, and being able to facet over different types of segments has undeniable advantages to all concerned end users. 
 
@@ -429,15 +429,13 @@ The dataset created in this project consists of published newspapers which have 
 
 \section{Structure of the thesis}
 
-\textbf{TODO replace chapter numbers} 
-
-In chapter~\ref{ch:background}, we introduce the relevant background to understand the subject matter and briefly recaps the previous work. Chapter~\ref{ch:background} describes in detail the dataset created from the data accessed at The National Library of Sweden. Next, chapter four introduces the neural network employed in the study, the relevant adaptations to the pre-processing and manipulation of the data, implementation details of the neural network architecture and the metrics used to \textbf{TODO quantitatively describe the results.} Finally the results are presented in Chapter~\ref{ch:background} and discussed in Chapter~\ref{ch:background}, while outlining potential avenues for future work.
+In chapter \ref{ch:background}, we introduce the relevant background to understand the subject matter and briefly recaps the previous work. In order to understand the solution used in this thesis, the concepts used will be introduced in chapter \ref{ch:preliminaries}. Chapter \ref{ch:data} describes in detail the dataset created from the data accessed at The National Library of Sweden.  Next, chapter \ref{ch:modelarch} introduces the neural network employed in the study, the relevant adaptations to the pre-processing and manipulation of the data, implementation details of the neural network architecture. Finally the metrics used to quantitatively describe the results and the results are presented in chapter \ref{ch:eval} and discussed in chapter \ref{ch:disc}, while outlining potential avenues for future work.
 
 \cleardoublepage
 \chapter{Background}
 \label{ch:background}
 
-In this chapter, the history of digitization of historical documents will be reviewed. Then, we will look at the history of segmentation algorithms, as well as the history of the deep learning model that we intend to extend and evaluate. Further details about how the deep learning model functions will be introduced in chapter X. \textbf{TODO}
+In this chapter, the history of digitization of historical documents will be reviewed. Then, we will look at the history of segmentation algorithms, as well as the history of the deep learning model that we intend to extend and evaluate. Further details about how the deep learning model functions will be introduced in chapter \ref{ch:preliminaries}. \textbf{TODO}
 
 \section{Digitization of historical documents}
 
@@ -445,18 +443,18 @@ Libraries and other memory institutions across the world house a large collectio
 
 In order to open up these volumes to content-based information retrieval, these digitized print media pages have to be segmented into semantically connected components, i.e. articles. Since even a single page can contain a variety of different types of content, retrieval based on articles (instead of whole pages) allow for more complex types of queries that are related to a single artifact. In order to query on facets such as author, section, content type or other metadata, further processing of these documents is required to attain this information.  
 
-Even though humans have shown exceptional ability to segment different types of elements into related components, even in languages foreign to them[Meier et al], this task has proven difficult for computers. 
+Even though humans have shown exceptional ability to segment different types of elements into related components, even in languages foreign to them\cite{8270006}, this task has proven difficult for computers. 
 
 The challenge of semantic segmentation in newspapers lies in the diversity of the medium: Newspapers have vastly different layouts, covering diverse content, from news articles to ads to weather reports. Layout and style differs across newspapers, and even within the same newspaper as stylistic trends change across time. 
 
 
 \subsection{Digitization at the National Library of Sweden}
 
-The National Library of Sweden (Kungliga Biblioteket) started digitizing their materials in the late 1990s. The motivation for digitization has shifted from only preservation to also improving access and facilitating research conducted on the content itself. [Faton] The digital archives of the National Library of Sweden contain scanned images from four of the country’s largest newspaper publications dating back to the 19th century. The digitization of these newspaper images has occurred in two steps: Firstly, a segmentation algorithm splits the newspaper page into larger layout component zones. Within each zone, further segmentation is performed to identify sub-zones. These sub-zones may either be composed of images or blocks of text. In the second step, OCR \textbf{TODO OCR reference} is applied to the segmented sub-zones to extract the textual contents. 
+The National Library of Sweden (Kungliga Biblioteket) started digitizing their materials in the late 1990s. The motivation for digitization has shifted from only preservation to also improving access and facilitating research conducted on the content itself. \cite{Rekathati_2020} The digital archives of the National Library of Sweden contain scanned images from four of the country’s largest newspaper publications dating back to the 19th century. The digitization of these newspaper images has occurred in two steps: Firstly, a segmentation algorithm splits the newspaper page into larger layout component zones. Within each zone, further segmentation is performed to identify sub-zones. These sub-zones may either be composed of images or blocks of text. In the second step, OCR \textbf{TODO OCR reference} is applied to the segmented sub-zones to extract the textual contents. 
 
 \section{Segmentation Algorithms}
 
-In the survey Eskenazi et al [TODO] a topology for organizing segmentation algorithms is introduced based on the details of the algorithmic approach. According to this survey, three groups of approaches can be identified: Top-down, bottom-up and hybrid algorithms. We will first review the first two groups of algorithms, which are typically constrained by either the layout of the document(Such as the Manhattan layout) or parameters of said document(Such as font size or line spacing), and finally review the previous works in the domain of deep learning, which belong to the hybrid algorithms.
+In the survey Eskenazi et al\cite{ESKENAZI20171} a topology for organizing segmentation algorithms is introduced based on the details of the algorithmic approach. According to this survey, three groups of approaches can be identified: Top-down, bottom-up and hybrid algorithms. We will first review the first two groups of algorithms, which are typically constrained by either the layout of the document(Such as the Manhattan layout) or parameters of said document(Such as font size or line spacing), and finally review the previous works in the domain of deep learning, which belong to the hybrid algorithms.
 
 \subsection{Classical Approaches}
 
@@ -476,15 +474,15 @@ Finally, in an attempt to overcome the limitations of the already mentioned algo
 
 In an attempt to trade prior handcrafted features for learning capabilities, machine learning techniques, especially deep neural networks have outperformed classical algorithms in recent papers. These approaches can be categorized by the input they receive.
 
-\textbf{Image modality only}. Convolutional neural networks were originally created to classify objects in images such as hand written numbers. [Yann LeCunn et al 1989] Since then, CNNs are used in a wide variety of image classification domains [Deng et al., 2009]. Since CNNs can use images as input to the network, they naturally lend themselves to be applied in this domain as well. Attempts have been made [Chen et al 2017], as well as several variants [He et al., 2017a, Xu et al., 2017, Wick and Puppe, 2018, Ares Oliveira et al., 2018] of the fully convolutional network (\textbf{FCN}) introduced by Long et al. [2015]. The major drawback of these techniques is that they do not exploit the often available localized, two-dimensional, textual input obtained through OCR scanning.  
+\textbf{Image modality only}. Convolutional neural networks were originally created to classify objects in images such as hand written numbers by Yann LeCunn\cite{lecun1989}. Since then, CNNs are used in a wide variety of image classification domains\cite{deng2009}. Since CNNs can use images as input to the network, they naturally lend themselves to be applied in this domain as well. Attempts have been made\cite{DBLP:journals/corr/0011S17}, as well as several variants\cite{he2017}\cite{xu2017}\cite{wickpuppe2018}\cite{oliveira2018} of the fully convolutional network (\textbf{FCN}) introduced by Long et al\cite{DBLP:journals/corr/LongSD14}. The major drawback of these techniques is that they do not exploit the often available localized, two-dimensional, textual input obtained through OCR scanning.  
 
-\textbf{Image and text modalities}. The representation of text as input to deep neural networks has increased in complexity since it was first tried in Meier et al. [2017] using a FCN based approach. In this attempt, the textual information was represented as a binary feature (a pixel has text or not), where lexical and semantic dimensions are not taken into account. 
+\textbf{Image and text modalities}. The representation of text as input to deep neural networks has increased in complexity since it was first tried in Meier et al\cite{8270006} using a FCN based approach. In this attempt, the textual information was represented as a binary feature (a pixel has text or not), where lexical and semantic dimensions are not taken into account. 
 
-Katti et al [2018] introduced the concept of chargrid, a two dimensional representation of text where characters are localized on the image and encoded as a one-hot vector. This study shows that model variants exploiting both modalities achieve better results, at the cost of high-computing. While Dang and Nguyen Thanh [2019] build on this approach and show an impressive mIoU of 87% for template-like administrative documents, Denk and Reisswig [2019] (who also build upon Katti et al), consider not only characters, but words and their corresponding embeddings. Using BERTgrid for the automatic extraction of key-value information from invoice images (amount, number, date, etc), they obtain the best results with document representation based on one-hot character embedding and word-level BERT embeddings with no image information.
+Katti et al\cite{katti2018} introduced the concept of chargrid, a two dimensional representation of text where characters are localized on the image and encoded as a one-hot vector. This study shows that model variants exploiting both modalities achieve better results, at the cost of high-computing. While Dang and Nguyen Thanh\cite{DBLP:journals/corr/abs-2106-00952} build on this approach and show an impressive mIoU of 87\% for template-like administrative documents, Denk and Reisswig\cite{DBLP:journals/corr/abs-1909-04948} (who also build upon Katti et al\cite{katti2018}), consider not only characters, but words and their corresponding embeddings. Using BERTgrid for the automatic extraction of key-value information from invoice images (amount, number, date, etc), they obtain the best results with document representation based on one-hot character embedding and word-level BERT embeddings with no image information.
 
-Moving from character to word to sentence representations, Yang et al [2017] represent text via text embedding maps, where the two-dimensional text representation is mapped to the pixel information. Textual features correspond to sentence embeddings in this case, with the use of word vectors obtained with word2vec [Mikolov et al 2013] and averaged in the final embedding. 
+Moving from character to word to sentence representations, Yang et al\cite{DBLP:journals/corr/YangYAKKG17} represent text via text embedding maps, where the two-dimensional text representation is mapped to the pixel information. Textual features correspond to sentence embeddings in this case, with the use of word vectors obtained with word2vec\cite{mikolov2013} and averaged in the final embedding. 
 
-Finally, Barman et al combine word embeddings with a deep neural network approach specifically within the domain of newspaper segmentation. The critical difference to this paper is that Barman et al uses word embeddings, where we will vary difference sentence embedding encoders. The primary architecture used in Barman et al is dhSegment, where we will vary different settings within the newer architecture Mask R-CNN, developed specifically for instance segmentation. Similarly to Barman et al, we will modify the architecture to fit the text embeddings behind the image pixels by extending the number of channels in the image and inserting the text embeddings at the coordinates of the text bounding box produced by the OCR. 
+Finally, Barman et al\cite{jdmdh:7097} combine word embeddings with a deep neural network approach specifically within the domain of newspaper segmentation. The critical difference to this paper is that Barman et al\cite{jdmdh:7097} uses word embeddings, where we will vary difference sentence embedding encoders. The primary architecture used in Barman et al\cite{jdmdh:7097} is dhSegment, where we will vary different settings within the newer architecture Mask R-CNN, developed specifically for instance segmentation. Similarly to Barman et al\cite{jdmdh:7097}, we will modify the architecture to fit the text embeddings behind the image pixels by extending the number of channels in the image and inserting the text embeddings at the coordinates of the text bounding box produced by the OCR. 
 
 \cleardoublepage
 \chapter{Preliminaries}
@@ -497,20 +495,29 @@ In this chapter, we will introduce the theory that our model is based on. Since 
 Introductory text
 
 \subsection{Perceptron}
-The basic building block of an Artificial Neural Network is called a perceptron. The perceptron is loosely inspired by the neurons of the brain.[Rosenblatt, 1957] The arriving signals, called inputs, are multiplied by learnable weights, which is then added to a constant bias value for each input channel. The resulting value from the input, weight and bias is summed up and finally activated upon by a transfer function, typically a non-linear function such as a sigmoid function, finally producing an output. TODO formula for what is described.
+The basic building block of an Artificial Neural Network is called a perceptron. The perceptron is loosely inspired by the neurons of the brain.\cite{rosenblatt1958perceptron} The arriving signals, called inputs, are multiplied by learnable weights, which is then added to a constant bias value(also learnable) for each input channel. The resulting value from the input, weight and bias is summed up and finally activated upon by a transfer function, typically a non-linear function such as a sigmoid function, finally producing an output. 
 
+\begin{equation}
+	f(x) = 
+	    \begin{cases}
+	      1, & \text{if}\ w * x + b > 0 \\
+	      0, & \text{otherwise}
+	    \end{cases}
+  	\label{eqn:perceptron}
+\end{equation}
+
+where $w$ is a vector of real-valued weights, $w * x$ is the dot product \[\sum_{i=1}^{m} w_i x_i\] where m is the number of inputs to the perceptrion, and $b$ is the bias.
 
 \begin{figure}[H]
   \begin{center}
     \includegraphics[width=0.5\textwidth]{figures/perceptron.png}
   \end{center}
-  \caption{Model of a perceptron. The inputs xi-n are multiplied with their corresponding weights wi-n, summed up and fed to the transfer function (in the figure denoted as phi). Finally, an output value o is produced. Bias is omitted in this figure.}
+  \caption{Model of a perceptron. Bias is omitted in this figure.}
   \label{fig:perceptron}
 \end{figure}
 
 Perceptrons can be stacked after and next to one another (in the latter case known as a layer), called a multi-layer perceptron (MLP). The first layer, where the input signal is the input data itself, represented in floating point numbers, is called the input layer. The last layer, where the output signal corresponds to the decision or classification, is called the output layer. Any layer between the input layer and the output layer is called a hidden layer. Together these layers form what is known as an Artificial Neural Network (ANN). Any ANN with at least two hidden layers is called a Deep Neural Network (DNN).
 
-I used Figure \ref{fig:perceptron} above and referred to it.
 
 
 \section{Training a Deep Neural Network}
@@ -522,19 +529,31 @@ Neural networks can learn to approximate functions through learning. Learning oc
   	\label{eqn:crossentropy}
 \end{equation}
 
-By updating the weights according to a paradigm, the cost can be minimized. A gradient-based approach to minimizing the cost is called backpropagation. Backpropagation is defined as taking the following steps:
+By updating the weights according to a paradigm, the cost can be minimized. A gradient-based approach to minimizing the cost is called backpropagation\cite{Rumelhart1986}. Backpropagation is defined as taking the following steps:
+
 \begin{enumerate}
-\item Forward the input through the neural network to generate a prediction yhat.
-\item Measure the cross-entropy loss e.g. according to Formula X.2
+\item Forward the input through the neural network to generate a prediction $\hat{y}$.
+\item Measure the cross-entropy loss e.g. according to Formula \ref{eqn:crossentropy} 
 \item Propagate back the error’s gradient from the last(output) to the first(input) layer of the network.
 \item Change the weights and biases based on the gradient.
 \end{enumerate}
 
-\textbf{TODO formula}
+The \textit{Jacobian} matrix can be calculated according to Formula \ref{eqn:crossentropy} as such: 
 
-where wj is the weights of the DNN and yhat can be seen as a non-linear function of the weights.  
+\begin{equation}
+	J(w_j) = cross\_entropy(y_j,\hat{y_j}) = - \sum_{j} y_j log(\hat{y_j})
+  	\label{eqn:jacobian}
+\end{equation}
 
-\textbf{TODO formula}
+
+where $w_j$ is the weights of the DNN and $\hat{y}$ can be seen as a non-linear function of the weights. The updated weight values can be seen in Formula \ref{eqn:weights}. 
+
+\begin{equation}
+	w_{i,j}^{(next)} = w_{i,j} - \eta \frac{\partial J(w_j)}{\partial w_i}
+  	\label{eqn:weights}
+\end{equation}
+
+\textbf{TODO more explanation of learning rate and partial derivative.}
 
 \section{Challenges in training}
 
@@ -542,37 +561,63 @@ In real world applications, there are many challenges when training a deep neura
 
 \subsection{Overfitting/underfitting}
 
-With a large number of parameters, the network can be said to have a high degree of freedom. It becomes so complex that it will encounter the overfitting problem [Source]. Overfitting means that the network will tend towards having lower accuracy of the test dataset, despite an increasing accuracy on the training dataset. This phenomenon can be anecdotally compared to memorizing the training dataset by heart, and thus losing the generalization property when tested on data outside the training dataset. 
+With a large number of parameters, the network can be said to have a high degree of freedom. It becomes so complex that it will encounter the overfitting problem\cite{doi:10.1021/ci0342472}. Overfitting means that the network will tend towards having lower accuracy of the test dataset, despite an increasing accuracy on the training dataset. This phenomenon can be anecdotally compared to memorizing the training dataset by heart, and thus losing the generalization property when tested on data outside the training dataset. 
+
+\begin{figure}[H]
+  \begin{center}
+    \includegraphics[width=0.8\textwidth]{figures/overfitting.png}
+  \end{center}
+  \caption{Model complexity and overfitting\cite{Wang_2019}. Test sample prediction error increases as the model overfits on the training sample.}
+  \label{fig:overfitting}
+\end{figure}
 
 Several approaches can be taken to minimize or resolve the problem of overfitting.
 \begin{enumerate}
-\item Regularization [Source, 19]: By imposing a cost (or penalty) on the optimization function, the optimal solution can be made unique.
-\item Early stopping [Source, 20]: By halting the training when the error of the test dataset reaches its minimum, overfitting can be avoided. Early stopping can be thought of as regularization in the temporal domain. 
-\item Dropout [Source, 21]: By randomly ignoring some neurons during training to reduce the model complexity, an increase in model sparsity is gained. 
-\item Data augmentation [Source, 22]: Additional data is created, typically in preprocessing, by altering the original data in a number of ways which are added in addition to the original data. For visual data, some examples are: changing angles, illumination, saturation, exposure, etc. This creates additional variance which prevents simply memorizing shallow features in the dataset.
+\item Regularization\cite{10.1038/317314a0}: By imposing a cost (or penalty) on the optimization function, the optimal solution can be made unique.
+\item Early stopping\cite{Prechelt2012}: By halting the training when the error of the test dataset reaches its minimum, overfitting can be avoided. Early stopping can be thought of as regularization in the temporal domain. 
+\item Dropout\cite{JMLR:v15:srivastava14a}: By randomly ignoring some neurons during training to reduce the model complexity, an increase in model sparsity is gained. 
+\item Data augmentation\cite{10.2307/2289457}: Additional data is created, typically in preprocessing, by altering the original data in a number of ways which are added in addition to the original data. For visual data, some examples are: changing angles, illumination, saturation, exposure, etc. This creates additional variance which prevents simply memorizing shallow features in the dataset.
 \end{enumerate}
 
 \subsection{Exploding/vanishing gradients}
 When the backpropagation algorithm backflows the error gradient from the output layer back towards the input layer, the gradient will diminish by the layer if the initial gradient is smaller than 1.0, and increase substantially when initially greater than 1.0. As a result, some parameters will either remain unchanged by the diminished gradient or changed by a very large value by the time the update process reaches very deep in large networks.
 
-Some techniques for overcoming the exploding/vanishing gradient [Source] problem are:
+Some techniques for overcoming the exploding/vanishing gradient problem are\cite{doi:10.1142/S0218488598000094}:
 
 \begin{enumerate}
-\item Non-saturating activation functions: Using e.g. ReLU [Source] instead of the commonly used sigmoid activation function can help during training. The gradient is minimal when the sigmoid function is close to its output limits (-1/1) meaning it will saturate. Using ReLU = max(0,z) won't have this problem. However, ReLU has its own problem in that some perceptrons may stop outputting values except for 0. This is known as the dying ReLU problem. The solution is to use leaky ReLU = max(az,z) where a is the slope when z < 0. 
+\item Non-saturating activation functions: Using e.g. ReLU\cite{maas2013rectifier} instead of the commonly used sigmoid activation function can help during training. The gradient is minimal when the sigmoid function is close to its output limits $(-1/1)$ meaning it will saturate. Using ReLU = $max(0,z)$ won't have this problem. However, ReLU has its own problem in that some perceptrons may stop outputting values except for 0. This is known as the dying ReLU problem. The solution is to use leaky ReLU = $max(az,z)$ where $a$ is the slope when $z < 0$. 
 
-\item TODO visualization
+\begin{figure}[H]
+  \begin{center}
+    \includegraphics[width=0.7\textwidth]{figures/leaky_relu.png}
+  \end{center}
+  \caption{Leaky ReLU\cite{Wang_2019}. The leaky ReLU activation function prevents the \textit{dying ReLU problem}.}
+  \label{fig:leaky_relu}
+\end{figure}
 
-\item Gradient clipping [Source]: Clipping the gradient by defining a max value it can attain during backpropagation means it will never exceed a certain threshold. This solves the exploding gradient problem.
+\item Gradient clipping\cite{quintana1974clipping}: Clipping the gradient by defining a max value it can attain during backpropagation means it will never exceed a certain threshold. This solves the exploding gradient problem.
 
-\item Batch Normalization [Source]: A technique used to address the problem that the distribution of each layer’s inputs changes during training, as the parameters of the previous layers change, by zero centering the input, scaling and then shifting the result. TODO two formulas
+\item Batch Normalization\cite{ioffe2015batch}: A technique used to address the problem that the distribution of each layer’s inputs changes during training, as the parameters of the previous layers change, by zero centering the input, scaling and then shifting the result. 
+
+\begin{equation}
+	\mu_B = \frac{1}{m_B} \sum_{i=1}^{m_B} x^{(i)}
+  	\label{eqn:batchnorm}
+\end{equation}
+
+\textbf{TODO more text about batch norm, explain the formulas}
+
+\begin{equation}
+	\sigma_B^2 = \frac{1}{m_B} (x^{(i)} - \mu_B)^2
+  	\label{eqn:batchnormtwo}
+\end{equation}
 
 \end{enumerate}
 \subsection{Improving gradient descent}
 
 Training speed can be improved by using techniques to update the learning rate during training, making the model converge faster towards the desired weight distribution.
 \begin{enumerate}
-\item Momentum: TODO
-\item Weight decay: TODO
+\item Momentum: \textbf{TODO}
+\item Weight decay: \textbf{TODO}
 \end{enumerate}
 
 
@@ -580,21 +625,41 @@ Training speed can be improved by using techniques to update the learning rate d
 
 Traditional DNNs had, at the time of creation, very impressive results on many datasets and tasks. However, working with 2-D images, certain problems arose related to the architecture. Traditional MLPs encountered difficulty with learning spatial and translation features, such as lighting or distortion variance. The difficulty in learning spatial features is directly related to how DNNs treat each pixel individually as an input vector and thus losing spatial information on how pixels relate to each other.
 
-\textbf{Convolutional layer}. A 2-D image consists of 3 dimensions: The width, height and channels (Typically 3: Red, green and blue). The convolutional layer, when applying its operation to the input, slides across the image (also referred to as convolves) from the top left corner to the bottom right corner as depicted in Figure X, performing a matrix multiplication operation between the kernel(a matrix of weights) and the portion of the image it is currently located at. Each kernel operation produces a number(after a bias value is added) which is inserted into a resulting matrix, named a \textit{filter}.
+\textbf{Convolutional layer}. A 2-D image consists of 3 dimensions: The width, height and channels (Typically 3: Red, green and blue). The convolutional layer, when applying its operation to the input, slides across the image (also referred to as convolves) from the top left corner to the bottom right corner as depicted in Figure \ref{fig:kernelmovement}, performing a matrix multiplication operation between the kernel(a matrix of weights) and the portion of the image it is currently located at. Each kernel operation produces a number(after a bias value is added) which is inserted into a resulting matrix, named a \textit{filter}.
 
-\textbf{TODO movement of the kernel figure}
+\begin{figure}[H]
+  \begin{center}
+    \includegraphics[width=0.5\textwidth]{figures/kernel_movement.png}
+  \end{center}
+  \caption{Movement of the kernel within the input image or filter matrix\cite{Kang2020DeepCN}.}
+  \label{fig:kernelmovement}
+\end{figure}
+
 
 Options for determining the resulting output size of the convolutional layer are called \textbf{stride} and \textbf{zero-padding}. Stride determines how many pixels the kernel shifts as it traverses. Increasing the stride will decrease the number of operations performed, and thus the output size. Since the kernel will pass the border of the image input fewer times than the pixels located closer to the center of the image, zero-padding can be used to improve the performance of the convolutional layer. Zero-padding adds zeros to the edges of the image, making it possible to traverse the original corners and borders of the image multiple times. The logical consequence of artificially increasing the width and height of the image is that more convolves occur, and thus the output size of the layer is increased. 
 
-\textbf{TODO Zero padding figure}
+\begin{figure}[H]
+  \begin{center}
+    \includegraphics[width=0.5\textwidth]{figures/padding.png}
+  \end{center}
+  \caption{\textbf{Zero-padding} the image input (in blue and on bottom) by 1 makes the convolutional layer produce the same output dimensions(green and on top) as the input. When the same dimensionality is produced, it is known as \textbf{same-padding}\cite{Kang2020DeepCN}.}
+  \label{fig:padding}
+\end{figure}
 
 \textbf{Pooling layer.} Similar to how convolutional layers work, pooling layers are responsible for reducing the spatial size of the convolved features. This is to decrease the computational power required to process the data through dimensionality reduction. Another feature of the pooling layers is that, as we reduce the dimensionality of the layers further down the architecture, we force the layers to learn on higher and higher levels of abstraction of the features, since detail is lost with the compression of information. There are two important types of pooling layers: \textbf{Max pooling} and \textbf{average pooling}. As the names suggest, the operation applied to inputs of the layers is the maximum of the values or the average of the values respectively. 
 
 \textbf{Dense layer}. Typically in these architectures, the final layers are traditional dense layers. These layers are used to output the probability of a certain class to be detected within the image. 
 
-\textbf{Residual block}. As networks became deeper to improve results, the problems with vanishing and exploding gradients became more commonplace again. Deep residual network (ResNet), was proposed by Kaiming He. It’s main contribution to the CNN architecture was the residual block, which introduced a short cut layer in order to improve learning as seen in Figure X. 
+\textbf{Residual block}. As networks became deeper to improve results, the problems with vanishing and exploding gradients became more commonplace again. Deep residual network (ResNet), was proposed by Kaiming He et al\cite{he2016deep}. It’s main contribution to the CNN architecture was the residual block, which introduced a short cut layer in order to improve learning as seen in Figure \ref{fig:residual}. 
 
-\textbf{TODO Residual block figure}
+\begin{figure}[H]
+  \begin{center}
+    \includegraphics[width=1.0\textwidth]{figures/residual_block.png}
+  \end{center}
+  \caption{Residual block. \textbf{TODO credit, probably new figure}}
+  \label{fig:residual}
+\end{figure}
+
 
 
 \section{Fully Convolutional Network}
@@ -603,14 +668,19 @@ Options for determining the resulting output size of the convolutional layer are
 
 \section{Feature Pyramid Network}
 
-Recognizing objects at vastly different scales is one of the fundamental challenges in computer vision. One approach which has proven to be successful in both performance on competitive datasets (e.g. the COCO detection benchmark without bells and whistles in this case) and in the sense that it adds little overhead, is the Feature Pyramid Network (FPN). The idea is intuitive: To offset the problem of objects being of vastly different scales in images, the features maps generated from the images are scaled to different resolutions as seen in Figure X, and predictions are made on each of these scaled feature maps.
+Recognizing objects at vastly different scales is one of the fundamental challenges in computer vision. One approach which has proven to be successful in both performance on competitive datasets (e.g. the COCO detection benchmark without bells and whistles in this case) and in the sense that it adds little overhead, is the Feature Pyramid Network (FPN). The idea is intuitive: To offset the problem of objects being of vastly different scales in images, the features maps generated from the images are scaled to different resolutions as seen in Figure \ref{fig:fpn}, and predictions are made on each of these scaled feature maps.
 
-Previous approaches similar to the FPN also leverage the pyramid scheme to predict objects at different resolutions. However, as in the case of Featurized image pyramid ((a) Figure X), inference time could increase by up to four times making the approach impractical for real world applications.
+Previous approaches similar to the FPN also leverage the pyramid scheme to predict objects at different resolutions. However, as in the case of Featurized image pyramid a) in Figure \ref{fig:fpn}, inference time could increase by up to four times making the approach impractical for real world applications.
 
 Convolutional neural networks typically narrow it’s hidden layers in common architectures, either to make a prediction based on high-level features as in the case of the common heads used in the R-CNN family of networks, or in the case of FCNNs, where the layers typically decrease in size only to increase towards the output layers in order to produce a proposal of equal dimensions as the input layer. FPNs exploit the architecture of the CNNs by using the existing hidden layers at different resolutions to predict bounding boxes and classes directly from the hidden layers, reducing the overhead of the FPN backbone, and thus becoming a feasible option for real world applications.
 
-
-\textbf{TODO FPN figure}
+\begin{figure}[H]
+  \begin{center}
+    \includegraphics[width=1.0\textwidth]{figures/fpn.png}
+  \end{center}
+  \caption{Evolution of the Feature Pyramid Network\cite{DBLP:journals/corr/LinDGHHB16}.}
+  \label{fig:fpn}
+\end{figure}
 
 \chapter{Data Collection}
 \label{ch:data}
@@ -796,19 +866,19 @@ Titles, section titles and subsection titles are not included in the definition 
 \chapter{Model Architecture}
 \label{ch:modelarch}
 
-Our objective is to segment newspaper images and to classify detected segments of news units according to a fine-grained newspaper section typology. To this end, we introduce a method which performs supervised, pixel-wise multiclass classification using both visual and textual features. This method builds on the Mask R-CNN architecture by He et al [2017]. While varying the primary architecture, we explore the use of sentence transformers that map sentences of text to a vector space, which is embedded in the image input channels.
+Our objective is to segment newspaper images and to classify detected segments of news units according to a fine-grained newspaper section typology. To this end, we introduce a method which performs supervised, pixel-wise multiclass classification using both visual and textual features. This method builds on the Mask R-CNN architecture by He et al\cite{DBLP:journals/corr/HeGDG17}. While varying the primary architecture, we explore the use of sentence transformers that map sentences of text to a vector space, which is embedded in the image input channels.
 
 \section{Primary Architecture}
 
 Mask R-CNN is a deep learning neural network architecture designed for object instance detection and segmentation. Given an input image, the network produces bounding boxes, segmentation masks, and an estimated class for each object detected in the image. Mask R-CNN is an extension in a longer line of extensions of neural network architectures.
 
-\textbf{R-CNN}. The reason the original CNN is not ideal to use for object detection in images is that the output may be variable since you might have a variable amount of objects being detected in the image, making the output size vary from one image to the next. R-CNN, proposed by Ross Girshick et al, uses a method where selective search is used to extract 2000 regions from the image called region proposals. Each proposal is warped into a square and fed into a CNN that produces a 4096-dimensional feature vector as output. In this case, the CNN acts as a feature extractor and the output dense layer consists of the features extracted from the image. These features are fed into a Support Vector Machine to classify the presence of an object within the region proposal. The algorithm also predicts four values which are offset values to increase the precision of the bounding box.  
+\textbf{R-CNN}. The reason the original CNN is not ideal to use for object detection in images is that the output may be variable since you might have a variable amount of objects being detected in the image, making the output size vary from one image to the next. R-CNN, proposed by Ross Girshick et al\cite{Girshick_2014_CVPR}, uses a method where selective search is used to extract 2000 regions from the image called region proposals. Each proposal is warped into a square and fed into a CNN that produces a 4096-dimensional feature vector as output. In this case, the CNN acts as a feature extractor and the output dense layer consists of the features extracted from the image. These features are fed into a Support Vector Machine to classify the presence of an object within the region proposal. The algorithm also predicts four values which are offset values to increase the precision of the bounding box.  
 
-\textbf{Fast R-CNN}. The next evolution of the R-CNN, called “Fast R-CNN”, hints at the problems that R-CNN had and that its extension is trying to solve. R-CNN took a very long time to produce its output, and the selective search algorithm used to propose the regions is fixed, neglecting the possibility to learn in this stage of the architecture. Fast R-CNN introduces a RoI (Region of Interest) pooling layer, making it possible to skip generating 2000 region proposals and instead only have the convolution operation done once per image. 
+\textbf{Fast R-CNN}. The next evolution of the R-CNN, called “Fast R-CNN”\cite{Girshick_2015_ICCV}, hints at the problems that R-CNN had and that its extension is trying to solve. R-CNN took a very long time to produce its output, and the selective search algorithm used to propose the regions is fixed, neglecting the possibility to learn in this stage of the architecture. Fast R-CNN introduces a RoI (Region of Interest) pooling layer, making it possible to skip generating 2000 region proposals and instead only have the convolution operation done once per image. 
 
-\textbf{Faster R-CNN}. Fast, but not fast enough, the Fast R-CNN still took a significant time generating the region proposal, albeit much faster than its predecessor. Shaoqing Ren et al came up with a replacement for the selective search algorithm with the added bonus that it lets the network learn in the region proposal step. This part of the network is called the Region Proposal Network (RPN). 
+\textbf{Faster R-CNN}. Fast, but not fast enough, the Fast R-CNN still took a significant time generating the region proposal, albeit much faster than its predecessor. Shaoqing Ren et al\cite{7485869} came up with a replacement for the selective search algorithm with the added bonus that it lets the network learn in the region proposal step. This part of the network is called the Region Proposal Network (RPN). 
 
-\textbf{Mask R-CNN}. Mask R-CNN contributes to this architecture by adding a parallel prediction of masks alongside its original output which is a class label and a bounding-box offset. This parallel proposal is what made Mask R-CNN unique compared to other extensions of Faster R-CNN at the time, where other methods often depended on the mask predictions for the class prediction. Mask R-CNN also introduces the concept of RoIAlign, to address misalignment issues between the RoI and the extracted features which impacts the pixel-accurate masks it produces due to quantization which is avoided with RoIAlign. More thorough details can be found in the original Mask R-CNN paper [He et al]. All deviations from the standard configuration will be noted in the implementation details chapter of this paper.
+\textbf{Mask R-CNN}. Mask R-CNN contributes to this architecture by adding a parallel prediction of masks alongside its original output which is a class label and a bounding-box offset. This parallel proposal is what made Mask R-CNN unique compared to other extensions of Faster R-CNN at the time, where other methods often depended on the mask predictions for the class prediction. Mask R-CNN also introduces the concept of RoIAlign, to address misalignment issues between the RoI and the extracted features which impacts the pixel-accurate masks it produces due to quantization which is avoided with RoIAlign. More thorough details can be found in the original Mask R-CNN paper, He et al\cite{DBLP:journals/corr/HeGDG17}. All deviations from the standard configuration will be noted in the implementation details chapter of this paper.
 
 Network modularity. The Mask R-CNN architecture is made up of modular networks, which can be varied. The modules are:
 
@@ -819,19 +889,28 @@ Network modularity. The Mask R-CNN architecture is made up of modular networks, 
 
 \section{Text Embedding map}
 
-In order to combine the visual and textual information as input to the model, we map the one-dimensional representation of textual information (e.g. a word vector or paragraph vector) into a three-dimensional representation by positioning the embedding representation into a two-dimensional space (e.g. a word or paragraph has a certain width, height, x-, and y-coordinate of the top left corner when printed on a page). This new textual embedding vector, corresponding to a character, word or paragraph, is equivalent to the original vector, augmented with the positional information. We refer to this three-dimensional representation of textual information, as mentioned in Barman et al [2020] and introduced in Yang et al. [2017] as a ‘text embedding map’.
+In order to combine the visual and textual information as input to the model, we map the one-dimensional representation of textual information (e.g. a word vector or paragraph vector) into a three-dimensional representation by positioning the embedding representation into a two-dimensional space (e.g. a word or paragraph has a certain width, height, x-, and y-coordinate of the top left corner when printed on a page). 
 
-Notably, the key difference from the earlier works by Barman et al and Yang et al is that in this approach the text embedding maps are generated on a paragraph level, instead of character- or word level.
+This new textual embedding vector, corresponding to a character, word or paragraph, is equivalent to the original vector, augmented with the positional information. We refer to this three-dimensional representation of textual information, as mentioned in Barman et al\cite{jdmdh:7097} and introduced in Yang et al.\cite{DBLP:journals/corr/YangYAKKG17} as a ‘text embedding map’.
+
+Notably, the key difference from the earlier works by Barman et al\cite{jdmdh:7097} and Yang et al\cite{DBLP:journals/corr/YangYAKKG17} is that in this approach the text embedding maps are generated on a paragraph level, instead of character- or word level.
 
 The three-dimensional encoding of textual information is produced by using the result of an OCR process which outputs coordinates of bounding boxes for blocks of text together with its textual content.
 
-We define this process formally as follows. Given an image of size H x W and a list of tokens T where each token t is associated with a bounding box bt on the image, a text embedding map G of size H x W x N is produced, where N is the dimension of the embeddings. Specifically, all pixels contained in the bounding box of a token t are defined as the set bt <- $R^2$ and each pixel gi,j <- G of the text embedding map is computed with 
+We define this process formally as follows. Given an image of size $H$ $x$ $W$ and a list of tokens $T$ where each token $t$ is associated with a bounding box $b_t$ on the image, a text embedding map $G$ of size $H$ $x$ $W$ $x$ $N$ is produced, where $N$ is the dimension of the embeddings. Specifically, all pixels contained in the bounding box of a token $t$ are defined as the set $b_t \in {\rm I\!R}^2$ and each pixel $g_{i,j} \in G$ of the text embedding map is computed with 
 
-\textbf{TODO formula}
+\begin{equation}
+	g_{ij} = 
+	    \begin{cases}
+	      E(t), & \text{if}\ (i,j) \in b_t \\
+	      0^N, & \text{otherwise}
+	    \end{cases}
+  	\label{eqn:textembedding}
+\end{equation}
 
-where E(t) is a mapping of t -> $R^N$ corresponding for example to a paragraph embedding, and $0^N$ is a null vector in case there is no text in the corresponding pixel. Each pixel overlapping with a bounding box produced by the OCR process is therefore mapped to its corresponding embedding. In this project, no bounding boxes are overlapping, which means no statement will be made regarding a strategy for such a case.
+where $E(t)$ is a mapping of $t \rightarrow {\rm I\!R}^N$ corresponding for example to a paragraph embedding, and $0^N$ is a null vector in case there is no text in the corresponding pixel. Each pixel overlapping with a bounding box produced by the OCR process is therefore mapped to its corresponding embedding. In this project, no bounding boxes are overlapping, which means no statement will be made regarding a strategy for such a case.
 
-The result is a text embedding map, i.e. a three-dimensional matrix where the first two dimensions correspond to the image-localized representation of the text, and the third to the embedding itself. Given that the resulting matrix has the same width and height as the original image, it lends itself to easily extend the image input layer to accept more than its 3 original channels (RGB), that is to also fit an N-dimensional vector behind each pixel in a preprocessing step. The final number of channels of the input layer is therefore 3+N, where the first 3 dimensions of each pixel contain the original RGB values of the input image. 
+The result is a text embedding map, i.e. a three-dimensional matrix where the first two dimensions correspond to the image-localized representation of the text, and the third to the embedding itself. Given that the resulting matrix has the same width and height as the original image, it lends itself to easily extend the image input layer to accept more than its 3 original channels (RGB), that is to also fit an N-dimensional vector behind each pixel in a preprocessing step. The final number of channels of the input layer is therefore $3+N$, where the first 3 dimensions of each pixel contain the original RGB values of the input image. 
 
 \textbf{TODO Maybe visualization of the embedding maps?}
 
@@ -863,7 +942,7 @@ The Intersection over Union (IoU) is the standard metrics for semantic image seg
 
 The IoU does not qualify performances in terms of True Positives (TP), True Negatives (TN), False Positives (FP) and False Negatives (FN). These values are relevant when considering whether a model can be useful for real world applications, that is, if most of the segments are correctly recognized. 
 
-The standard way to measure these values in the field of segmentation is to consider a prediction as positive when above a certain threshold $\tau \subseteq [0,1]$ of IoU. If the prediction is above the threshold $\tau$, it is well enough aligned with the ground truth and to be considered correct. 
+The standard way to measure these values in the field of segmentation is to consider a prediction as positive when above a certain threshold $\tau \in [0,1]$ of IoU. If the prediction is above the threshold $\tau$, it is well enough aligned with the ground truth and to be considered correct. 
 
 Given this definition, we can now consider:
 \begin{enumerate}
@@ -888,7 +967,7 @@ Given a threshold $\tau$, precision and recall are computed as follows:
 It is also possible to compute the average precision and recall over a range of thresholds. This is defined by a start $\tau_{start}$, an end $\tau_{end}$, and a step size between two threshold $\tau_{step}$ using the following notation: $\tau_{start}$:$\tau_{step}$:$\tau_{end}$. Given a threshold range, the average metric $M$ (Where $M$ could be for example precision or recall) is then computed as follows:
 
 \begin{equation}
-M@\tau_{start}:\tau_{step}:\tau_{end} = \frac{1}{(\tau_{start}:\tau_{step}:\tau_{end})} \sum{} \tau \subseteq \tau_{start}:\tau_{step}:\tau_{end}
+M@\tau_{start}:\tau_{step}:\tau_{end} = \frac{1}{(\tau_{start}:\tau_{step}:\tau_{end})} \sum{} \tau \in \tau_{start}:\tau_{step}:\tau_{end}
     \label{eqn:rangem}
 \end{equation}
 
@@ -926,18 +1005,7 @@ mAP = \frac{1}{N} \sum_{i=1}^{N} AP_i
 %The thesis contributes to the \gls{UN}\enspace\glspl{SDG} numbers 1 and 9 by
 %xxxx. 
 
-
-
-
 \noindent\rule{\textwidth}{0.4mm}
-\todo[inline]{In the references, let Zotero or other tool fill this
-  in for you. I suggest an extended version of the IEEE  style, to include
-  URLs, DOIs, ISBNs, etc., to make it easier for your reader to find
-  them. This will make life easier for your opponents and examiner. \\
-
-  IEEE Editorial Style Manual: \url{https://www.ieee.org/content/dam/ieee-org/ieee/web/org/conferences/style_references_manual.pdf}
-}
-\todo[inline, backgroundcolor=kth-lightblue]{Låt Zotero eller annat verktyg fylla i det här för dig. Jag föreslår en utökad version av IEEE stil - att inkludera webbadresser, DOI, ISBN etc. - för att göra det lättare för läsaren att hitta dem. Detta kommer att göra livet lättare för dina motståndare och examinator.}
 
 \cleardoublepage
 % Print the bibliography (and make it appear in the table of contents)
