@@ -316,6 +316,8 @@ I detta och det förra århundradet har allvarliga åtaganden gjorts för att di
 \end{abstract}
 \babelpolyLangStop{swedish}
 
+\cleardoublepage
+
 \section*{Acknowledgments }
 \markboth{Acknowledgments}{}
 
@@ -513,9 +515,13 @@ I used Figure \ref{fig:perceptron} above and referred to it.
 
 \section{Training a Deep Neural Network}
 
-Neural networks can learn to approximate functions through learning. Learning occurs by updating the weights and biases of the perceptrons gradually to approximate the desired output value of the last layer in the neural network. This difference between the desired output value and the output of the network, also known as the cross-entropy, is estimated by using a cost function.  
+Neural networks can learn to approximate functions through learning. Learning occurs by updating the weights and biases of the perceptrons gradually to approximate the desired output value of the last layer in the neural network. This difference between the desired output value and the output of the network, also known as the cost, is estimated by using a cost function. Cross-entropy is a popular cost function. In equation \ref{eqn:crossentropy}, \(y\) is the true label, and \(\hat{y}\) is the predicted value of the current model.
 
-\textbf{TODO formula}
+\begin{equation}
+	cost(y, \hat{y}) = - \sum\limits_{i=1}^{n} y_i log(\hat{y_i})
+  	\label{eqn:crossentropy}
+\end{equation}
+
 By updating the weights according to a paradigm, the cost can be minimized. A gradient-based approach to minimizing the cost is called backpropagation. Backpropagation is defined as taking the following steps:
 \begin{enumerate}
 \item Forward the input through the neural network to generate a prediction yhat.
@@ -572,488 +578,350 @@ Training speed can be improved by using techniques to update the learning rate d
 
 \section{Convolutional Neural Network}
 
-\cleardoublepage
-\chapter{Method or Methods}
-\label{ch:methods}
-\todo[inline, backgroundcolor=kth-lightblue]{Metod eller Metodval}
-\todo[inline]{This chapter is about Engineering-related
-  content, Methodologies and Methods.  Use a self-explaining title.\\The
-  contents and structure of this chapter will change with your choice of
-  methodology and methods.}
+Traditional DNNs had, at the time of creation, very impressive results on many datasets and tasks. However, working with 2-D images, certain problems arose related to the architecture. Traditional MLPs encountered difficulty with learning spatial and translation features, such as lighting or distortion variance. The difficulty in learning spatial features is directly related to how DNNs treat each pixel individually as an input vector and thus losing spatial information on how pixels relate to each other.
+
+\textbf{Convolutional layer}. A 2-D image consists of 3 dimensions: The width, height and channels (Typically 3: Red, green and blue). The convolutional layer, when applying its operation to the input, slides across the image (also referred to as convolves) from the top left corner to the bottom right corner as depicted in Figure X, performing a matrix multiplication operation between the kernel(a matrix of weights) and the portion of the image it is currently located at. Each kernel operation produces a number(after a bias value is added) which is inserted into a resulting matrix, named a \textit{filter}.
+
+\textbf{TODO movement of the kernel figure}
+
+Options for determining the resulting output size of the convolutional layer are called \textbf{stride} and \textbf{zero-padding}. Stride determines how many pixels the kernel shifts as it traverses. Increasing the stride will decrease the number of operations performed, and thus the output size. Since the kernel will pass the border of the image input fewer times than the pixels located closer to the center of the image, zero-padding can be used to improve the performance of the convolutional layer. Zero-padding adds zeros to the edges of the image, making it possible to traverse the original corners and borders of the image multiple times. The logical consequence of artificially increasing the width and height of the image is that more convolves occur, and thus the output size of the layer is increased. 
+
+\textbf{TODO Zero padding figure}
+
+\textbf{Pooling layer.} Similar to how convolutional layers work, pooling layers are responsible for reducing the spatial size of the convolved features. This is to decrease the computational power required to process the data through dimensionality reduction. Another feature of the pooling layers is that, as we reduce the dimensionality of the layers further down the architecture, we force the layers to learn on higher and higher levels of abstraction of the features, since detail is lost with the compression of information. There are two important types of pooling layers: \textbf{Max pooling} and \textbf{average pooling}. As the names suggest, the operation applied to inputs of the layers is the maximum of the values or the average of the values respectively. 
+
+\textbf{Dense layer}. Typically in these architectures, the final layers are traditional dense layers. These layers are used to output the probability of a certain class to be detected within the image. 
+
+\textbf{Residual block}. As networks became deeper to improve results, the problems with vanishing and exploding gradients became more commonplace again. Deep residual network (ResNet), was proposed by Kaiming He. It’s main contribution to the CNN architecture was the residual block, which introduced a short cut layer in order to improve learning as seen in Figure X. 
+
+\textbf{TODO Residual block figure}
 
 
+\section{Fully Convolutional Network}
 
-\todo[inline]{Describe the engineering-related contents (preferably with models) and the research methodology and methods that are used in the degree project.\\
-Give a theoretical description of the scientific or engineering methodology are you going to use and why have you chosen this method. What other methods did you consider and why did you reject them.\\
-In this chapter, you describe what engineering-related and scientific skills you are going to apply, such as modeling, analyzing, developing, and evaluating engineering-related and scientific content. The choice of these methods should be appropriate for the problem . Additionally, you should be consciousness of aspects relating to society and ethics (if applicable). The choices should also reflect your goals and what you (or someone else) should be able to do as a result of your solution - which could not be done well before you started.}
+\textbf{TODO text}
 
-The purpose of this chapter is to provide an overview of the research method
-used in this thesis. Section~\ref{sec:researchProcess} describes the research
-process. Section~\ref{sec:researchParadigm} details the research
-paradigm. Section~\ref{sec:dataCollection} focuses on the data collection
-techniques used for this research. Section~\ref{sec:experimentalDesign}
-describes the experimental design. Section~\ref{sec:assessingReliability}
-explains the techniques used to evaluate the reliability and validity of the
-data collected. Section~\ref{sec:plannedDataAnalysis} describes the method
-used for the data analysis. Finally, Section~\ref{sec:evaluationFramework}
-describes the framework selected to evaluate xxx.
+\section{Feature Pyramid Network}
 
-\todo[inline, backgroundcolor=kth-lightblue]{Vilka vetenskapliga eller ingenjörsmetodik ska du använda och varför har du valt den här metoden. Vilka andra metoder gjorde du överväga och varför du avvisar dem.
-Vad är dina mål? (Vad ska du kunna göra som ett resultat av din lösning - vilken inte kan göras i god tid innan du började)
-Vad du ska göra? Hur? Varför? Till exempel, om du har implementerat en artefakt vad gjorde du och varför? Hur kommer ditt utvärdera den.
-Syftet med detta kapitel är att ge en översikt över forsknings metod som
-används i denna avhandling. Avsnitt~\ref{sec:researchProcess} beskriver forskningsprocessen. Avsnitt~\ref{sec:researchParadigm} detaljer forskningen paradigm. Avsnitt~\ref{sec:dataCollection} fokuserar på datainsamling
-tekniker som används för denna forskning. Avsnitt~\ref{sec:experimentalDesign} beskriver experimentell
-design. Avsnitt~\ref{sec:assessingReliability} förklarar de tekniker som används för att utvärdera
-tillförlitligheten och giltigheten av de insamlade uppgifterna. Avsnitt~\ref{sec:plannedDataAnalysis}
-beskriver den metod som används för dataanalysen. Slutligen, Avsnitt~\ref{sec:evaluationFramework}
-beskriver ramverket valts för att utvärdera xxx.\\
-Ofta kan man koppla ett antal följdfrågor till undersökningsfrågan och problemlösningen t ex\\
-(1) Vilken process skall användas för konstruktion av lösningen och vilken process skall kopplas till denna för att svara på undersökningsfrågan?\\
-(2) Hur och vilket resultat (storheter) skall presenteras både för att redovisa svar på undersökningsfrågan (resultatkapitlet i denna rapport) och redovisa resultat av problemlösningen (prototypen, ofta dokument som bilagor men vilka dokument och varför?).\\
-(3) Vilken teori/teknik skall väljas och användas både för undersökningen (taxonomi, matematik, grafer, storheter mm)  och  problemlösning (UML, UseCases, Java mm) och varför?\\
-(4) Vad behöver du som student leverera för att uppnå hög kvaliet (minimikrav) eller mycket hög kvalitet på examensarbetet?\\
-(5) Frågorna kopplar till de följande underkapitlen.\\
-(6) Resonemanget bygger på att studenter på hing-programmet ofta skall konstruera något åt problemägaren och att man till detta måste koppla en intressant ingenjörsfråga. Det finns hela tiden en dualism mellan dessa aspekter i exjobbet.
-}
+Recognizing objects at vastly different scales is one of the fundamental challenges in computer vision. One approach which has proven to be successful in both performance on competitive datasets (e.g. the COCO detection benchmark without bells and whistles in this case) and in the sense that it adds little overhead, is the Feature Pyramid Network (FPN). The idea is intuitive: To offset the problem of objects being of vastly different scales in images, the features maps generated from the images are scaled to different resolutions as seen in Figure X, and predictions are made on each of these scaled feature maps.
 
-\section{Research Process}
-\label{sec:researchProcess}
-\todo[inline, backgroundcolor=kth-lightblue]{Undersökningsrocess och utvecklingsprocess}
+Previous approaches similar to the FPN also leverage the pyramid scheme to predict objects at different resolutions. However, as in the case of Featurized image pyramid ((a) Figure X), inference time could increase by up to four times making the approach impractical for real world applications.
 
-Figure~\ref{fig:researchprocess} shows the steps conducted in order to carry out this research. 
-
-\todo[inline, backgroundcolor=kth-lightblue]{Figur~\ref{fig:researchprocess} visar de steg som utförs för att genomföra\\
-Beskriv, gärna med ett aktivitetsdiagram (UML?), din undersökningsprocess och utvecklingsprocess.  Du måste koppla ihop det akademiska intresset (undersökningsprocess) med ursprungsproblemet (utvecklingsprocess)
-denna forskning.\\
-Aktivitetsdiagram från t ex UML-standard}
+Convolutional neural networks typically narrow it’s hidden layers in common architectures, either to make a prediction based on high-level features as in the case of the common heads used in the R-CNN family of networks, or in the case of FCNNs, where the layers typically decrease in size only to increase towards the output layers in order to produce a proposal of equal dimensions as the input layer. FPNs exploit the architecture of the CNNs by using the existing hidden layers at different resolutions to predict bounding boxes and classes directly from the hidden layers, reducing the overhead of the FPN backbone, and thus becoming a feasible option for real world applications.
 
 
- 
-\begin{figure}[!ht]
-  \begin{center}
-    \includegraphics[width=0.5\textwidth]{figures/researchprocess.png}
-  \end{center}
-  \caption{Research Process}
-  \label{fig:researchprocess}
-\end{figure}
-\todo[inline, backgroundcolor=kth-lightblue]{Forskningsprocessen}
+\textbf{TODO FPN figure}
 
-\section{Research Paradigm}
-\label{sec:researchParadigm}
-\todo[inline, backgroundcolor=kth-lightblue]{Undersökningsparadigm\\
-Exempelvis\\
-Positivistisk (vad/hur fungerar det?) kvalitativ fallstudie med en deduktivt (förbestämd) vald ansats och ett induktivt(efterhand uppstår dataområden och data) insamlade av data och erfarenheter.}
+\chapter{Data Collection}
+\label{ch:data}
+
+A broad overview of the different datasets labeled specifically for this paper will be introduced. Then a formal definition of a news unit will be made, which will be derived from the definition of a news article. This definition will be based on what a user might like to query as content on an article-level search of a newspaper. Since the data, made available by Kungliga Biblioteket is strictly non-disclosure (meaning no example figures from the real data can be submitted) an attempt to produce a systematic overview of the contents of the dataset will explain what elements may or may not be included in the definition of a news unit.
+
+\section{Datasets}
+
+Three datasets from three different time periods were produced during this project. The time periods were chosen carefully to differ typographically. The first and largest dataset, DN 2010 - 2020,  is exclusively labeled from the newspaper Dagens Nyheter. Model training is performed on a subset of the DN 2010 - 2020 dataset, which is split into three parts: Train, test and validation. The remaining two datasets are used for evaluation of the trained models.
+
+In each dataset, the labels are produced at the page level. In the first dataset, DN 2010 - 2020, the first newspaper was labeled from start to end. After that, random sampling was used for the remaining data. 
 
 
-\section{Data Collection}
-\label{sec:dataCollection}
-\todo[inline]{This should also show that you are aware of the social and ethical concerns that might be relevant to your data collection method.)}
+\subsection{DN 2010 - 2020 (Training)}
 
-\todo[inline, backgroundcolor=kth-lightblue]{Datainsamling\\
-(Detta bör också visa att du är medveten om de sociala och etiska frågor som
-kan vara relevanta för dina data insamlingsmetod.)}
+Sampled from Dagens Nyheter in the time period 2010 to 2020, this dataset contains plenty of articles with rich graphics such as visualizations of data related to the content. Many images related to the articles are very large, sometimes spanning the entire first page of a multi-page article. 
 
-\subsection{Sampling}
-\todo[inline, backgroundcolor=kth-lightblue]{Stickprovsundersökning}
+\textbf{TODO Table}
 
-\subsection{Sample Size}
-\todo[inline, backgroundcolor=kth-lightblue]{Provstorleken}
+\subsection{DN SvD 2001 - 2004 (In-set)}
 
-\subsection{Target Population}
-\todo[inline, backgroundcolor=kth-lightblue]{Målgruppen}
-
-\section{Experimental design/Planned Measurements}
-\label{sec:experimentalDesign}
-\todo[inline, backgroundcolor=kth-lightblue]{Experimentdesign/Mätuppställning}
-
-\subsection{Test environment/test bed/model}\todo[inline]{Describe everything that someone else would need to reproduce your test environment/test bed/model/… .}
-\todo[inline, backgroundcolor=kth-lightblue]{Testmiljö/testbädd/modell\\
-Beskriv allt att någon annan skulle behöva återskapa din testmiljö / testbädd / modell / …}
-
-\subsection{Hardware/Software to be used}
-\todo[inline, backgroundcolor=kth-lightblue]{Hårdvara / programvara som ska användas}
+\subsection{Aftonbladet Expressen ? - ? (Out-set)}
 
 
-\section{Assessing reliability and validity of the data collected}
-\label{sec:assessingReliability}
-\todo[inline, backgroundcolor=kth-lightblue]{Bedömning av validitet och reliabilitet hos använda metoder och insamlade data }
+\section{Page Layouts}
+
+In this section we will attempt to give a systematic overview of the types of content a newspaper within the dataset contains. 
+
+\subsection{Placards}
+
+The placard, usually found as advertisement for the newspaper itself, typically consists of a single page containing the main story headline and is included in the datasets. 
+
+\subsection{Front pages}
+
+The front page of a newspaper generally contains one or more logos of the newspaper, the date of publication, a “main story” consisting of a headline, a subhead, a body text, and a reference page number. Smaller elements advertising other articles are usually more concise, typically containing no more than a headline and a reference page number. Advertisements occur consistently on front pages although to a lesser degree than in content pages. 
+
+\subsection{Content Pages}
+
+Single page articles are the most common form of content page. In this context, an article fits on a single page, but the page itself may contain many different articles and other elements such as advertisements. If two elements discuss the same topic but have different authors they will be considered two different news units.
+
+Multi page articles are content pages in which the content spans multiple pages. Thus, a single page may only display half of an image, or a few elements of the complete body text. If the page is the first of a multi page article the byline may be missing, but the elements will still count as a news unit. Similarly, if the page is not the first of a multi page article, a headline may be missing, but the elements will still count as a news unit.
+
+\subsection{Listings}
+
+There are many different types of listings that commonly occur in newspapers. These listings are typically dense lists of information, such as stock listings, TV-Radio broadcast timetables, or movie timetables.
+
+\subsection{Comics, artwork and poems}
+
+Comics, artwork, poems and quizzes pose an interesting challenge in labeling because of the creative freedom of the composition of elements. Many of them border on being included in the definition of a news unit.
+
+Comics, as opposed to news article related images, are typically hand-drawn with optional separator to introduce a narrative, with speech bubbles narrating the fictional characters. Comics received no label in this project.
+
+Artwork is also common in some sections of the newspapers. In this project artwork is treated like a potential image to a news article, as it is often accompanied by a text.
+
+Poems can range from an essay to a single word with the author omitted.
+
+\subsection{Games, puzzles and quizzes}
+
+There are a number of games prevalent in the dataset. The most common being crossword puzzles and sudoku puzzles. Less frequent games that do occur are card game positions.
+
+Quizzes are generally structured as a list of questions. The key to these questions can often be found on the same page in a smaller font, often upside-down.
+
+\subsection{Weather}
+
+Weather information can almost always be found in newspapers. They usually consist of tables of temperatures or weather states, maps of the regions that the newspaper published in, and images of weather states. 
 
 
-\subsection{Validity of method}
-\label{sec:validtyOfMethod}
-\todo[inline]{How will you know if your results are valid?}
-\todo[inline, backgroundcolor=kth-lightblue]{Giltigheten av metoder\\
-  Har dina metoder ge dig de rätta svaren och lösning? Var metoderna korrekt?}
+\section{Class Labels}
 
-\subsection{Reliability of method}
-\label{sec:reliabilityOfMethod}
-\todo[inline]{How will you know if your results are reliable?}
-\todo[inline, backgroundcolor=kth-lightblue]{Tillförlitlighet av metoder\\
-Hur bra är dina metoder, finns det bättre metoder? Hur kan du förbättra dem?}
+\subsection{News Unit}
 
-\subsection{Data validity}
-\label{sec:dataValidity}
-\todo[inline, backgroundcolor=kth-lightblue]{Giltigheten av uppgifter\\
-Hur vet du om dina resultat är giltiga? Har ditt resultat mäta rätta?}
+Due to the spatial requirements or stylistic choices made by the publicist, some news article elements may be omitted. The consequence of this fact is that news articles vary greatly in their composition. Thus, when labeling news articles, a systematic definition has to be produced so that labels are consistent across newspapers. In this section, we will attempt to produce such a definition derived from the definition of a news article.
 
-\subsection{Reliability of data}
-\label{sec:reliabilityOfData}
-\todo[inline, backgroundcolor=kth-lightblue]{Tillförlitlighet av data\\
-Hur vet du om dina resultat är tillförlitliga? Hur bra är dina resultat?}
+\newtheorem{thm}{Theorem}
+\newtheorem{defn}[thm]{Definition}
+\begin{defn}
+\label{newsarticle}
+A \textbf{news article} is a written work published in a print or electronic medium with the purpose of propagating news, research results, academic analysis or debate. News articles tend to be composed of a headline, a subhead, a preamble, a body text, and a byline. Some elements, such as the subhead and preamble, may be omitted due to stylistic choices or space requirements. News articles are often extended by a number of other optional elements, such as images and image captions. Digitally published news articles may also include video and video captions.
+\end{defn}
 
+\begin{defn}
+\label{headline}
+A \textbf{headline} is a very short summary of a news report. It normally appears in large letters above the report. [Cambridge Dictionary]
+\end{defn}
 
-\section{Planned Data Analysis}
-\label{sec:plannedDataAnalysis}
-\todo[inline, backgroundcolor=kth-lightblue]{Metod för analys av data}
+\begin{defn}
+\label{subhead}
+A \textbf{subhead} or subheading is a word, phrase, or sentence that is used to introduce part of a text. [Cambridge Dictionary]
+\end{defn}
 
+\begin{defn}
+\label{preamble}
+A \textbf{preamble} is an introduction to a speech or piece of writing. [Cambridge Dictionary]
+\end{defn}
 
-\subsection{Data Analysis Technique}
-\label{sec:dataAnalysisTechnique}
-\todo[inline, backgroundcolor=kth-lightblue]{Dataanalys Teknik}
+\begin{defn}
+\label{body text}
+A \textbf{body text} is the main part of a printed text, excluding items such as headings and footnotes. [Oxford Languages]
+\end{defn}
 
-\subsection{Software Tools}
-\label{sec:softwareTools}
-\todo[inline, backgroundcolor=kth-lightblue]{Mjukvaruverktyg}
+\begin{defn}
+\label{byline}
+A \textbf{byline} is a line at the top or bottom of a newspaper or magazine article giving the writer's name. [Cambridge Dictionary]
+\end{defn}
 
+\begin{defn}
+\label{img}
+An \textbf{image caption} or a \textbf{video caption} is a title or brief explanation accompanying an illustration, cartoon, poster or in the latter case a video. [Oxford Languages]
+\end{defn}
 
-\section{Evaluation framework}
-\label{sec:evaluationFramework}
-\todo[inline, backgroundcolor=kth-lightblue]{Utvärdering och ramverk\\
-Metod för utvärdering, jämförelse mm. Kopplar till kapitel~\ref{ch:resultsAndAnalysis}.}
+Given Defintion \ref{newsarticle} of a \textit{news article}, we will now introduce the concept of a \textit{news unit}, which will determine what elements will be labeled in the newspaper data as representative of a news article.
 
-\section{System documentation}\todo[inline]{If this is going to be a complete document consider putting it in as an appendix, then just put the highlights here.}
-\todo[inline, backgroundcolor=kth-lightblue]{Systemdokumentation\\
-Med vilka dokument och hur skall en konstruerad prototyp dokumenteras? Detta blir ofta bilagor till rapporten och det som problemägaren till det ursprungliga problemet (industrin) ofta vill ha.\\
-Bland dessa bilagor återfinns ofta, och enligt någon angiven standard, kravdokument, arkitekturdokument, designdokumnet, implementationsdokument, driftsdokument, testprotokoll mm.}
+\begin{defn}
+\label{newsunit}
+A \textbf{news unit} is a written work published in a print or electronic medium with the purpose of propagating news, research results, academic analysis or debate. It’s minimum requirement is that it contains at least:
 
-\cleardoublepage
-\chapter{What you did}\todo[inline]{Choose your own chapter title to describe this}
-\label{ch:whatYouDid}
-\todo[inline, backgroundcolor=kth-lightblue]{[Vad gjorde du? Hur gick det till? – Välj lämplig rubrik (“Genomförande”, “Konstruktion”, ”Utveckling”  eller annat]}
+\begin{enumerate}
+\item a headline or a preamble or a body text or an image with an optional image caption
+\item a reference page number or a byline
+\end{enumerate}
+\end{defn}
 
+A \textit{news unit} may contain all of the above, including an image of the author themselves and smaller elements of text that usually contain explanatory contents, such as definitions or facts associated with the article itself. The label bounding box will be the smallest spanning bounding box, including white spaces between the elements, should they make up a rectangular shape. In the case that elements are organized such that they do not make up a rectangular shape, a smallest rectangular shape will be made excluding the protruding elements, which are then included by extending the border of the original rectangular shape in an asymmetric manner.
 
-\todo[inline]{What have you done? How did you do it? What design decisions did you make? How did what you did help you to meet your goals?}
-\todo[inline, backgroundcolor=kth-lightblue]{Vad du har gjort? Hur gjorde du det? Vad designen beslut gjorde du?\\
-Hur kom det du hjälpte dig att uppnå dina mål?}
+\textbf{TODO explain with images}
 
-% the following sets the TOC entry to break after the & - note you have to include the first letter of the following word as it get swolled by the \texorpdfstring{}{} processing
-\section[Hardware/Software design …/Model/Simulation model \&\texorpdfstring{\\}{ p} parameters/…]{Hardware/Software design …/Model/Simulation model \& parameters/…}
-\todo[inline, backgroundcolor=kth-lightblue]{Hårdvara / Mjukvarudesign ... / modell / Simuleringsmodell och parametrar / …}
+\subsection{News Unit Delimitations}
 
-Figure~\ref{fig:homepageicon} shows a simple icon for a home page. The time
-to access this page when served will be quantified in a series of
-experiments. The configurations that have been tested in the test bed are
-listed in Table~\ref{tab:configstested}.
+Some elements were included in the news unit due to the fact that they contained text relevant to the article itself. These elements are:
 
-\todo[inline, backgroundcolor=kth-lightblue]{Figur~\ref{fig:homepageicon}  visar en enkel ikon för en hemsida. Tiden för att få tillgång till den här sidan när serveras kommer att kvantifieras i en serie experiment. De konfigurationer som har testats i provbänk listas ini tabell~\ref{tab:configstested}.\\
-Vad du har gjort? Hur gjorde du det? Vad designen beslut gjorde du?}
- 
-\begin{figure}[!ht]
-  \begin{center}
-    \includegraphics[width=0.25\textwidth]{figures/Homepage-icon.png}
-  \end{center}
-  \caption{Homepage icon}
-  \label{fig:homepageicon}
-\end{figure}
+\begin{enumerate}
+\item Facts \& figures relating the the content
+\item References to previous articles on the same topic
+\item Corrections to previous articles on the same topic
+\end{enumerate}
 
-\begin{table}[!ht]
-  \begin{center}
-    \caption{Configurations tested}
-    \label{tab:configstested}
-    \begin{tabular}{l|c} % <-- Alignments: 1st column left, 2nd middle and 3rd right, with vertical lines in between
-      \textbf{Configuration} & \textbf{Description} \\
-      \hline
-      1 & Simple test with one server\\
-      2 & Simple test with one server\\
-    \end{tabular}
-  \end{center}
-\end{table}
-\todo[inline, backgroundcolor=kth-lightblue]{Konfigurationer testade}
+\subsection{Advertisement}
 
-\section{Implementation …/Modeling/Simulation/…}
-\label{sec:implementationDetails}
-\todo[inline, backgroundcolor=kth-lightblue]{Implementering … / modellering / simulering / …}
+The most common form of advertisement found in our dataset is that of rectangular images possibly containing text. They vary greatly in size, sometimes stretching the entire page. Purely textual advertisement also occurs frequently, sometimes with clear bounding boxes to indicate a separation from the journalistic content. Advertisements usually contain contact information of the provider of a service or product. 
 
+There are advertisements for the newspaper itself. It could be an offer for a subscription to the newspaper, an encouragement from the newspaper company to participate in a debate, an ad for the ad space itself, or a way to give feedback to the authors. Elements that suggest to the reader to visit the website of the newspaper or to explore other sections of the newspaper are labeled as Advertisement. Elements that are list-like instructions to participate remain unlabeled due to their generic format and repeated textual content.
 
-\subsection{Some examples of coding}
+Finally one must mention that there are advertisements made to look like news articles. They are intentionally structured and formatted to appear exactly as news articles do, except for the fact that a small warning is made that the section is in fact an advertisement. In this project, these types of advertisements are labeled as news articles. \textbf{TODO maybe discuss more?}
 
-Listing~\ref{lst:helloWorldInC} shows an example of a simple program written
-in C code.
+\subsection{Listing}
 
-\begin{lstlisting}[language={C}, caption={Hello world in C code}, label=lst:helloWorldInC]
-int main() {
-printf("hello, world");
-return 0;
-}
-\end{lstlisting}
+Listings are typically very distinguishable from the other types of content, yet there are some examples where the label could be more difficult to establish. In the case of movie advertisement, depending on the style of presentation the format could be argued to be similar to a Listing.
 
+Yet in this project, all movie related content is labeled as Advertisement. Another form of content that can easily border between Listing and Advertisement is the “Kungörelser” section(English: Announcement or notification). Sometimes containing advertisements, the format is usually very dense and a brief language is used. “Kungörelser” are labeled as Listings, although their individual subheadings remain unlabeled.
 
-In contrast, Listing~\ref{lst:programmes} is an example of code in Python to
-get a list of all of the programs at KTH.
+\subsection{Weather}
 
-\lstset{extendedchars=true}
-\begin{lstlisting}[language={Python}, caption={Using a python program to
-    access the KTH API to get all of the programs at KTH}, label=lst:programmes]
-KOPPSbaseUrl = 'https://www.kth.se'
+Weather information is labeled as the Weather class. Sometimes appearing as whole-page content, sometimes as snippets or previews on other pages, the smallest bounding box containing all types of weather information (maps, tables, graphics) are labeled as an instance. In the case that weather information is split by other types of content, two instances are labeled.
 
-def v1_get_programmes():
-    global Verbose_Flag
-    #
-    # Use the KOPPS API to get the data
-    # note that this returns XML
-    url = "{0}/api/kopps/v1/programme".format(KOPPSbaseUrl)
-    if Verbose_Flag:
-        print("url: " + url)
-    #
-    r = requests.get(url)
-    if Verbose_Flag:
-        print("result of getting v1 programme: {}".format(r.text))
-    #
-    if r.status_code == requests.codes.ok:
-        return r.text           # simply return the XML
-    #
-    return None
-\end{lstlisting}
+\subsection{Death Notice}
+
+Death notices are obvious in their pattern. A strong black border surrounds a text describing the person, usually beginning with a smaller graphic, the name of the person and an addition of information regarding the person or details regarding their passing. On pages usually containing death notices, In memoriam texts occur: Longer texts describing the person in question, usually submitted by a number of people. These submissions are labeled as news units as per the definition. 
+
+\subsection{Game}
+
+Any form of game found within the newspaper is labeled as one and the same class: Game.  
+
+\subsection{Publication Unit}
+
+In order to investigate the impact of classes on the performance of the model, we perform the same experiments where all annotations are set to the same class. In the experiments using the publication unit, all other classes are converted to the same class. Therefore, if an element or group of elements are assigned any class, previously mentioned in this chapter, they will be labeled as a publication unit in the experiments where class confusion is investigated.
+
+\subsection{Delimitations}
+
+Titles, section titles and subsection titles are not included in the definition of any class. The guiding principle is that content labeled as a class should be presenting detailed news. Plenty of elements found in the newspaper are simply repeated and do not, by themselves, convey any news. Some of the elements act as a guide for the reader to navigate the newspaper, e.g. topics or sections. Other elements convey information about the newspaper itself, usually repeated in every edition found in the datasets. A comprehensive list of these unlabeled elements follows:
+
+\begin{description}
+\item[$\bullet$] Titles
+\item[$\bullet$] Logos of newspaper
+\item[$\bullet$] Section titles
+\item[$\bullet$] Subsection titles
+\item[$\bullet$] Instructions how to participate in debates
+\item[$\bullet$] Footers and headers describing the news team / publishing team
+\end{description}
 
 
 \cleardoublepage
-\chapter{Results and Analysis}
-\label{ch:resultsAndAnalysis}
-\todo[inline, backgroundcolor=kth-lightblue]{svensk: Resultat och Analys}
 
-\todo[inline]{
-Sometimes this is split into two chapters.\\
-  
-Keep in mind: How you are going to evaluate what you have done? What are your metrics?\\
-Analysis of your data and proposed solution\\
-Does this meet the goals which you had when you started?
-}
+\chapter{Model Architecture}
+\label{ch:modelarch}
 
-In this chapter, we present the results and discuss them.
+Our objective is to segment newspaper images and to classify detected segments of news units according to a fine-grained newspaper section typology. To this end, we introduce a method which performs supervised, pixel-wise multiclass classification using both visual and textual features. This method builds on the Mask R-CNN architecture by He et al [2017]. While varying the primary architecture, we explore the use of sentence transformers that map sentences of text to a vector space, which is embedded in the image input channels.
 
-\todo[inline, backgroundcolor=kth-lightblue]{I detta kapitel presenterar vi resultatet och diskutera dem.\\
-Ibland delas detta upp i två kapitel.\\
-Hur du ska utvärdera vad du har gjort? Vad är din statistik?\\
-Analys av data och föreslagen lösning\\
-Innebär detta att uppnå de mål som du hade när du började?
-}
+\section{Primary Architecture}
 
-\section{Major results}
-\todo[inline, backgroundcolor=kth-lightblue]{Huvudsakliga resultat}
+Mask R-CNN is a deep learning neural network architecture designed for object instance detection and segmentation. Given an input image, the network produces bounding boxes, segmentation masks, and an estimated class for each object detected in the image. Mask R-CNN is an extension in a longer line of extensions of neural network architectures.
 
-Some statistics of the delay measurements are shown in Table~\ref{tab:delayMeasurements}.
-The delay has been computed from the time the GET request is received until the response is sent.
+\textbf{R-CNN}. The reason the original CNN is not ideal to use for object detection in images is that the output may be variable since you might have a variable amount of objects being detected in the image, making the output size vary from one image to the next. R-CNN, proposed by Ross Girshick et al, uses a method where selective search is used to extract 2000 regions from the image called region proposals. Each proposal is warped into a square and fed into a CNN that produces a 4096-dimensional feature vector as output. In this case, the CNN acts as a feature extractor and the output dense layer consists of the features extracted from the image. These features are fed into a Support Vector Machine to classify the presence of an object within the region proposal. The algorithm also predicts four values which are offset values to increase the precision of the bounding box.  
 
-\todo[inline, backgroundcolor=kth-lightblue]{Lite statistik av mätningarna fördröjnings visas i Tabell~\ref{tab:delayMeasurements}. Förseningen har beräknats från den tidpunkt då begäran GET tas emot fram till svaret skickas.}
+\textbf{Fast R-CNN}. The next evolution of the R-CNN, called “Fast R-CNN”, hints at the problems that R-CNN had and that its extension is trying to solve. R-CNN took a very long time to produce its output, and the selective search algorithm used to propose the regions is fixed, neglecting the possibility to learn in this stage of the architecture. Fast R-CNN introduces a RoI (Region of Interest) pooling layer, making it possible to skip generating 2000 region proposals and instead only have the convolution operation done once per image. 
 
-\begin{table}[!ht]
-  \begin{center}
-    \caption{Delay measurement statistics}
-    \label{tab:delayMeasurements}
-    \begin{tabular}{l|S[table-format=4.2]|S[table-format=3.2]} % <-- Alignments: 1st column left, 2nd middle and 3rd right, with vertical lines in between
-      \textbf{Configuration} & \textbf{Average delay (ns)} & \textbf{Median delay (ns)}\\
-      \hline
-      1 & 467.35 & 450.10\\
-      2 & 1687.5 & 901.23\\
-    \end{tabular}
-  \end{center}
-\end{table}
-\todo[inline, backgroundcolor=kth-lightblue]{Fördröj mätstatistik}
-\todo[inline, backgroundcolor=kth-lightblue]{Konfiguration | Genomsnittlig fördröjning (ns) | Median fördröjning (ns)}
+\textbf{Faster R-CNN}. Fast, but not fast enough, the Fast R-CNN still took a significant time generating the region proposal, albeit much faster than its predecessor. Shaoqing Ren et al came up with a replacement for the selective search algorithm with the added bonus that it lets the network learn in the region proposal step. This part of the network is called the Region Proposal Network (RPN). 
 
-Figure \ref{fig:processing_vs_payload_length} shows and example of the
-performance as measured in the experiments.
+\textbf{Mask R-CNN}. Mask R-CNN contributes to this architecture by adding a parallel prediction of masks alongside its original output which is a class label and a bounding-box offset. This parallel proposal is what made Mask R-CNN unique compared to other extensions of Faster R-CNN at the time, where other methods often depended on the mask predictions for the class prediction. Mask R-CNN also introduces the concept of RoIAlign, to address misalignment issues between the RoI and the extracted features which impacts the pixel-accurate masks it produces due to quantization which is avoided with RoIAlign. More thorough details can be found in the original Mask R-CNN paper [He et al]. All deviations from the standard configuration will be noted in the implementation details chapter of this paper.
 
-\begin{figure}[!ht]
-% GNUPLOT: LaTeX picture
-\setlength{\unitlength}{0.240900pt}
-\ifx\plotpoint\undefined\newsavebox{\plotpoint}\fi
-\begin{picture}(1500,900)(0,0)
-\sbox{\plotpoint}{\rule[-0.200pt]{0.400pt}{0.400pt}}%
-\put(171.0,131.0){\rule[-0.200pt]{4.818pt}{0.400pt}}
-\put(151,131){\makebox(0,0)[r]{ 1.5}}
-\put(1419.0,131.0){\rule[-0.200pt]{4.818pt}{0.400pt}}
-\put(171.0,212.0){\rule[-0.200pt]{4.818pt}{0.400pt}}
-\put(151,212){\makebox(0,0)[r]{ 2}}
-\put(1419.0,212.0){\rule[-0.200pt]{4.818pt}{0.400pt}}
-\put(171.0,292.0){\rule[-0.200pt]{4.818pt}{0.400pt}}
-\put(151,292){\makebox(0,0)[r]{ 2.5}}
-\put(1419.0,292.0){\rule[-0.200pt]{4.818pt}{0.400pt}}
-\put(171.0,373.0){\rule[-0.200pt]{4.818pt}{0.400pt}}
-\put(151,373){\makebox(0,0)[r]{ 3}}
-\put(1419.0,373.0){\rule[-0.200pt]{4.818pt}{0.400pt}}
-\put(171.0,454.0){\rule[-0.200pt]{4.818pt}{0.400pt}}
-\put(151,454){\makebox(0,0)[r]{ 3.5}}
-\put(1419.0,454.0){\rule[-0.200pt]{4.818pt}{0.400pt}}
-\put(171.0,534.0){\rule[-0.200pt]{4.818pt}{0.400pt}}
-\put(151,534){\makebox(0,0)[r]{ 4}}
-\put(1419.0,534.0){\rule[-0.200pt]{4.818pt}{0.400pt}}
-\put(171.0,615.0){\rule[-0.200pt]{4.818pt}{0.400pt}}
-\put(151,615){\makebox(0,0)[r]{ 4.5}}
-\put(1419.0,615.0){\rule[-0.200pt]{4.818pt}{0.400pt}}
-\put(171.0,695.0){\rule[-0.200pt]{4.818pt}{0.400pt}}
-\put(151,695){\makebox(0,0)[r]{ 5}}
-\put(1419.0,695.0){\rule[-0.200pt]{4.818pt}{0.400pt}}
-\put(171.0,776.0){\rule[-0.200pt]{4.818pt}{0.400pt}}
-\put(151,776){\makebox(0,0)[r]{ 5.5}}
-\put(1419.0,776.0){\rule[-0.200pt]{4.818pt}{0.400pt}}
-\put(171.0,131.0){\rule[-0.200pt]{0.400pt}{4.818pt}}
-\put(171,90){\makebox(0,0){ 0}}
-\put(171.0,756.0){\rule[-0.200pt]{0.400pt}{4.818pt}}
-\put(298.0,131.0){\rule[-0.200pt]{0.400pt}{4.818pt}}
-\put(298,90){\makebox(0,0){ 10}}
-\put(298.0,756.0){\rule[-0.200pt]{0.400pt}{4.818pt}}
-\put(425.0,131.0){\rule[-0.200pt]{0.400pt}{4.818pt}}
-\put(425,90){\makebox(0,0){ 20}}
-\put(425.0,756.0){\rule[-0.200pt]{0.400pt}{4.818pt}}
-\put(551.0,131.0){\rule[-0.200pt]{0.400pt}{4.818pt}}
-\put(551,90){\makebox(0,0){ 30}}
-\put(551.0,756.0){\rule[-0.200pt]{0.400pt}{4.818pt}}
-\put(678.0,131.0){\rule[-0.200pt]{0.400pt}{4.818pt}}
-\put(678,90){\makebox(0,0){ 40}}
-\put(678.0,756.0){\rule[-0.200pt]{0.400pt}{4.818pt}}
-\put(805.0,131.0){\rule[-0.200pt]{0.400pt}{4.818pt}}
-\put(805,90){\makebox(0,0){ 50}}
-\put(805.0,756.0){\rule[-0.200pt]{0.400pt}{4.818pt}}
-\put(932.0,131.0){\rule[-0.200pt]{0.400pt}{4.818pt}}
-\put(932,90){\makebox(0,0){ 60}}
-\put(932.0,756.0){\rule[-0.200pt]{0.400pt}{4.818pt}}
-\put(1059.0,131.0){\rule[-0.200pt]{0.400pt}{4.818pt}}
-\put(1059,90){\makebox(0,0){ 70}}
-\put(1059.0,756.0){\rule[-0.200pt]{0.400pt}{4.818pt}}
-\put(1185.0,131.0){\rule[-0.200pt]{0.400pt}{4.818pt}}
-\put(1185,90){\makebox(0,0){ 80}}
-\put(1185.0,756.0){\rule[-0.200pt]{0.400pt}{4.818pt}}
-\put(1312.0,131.0){\rule[-0.200pt]{0.400pt}{4.818pt}}
-\put(1312,90){\makebox(0,0){ 90}}
-\put(1312.0,756.0){\rule[-0.200pt]{0.400pt}{4.818pt}}
-\put(1439.0,131.0){\rule[-0.200pt]{0.400pt}{4.818pt}}
-\put(1439,90){\makebox(0,0){ 100}}
-\put(1439.0,756.0){\rule[-0.200pt]{0.400pt}{4.818pt}}
-\put(171.0,131.0){\rule[-0.200pt]{0.400pt}{155.380pt}}
-\put(171.0,131.0){\rule[-0.200pt]{305.461pt}{0.400pt}}
-\put(1439.0,131.0){\rule[-0.200pt]{0.400pt}{155.380pt}}
-\put(171.0,776.0){\rule[-0.200pt]{305.461pt}{0.400pt}}
-\put(30,453){\rotatebox{-270}{\makebox(0,0){Processing time (ms)}}}
-\put(805,29){\makebox(0,0){Payload size (bytes)}}
-\put(868.0,131.0){\rule[-0.200pt]{0.400pt}{84.074pt}}
-\put(995.0,131.0){\rule[-0.200pt]{0.400pt}{98.287pt}}
-\put(1173.0,131.0){\rule[-0.200pt]{0.400pt}{118.041pt}}
-\put(1325.0,131.0){\rule[-0.200pt]{0.400pt}{134.904pt}}
-\put(1350.0,131.0){\rule[-0.200pt]{0.400pt}{137.795pt}}
-\put(1439.0,131.0){\rule[-0.200pt]{0.400pt}{155.380pt}}
-\end{picture}
-\caption[A GNUplot figure]{Processing time vs. payload length}\vspace{0.5cm}
-\label{fig:processing_vs_payload_length}
-\end{figure}
-		
+Network modularity. The Mask R-CNN architecture is made up of modular networks, which can be varied. The modules are:
 
-Given these measurements, we can calculate our processing bit rate as the inverse of the time it takes to process an additional byte divided by 8 bits per byte:
+\begin{description}
+\item[$\bullet$ Backbone] Used for feature extraction of an entire image
+\item[$\bullet$ Head] Used for bounding-box recognition (classification and regression)
+\end{description}
 
-\[
-	bitrate = \frac{1}{\frac{time_{byte}}{8}} = 20.03 \quad kb/s
-\] 
+\section{Text Embedding map}
 
-\section{Reliability Analysis}
-\todo[inline, backgroundcolor=kth-lightblue]{Analys av reabilitet\\
-Reabilitet i metod och data}
+In order to combine the visual and textual information as input to the model, we map the one-dimensional representation of textual information (e.g. a word vector or paragraph vector) into a three-dimensional representation by positioning the embedding representation into a two-dimensional space (e.g. a word or paragraph has a certain width, height, x-, and y-coordinate of the top left corner when printed on a page). This new textual embedding vector, corresponding to a character, word or paragraph, is equivalent to the original vector, augmented with the positional information. We refer to this three-dimensional representation of textual information, as mentioned in Barman et al [2020] and introduced in Yang et al. [2017] as a ‘text embedding map’.
 
-\section{Validity Analysis}
-\todo[inline, backgroundcolor=kth-lightblue]{Analys av validitet\\
-Validitet i metod och data}
+Notably, the key difference from the earlier works by Barman et al and Yang et al is that in this approach the text embedding maps are generated on a paragraph level, instead of character- or word level.
 
-\cleardoublepage
-\chapter{Discussion}\todo[inline]{This can be a separate chapter or a section
-  in the previous chapter.}
-\label{ch:discussion}
-\todo[inline, backgroundcolor=kth-lightblue]{Diskussion\\
-Förbättringsförslag?}
+The three-dimensional encoding of textual information is produced by using the result of an OCR process which outputs coordinates of bounding boxes for blocks of text together with its textual content.
 
-\cleardoublepage
-\chapter{Conclusions and Future work}
-\label{ch:conclusionsAndFutureWork}
-\todo[inline, backgroundcolor=kth-lightblue]{Slutsats och framtida arbete}
+We define this process formally as follows. Given an image of size H x W and a list of tokens T where each token t is associated with a bounding box bt on the image, a text embedding map G of size H x W x N is produced, where N is the dimension of the embeddings. Specifically, all pixels contained in the bounding box of a token t are defined as the set bt <- $R^2$ and each pixel gi,j <- G of the text embedding map is computed with 
 
-\todo[inline]{Add text to introduce the subsections of this chapter.}
+\textbf{TODO formula}
 
+where E(t) is a mapping of t -> $R^N$ corresponding for example to a paragraph embedding, and $0^N$ is a null vector in case there is no text in the corresponding pixel. Each pixel overlapping with a bounding box produced by the OCR process is therefore mapped to its corresponding embedding. In this project, no bounding boxes are overlapping, which means no statement will be made regarding a strategy for such a case.
+
+The result is a text embedding map, i.e. a three-dimensional matrix where the first two dimensions correspond to the image-localized representation of the text, and the third to the embedding itself. Given that the resulting matrix has the same width and height as the original image, it lends itself to easily extend the image input layer to accept more than its 3 original channels (RGB), that is to also fit an N-dimensional vector behind each pixel in a preprocessing step. The final number of channels of the input layer is therefore 3+N, where the first 3 dimensions of each pixel contain the original RGB values of the input image. 
+
+\textbf{TODO Maybe visualization of the embedding maps?}
+
+\subsection{Modifications to the primary architecture}
+
+Text embeddings are added to the data during the preprocessing step. Because we want to avoid image normalization of the textual embeddings, and other preprocessing methods used by Mask R-CNN to augment the image data, the textual embeddings are added as the last step. By the time we add the textual embeddings, the image may have been resized, padded and flipped horizontally. The bounding boxes of the text embeddings are offset and scaled accordingly to align with the new dimensions.
+
+In the original coco dataset (on which Mask R-CNN is usually evaluated), there is size partitioning depending on the size of the object being detected when presented in the results. Since the classes found in this project are generally larger on average than the size of the objects found in the coco dataset, the partitioning size thresholds are adjusted for these results to provide more useful information about different objects being detected(Using the standard thresholds, almost all objects are considered “large”).
+
+\textbf{TODO table of COCO dataset and this project's dimensions}
+
+
+\chapter{Evaluation}
+\label{ch:eval}
+
+\section{Metrics}
+
+\subsection{Mean Intersection over Union}
+
+The Intersection over Union (IoU) is the standard metrics for semantic image segmentation and measures how well two sets of pixels are aligned. This is used to measure how much the boundary predicted by the algorithm overlaps with the ground truth (the real object boundary). Traditionally, with state-of-the-art datasets, an IoU threshold equal or greater to 0.5 \textbf{(? TODO verify)} is used to classify whether the prediction is a true positive or a false positive.  
+
+\begin{equation}
+	IoU = Area Overlap / Area Union
+  	\label{eqn:iou}
+\end{equation}
+
+
+\subsection{Precision and Recall}
+
+The IoU does not qualify performances in terms of True Positives (TP), True Negatives (TN), False Positives (FP) and False Negatives (FN). These values are relevant when considering whether a model can be useful for real world applications, that is, if most of the segments are correctly recognized. 
+
+The standard way to measure these values in the field of segmentation is to consider a prediction as positive when above a certain threshold $\tau \subseteq [0,1]$ of IoU. If the prediction is above the threshold $\tau$, it is well enough aligned with the ground truth and to be considered correct. 
+
+Given this definition, we can now consider:
+\begin{enumerate}
+\item A prediction with IoU $\geq \tau$ as True Positive(TP)
+\item A prediction with no IoU (i.e. with a union of zero) as True Negative(TN)
+\item A prediction with an IoU of zero and no predicted pixels (i.e. intersection of zero and non-zero number of pixels in the ground truth) as False Negative(FN)
+\item A non-FN prediction with an IoU $< \tau$ as False Positive(FP)
+\end{enumerate}
+
+Given a threshold $\tau$, precision and recall are computed as follows:
+
+\begin{equation}
+	Precision @ \tau = P@\tau = \frac{TP}{(TP + FP)}
+  	\label{eqn:precision}
+\end{equation}
+
+\begin{equation}
+	Recall @ \tau = R@\tau = \frac{TP}{(TP + FN)}
+  	\label{eqn:recall}
+\end{equation}
+
+It is also possible to compute the average precision and recall over a range of thresholds. This is defined by a start $\tau_{start}$, an end $\tau_{end}$, and a step size between two threshold $\tau_{step}$ using the following notation: $\tau_{start}$:$\tau_{step}$:$\tau_{end}$. Given a threshold range, the average metric $M$ (Where $M$ could be for example precision or recall) is then computed as follows:
+
+\begin{equation}
+M@\tau_{start}:\tau_{step}:\tau_{end} = \frac{1}{(\tau_{start}:\tau_{step}:\tau_{end})} \sum{} \tau \subseteq \tau_{start}:\tau_{step}:\tau_{end}
+    \label{eqn:rangem}
+\end{equation}
+
+It should be noted that metrics such as IoU, mIoU, Precision and Recall are computed at the page level and not at the instance level. If a page contains several instances of a class and the prediction only matches some instances, thus not enough to reach an IoU threshold larger than $\tau$, the whole page is counted as negative. (TODO verify!)
+
+
+\subsection{Mean Average Precision}
+
+The mean Average Precision (mAP) was used to evaluate detection performance. The mAP metric is the product of precision and recall of detected bounding boxes. The mAP value ranges from 0 to 1, with higher values being better. The mAP can be computed by calculating average precision (AP) separately for each class (article and background) and then averaging over the classes. A detection is considered a true positive only if the IoU is above a certain threshold. 
+
+All newspaper article detections from test images may be combined in a precision/recall curve. The final area under the curve is used to compare the algorithms. If N represents the number of images, the mAP can be computed as follows:
+
+\begin{equation}
+mAP = \frac{1}{N} \sum_{i=1}^{N} AP_i
+    \label{eqn:map}
+\end{equation}
+
+\section{Major Results}
+
+\subsection{Models}
+
+\subsection{DN 2010 - 2020}
+\subsection{DN SvD 2001 - 2004}
+\subsection{Aftonbladet Expressen ? - ?}
+
+
+\chapter{Discussion}
+\label{ch:disc}
+
+\chapter{Conclusions and Future Work}
 \section{Conclusions}
-\label{sec:conclusions}
-\todo[inline]{Describe the conclusions (reflect on the whole introduction given in Chapter 1).}
-\todo[inline, backgroundcolor=kth-lightblue]{Slutsatser}
-
-  
-\todo[inline]{Discuss the positive effects and the drawbacks.\\
-Describe the evaluation of the results of the degree project.\\
-Did you meet your goals?\\
-What insights have you gained?\\
-What suggestions can you give to others working in this area?\\
-If you had it to do again, what would you have done differently?}
-
-\todo[inline, backgroundcolor=kth-lightblue]{Träffade du dina mål?\\
-Vilka insikter har du fått?\\
-Vilka förslag kan du ge till andra som arbetar inom detta område?
-Om du hade att göra igen, vad skulle du ha gjort annorlunda?}
-
 \section{Limitations}
-\label{sec:limitations}
-\todo[inline]{What did you find that limited your
-  efforts? What are the limitations of your results?}
-\todo[inline, backgroundcolor=kth-lightblue]{Begränsande faktorer\\
-Vad gjorde du som begränsade dina ansträngningar? Vilka är begränsningarna i dina resultat?}
-
 \section{Future work}
-\label{sec:futureWork}
-\todo[inline]{Describe valid future work that you or someone else could or should do.\\
-Consider: What you have left undone? What are the next obvious things to be done? What hints can you give to the next person who is going to follow up on your work?
-}
-\todo[inline, backgroundcolor=kth-lightblue]{Vad du har kvar ogjort?\\
-Vad är nästa självklara saker som ska göras?\\
-Vad tips kan du ge till nästa person som kommer att följa upp på ditt arbete?
-}
-
-
-Due to the breadth of the problem, only some of the initial goals have been
-met. In these section we will focus on some of the remaining issues that
-should be addressed in future work. ...
-
-\subsection{What has been left undone?}
-\label{what-has-been-left-undone}
-
-The prototype does not address the third requirment, i.e., a yearly
-unavailability of less than 3 minutes, this remains an open problem. ...
-
-\subsubsection{Cost analysis}
-
-The current prototype works, but the performance from a cost perspective makes
-this an impractical solution. Future work must reduce the cost of this
-solution, to do so a cost analysis needs to first be done. ...
-
-\subsubsection{Security}
-
-A future research effort is needed to address the security holes that results
-from using a self-signed certificate. Page filling text mass. Page filling
-text mass. ...
-
-
-\subsection{Next obvious things to be done}
-
-In particular, the author of this thesis wishes to point out xxxxxx remains as
-a problem to be solved. Solving this problem is the next thing that should be
-done. ...
-
-\section{Reflections}
-\label{sec:reflections}
-\todo[inline]{What are the relevant economic, social,
-  environmental, and ethical aspects of your work?
-}
-\todo[inline, backgroundcolor=kth-lightblue]{Reflektioner}
-\todo[inline, backgroundcolor=kth-lightblue]{Vilka är de relevanta ekonomiska, sociala, miljömässiga och etiska aspekter av ditt arbete?}
-
-
-One of the most important results is the reduction in the amount of
-energy required to process each packet while at the same time reducing the
-time required to process each packet.
 
 %The thesis contributes to the \gls{UN}\enspace\glspl{SDG} numbers 1 and 9 by
 %xxxx. 
