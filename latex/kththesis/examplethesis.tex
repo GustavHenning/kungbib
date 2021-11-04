@@ -347,12 +347,12 @@ In this section, I would like to acknowledge the people who have encouraged, inf
      {\begin{longtable}[l]{@{}p{\dimexpr 2cm-\tabcolsep}p{0.8\hsize}}}% <-- change the value here
      {\end{longtable}}%
  }
-%\glsaddall
+\glsaddall
 %\printglossaries[type=\acronymtype, title={List of acronyms}]
-\printglossary[style=mylong, type=\acronymtype, title={List of acronyms and abbreviations}]
-%\printglossary[type=\acronymtype, title={List of acronyms and abbreviations}]
-\todo[inline, backgroundcolor=kth-lightgreen]{The list of acronyms and abbreviations should be in alphabetical order based on the spelling of the acronym or abbreviation.
-}
+%\printglossary[style=mylong, type=\acronymtype, title={List of acronyms and abbreviations}]
+\printglossary[type=\acronymtype, title={List of acronyms and abbreviations}]
+%\todo[inline, backgroundcolor=kth-lightgreen]{The list of acronyms and abbreviations should be in alphabetical order based on the spelling of the acronym or abbreviation.
+%}
 %% The following label is essential to know the page number of the last page of the preface
 %% It is used to computer the data for the "For DIVA" pages
 \label{pg:lastPageofPreface}
@@ -372,12 +372,12 @@ Nowadays it is commonplace for many memory institutions to create and maintain l
 
 The processing of historical newspapers consists of three steps: 
 \begin{enumerate}
-\item Facsimile processing: Deriving the structure and the text from the document images via optical layout recognition or Optical Character Recognition (\gls{OCR})
+\item Facsimile processing: Deriving the structure and the text from the document images via Document layout analysis, commonly using Optical Character Recognition (\gls{OCR})
 \item Content enrichment: Extracting and connecting relevant information from both the textual and visual parts of the contents)
 \item Exploration support: To enable searching and visualizing the contents.  
 \end{enumerate}
 
-Document layout analysis (Facsimile processing) aims at segmenting a document image into meaningful segments and at classifying those segments according to their contents. \cite{ESKENAZI20171} 
+Document layout analysis aims at segmenting a document image into meaningful segments and at classifying those segments according to their contents. \cite{ESKENAZI20171} 
     
 Within the domain of newspapers, the task of image segmentation and classification is particularly difficult due to the complexity and diversity of content across several typographic designs. Layout analysis is however essential for historical newspaper exploitation. From an information retrieval perspective, being able to query articles instead of whole pages, and being able to facet over different types of segments has undeniable advantages to all concerned end users. 
 
@@ -450,7 +450,7 @@ The challenge of semantic segmentation in newspapers lies in the diversity of th
 
 \subsection{Digitization at the National Library of Sweden}
 
-The National Library of Sweden (Kungliga Biblioteket) started digitizing their materials in the late 1990s. The motivation for digitization has shifted from only preservation to also improving access and facilitating research conducted on the content itself. \cite{Rekathati_2020} The digital archives of the National Library of Sweden contain scanned images from four of the country’s largest newspaper publications dating back to the 19th century. The digitization of these newspaper images has occurred in two steps: Firstly, a segmentation algorithm splits the newspaper page into larger layout component zones. Within each zone, further segmentation is performed to identify sub-zones. These sub-zones may either be composed of images or blocks of text. In the second step, OCR \textbf{TODO OCR reference} is applied to the segmented sub-zones to extract the textual contents. 
+The National Library of Sweden (Kungliga Biblioteket) started digitizing their materials in the late 1990s. The motivation for digitization has shifted from only preservation to also improving access and facilitating research conducted on the content itself. \cite{Rekathati_2020} The digital archives of the National Library of Sweden contain scanned images from four of the country’s largest newspaper publications dating back to the 19th century. The digitization of these newspaper images has occurred in two steps: Firstly, a segmentation algorithm splits the newspaper page into larger layout component zones. Within each zone, further segmentation is performed to identify sub-zones. These sub-zones may either be composed of images or blocks of text. In the second step, OCR is applied to the segmented sub-zones to extract the textual contents. 
 
 \section{Segmentation Algorithms}
 
@@ -462,7 +462,7 @@ In the survey Eskenazi et al\cite{ESKENAZI20171} a topology for organizing segme
 
 The earliest attempts at semantic segmentation made clear assumptions about the document layout, either with grammar (a set of rules), or by assuming the Manhattan layout and using projection profiles.
     
-\textbf{Parameter constrained algorithms}. Second came the algorithms that rely on \textbf{RLSA}, mathematical morphology or other filters. The characteristics of these filters reflect the assumptions made on the layout geometry. 
+\textbf{Parameter constrained algorithms}. Second came the algorithms that rely on Run-Length Smoothing Algorithm (RLSA), mathematical morphology or other filters. The characteristics of these filters reflect the assumptions made on the layout geometry. 
     
 Lastly, algorithms focused on detecting straight lines or square borders appeared e.g. using the Hough transform. This includes detecting white space alignment in which case the lines may appear “invisible”.
     
@@ -474,7 +474,7 @@ Finally, in an attempt to overcome the limitations of the already mentioned algo
 
 In an attempt to trade prior handcrafted features for learning capabilities, machine learning techniques, especially deep neural networks have outperformed classical algorithms in recent papers. These approaches can be categorized by the input they receive.
 
-\textbf{Image modality only}. Convolutional neural networks were originally created to classify objects in images such as hand written numbers by Yann LeCunn\cite{lecun1989}. Since then, CNNs are used in a wide variety of image classification domains\cite{deng2009}. Since CNNs can use images as input to the network, they naturally lend themselves to be applied in this domain as well. Attempts have been made\cite{DBLP:journals/corr/0011S17}, as well as several variants\cite{he2017}\cite{xu2017}\cite{wickpuppe2018}\cite{oliveira2018} of the fully convolutional network (\textbf{FCN}) introduced by Long et al\cite{DBLP:journals/corr/LongSD14}. The major drawback of these techniques is that they do not exploit the often available localized, two-dimensional, textual input obtained through OCR scanning.  
+\textbf{Image modality only}. Convolutional neural networks were originally created to classify objects in images such as hand written numbers by LeCunn et al\cite{lecun1989}. Since then, CNNs are used in a wide variety of image classification domains\cite{deng2009}. Since CNNs can use images as input to the network, they naturally lend themselves to be applied in this domain as well. Attempts have been made\cite{DBLP:journals/corr/0011S17}, as well as several variants\cite{he2017}\cite{xu2017}\cite{wickpuppe2018}\cite{oliveira2018} of the Fully Convolutional Network (FCN) introduced by Long et al\cite{DBLP:journals/corr/LongSD14}. The major drawback of these techniques is that they do not exploit the often available localized, two-dimensional, textual input obtained through OCR scanning.  
 
 \textbf{Image and text modalities}. The representation of text as input to deep neural networks has increased in complexity since it was first tried in Meier et al\cite{8270006} using a FCN based approach. In this attempt, the textual information was represented as a binary feature (a pixel has text or not), where lexical and semantic dimensions are not taken into account. 
 
@@ -495,7 +495,7 @@ In this chapter, we will introduce the theory that our model is based on. Since 
 Introductory text
 
 \subsection{Perceptron}
-The basic building block of an Artificial Neural Network is called a perceptron. The perceptron is loosely inspired by the neurons of the brain.\cite{rosenblatt1958perceptron} The arriving signals, called inputs, are multiplied by learnable weights, which is then added to a constant bias value(also learnable) for each input channel. The resulting value from the input, weight and bias is summed up and finally activated upon by a transfer function, typically a non-linear function such as a sigmoid function, finally producing an output. 
+The basic building block of an Artificial Neural Network is called a perceptron. The perceptron is loosely inspired by the neurons of the brain.\cite{rosenblatt1958perceptron} The arriving signals, called inputs, are multiplied by learnable weights, which is then added to a constant bias value for each input channel. The resulting value from the input, weight and bias is summed up and finally activated upon by a transfer function, typically a non-linear function such as a sigmoid function, finally producing an output. 
 
 \begin{equation}
 	f(x) = 
@@ -650,7 +650,7 @@ Options for determining the resulting output size of the convolutional layer are
 
 \textbf{Dense layer}. Typically in these architectures, the final layers are traditional dense layers. These layers are used to output the probability of a certain class to be detected within the image. 
 
-\textbf{Residual block}. As networks became deeper to improve results, the problems with vanishing and exploding gradients became more commonplace again. Deep residual network (ResNet), was proposed by Kaiming He et al\cite{he2016deep}. It’s main contribution to the CNN architecture was the residual block, which introduced a short cut layer in order to improve learning as seen in Figure \ref{fig:residual}. 
+\textbf{Residual block}. As networks became deeper to improve results, the problems with vanishing and exploding gradients became more commonplace again. Residual neural network (ResNet), was proposed by Kaiming He et al\cite{he2016deep}. It’s main contribution to the CNN architecture was the residual block, which introduced a short cut layer in order to improve learning as seen in Figure \ref{fig:residual}. 
 
 \begin{figure}[H]
   \begin{center}
@@ -672,7 +672,7 @@ Recognizing objects at vastly different scales is one of the fundamental challen
 
 Previous approaches similar to the FPN also leverage the pyramid scheme to predict objects at different resolutions. However, as in the case of Featurized image pyramid a) in Figure \ref{fig:fpn}, inference time could increase by up to four times making the approach impractical for real world applications.
 
-Convolutional neural networks typically narrow it’s hidden layers in common architectures, either to make a prediction based on high-level features as in the case of the common heads used in the R-CNN family of networks, or in the case of FCNNs, where the layers typically decrease in size only to increase towards the output layers in order to produce a proposal of equal dimensions as the input layer. FPNs exploit the architecture of the CNNs by using the existing hidden layers at different resolutions to predict bounding boxes and classes directly from the hidden layers, reducing the overhead of the FPN backbone, and thus becoming a feasible option for real world applications.
+Convolutional neural networks typically narrow it’s hidden layers in common architectures, either to make a prediction based on high-level features as in the case of the common heads used in the R-CNN family of networks, or in the case of FCNs, where the layers typically decrease in size only to increase towards the output layers in order to produce a proposal of equal dimensions as the input layer. FPNs exploit the architecture of the CNNs by using the existing hidden layers at different resolutions to predict bounding boxes and classes directly from the hidden layers, reducing the overhead of the FPN backbone, and thus becoming a feasible option for real world applications.
 
 \begin{figure}[H]
   \begin{center}
@@ -729,7 +729,7 @@ There are many different types of listings that commonly occur in newspapers. Th
 
 \subsection{Comics, artwork and poems}
 
-Comics, artwork, poems and quizzes pose an interesting challenge in labeling because of the creative freedom of the composition of elements. Many of them border on being included in the definition of a news unit.
+Comics, artwork and poems pose an interesting challenge in labeling because of the creative freedom of the composition of elements. Many of them border on being included in the definition of a news unit.
 
 Comics, as opposed to news article related images, are typically hand-drawn with optional separator to introduce a narrative, with speech bubbles narrating the fictional characters. Comics received no label in this project.
 
@@ -920,7 +920,18 @@ Text embeddings are added to the data during the preprocessing step. Because we 
 
 In the original coco dataset (on which Mask R-CNN is usually evaluated), there is size partitioning depending on the size of the object being detected when presented in the results. Since the classes found in this project are generally larger on average than the size of the objects found in the coco dataset, the partitioning size thresholds are adjusted for these results to provide more useful information about different objects being detected(Using the standard thresholds, almost all objects are considered “large”).
 
-\textbf{TODO table of COCO dataset and this project's dimensions}
+\begin{table}[!ht]
+  \begin{center}
+    \caption{Object size threshold differences}
+    \label{tab:objectsizes}
+    \begin{tabular}{l|l|l|l} % <-- Alignments: 1st column left, 2nd middle, with vertical lines in between
+    \textbf{Dataset} & \textbf{Small} & \textbf{Medium} & \textbf{Large}  \\ 
+    \hline
+    COCO dataset & area < $32^2$ & $32^2$ < area < $96^2$ & area > $96^2$  \\    \hline
+    This project & area < X & X < area < X & area > X \\    \hline
+    \end{tabular}
+  \end{center}
+\end{table}
 
 
 \chapter{Evaluation}
@@ -978,7 +989,7 @@ It should be noted that metrics such as IoU, mIoU, Precision and Recall are comp
 
 The mean Average Precision (mAP) was used to evaluate detection performance. The mAP metric is the product of precision and recall of detected bounding boxes. The mAP value ranges from 0 to 1, with higher values being better. The mAP can be computed by calculating average precision (AP) separately for each class (article and background) and then averaging over the classes. A detection is considered a true positive only if the IoU is above a certain threshold. 
 
-All newspaper article detections from test images may be combined in a precision/recall curve. The final area under the curve is used to compare the algorithms. If N represents the number of images, the mAP can be computed as follows:
+All newspaper article detections from test images may be combined in a precision/recall curve. The final area under the curve is used to compare the algorithms. If $N$ represents the number of images, the mAP can be computed as follows:
 
 \begin{equation}
 mAP = \frac{1}{N} \sum_{i=1}^{N} AP_i
@@ -987,12 +998,68 @@ mAP = \frac{1}{N} \sum_{i=1}^{N} AP_i
 
 \section{Major Results}
 
-\subsection{Models}
 
-\subsection{DN 2010 - 2020}
-\subsection{DN SvD 2001 - 2004}
-\subsection{Aftonbladet Expressen ? - ?}
+\begin{table}[!htbp]
+  \begin{center}
+    \caption{Model names}
+    \label{tab:modelnames}
+    \resizebox{\columnwidth}{!}{
+    \begin{tabular}{l|l|l|l|p{1.5cm}} % <-- Alignments: 1st column left, 2nd middle, with vertical lines in between
+    \textbf{Final name} & \textbf{Head} & \textbf{Backbone} & \textbf{Sentence transformer} & \textbf{Text embeddings length} \\ 
+    \hline
+    resnet50-FPN-vanilla & resnet50 & FPN & None & 0 \\    \hline
+    resnext101-32x8d-FPN-vanilla & resnext101 & FPN & None & 0 \\    \hline
+    resnext101-64x4d-FPN-vanilla & resnext101 & FPN & None & 0 \\     \hline
+    More & models & in & final & paper \\     \hline
+    resnet50-FPN-KBLab & resnext101 & FPN & KBLab/sentence-bert-swedish-cased & 768 \\     \hline
+    resnet50-FPN-KB & resnet50 & FPN & KB/bert-base-swedish-cased & 768 \\     \hline
+    \end{tabular}}
+  \end{center}
+\end{table}
 
+\begin{table}[!htbp]
+  \begin{center}
+    \caption{Results on the DN 2010 - 2020 (Training) dataset}
+    \label{tab:dn2010results}
+    \resizebox{\columnwidth}{!}{
+    \begin{tabular}{l|l|l|l|l|l|l} % <-- Alignments: 1st column left, 2nd middle, with vertical lines in between
+    \textbf{Final name} & \textbf{$mAP_m$} & \textbf{$mAP_m^{50}$} & \textbf{$mAP_m^{75}$} & \textbf{$mAP_{bb}$} & \textbf{$mAP_{bb}^{50}$} & \textbf{$mAP_{bb}^{75}$} \\ 
+    \hline
+    resnet50-FPN-vanilla & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 \\    \hline
+    resnext101-32x8d-FPN-vanilla & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 \\    \hline
+    resnext101-64x4d-FPN-vanilla & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 \\     \hline
+    \end{tabular}}
+  \end{center}
+\end{table}
+
+\begin{table}[!htbp]
+  \begin{center}
+    \caption{Results on the DN SvD 2001 - 2004 (In-set) dataset}
+    \label{tab:dnsvd2001results}
+    \resizebox{\columnwidth}{!}{
+    \begin{tabular}{l|l|l|l|l|l|l} % <-- Alignments: 1st column left, 2nd middle, with vertical lines in between
+    \textbf{Final name} & \textbf{$mAP_m$} & \textbf{$mAP_m^{50}$} & \textbf{$mAP_m^{75}$} & \textbf{$mAP_{bb}$} & \textbf{$mAP_{bb}^{50}$} & \textbf{$mAP_{bb}^{75}$} \\ 
+    \hline
+    resnet50-FPN-vanilla & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 \\    \hline
+    resnext101-32x8d-FPN-vanilla & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 \\    \hline
+    resnext101-64x4d-FPN-vanilla & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 \\     \hline
+    \end{tabular}}
+  \end{center}
+\end{table}
+\begin{table}[!htbp]
+  \begin{center}
+    \caption{Results on the Aftonbladet Expressen ? - ? (Out-set) dataset}
+    \label{tab:abexpresults}
+    \resizebox{\columnwidth}{!}{
+    \begin{tabular}{l|l|l|l|l|l|l} % <-- Alignments: 1st column left, 2nd middle, with vertical lines in between
+    \textbf{Final name} & \textbf{$mAP_m$} & \textbf{$mAP_m^{50}$} & \textbf{$mAP_m^{75}$} & \textbf{$mAP_{bb}$} & \textbf{$mAP_{bb}^{50}$} & \textbf{$mAP_{bb}^{75}$} \\ 
+    \hline
+    resnet50-FPN-vanilla & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 \\    \hline
+    resnext101-32x8d-FPN-vanilla & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 \\    \hline
+    resnext101-64x4d-FPN-vanilla & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 \\     \hline
+    \end{tabular}}
+  \end{center}
+\end{table}
 
 \chapter{Discussion}
 \label{ch:disc}

@@ -12,7 +12,12 @@
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }
+\contentsline {table}{\numberline {5.1}{\ignorespaces Object size threshold differences}}{30}{table.5.1}%
 \addvspace {10\p@ }
+\contentsline {table}{\numberline {6.1}{\ignorespaces Model names}}{33}{table.6.1}%
+\contentsline {table}{\numberline {6.2}{\ignorespaces Results on the DN 2010 - 2020 (Training) dataset}}{33}{table.6.2}%
+\contentsline {table}{\numberline {6.3}{\ignorespaces Results on the DN SvD 2001 - 2004 (In-set) dataset}}{33}{table.6.3}%
+\contentsline {table}{\numberline {6.4}{\ignorespaces Results on the Aftonbladet Expressen ? - ? (Out-set) dataset}}{34}{table.6.4}%
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }
