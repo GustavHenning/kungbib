@@ -9,15 +9,16 @@
 \babel@toc {english}{}
 \addvspace {10\p@ }
 \addvspace {10\p@ }
+\contentsline {figure}{\numberline {2.1}{\ignorespaces Hierarchical typology of document segmentation algorithms. Top-down (TD) and bottom-up (BU) algorithms are also denoted. Credit\cite {Rekathati_2020} }}{8}{figure.2.1}%
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {3.1}{\ignorespaces Model of a perceptron. Bias is omitted in this figure.}}{10}{figure.3.1}%
-\contentsline {figure}{\numberline {3.2}{\ignorespaces Model complexity and overfitting\cite {Wang_2019}. Test sample prediction error increases as the model overfits on the training sample.}}{12}{figure.3.2}%
-\contentsline {figure}{\numberline {3.3}{\ignorespaces Leaky ReLU\cite {Wang_2019}. The leaky ReLU activation function prevents the \textit {dying ReLU problem}.}}{13}{figure.3.3}%
-\contentsline {figure}{\numberline {3.4}{\ignorespaces Movement of the kernel within the input image or filter matrix\cite {Kang2020DeepCN}.}}{15}{figure.3.4}%
-\contentsline {figure}{\numberline {3.5}{\ignorespaces \textbf {Zero-padding} the image input (in blue and on bottom) by 1 makes the convolutional layer produce the same output dimensions(green and on top) as the input. When the same dimensionality is produced, it is known as \textbf {same-padding}\cite {Kang2020DeepCN}.}}{16}{figure.3.5}%
-\contentsline {figure}{\numberline {3.6}{\ignorespaces Residual block. \textbf {TODO credit, probably new figure}}}{17}{figure.3.6}%
-\contentsline {figure}{\numberline {3.7}{\ignorespaces Evolution of the Feature Pyramid Network\cite {DBLP:journals/corr/LinDGHHB16}.}}{18}{figure.3.7}%
-\addvspace {10\p@ }
+\contentsline {figure}{\numberline {3.1}{\ignorespaces Model of a perceptron. Bias is omitted in this figure.}}{12}{figure.3.1}%
+\contentsline {figure}{\numberline {3.2}{\ignorespaces Model complexity and overfitting\cite {Wang_2019}. Test sample prediction error increases as the model overfits on the training sample.}}{15}{figure.3.2}%
+\contentsline {figure}{\numberline {3.3}{\ignorespaces Leaky ReLU\cite {Wang_2019}. The leaky ReLU activation function prevents the \textit {dying ReLU problem}.}}{16}{figure.3.3}%
+\contentsline {figure}{\numberline {3.4}{\ignorespaces Movement of the kernel within the input image or filter matrix\cite {Kang2020DeepCN}.}}{18}{figure.3.4}%
+\contentsline {figure}{\numberline {3.5}{\ignorespaces \textbf {Zero-padding} the image input (in blue and on bottom) by 1 makes the convolutional layer produce the same output dimensions(green and on top) as the input. When the same dimensionality is produced, it is known as \textbf {same-padding}\cite {Kang2020DeepCN}.}}{19}{figure.3.5}%
+\contentsline {figure}{\numberline {3.6}{\ignorespaces Residual block\cite {he2016deep}.}}{20}{figure.3.6}%
+\contentsline {figure}{\numberline {3.7}{\ignorespaces Fully Convolutional Network architecture as depicted in the original paper\cite {DBLP:journals/corr/LongSD14}.}}{21}{figure.3.7}%
+\contentsline {figure}{\numberline {3.8}{\ignorespaces Evolution of the Feature Pyramid Network\cite {DBLP:journals/corr/LinDGHHB16}.}}{22}{figure.3.8}%
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }

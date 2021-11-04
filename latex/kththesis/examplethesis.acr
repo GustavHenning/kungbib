@@ -2,62 +2,67 @@
 \begin{theglossary}\glossaryheader
 \glsgroupheading{A}\relax \glsresetentrylist %
 \glossentry{ANN}{\glossaryentrynumbers{\relax 
-		\setentrycounter[]{page}\glsnumberformat{xvii}}}\glsgroupskip
+		\setentrycounter[]{page}\glsnumberformat{xv}}}\glsgroupskip
 \glsgroupheading{B}\relax \glsresetentrylist %
 \glossentry{BERT}{\glossaryentrynumbers{\relax 
-		\setentrycounter[]{page}\glsnumberformat{xvii}}}\glsgroupskip
+		\setentrycounter[]{page}\glsnumberformat{xv}}}\glsgroupskip
 \glsgroupheading{C}\relax \glsresetentrylist %
 \glossentry{CNN}{\glossaryentrynumbers{\relax 
-		\setentrycounter[]{page}\glsnumberformat{xvii}}}%
+		\setentrycounter[]{page}\glsnumberformat{xv}}}%
 \glossentry{COCO}{\glossaryentrynumbers{\relax 
-		\setentrycounter[]{page}\glsnumberformat{xvii}}}\glsgroupskip
+		\setentrycounter[]{page}\glsnumberformat{xv}}}\glsgroupskip
 \glsgroupheading{D}\relax \glsresetentrylist %
 \glossentry{DN}{\glossaryentrynumbers{\relax 
-		\setentrycounter[]{page}\glsnumberformat{xvii}}}%
+		\setentrycounter[]{page}\glsnumberformat{xv}}}%
 \glossentry{DNN}{\glossaryentrynumbers{\relax 
-		\setentrycounter[]{page}\glsnumberformat{xvii}}}\glsgroupskip
+		\setentrycounter[]{page}\glsnumberformat{xv}}}\glsgroupskip
 \glsgroupheading{F}\relax \glsresetentrylist %
 \glossentry{FCNN}{\glossaryentrynumbers{\relax 
-		\setentrycounter[]{page}\glsnumberformat{xvii}}}%
+		\setentrycounter[]{page}\glsnumberformat{xv}}}%
 \glossentry{FN}{\glossaryentrynumbers{\relax 
-		\setentrycounter[]{page}\glsnumberformat{xvii}}}%
+		\setentrycounter[]{page}\glsnumberformat{xv}}}%
 \glossentry{FP}{\glossaryentrynumbers{\relax 
-		\setentrycounter[]{page}\glsnumberformat{xvii}}}%
+		\setentrycounter[]{page}\glsnumberformat{xv}}}%
 \glossentry{FPN}{\glossaryentrynumbers{\relax 
-		\setentrycounter[]{page}\glsnumberformat{xvii}}}\glsgroupskip
+		\setentrycounter[]{page}\glsnumberformat{xv}}}\glsgroupskip
+\glsgroupheading{G}\relax \glsresetentrylist %
+\glossentry{GPU}{\glossaryentrynumbers{\relax 
+		\setentrycounter[]{page}\glsnumberformat{xv}}}\glsgroupskip
 \glsgroupheading{I}\relax \glsresetentrylist %
 \glossentry{IoU}{\glossaryentrynumbers{\relax 
-		\setentrycounter[]{page}\glsnumberformat{xvii}}}\glsgroupskip
+		\setentrycounter[]{page}\glsnumberformat{xv}}}\glsgroupskip
 \glsgroupheading{M}\relax \glsresetentrylist %
 \glossentry{mAP}{\glossaryentrynumbers{\relax 
-		\setentrycounter[]{page}\glsnumberformat{xvii}}}%
+		\setentrycounter[]{page}\glsnumberformat{xv}}}%
 \glossentry{mIoU}{\glossaryentrynumbers{\relax 
-		\setentrycounter[]{page}\glsnumberformat{xvii}}}%
+		\setentrycounter[]{page}\glsnumberformat{xv}}}%
 \glossentry{MLP}{\glossaryentrynumbers{\relax 
-		\setentrycounter[]{page}\glsnumberformat{xvii}}}\glsgroupskip
+		\setentrycounter[]{page}\glsnumberformat{xv}}}\glsgroupskip
 \glsgroupheading{O}\relax \glsresetentrylist %
 \glossentry{OCR}{\glossaryentrynumbers{\relax 
-		\setentrycounter[]{page}\glsnumberformat{xvii}\delimN 
+		\setentrycounter[]{page}\glsnumberformat{xv}\delimN 
 		\setentrycounter[]{page}\glsnumberformat{1}}}\glsgroupskip
 \glsgroupheading{R}\relax \glsresetentrylist %
 \glossentry{R-CNN}{\glossaryentrynumbers{\relax 
-		\setentrycounter[]{page}\glsnumberformat{xvii}}}%
+		\setentrycounter[]{page}\glsnumberformat{xv}}}%
 \glossentry{ReLU}{\glossaryentrynumbers{\relax 
-		\setentrycounter[]{page}\glsnumberformat{xvii}}}%
+		\setentrycounter[]{page}\glsnumberformat{xv}}}%
 \glossentry{ResNet}{\glossaryentrynumbers{\relax 
-		\setentrycounter[]{page}\glsnumberformat{xvii}}}%
+		\setentrycounter[]{page}\glsnumberformat{xv}}}%
 \glossentry{RGB}{\glossaryentrynumbers{\relax 
-		\setentrycounter[]{page}\glsnumberformat{xvii}}}%
+		\setentrycounter[]{page}\glsnumberformat{xv}}}%
 \glossentry{RLSA}{\glossaryentrynumbers{\relax 
-		\setentrycounter[]{page}\glsnumberformat{xvii}}}%
+		\setentrycounter[]{page}\glsnumberformat{xv}}}%
 \glossentry{RoI}{\glossaryentrynumbers{\relax 
-		\setentrycounter[]{page}\glsnumberformat{xvii}}}\glsgroupskip
+		\setentrycounter[]{page}\glsnumberformat{xv}}}%
+\glossentry{RPN}{\glossaryentrynumbers{\relax 
+		\setentrycounter[]{page}\glsnumberformat{xv}}}\glsgroupskip
 \glsgroupheading{S}\relax \glsresetentrylist %
 \glossentry{SvD}{\glossaryentrynumbers{\relax 
-		\setentrycounter[]{page}\glsnumberformat{xvii}}}\glsgroupskip
+		\setentrycounter[]{page}\glsnumberformat{xv}}}\glsgroupskip
 \glsgroupheading{T}\relax \glsresetentrylist %
 \glossentry{TN}{\glossaryentrynumbers{\relax 
-		\setentrycounter[]{page}\glsnumberformat{xvii}}}%
+		\setentrycounter[]{page}\glsnumberformat{xv}}}%
 \glossentry{TP}{\glossaryentrynumbers{\relax 
-		\setentrycounter[]{page}\glsnumberformat{xvii}}}%
+		\setentrycounter[]{page}\glsnumberformat{xv}}}%
 \end{theglossary}\glossarypostamble
