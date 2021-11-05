@@ -1,4 +1,4 @@
-\backcite {Rekathati_2020}{{xi}{(document)}{Doc-Start}}
+\backcite {ESKENAZI20171}{{xi}{(document)}{Doc-Start}}
 \backcite {Wang_2019}{{xi}{(document)}{Doc-Start}}
 \backcite {Wang_2019}{{xi}{(document)}{Doc-Start}}
 \backcite {Kang2020DeepCN}{{xi}{(document)}{Doc-Start}}
@@ -11,14 +11,14 @@
 \backcite {8270006}{{5}{2.1}{section.2.1}}
 \backcite {Rekathati_2020}{{6}{2.1.1}{subsection.2.1.1}}
 \backcite {ESKENAZI20171}{{6}{2.2}{section.2.2}}
-\backcite {Rekathati_2020}{{8}{2.1}{figure.2.1}}
+\backcite {ESKENAZI20171}{{8}{2.1}{figure.2.1}}
 \backcite {lecun1989}{{8}{2.2.2}{subsection.2.2.2}}
 \backcite {deng2009}{{8}{2.2.2}{subsection.2.2.2}}
-\backcite {DBLP:journals/corr/0011S17}{{8}{2.2.2}{subsection.2.2.2}}
-\backcite {he2017}{{8}{2.2.2}{subsection.2.2.2}}
-\backcite {xu2017}{{8}{2.2.2}{subsection.2.2.2}}
-\backcite {wickpuppe2018}{{8}{2.2.2}{subsection.2.2.2}}
-\backcite {oliveira2018}{{8}{2.2.2}{subsection.2.2.2}}
+\backcite {DBLP:journals/corr/0011S17}{{9}{2.2.2}{subsection.2.2.2}}
+\backcite {he2017}{{9}{2.2.2}{subsection.2.2.2}}
+\backcite {xu2017}{{9}{2.2.2}{subsection.2.2.2}}
+\backcite {wickpuppe2018}{{9}{2.2.2}{subsection.2.2.2}}
+\backcite {oliveira2018}{{9}{2.2.2}{subsection.2.2.2}}
 \backcite {DBLP:journals/corr/LongSD14}{{9}{2.2.2}{subsection.2.2.2}}
 \backcite {8270006}{{9}{2.2.2}{subsection.2.2.2}}
 \backcite {katti2018}{{9}{2.2.2}{subsection.2.2.2}}
@@ -63,3 +63,6 @@
 \backcite {DBLP:journals/corr/YangYAKKG17}{{33}{5.2}{section.5.2}}
 \backcite {jdmdh:7097}{{33}{5.2}{section.5.2}}
 \backcite {DBLP:journals/corr/YangYAKKG17}{{33}{5.2}{section.5.2}}
+\backcite {DBLP:journals/corr/LongSD14}{{35}{6.1.1}{equation.6.1.1}}
+\backcite {davis2006relationship}{{36}{6.1.2}{subsection.6.1.2}}
+\backcite {zhang2009average}{{37}{6.1.3}{subsection.6.1.3}}

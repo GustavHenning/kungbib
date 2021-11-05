@@ -131,11 +131,11 @@
 
 %% Information for inside title page
 \title{News article segmentation using multimodal input}
-\subtitle{Subtitle TODO}
+\subtitle{Using Mask R-CNN and sentence transformers}
 
 % give the alternative title - i.e., if the thesis is in English, then give a Swedish title
 \alttitle{Artikelsegmentering med multimodala artificiella neuronnätverk}
-\altsubtitle{Undertitel på svenska}
+\altsubtitle{Med hjälp av Mask R-CNN och sentence transformers}
 % alternative, if the thesis is in Swedish, then give an English title
 %\alttitle{This is the English translation of the title}
 %\altsubtitle{This is the English translation of the subtitle}
@@ -143,16 +143,16 @@
 \authorsLastname{Student}
 \authorsFirstname{Gustav H.}
 \email{ghenning@kth.se}
-\kthid{u1337 TODO}
+\kthid{ghenning}
 % If the student has an ORCiD - add it here
-\orcid{0000-0002-00001-1234}
+%\orcid{0000-0002-00001-1234}
 \authorsSchool{\schoolAcronym{CDATE}}
 
 \supervisorAsLastname{Supervisor}
 \supervisorAsFirstname{J. Nyberg}
 \supervisorAsEmail{jaknyb@kth.se}
 % If the supervisor is from within KTH add their KTHID, School and Department info
-\supervisorAsKTHID{u1337 TODO}
+\supervisorAsKTHID{jaknyb}
 \supervisorAsSchool{\schoolAcronym{EECS}}
 \supervisorAsDepartment{Computer Science}
 
@@ -160,7 +160,7 @@
 \examinersFirstname{Gionis}
 \examinersEmail{argioni@kth.se}
 % If the examiner is from within KTH add their KTHID, School and Department info
-\examinersKTHID{uTODO}
+\examinersKTHID{argioni}
 \examinersSchool{\schoolAcronym{EECS}}
 \examinersDepartment{Theoretical Computer Science}
 % other for a examiner outside of KTH add their organization info
@@ -275,9 +275,13 @@ eng
 \begin{scontents}[store-env=abstracts,print-env=true]
 
 In this century and the last, serious efforts have been made to digitize the contents housed by memory institutions across the world. In order to open up these volumes to content-based information retrieval, these digitized print media pages have to be segmented into semantically connected components, i.e. articles. To query on facets such as author, section, content type or other metadata, further processing of these documents is required to attain this information.  
+
 Even though humans have shown exceptional ability to segment different types of elements into related components, even in languages foreign to them, this task has proven difficult for computers. The challenge of semantic segmentation in newspapers lies in the diversity of the medium: Newspapers have vastly different layouts, covering diverse content, from news articles to ads to weather reports.
+
 The extraordinary progress made in the field of instance segmentation of real-world objects in the field of deep learning begs the question: \textit{Can the same methodology be applied in the domain of newspaper articles?}
+
 The state-of-the-art approaches are made to detect real-world objects. In this domain we have access to textual information through a potentially noisy Optical Character Recognition. We investigate one possible approach to encode the textual signal into the image in an attempt to improve performance. 
+
 Based on the newspaper from the National Library of Sweden, we investigate the predictive power of visual and textual features and their capacity to generalize across different typographic designs. Results show…
 
 
@@ -304,7 +308,11 @@ Historiska tidningar, Bildsegmentering, Multimodal inlärning, Djupinlärning, D
 \end{scontents}
 \begin{scontents}[store-env=abstracts,print-env=true]
 
-I detta och det förra århundradet har kraftiga åtaganden gjorts för att digitalisera traditionellt medieinnehåll som tidigare endast tryckts i pappersformat. För att kunna stödja sökningar och fasetter i detta innehåll krävs bearbetning på semantisk nivå, det vill säga att innehållet styckas upp på artikelnivå, istället för per sida. Trots att människor har lätt att dela upp innehåll på semantisk nivå, även på ett främmande språk, fortsätter arbetet för automatisering av denna uppgift. Utmaningen i att segmentera nyhetsartiklar återfinns i den otroliga mångfald av utseende och format. Innehållet är även detta väldigt mångfaldigt, där man återfinner allt ifrån faktamässiga artiklar, till debatter, listor av fakta och upplysningar, reklam och väder bland annat. Otroliga framsteg har gjorts inom djupinlärning just för objektdetektering och semantisk segmentering bara de senaste årtiondet. Frågan vi ställer oss är: \textit{Kan samma metodik appliceras inom domänen nyhetsartiklar?} Dessa modeller är skapta för att klassificera världsliga ting. I denna domän har vi tillgång till texten och dess koordinater via en potentiellt bristfällig optisk teckenigenkänning. Vi undersöker ett sätt att utnyttja denna textinformation i ett försök att förbättra resultatet i denna specifika domän. Baserat på data från Kungliga Biblioteket undersöker vi hur väl denna metod lämpar sig för uppstyckandet av innehåll i tidningar längsmed tidsperioder där designen förändrar sig markant. Resultaten visar....
+I detta och det förra århundradet har kraftiga åtaganden gjorts för att digitalisera traditionellt medieinnehåll som tidigare endast tryckts i pappersformat. För att kunna stödja sökningar och fasetter i detta innehåll krävs bearbetning på semantisk nivå, det vill säga att innehållet styckas upp på artikelnivå, istället för per sida. Trots att människor har lätt att dela upp innehåll på semantisk nivå, även på ett främmande språk, fortsätter arbetet för automatisering av denna uppgift. 
+
+Utmaningen i att segmentera nyhetsartiklar återfinns i den otroliga mångfald av utseende och format. Innehållet är även detta väldigt mångfaldigt, där man återfinner allt ifrån faktamässiga artiklar, till debatter, listor av fakta och upplysningar, reklam och väder bland annat. Otroliga framsteg har gjorts inom djupinlärning just för objektdetektering och semantisk segmentering bara de senaste årtiondet. Frågan vi ställer oss är: \textit{Kan samma metodik appliceras inom domänen nyhetsartiklar?} 
+
+Dessa modeller är skapta för att klassificera världsliga ting. I denna domän har vi tillgång till texten och dess koordinater via en potentiellt bristfällig optisk teckenigenkänning. Vi undersöker ett sätt att utnyttja denna textinformation i ett försök att förbättra resultatet i denna specifika domän. Baserat på data från Kungliga Biblioteket undersöker vi hur väl denna metod lämpar sig för uppstyckandet av innehåll i tidningar längsmed tidsperioder där designen förändrar sig markant. Resultaten visar....
 
 \end{scontents}
 \subsection*{Nyckelord}
@@ -322,7 +330,7 @@ I detta och det förra århundradet har kraftiga åtaganden gjorts för att digi
 \markboth{Acknowledgments}{}
 
 In this section, I would like to acknowledge the people who have encouraged, influenced, helped and supported me during the duration of this study.
-    I would like to start by thanking and acknowledging my examiner Aristides Gionis and my supervisor Jakob Nyberg. Text about their support. I would also like to thank Kungliga Biblioteket, especially Faton Rekathati and Chris Haffenden, for their encouragement, interest in the topic, and invaluable help across the timeline of the project. 
+    I would like to start by thanking and acknowledging my examiner Aristides Gionis and my supervisor Jakob Nyberg. \textbf{TODO Text about their support.} I would also like to thank Kungliga Biblioteket, especially Faton Rekathati and Chris Haffenden, for their encouragement, interest in the topic, and invaluable help across the timeline of the project. 
     
 \acknowlegmentssignature
 
@@ -377,7 +385,7 @@ The processing of historical newspapers consists of three steps:
 \item Exploration support: To enable searching and visualizing the contents.  
 \end{enumerate}
 
-Document layout analysis aims at segmenting a document image into meaningful segments and at classifying those segments according to their contents. \cite{ESKENAZI20171} 
+Document layout analysis aims at segmenting a document image into meaningful segments and at classifying those segments according to their contents\cite{ESKENAZI20171} . 
     
 Within the domain of newspapers, the task of image segmentation and classification is particularly difficult due to the complexity and diversity of content across several typographic designs. Layout analysis is however essential for historical newspaper exploitation. From an information retrieval perspective, being able to query articles instead of whole pages, and being able to facet over different types of segments has undeniable advantages to all concerned end users. 
 
@@ -416,7 +424,9 @@ The initial phase of the project aims to investigate the efficiency of applying 
 
 \section{Delimitations}
 
-We recognize that there are many ways to extend or alter a neural network to adapt to new input. Only one such method of approaching text modality is introduced and evaluated. Other methods will be discussed and suggested in the final chapter. Another delimitation is that the size of the datasets created in this project may be insufficient to show the full potential of this approach. Investigation into this question will be addressed in this thesis. Only a limited number of typographic designs will be evaluated in this project, which may impact the generality of the solution discussed.
+We recognize that there are many ways to extend or alter a neural network to adapt to new input. Only one such method of approaching text modality is introduced and evaluated. Other methods will be discussed and suggested in the final chapter. 
+
+Another delimitation is that the size of the datasets created in this project may be insufficient to show the full potential of this approach. Investigation into this question will be addressed in this thesis. Only a limited number of typographic designs will be evaluated in this project, which may impact the generality of the solution discussed.
 
 \section{Ethical considerations}
 
@@ -445,7 +455,9 @@ The challenge of semantic segmentation in newspapers lies in the diversity of th
 
 \subsection{Digitization at the National Library of Sweden}
 
-The National Library of Sweden (Kungliga Biblioteket) started digitizing their materials in the late 1990s. The motivation for digitization has shifted from only preservation to also improving access and facilitating research conducted on the content itself. \cite{Rekathati_2020} The digital archives of the National Library of Sweden contain scanned images from four of the country’s largest newspaper publications dating back to the 19th century. The digitization of these newspaper images has occurred in two steps: Firstly, a segmentation algorithm splits the newspaper page into larger layout component zones. Within each zone, further segmentation is performed to identify sub-zones. These sub-zones may either be composed of images or blocks of text. In the second step, OCR is applied to the segmented sub-zones to extract the textual contents. 
+The National Library of Sweden (Kungliga Biblioteket) started digitizing their materials in the late 1990s. The motivation for digitization has shifted from only preservation to also improving access and facilitating research conducted on the content itself. \cite{Rekathati_2020} The digital archives of the National Library of Sweden contain scanned images from four of the country’s largest newspaper publications dating back to the 19th century. 
+
+The digitization of these newspaper images has occurred in two steps: Firstly, a segmentation algorithm splits the newspaper page into larger layout component zones. Within each zone, further segmentation is performed to identify sub-zones. These sub-zones may either be composed of images or blocks of text. In the second step, OCR is applied to the segmented sub-zones to extract the textual contents. 
 
 \section{Segmentation Algorithms}
 
@@ -481,9 +493,13 @@ Finally, in an attempt to overcome the limitations of the already mentioned algo
   \begin{center}
     \includegraphics[width=1.0\textwidth]{figures/classicalalgs.png}
   \end{center}
-  \caption{Hierarchical typology of document segmentation algorithms. Top-down (TD) and bottom-up (BU) algorithms are also denoted. Credit\cite{Rekathati_2020} }
+  \caption{Hierarchical typology of document segmentation algorithms\cite{ESKENAZI20171}.   }
   \label{fig:classicalgs}
 \end{figure}
+
+\begin{center}
+Top-down (TD) and bottom-up (BU) algorithms are also denoted.
+\end{center}
 
 \subsection{Deep Learning Approaches}
 
@@ -499,7 +515,13 @@ Moving from character, to word, to sentence representations, Yang et al\cite{DBL
 
 Finally, Barman et al\cite{jdmdh:7097} combine word embeddings with a deep neural network approach specifically within the domain of newspaper segmentation. The critical difference to this paper is that Barman et al\cite{jdmdh:7097} uses word embeddings, where we will vary difference sentence embedding encoders. The primary architecture used in Barman et al\cite{jdmdh:7097} is dhSegment, where we will vary different settings within the newer architecture Mask R-CNN, developed specifically for instance segmentation. Similarly to Barman et al\cite{jdmdh:7097}, we will modify the architecture to fit the text embeddings behind the image pixels by extending the number of channels in the image and inserting the text embeddings at the coordinates of the text bounding box produced by the OCR. 
 
-\cleardoublepage
+
+\section{Summary}
+
+\textbf{TODO}
+
+\clearpage
+
 \chapter{Preliminaries}
 \label{ch:preliminaries}
 
@@ -527,9 +549,13 @@ where $w$ is a vector of real-valued weights, $w * x$ is the dot product \[\sum_
   \begin{center}
     \includegraphics[width=0.5\textwidth]{figures/perceptron.png}
   \end{center}
-  \caption{Model of a perceptron. Bias is omitted in this figure.}
+  \caption{Model of a perceptron.}
   \label{fig:perceptron}
 \end{figure}
+
+\begin{center}
+Bias is omitted in this figure.
+\end{center}
 
 To solve more complex problems than binary classification problems in a linearly nonseparable vector space one has to alter the activation function and in many cases use a deeper and wider ensemble of perceptrons. Depending on the activation function used, the perceptron can output a different range of values. Traditionally a very popular activation function was the non-linear \textit{sigmoid activation function}. Lately, due to the problems with vanishing gradients (which we will cover shortly) the piecewise linear function \textit{Rectified Linear Unit} (ReLU) is the standard activation function today.
 
@@ -586,7 +612,7 @@ With a large number of parameters, the network can be said to have a high degree
   \begin{center}
     \includegraphics[width=0.8\textwidth]{figures/overfitting.png}
   \end{center}
-  \caption{Model complexity and overfitting\cite{Wang_2019}. Test sample prediction error increases as the model overfits on the training sample.}
+  \caption{Model complexity and overfitting\cite{Wang_2019}. }
   \label{fig:overfitting}
 \end{figure}
 
@@ -610,9 +636,13 @@ Some techniques for overcoming the exploding/vanishing gradient problem are\cite
   \begin{center}
     \includegraphics[width=0.7\textwidth]{figures/leaky_relu.png}
   \end{center}
-  \caption{Leaky ReLU\cite{Wang_2019}. The leaky ReLU activation function prevents the \textit{dying ReLU problem}.}
+  \caption{Leaky ReLU\cite{Wang_2019}.}
   \label{fig:leaky_relu}
 \end{figure}
+
+\begin{center} 
+The leaky ReLU activation function prevents the \textit{dying ReLU problem}.
+\end{center}
 
 \item Gradient clipping\cite{quintana1974clipping}: Clipping the gradient by defining a max value it can attain during backpropagation means it will never exceed a certain threshold. This solves the exploding gradient problem.
 
@@ -672,15 +702,21 @@ Traditional DNNs had, at the time of creation, very impressive results on many d
 \end{figure}
 
 
-Options for determining the resulting output size of the convolutional layer are called \textbf{stride} and \textbf{zero-padding}. Stride determines how many pixels the kernel shifts as it traverses. Increasing the stride will decrease the number of operations performed, and thus the output size. Since the kernel will pass the border of the image input fewer times than the pixels located closer to the center of the image, zero-padding can be used to improve the performance of the convolutional layer. Zero-padding adds zeros to the edges of the image, making it possible to traverse the original corners and borders of the image multiple times. The logical consequence of artificially increasing the width and height of the image is that more convolves occur, and thus the output size of the layer is increased. 
+Options for determining the resulting output size of the convolutional layer are called \textbf{stride} and \textbf{zero-padding}. Stride determines how many pixels the kernel shifts as it traverses. Increasing the stride will decrease the number of operations performed, and thus the output size. 
+
+Since the kernel will pass the border of the image input fewer times than the pixels located closer to the center of the image, zero-padding can be used to improve the performance of the convolutional layer. Zero-padding adds zeros to the edges of the image, making it possible to traverse the original corners and borders of the image multiple times. The logical consequence of artificially increasing the width and height of the image is that more convolves occur, and thus the output size of the layer is increased. 
 
 \begin{figure}[H]
   \begin{center}
     \includegraphics[width=0.5\textwidth]{figures/padding.png}
   \end{center}
-  \caption{\textbf{Zero-padding} the image input (in blue and on bottom) by 1 makes the convolutional layer produce the same output dimensions(green and on top) as the input. When the same dimensionality is produced, it is known as \textbf{same-padding}\cite{Kang2020DeepCN}.}
+  \caption{Zero-padding\cite{Kang2020DeepCN}.}
   \label{fig:padding}
 \end{figure}
+
+\begin{center}
+Zero-padding the image input (in blue and on bottom) by 1 makes the convolutional layer produce the same output dimensions(green and on top) as the input. When the same dimensionality is produced, it is known as \textbf{same-padding}.
+\end{center}
 
 \textbf{Pooling layer.} Similar to how convolutional layers work, pooling layers are responsible for reducing the spatial size of the convolved features. This is to decrease the computational power required to process the data through dimensionality reduction. Another feature of the pooling layers is that, as we reduce the dimensionality of the layers further down the architecture, we force the layers to learn on higher and higher levels of abstraction of the features, since detail is lost with the compression of information. There are two important types of pooling layers: \textbf{Max pooling} and \textbf{average pooling}. As the names suggest, the operation applied to inputs of the layers is the maximum of the values or the average of the values respectively. 
 
@@ -791,6 +827,8 @@ Sampled from Dagens Nyheter in the time period 2010 to 2020, this dataset contai
   \end{center}
 \end{table}
 
+
+\textbf{TODO Sampling, sample size, target population relevant?}
 
 \section{Page Layouts}
 
@@ -947,8 +985,7 @@ Titles, section titles and subsection titles are not included in the definition 
 \item[$\bullet$] Footers and headers describing the news team / publishing team
 \end{description}
 
-
-\cleardoublepage
+\clearpage
 
 \chapter{Model Architecture}
 \label{ch:modelarch}
@@ -1020,6 +1057,17 @@ The result is a text embedding map, i.e. a three-dimensional matrix where the fi
   \end{center}
 \end{table}
 
+\section{System documentation}
+
+\subsection{Hardware specifications}
+
+\textbf{TODO computer specs, maybe even model sizes in memory and running time for training?}
+
+\subsection{Software specifications}
+
+\textbf{TODO text about using the mmdetection framework. Text about using labelstudios for labeling.}
+
+\clearpage
 
 \chapter{Evaluation}
 \label{ch:eval}
@@ -1031,14 +1079,32 @@ The result is a text embedding map, i.e. a three-dimensional matrix where the fi
 The Intersection over Union (IoU) is the standard metrics for semantic image segmentation and measures how well two sets of pixels are aligned. This is used to measure how much the boundary predicted by the algorithm overlaps with the ground truth (the real object boundary). Traditionally, with state-of-the-art datasets, an IoU threshold equal or greater to 0.5 \textbf{(? TODO verify)} is used to classify whether the prediction is a true positive or a false positive.  
 
 \begin{equation}
-	IoU = Area Overlap / Area Union
+	IoU = \frac{Area \: Overlap}{Area \: Union}
   	\label{eqn:iou}
 \end{equation}
 
+The mean Intersection over Union(mIoU)\cite{DBLP:journals/corr/LongSD14} is the IoU averaged over all classes to provide a global, mean IoU score. It is formulated as follows:
+
+\begin{equation}
+	Pixel \: accuracy = \frac{\sum_{i} n_{ii}}{\sum_{i}t_i}
+  	\label{eqn:pixelacc}
+\end{equation}
+
+\begin{equation}
+	Mean \: accuracy = \frac{1}{n_C} \sum_{i} n_{ii} / t_i
+  	\label{eqn:meanacc}
+\end{equation}
+
+\begin{equation}
+	mIoU = \frac{1}{n_C} \frac{\sum_{i} n_{ii}}{t_i + \sum_{i} n_{ji} - n_{ii}}
+  	\label{eqn:meanIoU}
+\end{equation}
+
+where $n_{ij}$ is the number of pixels of class $i$ predicted to belong to class $j$, where there are $n_{C}$ different classes, and $t = \sum_{j} n_{ij}$ is the total number of pixels of class $i$.
 
 \subsection{Precision and Recall}
 
-The IoU does not qualify performances in terms of True Positives (TP), True Negatives (TN), False Positives (FP) and False Negatives (FN). These values are relevant when considering whether a model can be useful for real world applications, that is, if most of the segments are correctly recognized. 
+The IoU does not quantify performances in terms of True Positives (TP), True Negatives (TN), False Positives (FP) and False Negatives (FN)\cite{davis2006relationship}. These values are relevant when considering whether a model can be useful for real world applications, that is, if most of the segments are correctly recognized. 
 
 The standard way to measure these values in the field of segmentation is to consider a prediction as positive when above a certain threshold $\tau \in [0,1]$ of IoU. If the prediction is above the threshold $\tau$, it is well enough aligned with the ground truth and to be considered correct. 
 
@@ -1074,7 +1140,7 @@ It should be noted that metrics such as IoU, mIoU, Precision and Recall are comp
 
 \subsection{Mean Average Precision}
 
-The mean Average Precision (mAP) was used to evaluate detection performance. The mAP metric is the product of precision and recall of detected bounding boxes. The mAP value ranges from 0 to 1, with higher values being better. The mAP can be computed by calculating average precision (AP) separately for each class (including background) and then averaging over the classes. A detection is considered a true positive only if the IoU is above a certain threshold. 
+The mean Average Precision (mAP)\cite{zhang2009average} was used to evaluate detection performance. The mAP metric is the product of precision and recall of detected bounding boxes. The mAP value ranges from 0 to 1, with higher values being better. The mAP can be computed by calculating average precision (AP) separately for each class (including background) and then averaging over the classes. A detection is considered a true positive only if the IoU is above a certain threshold. 
 
 All detections from test images may be combined in a precision/recall curve. The final area under the curve is used to compare the algorithms. If $N$ represents the number of images, the mAP can be computed as follows:
 
@@ -1083,16 +1149,22 @@ mAP = \frac{1}{N} \sum_{i=1}^{N} AP_i
     \label{eqn:map}
 \end{equation}
 
-\section{Major Results}
+
+\subsection{Impact of dataset size}
+
+\textbf{TODO text here about how dataset size variation is conducted.}
+
+\section{Results}
 
 In this section we present the results of the neural network architectures for the datasets created in this thesis. Naming convention follows the original Mask R-CNN paper and results are presented by bounding box ($bb$) and segmentation mask ($m$) respectively, as it is presented in the Mask R-CNN paper.
+
 
 \begin{table}[!htbp]
   \begin{center}
     \caption{Model names}
     \label{tab:modelnames}
     \resizebox{\columnwidth}{!}{
-    \begin{tabular}{l|l|l|l|p{1.5cm}} % <-- Alignments: 1st column left, 2nd middle, with vertical lines in between
+    \begin{tabular}{l|l|l|l|p{1.5cm}} 
     \textbf{Final name} & \textbf{Head} & \textbf{Backbone} & \textbf{Sentence transformer} & \textbf{Text embeddings length} \\ 
     \hline
     resnet50-FPN-vanilla & resnet50 & FPN & None & 0 \\    \hline
@@ -1105,12 +1177,13 @@ In this section we present the results of the neural network architectures for t
   \end{center}
 \end{table}
 
+
 \begin{table}[!htbp]
   \begin{center}
     \caption{Results on the DN 2010 - 2020 (Training) dataset}
     \label{tab:dn2010results}
     \resizebox{\columnwidth}{!}{
-    \begin{tabular}{l|l|l|l|l|l|l} % <-- Alignments: 1st column left, 2nd middle, with vertical lines in between
+    \begin{tabular}{l|l|l|l|l|l|l} % 
     \textbf{Final name} & \textbf{$mAP_m$} & \textbf{$mAP_m^{50}$} & \textbf{$mAP_m^{75}$} & \textbf{$mAP_{bb}$} & \textbf{$mAP_{bb}^{50}$} & \textbf{$mAP_{bb}^{75}$} \\ 
     \hline
     resnet50-FPN-vanilla & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 \\    \hline
@@ -1125,7 +1198,7 @@ In this section we present the results of the neural network architectures for t
     \caption{Results on the DN SvD 2001 - 2004 (In-set) dataset}
     \label{tab:dnsvd2001results}
     \resizebox{\columnwidth}{!}{
-    \begin{tabular}{l|l|l|l|l|l|l} % <-- Alignments: 1st column left, 2nd middle, with vertical lines in between
+    \begin{tabular}{l|l|l|l|l|l|l} 
     \textbf{Final name} & \textbf{$mAP_m$} & \textbf{$mAP_m^{50}$} & \textbf{$mAP_m^{75}$} & \textbf{$mAP_{bb}$} & \textbf{$mAP_{bb}^{50}$} & \textbf{$mAP_{bb}^{75}$} \\ 
     \hline
     resnet50-FPN-vanilla & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 \\    \hline
@@ -1134,12 +1207,13 @@ In this section we present the results of the neural network architectures for t
     \end{tabular}}
   \end{center}
 \end{table}
+
 \begin{table}[!htbp]
   \begin{center}
     \caption{Results on the Aftonbladet Expressen ? - ? (Out-set) dataset}
     \label{tab:abexpresults}
     \resizebox{\columnwidth}{!}{
-    \begin{tabular}{l|l|l|l|l|l|l} % <-- Alignments: 1st column left, 2nd middle, with vertical lines in between
+    \begin{tabular}{l|l|l|l|l|l|l} 
     \textbf{Final name} & \textbf{$mAP_m$} & \textbf{$mAP_m^{50}$} & \textbf{$mAP_m^{75}$} & \textbf{$mAP_{bb}$} & \textbf{$mAP_{bb}^{50}$} & \textbf{$mAP_{bb}^{75}$} \\ 
     \hline
     resnet50-FPN-vanilla & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 \\    \hline
@@ -1149,10 +1223,15 @@ In this section we present the results of the neural network architectures for t
   \end{center}
 \end{table}
 
+\subsection{Impact of dataset size}
+
+\textbf{TODO text and table here about results of dataset size variation.}
+
 \chapter{Discussion}
 \label{ch:disc}
 
 \chapter{Conclusions and Future Work}
+\label{ch:conc}
 \section{Conclusions}
 \section{Limitations}
 \section{Future work}
@@ -1176,13 +1255,9 @@ In this section we present the results of the neural network architectures for t
 
 
 
-
-\cleardoublepage
 \appendix
 \renewcommand{\chaptermark}[1]{\markboth{Appendix \thechapter\relax:\thinspace\relax#1}{}}
 
-
-\textcolor{black}{black} {\color{black} \rule{\linewidth}{1mm} }
 
 %% The following label is necessary for computing the last page number of the body of the report to include in the "For DIVA" information
 \label{pg:lastPageofMainmatter}
