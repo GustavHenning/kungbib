@@ -1,6 +1,6 @@
 _base_ = '../mask_rcnn/mask_rcnn_r50_caffe_fpn_mstrain-poly_1x_coco-tf.py'
 
-TRAIN_TEST_VALID_FOLDERS="/data/gustav/datalab_data/poly-dn-2010-2020-729/"
+TRAIN_TEST_VALID_FOLDERS="/data/gustav/datalab_data/model/dn-2010-2020/"
 MAX_EPOCHS=32
 
 # learning policy
@@ -21,7 +21,7 @@ classes = ('News Article', 'Ad', 'Listing', 'Weather', 'Death', 'Crossword',)
 data = dict(
     max_epochs=MAX_EPOCHS,
     samples_per_gpu=2,  # Batch size of a single GPU
-    workers_per_gpu=12,  # Worker to pre-fetch data for each single GPU
+    workers_per_gpu=10,  # Worker to pre-fetch data for each single GPU
     train=dict(
         img_prefix=TRAIN_TEST_VALID_FOLDERS,
         classes=classes,

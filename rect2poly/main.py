@@ -1,13 +1,27 @@
 import json, sys, argparse
 from pathlib import Path
 
+final_class_names= {
+    "News Article" : "News Unit",
+    "Ad" : "Advertisement",
+    "Death" : "Death Notice",
+    "Weather" : "Weather",
+    "Listing" : "Listing",
+    "Crossword" : "Game"
+}
+
+def map_to_final_class_names(rectanglelabels):
+    if len(rectanglelabels) > 1: # This assumes the list is of length 1
+        print(rectanglelabels)
+    return [final_class_names[rectanglelabels[0]]]
+
 def convert_to_poly(value):
     points = []
     points.append([value["x"], value["y"]])
     points.append([value["x"], value["y"] + value["height"]])
     points.append([value["x"] + value["width"], value["y"] + value["height"]])
     points.append([value["x"] + value["width"], value["y"]])
-    return {"points" : points, "polygonlabels": value["rectanglelabels"]}
+    return {"points" : points, "polygonlabels": map_to_final_class_names(value["rectanglelabels"])}
 
 """
     verify image_rotation = 0
@@ -46,17 +60,17 @@ def verify_file_exists(path):
         print("Could not find file: %s".format(path))
         sys.exit(1)
 
-def label_studios_unique_id(image_name):
+def label_studios_unique_id(image_name): # why was this used?
     return image_name.replace("_" + image_name.split("_")[-1].split(".")[0], "")
 
 def examples_to_image_id_index(json_array):
     id_indexed = {}
 
     for example in json_array:
-        if label_studios_unique_id(example["data"]["image"]) in id_indexed:
-            print("File has been uploaded multiple times: %s. Exiting...".format(label_studios_unique_id(example["data"]["image"])))
+        if example["data"]["image"] in id_indexed: 
+            print("File has been uploaded multiple times: {}. Exiting...".format(label_studios_unique_id(example["data"]["image"])))
             sys.exit(1)
-        id_indexed[label_studios_unique_id(example["data"]["image"])] = example
+        id_indexed[example["data"]["image"]] = example
     return id_indexed
 """
     Only care about image names for ids. Only works for at least labelled examples.

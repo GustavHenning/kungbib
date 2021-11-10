@@ -1,6 +1,6 @@
 _base_ = '../mask_rcnn/mask_rcnn_r101_fpn_mstrain-poly_3x_coco.py'
 
-TRAIN_TEST_VALID_FOLDERS="/data/gustav/datalab_data/poly-dn-2010-2020-729/"
+TRAIN_TEST_VALID_FOLDERS="/data/gustav/datalab_data/model/dn-2010-2020/"
 MAX_EPOCHS=32
 
 # learning policy

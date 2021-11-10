@@ -2,7 +2,7 @@ import json, sys
 import random
 from collections import Counter
 
-expected_class_order = [{'id': 0, 'name': 'News Article'}, {'id': 1, 'name': 'Ad'}, {'id': 2, 'name': 'Listing'}, {'id': 3, 'name': 'Weather'}, {'id': 4, 'name': 'Death'}, {'id': 5, 'name': 'Crossword'}]
+expected_class_order = [{'id': 0, 'name': 'News Unit'}, {'id': 1, 'name': 'Advertisement'}, {'id': 2, 'name': 'Listing'}, {'id': 3, 'name': 'Weather'}, {'id': 4, 'name': 'Death Notice'}, {'id': 5, 'name': 'Game'}]
 
 def arrayify(categories):
     cats = [None] * len(categories)
@@ -13,9 +13,8 @@ def arrayify(categories):
 def same_order(data):
     if len(data["categories"]) != len(expected_class_order):
         print(data["categories"])
-        print("categories are not the same as expected class order!")
+        print("categories are not the same as expected class order! (Some may even be missing)")
         print(expected_class_order)
-        sys.exit(1)
     for cat in data["categories"]:
         for exp in expected_class_order:
             if cat["id"] == exp["id"] and cat['name'] != exp['name']:
@@ -103,7 +102,10 @@ def train_val_split(dataset_folder_path, json_filename, train_prop=0.8, test_pro
     if seed:
         random.seed(seed)
     
-    if test_prop is not None: # train, test and validation
+    if train_prop == 1.0: # this is sloppy coding, but I'm creating a validation dataset for both all classes and 1 class 
+        print("creating validation set for {}".format(dataset_folder_path))
+        create_annotations(dataset_folder_path, "valid", data["images"], data)
+    elif test_prop is not None: # train, test and validation
         train_images = random.sample(data["images"], k=int(nr_obs * train_prop))
         rest_images = {"images" : [image for image in data["images"] if image not in train_images]}
 
@@ -120,6 +122,7 @@ def train_val_split(dataset_folder_path, json_filename, train_prop=0.8, test_pro
         create_annotations(dataset_folder_path, "train", train_images, data)
         create_annotations(dataset_folder_path, "valid", valid_images, data)
 
-DATASET_FOLDER="poly-729/"
 
-train_val_split(dataset_folder_path=DATASET_FOLDER, json_filename="result.json", train_prop=0.5, test_prop=0.25, seed=5)
+train_val_split(dataset_folder_path="dn-2010-2020/", json_filename="result.json", train_prop=0.5, test_prop=0.25, seed=5)
+train_val_split(dataset_folder_path="dn-svd-2001-2004/", json_filename="result.json", train_prop=1.0, seed=5)
+train_val_split(dataset_folder_path="ab-ex-2001-2004/", json_filename="result.json", train_prop=1.0, seed=5)

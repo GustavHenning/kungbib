@@ -1,6 +1,6 @@
 _base_ = './kungbib-cascade-mask.py'
 
-TRAIN_TEST_VALID_FOLDERS="/data/gustav/datalab_data/poly-dn-2010-2020-729/"
+TRAIN_TEST_VALID_FOLDERS="/data/gustav/datalab_data/model/dn-2010-2020/"
 MAX_EPOCHS=32
 
 # learning policy

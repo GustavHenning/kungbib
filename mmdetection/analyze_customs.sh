@@ -4,10 +4,15 @@
 LOGS_DIR=checkpoints/custom/tf/
 
 for d in $LOGS_DIR*/ ; do
-    mkdir $d/analysis
+    mkdir -p $d/analysis
     echo "$LOGS_DIR $d"
     LATEST_LOG=$(ls $d/*.log.json | sort -V | tail -n 1)
-
+    
+    if [ $? -eq 1 ]; then
+        echo "Bad logs in $d"
+        continue
+    fi
+    
     python3 tools/analysis_tools/analyze_logs.py plot_curve $LATEST_LOG \
     --keys loss_rpn_cls loss_rpn_bbox loss_cls loss_bbox loss_mask loss \
     --legend loss_rpn_cls loss_rpn_bbox loss_cls loss_bbox loss_mask loss \

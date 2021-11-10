@@ -9,7 +9,6 @@ for d in $LOGS_DIR*/ ; do
     echo "$d"
     LATEST_LOG=$(ls $d/*.log.json | sort -V | tail -n 1)
     echo $LATEST_LOG
-    continue
 
     python3 tools/analysis_tools/analyze_logs.py plot_curve $LATEST_LOG \
     --keys loss_rpn_cls loss_rpn_bbox loss_cls loss_bbox loss_mask loss \

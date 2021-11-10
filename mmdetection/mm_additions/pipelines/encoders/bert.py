@@ -9,7 +9,7 @@ import json, glob, re
 from tqdm import tqdm
 
 class BERT(Encoder):
-    def __init__(self, dimensions, texts_location="/data/gustav/datalab_data/poly-dn-2010-2020-729/text", model_name='multi-qa-MiniLM-L6-cos-v1'): # TODO other models?
+    def __init__(self, dimensions, texts_location="/data/gustav/datalab_data/model/text", model_name='multi-qa-MiniLM-L6-cos-v1'): # TODO other models?
         self.dimensions = dimensions
         self.original_model_name = model_name
         model_name = model_name.replace('-PCA', '')
