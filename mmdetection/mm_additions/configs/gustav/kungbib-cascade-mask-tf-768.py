@@ -17,7 +17,7 @@ model = dict(
 
 # Modify dataset related settings
 dataset_type = 'COCODataset'
-classes = ('News Article', 'Ad', 'Listing', 'Weather', 'Death', 'Crossword',)
+classes = ('News Unit', 'Advertisement', 'Listing', 'Weather', 'Death Notice', 'Game',)
 data = dict(
     max_epochs=MAX_EPOCHS,
     samples_per_gpu=2,  # Batch size of a single GPU

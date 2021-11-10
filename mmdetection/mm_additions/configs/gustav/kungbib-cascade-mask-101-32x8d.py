@@ -16,7 +16,7 @@ model = dict(
 
 dataset_type = 'CocoDataset'
 data_root = TRAIN_TEST_VALID_FOLDERS
-classes = ('News Article', 'Ad', 'Listing', 'Weather', 'Death', 'Crossword',)
+classes = ('News Unit', 'Advertisement', 'Listing', 'Weather', 'Death Notice', 'Game',)
 
 img_norm_cfg = dict(
     mean=[103.530, 116.280, 123.675],

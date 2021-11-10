@@ -15,7 +15,7 @@ model = dict(
         mask_head=dict(num_classes=6)))
 
 dataset_type = 'CocoDataset'
-classes = ('News Article', 'Ad', 'Listing', 'Weather', 'Death', 'Crossword',)
+classes = ('News Unit', 'Advertisement', 'Listing', 'Weather', 'Death Notice', 'Game',)
 
 img_norm_cfg = dict(
     mean=[123.675, 116.28, 103.53], std=[58.395, 57.12, 57.375], to_rgb=True)
