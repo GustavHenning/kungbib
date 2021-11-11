@@ -1,21 +1,23 @@
 _base_ = '../mask_rcnn/mask_rcnn_r101_fpn_mstrain-poly_3x_coco.py'
 
-TRAIN_TEST_VALID_FOLDERS="/data/gustav/datalab_data/model/dn-2010-2020/"
+NUM_CLASSES=6
+
 MAX_EPOCHS=32
+EVAL_INTERVAL=1
 
-# learning policy
-lr_config = dict(step=[28, 34])
-runner = dict(type='EpochBasedRunner', max_epochs=MAX_EPOCHS)
+LEARNING_RATE=0.005
+MOMENTUM=0.9
+WEIGHT_DECAY=0.0001
 
-evaluation = dict(interval=4)
+dataset_type = 'COCODataset'
+classes = ('News Unit', 'Advertisement', 'Listing', 'Weather', 'Death Notice', 'Game',)
 
 model = dict(
     roi_head=dict(
-        bbox_head=dict(num_classes=6),
-        mask_head=dict(num_classes=6)))
+        bbox_head=dict(num_classes=NUM_CLASSES),
+        mask_head=dict(num_classes=NUM_CLASSES)))
 
-dataset_type = 'CocoDataset'
-classes = ('News Unit', 'Advertisement', 'Listing', 'Weather', 'Death Notice', 'Game',)
+evaluation = dict(interval=EVAL_INTERVAL)
 
 img_norm_cfg = dict(
     mean=[123.675, 116.28, 103.53], std=[58.395, 57.12, 57.375], to_rgb=True)
@@ -56,35 +58,31 @@ test_pipeline = [
         ])
 ]
 
+
+IN_SET_FOLDERS="/data/gustav/datalab_data/model/dn-2010-2020/"
+NEAR_SET_FOLDERS="/data/gustav/datalab_data/model/dn-svd-2001-2004/"
+OUT_SET_FOLDERS="/data/gustav/datalab_data/model/ab-ex-2001-2004/"
+
 data = dict(
     max_epochs=MAX_EPOCHS,
     samples_per_gpu=2,  # Batch size of a single GPU
-    workers_per_gpu=6,  # Worker to pre-fetch data for each single GPU
-    train=dict(    
-        type='RepeatDataset',
-        times=3,
-        dataset=dict(
-            type=dataset_type,
-            img_prefix=TRAIN_TEST_VALID_FOLDERS,
-            classes=classes,
-            ann_file=TRAIN_TEST_VALID_FOLDERS + '/train_annotations.json',
-            pipeline=train_pipeline)),
-    val=dict(
-        type=dataset_type,
-        img_prefix=TRAIN_TEST_VALID_FOLDERS,
+    workers_per_gpu=10,  # Worker to pre-fetch data for each single GPU
+    train=dict(
+        img_prefix=IN_SET_FOLDERS,
         classes=classes,
-        ann_file=TRAIN_TEST_VALID_FOLDERS + '/valid_annotations.json',
-        pipeline=test_pipeline),
+        ann_file=IN_SET_FOLDERS + '/train_annotations.json'),
+    val=dict(img_prefix=[IN_SET_FOLDERS, NEAR_SET_FOLDERS, OUT_SET_FOLDERS],
+                classes=classes,
+                ann_file=[IN_SET_FOLDERS + '/valid_annotations.json', NEAR_SET_FOLDERS + '/valid_annotations.json', OUT_SET_FOLDERS + '/valid_annotations.json']),
     test=dict(
-        type=dataset_type,
-        img_prefix=TRAIN_TEST_VALID_FOLDERS,
+        img_prefix=IN_SET_FOLDERS,
         classes=classes,
-        ann_file=TRAIN_TEST_VALID_FOLDERS + '/test_annotations.json',
-        pipeline=test_pipeline))
+        ann_file=IN_SET_FOLDERS + '/test_annotations.json'))
 
-optimizer = dict(type='SGD', lr=0.005, momentum=0.9, weight_decay=0.0001)
+optimizer = dict(type='SGD', lr=LEARNING_RATE, momentum=MOMENTUM, weight_decay=WEIGHT_DECAY) # 0.0025 * samples_per_gpu
 optimizer_config = dict(_delete_=True, grad_clip=dict(max_norm=35, norm_type=2))
 
+runner = dict(type='EpochBasedRunner', max_epochs=MAX_EPOCHS)
 # learning policy
 lr_config = dict(
     policy='step',

@@ -1,22 +1,24 @@
 _base_ = '../mask_rcnn/mask_rcnn_x101_32x8d_fpn_mstrain-poly_3x_coco.py'
 
-TRAIN_TEST_VALID_FOLDERS="/data/gustav/datalab_data/model/dn-2010-2020/"
+NUM_CLASSES=6
+
 MAX_EPOCHS=32
+EVAL_INTERVAL=1
 
-# learning policy
-lr_config = dict(step=[28, 34])
-runner = dict(type='EpochBasedRunner', max_epochs=MAX_EPOCHS)
+LEARNING_RATE=0.005
+MOMENTUM=0.9
+WEIGHT_DECAY=0.0001
 
-evaluation = dict(interval=4)
+dataset_type = 'COCODataset'
+classes = ('News Unit', 'Advertisement', 'Listing', 'Weather', 'Death Notice', 'Game',)
+data_root = "/data/gustav/datalab_data/model/dn-2010-2020/"
 
 model = dict(
     roi_head=dict(
-        bbox_head=dict(num_classes=6),
-        mask_head=dict(num_classes=6)))
+        bbox_head=dict(num_classes=NUM_CLASSES),
+        mask_head=dict(num_classes=NUM_CLASSES)))
 
-dataset_type = 'CocoDataset'
-data_root = TRAIN_TEST_VALID_FOLDERS
-classes = ('News Unit', 'Advertisement', 'Listing', 'Weather', 'Death Notice', 'Game',)
+evaluation = dict(interval=EVAL_INTERVAL)
 
 img_norm_cfg = dict(
     mean=[103.530, 116.280, 123.675],
@@ -59,6 +61,11 @@ test_pipeline = [
         ])
 ]
 
+IN_SET_FOLDERS="/data/gustav/datalab_data/model/dn-2010-2020/"
+NEAR_SET_FOLDERS="/data/gustav/datalab_data/model/dn-svd-2001-2004/"
+OUT_SET_FOLDERS="/data/gustav/datalab_data/model/ab-ex-2001-2004/"
+
+# TODO Add near and out dataset
 
 data = dict(
     max_epochs=MAX_EPOCHS,
@@ -69,26 +76,27 @@ data = dict(
         times=3,
         dataset=dict(
             type=dataset_type,
-            img_prefix=TRAIN_TEST_VALID_FOLDERS,
+            img_prefix=IN_SET_FOLDERS,
             classes=classes,
-            ann_file=TRAIN_TEST_VALID_FOLDERS + '/train_annotations.json',
+            ann_file=IN_SET_FOLDERS + '/train_annotations.json',
             pipeline=train_pipeline)),
     val=dict(
         type=dataset_type,
-        img_prefix=TRAIN_TEST_VALID_FOLDERS,
+        img_prefix=IN_SET_FOLDERS,
         classes=classes,
-        ann_file=TRAIN_TEST_VALID_FOLDERS + '/valid_annotations.json',
+        ann_file=IN_SET_FOLDERS + '/valid_annotations.json',
         pipeline=test_pipeline),
     test=dict(
         type=dataset_type,
-        img_prefix=TRAIN_TEST_VALID_FOLDERS,
+        img_prefix=IN_SET_FOLDERS,
         classes=classes,
-        ann_file=TRAIN_TEST_VALID_FOLDERS + '/test_annotations.json',
+        ann_file=IN_SET_FOLDERS + '/test_annotations.json',
         pipeline=test_pipeline))
 
-optimizer = dict(type='SGD', lr=0.005, momentum=0.9, weight_decay=0.0001)
+optimizer = dict(type='SGD', lr=LEARNING_RATE, momentum=MOMENTUM, weight_decay=WEIGHT_DECAY) # 0.0025 * samples_per_gpu
 optimizer_config = dict(_delete_=True, grad_clip=dict(max_norm=35, norm_type=2))
 
+runner = dict(type='EpochBasedRunner', max_epochs=MAX_EPOCHS)
 # learning policy
 lr_config = dict(
     policy='step',
@@ -96,6 +104,7 @@ lr_config = dict(
     warmup_iters=500,
     warmup_ratio=0.001,
     step=[9,11])
+    
     
 # We can use the pre-trained Mask RCNN model to obtain higher performance
 load_from = 'checkpoints/resnext101_32x8d-1516f1aa.pth'
