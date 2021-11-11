@@ -178,8 +178,6 @@ def analyze_individual_category(k,
                                 iou_type,
                                 areas=None):
     nm = cocoGt.loadCats(catId)[0]
-    print(nm)
-    nm['supercategory'] = nm['name']
     print(f'--------------analyzing {k + 1}-{nm["name"]}---------------')
     ps_ = {}
     dt = copy.deepcopy(cocoDt)
@@ -194,7 +192,7 @@ def analyze_individual_category(k,
     dt.createIndex()
     # compute precision but ignore superclass confusion
     gt = copy.deepcopy(cocoGt)
-    print(nm)
+    nm['supercategory'] = nm['name']
     child_catIds = gt.getCatIds(supNms=[nm['supercategory']])
     for idx, ann in enumerate(gt.dataset['annotations']):
         if ann['category_id'] in child_catIds and ann['category_id'] != catId:
