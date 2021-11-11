@@ -9,7 +9,7 @@ LEARNING_RATE=0.005
 MOMENTUM=0.9
 WEIGHT_DECAY=0.0001
 
-dataset_type = 'COCODataset'
+dataset_type = 'CocoDataset'
 classes = ('News Unit', 'Advertisement', 'Listing', 'Weather', 'Death Notice', 'Game',)
 data_root = "/data/gustav/datalab_data/model/dn-2010-2020/"
 

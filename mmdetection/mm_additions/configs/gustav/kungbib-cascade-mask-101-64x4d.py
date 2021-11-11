@@ -13,6 +13,13 @@ dataset_type = 'CocoDataset'
 classes = ('News Unit', 'Advertisement', 'Listing', 'Weather', 'Death Notice', 'Game',)
 data_root = "/data/gustav/datalab_data/model/dn-2010-2020/"
 
+model = dict(
+    roi_head=dict(
+        bbox_head=dict(num_classes=NUM_CLASSES),
+        mask_head=dict(num_classes=NUM_CLASSES)))
+
+evaluation = dict(interval=EVAL_INTERVAL)
+
 img_norm_cfg = dict(
     mean=[103.530, 116.280, 123.675],
     std=[57.375, 57.120, 58.395],

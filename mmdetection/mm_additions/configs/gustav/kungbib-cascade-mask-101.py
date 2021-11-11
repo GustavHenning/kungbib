@@ -9,7 +9,7 @@ LEARNING_RATE=0.005
 MOMENTUM=0.9
 WEIGHT_DECAY=0.0001
 
-dataset_type = 'COCODataset'
+dataset_type = 'CocoDataset'
 classes = ('News Unit', 'Advertisement', 'Listing', 'Weather', 'Death Notice', 'Game',)
 
 model = dict(
@@ -68,16 +68,26 @@ data = dict(
     samples_per_gpu=2,  # Batch size of a single GPU
     workers_per_gpu=10,  # Worker to pre-fetch data for each single GPU
     train=dict(
-        img_prefix=IN_SET_FOLDERS,
+        type='RepeatDataset',
+        times=3,
+        dataset=dict(
+            type=dataset_type,
+            img_prefix=IN_SET_FOLDERS,
+            classes=classes,
+            ann_file=IN_SET_FOLDERS + '/train_annotations.json',
+            pipeline=train_pipeline)),
+    val=dict(
+        type=dataset_type,   
+        img_prefix=[IN_SET_FOLDERS, NEAR_SET_FOLDERS, OUT_SET_FOLDERS],
         classes=classes,
-        ann_file=IN_SET_FOLDERS + '/train_annotations.json'),
-    val=dict(img_prefix=[IN_SET_FOLDERS, NEAR_SET_FOLDERS, OUT_SET_FOLDERS],
-                classes=classes,
-                ann_file=[IN_SET_FOLDERS + '/valid_annotations.json', NEAR_SET_FOLDERS + '/valid_annotations.json', OUT_SET_FOLDERS + '/valid_annotations.json']),
+        ann_file=[IN_SET_FOLDERS + '/valid_annotations.json', NEAR_SET_FOLDERS + '/valid_annotations.json', OUT_SET_FOLDERS + '/valid_annotations.json'],
+        pipeline=test_pipeline),
     test=dict(
+        type=dataset_type,  
         img_prefix=IN_SET_FOLDERS,
         classes=classes,
-        ann_file=IN_SET_FOLDERS + '/test_annotations.json'))
+        ann_file=IN_SET_FOLDERS + '/test_annotations.json',
+        pipeline=test_pipeline))
 
 optimizer = dict(type='SGD', lr=LEARNING_RATE, momentum=MOMENTUM, weight_decay=WEIGHT_DECAY) # 0.0025 * samples_per_gpu
 optimizer_config = dict(_delete_=True, grad_clip=dict(max_norm=35, norm_type=2))
