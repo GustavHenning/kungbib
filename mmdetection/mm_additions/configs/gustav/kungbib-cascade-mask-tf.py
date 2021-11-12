@@ -19,6 +19,9 @@ model = dict(
 
 evaluation = dict(interval=EVAL_INTERVAL)
 
+img_norm_cfg = dict(
+    mean=[103.530, 116.280, 123.675], std=[1.0, 1.0, 1.0], to_rgb=False, extra_dims=3) # TODO make extra_dims a cfg option
+
 IN_SET_FOLDERS="/data/gustav/datalab_data/model/dn-2010-2020/"
 NEAR_SET_FOLDERS="/data/gustav/datalab_data/model/dn-svd-2001-2004/"
 OUT_SET_FOLDERS="/data/gustav/datalab_data/model/ab-ex-2001-2004/"

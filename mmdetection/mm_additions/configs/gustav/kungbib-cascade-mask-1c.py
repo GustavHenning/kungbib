@@ -33,7 +33,7 @@ data = dict(
         ann_file=IN_SET_FOLDERS + '/train_1c_annotations.json'),
     val=dict(img_prefix=[IN_SET_FOLDERS, NEAR_SET_FOLDERS, OUT_SET_FOLDERS],
                 classes=classes,
-                ann_file=[IN_SET_FOLDERS + '/valid_1c_annotations.json', NEAR_SET_FOLDERS + '/valid_annotations.json', OUT_SET_FOLDERS + '/valid_annotations.json']),
+                ann_file=[IN_SET_FOLDERS + '/valid_1c_annotations.json', NEAR_SET_FOLDERS + '/valid_1c_annotations.json', OUT_SET_FOLDERS + '/valid_1c_annotations.json']),
     test=dict(
         img_prefix=IN_SET_FOLDERS,
         classes=classes,

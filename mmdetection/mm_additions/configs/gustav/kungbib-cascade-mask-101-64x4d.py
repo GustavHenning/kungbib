@@ -66,7 +66,6 @@ IN_SET_FOLDERS="/data/gustav/datalab_data/model/dn-2010-2020/"
 NEAR_SET_FOLDERS="/data/gustav/datalab_data/model/dn-svd-2001-2004/"
 OUT_SET_FOLDERS="/data/gustav/datalab_data/model/ab-ex-2001-2004/"
 
-# TODO Add near and out dataset
 
 data = dict(
     max_epochs=MAX_EPOCHS,
@@ -83,9 +82,9 @@ data = dict(
             pipeline=train_pipeline)),
     val=dict(
         type=dataset_type,
-        img_prefix=IN_SET_FOLDERS,
+        img_prefix=[IN_SET_FOLDERS, NEAR_SET_FOLDERS, OUT_SET_FOLDERS],
         classes=classes,
-        ann_file=IN_SET_FOLDERS + '/valid_annotations.json',
+        ann_file=[IN_SET_FOLDERS + '/valid_annotations.json', NEAR_SET_FOLDERS + '/valid_annotations.json', OUT_SET_FOLDERS + '/valid_annotations.json'],
         pipeline=test_pipeline),
     test=dict(
         type=dataset_type,

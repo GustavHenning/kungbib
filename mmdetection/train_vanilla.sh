@@ -1,3 +1,3 @@
 #!/bin/bash
 
-bash train.sh kcm-me vanilla
+bash train.sh kungbib-cascade-mask vanilla

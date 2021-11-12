@@ -6,13 +6,18 @@ from .encoders.bert import BERT
 from .encoders.doc_to_vec import Doc2Vec
 import matplotlib.pyplot as plt
 import matplotlib.patches as patches
+from sklearn import preprocessing
 
 from timeit import default_timer as timer
+
+
+from pylab import *
+from mpl_toolkits.mplot3d import Axes3D
 
 BASE_CHANNELS = 3
 DEBUG_IMAGE = False
 DEBUG_TIME = False
-
+VISUALIZE_EMBEDDINGS = False
 
 @PIPELINES.register_module()
 class TextFeatures:
@@ -39,6 +44,7 @@ class TextFeatures:
         if DEBUG_IMAGE:
             fig, ax = self.draw_base_image(results)
 
+
         scaleX = results["img_shape"][0] / results["ori_shape"][0]
         scaleY = results["img_shape"][1] / results["ori_shape"][1]
 
@@ -48,7 +54,7 @@ class TextFeatures:
             #print(results)
             print("size of img is {}, pad_h, pad_w is {} {}, ori_shape is {}".format(results["img_shape"], pad_h, pad_w, results["ori_shape"]))
         if DEBUG_TIME:    
-            print("intiialize array at {}".format(timer() - start))
+            print("initialize array at {}".format(timer() - start))
         text_feature_array = np.zeros((pad_h, pad_w, 
             self.dimensions + 3), dtype=np.float32)
         if DEBUG_TIME:
@@ -60,26 +66,36 @@ class TextFeatures:
         # TODO how do we handle set dimensional sizes from the encoders?
         for block in texts["content"]:
             text = block["text"]
-            encoded_vector = np.pad(self.encoder.encode(text), (3,0), 'constant') # prepad rbg channels 
+            norm = self.normalize(self.encoder.encode(text))
+            encoded_vector = np.pad(norm, (3,0), 'constant') # prepad rgb channels 
             x = int(block["x"] * scaleX) if results["flip_direction"] != 'horizontal' else pad_w - int(np.ceil(block["x"] * scaleX)) - int(block["width"] * scaleX) 
             y = int(block["y"] * scaleY) 
             w = int(block["width"] * scaleX) 
             h = int(block["height"] * scaleY)
-            text_feature_array[x:w][y:h] = encoded_vector
+
+            #for a in range(y, y+h):
+            #    for b in range(x, x+w):
+            #        text_feature_array[a][b] = encoded_vector
+            text_feature_array[y:(y+h),x:(x+w),:] = encoded_vector
             if DEBUG_IMAGE:
                 self.draw_rect(ax,x,y,w,h)
         if DEBUG_TIME:
             print("blocks done at {}".format(timer() - start))
-        self.show_plot()
-        #rgbtf = np.concatenate((results["img"], text_feature_array), axis=2) # TODO make this faster
-        len_x = results["img"].shape[0]
-        len_y = results["img"].shape[1]
-        text_feature_array[0:len_x,0:len_y,0:3] = results["img"]
+        if DEBUG_IMAGE:
+            self.show_plot()
+
+        len_y = results["img"].shape[0]
+        len_x = results["img"].shape[1]
+
+        #self.confirm_empty(text_feature_array[:,:,0:3])
+        text_feature_array[0:len_y,0:len_x,0:3] = results["img"]
 
         if DEBUG_TIME:
             print("concatenate done at {}".format(timer() - start))
         results["img_rgb"] = results["img"]
         results["img"] = text_feature_array
+        if VISUALIZE_EMBEDDINGS:
+            self.visualize(results["img"])
         if DEBUG_TIME:
             print("reassign at {}".format(timer() - start))
         # set image shape
@@ -110,7 +126,28 @@ class TextFeatures:
         if not DEBUG_IMAGE:
             return 
         plt.show()
-        
+    
+    def visualize(self, m):
+        fig = plt.figure(figsize=(12,12))
+        ax = fig.add_subplot(projection="3d")
+        x, y = np.ogrid[0:m.shape[0], 0:m.shape[1]]
+        ax.plot_surface(x, y, np.full((np.shape(x)[0], np.shape(y)[1]), 10.0, dtype=float), rstride=5, cstride=5, facecolors=(np.abs(m[:,:,0:3]) / 255.0))
+        tf_colors=np.abs(m[:,:,3:6])
+
+        ax.plot_surface(x, y, np.full((np.shape(x)[0], np.shape(y)[1]), 0.0, dtype=float), rstride=5, cstride=5, facecolors=(tf_colors))
+        plt.show()
+        plt.pause(1000)
+
+    def normalize(self, nparray):
+        v_min = nparray.min(axis=0, keepdims=True) #axis=(0,1)
+        v_max = nparray.max(axis=0, keepdims=True)
+        return (nparray - v_min)/(v_max - v_min) if (v_max - v_min) != 0 else nparray
+
+
+    def confirm_empty(self, arr):
+        if(np.mean(arr) != 0.0):
+            print("Expected empty array but found mean {}".format(np.mean(arr)))
+
 @PIPELINES.register_module()
 class RemoveTextFeatures:
     def __call__(self, results):
