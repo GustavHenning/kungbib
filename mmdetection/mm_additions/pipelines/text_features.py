@@ -45,17 +45,23 @@ class TextFeatures:
             fig, ax = self.draw_base_image(results)
 
 
-        scaleX = results["img_shape"][0] / results["ori_shape"][0]
-        scaleY = results["img_shape"][1] / results["ori_shape"][1]
+        scaleX = results["img_shape"][1] / results["ori_shape"][1]
+        scaleY = results["img_shape"][0] / results["ori_shape"][0]
 
-        pad_h = int(np.ceil(results["img"].shape[0] / results["pad_size_divisor"])) * results["pad_size_divisor"]
-        pad_w = int(np.ceil(results["img"].shape[1] / results["pad_size_divisor"])) * results["pad_size_divisor"]
+        img_postpad_w = results["img"].shape[1]
+        img_postpad_h = results["img"].shape[0]
+
+        img_prepad_w = results["img_shape"][1]
+        img_prepad_h = results["img_shape"][0]
+
         if DEBUG_IMAGE:
             #print(results)
-            print("size of img is {}, pad_h, pad_w is {} {}, ori_shape is {}".format(results["img_shape"], pad_h, pad_w, results["ori_shape"]))
+            print(results["img_shape"])
+            print(results["img"].shape)
+            print("size of img is {}, postpad_w, postpad_h is {} {}, ori_shape is {}, scale is {} {}".format(results["img_shape"], img_postpad_w, img_postpad_h, results["ori_shape"], scaleX, scaleY))
         if DEBUG_TIME:    
             print("initialize array at {}".format(timer() - start))
-        text_feature_array = np.zeros((pad_h, pad_w, 
+        text_feature_array = np.zeros((img_postpad_h, img_postpad_w, 
             self.dimensions + 3), dtype=np.float32)
         if DEBUG_TIME:
             print("read text at {}".format(timer() - start))
@@ -68,10 +74,19 @@ class TextFeatures:
             text = block["text"]
             norm = self.normalize(self.encoder.encode(text))
             encoded_vector = np.pad(norm, (3,0), 'constant') # prepad rgb channels 
-            x = int(block["x"] * scaleX) if results["flip_direction"] != 'horizontal' else pad_w - int(np.ceil(block["x"] * scaleX)) - int(block["width"] * scaleX) 
+
+            total_width = img_postpad_w
+            padding = img_postpad_w - img_prepad_w
+            block_x = int(np.ceil(block["x"] * scaleX))
+
+            w = int(np.ceil(block["width"] * scaleX)) 
+            x = int(block["x"] * scaleX) if results["flip_direction"] != 'horizontal' else total_width - (padding + block_x + w)
+            #print("total width: {}".format(total_width))
+            #print("padding: {}".format(padding))
+            #print("block_x: {}".format(block_x))
+            #print("w_x: {}".format(w_x))
             y = int(block["y"] * scaleY) 
-            w = int(block["width"] * scaleX) 
-            h = int(block["height"] * scaleY)
+            h = int(np.ceil(block["height"] * scaleY))
 
             #for a in range(y, y+h):
             #    for b in range(x, x+w):
@@ -131,7 +146,9 @@ class TextFeatures:
         fig = plt.figure(figsize=(12,12))
         ax = fig.add_subplot(projection="3d")
         x, y = np.ogrid[0:m.shape[0], 0:m.shape[1]]
-        ax.plot_surface(x, y, np.full((np.shape(x)[0], np.shape(y)[1]), 10.0, dtype=float), rstride=5, cstride=5, facecolors=(np.abs(m[:,:,0:3]) / 255.0))
+        img_colors=self.normalize_3d(m[:,:,0:3])
+
+        ax.plot_surface(x, y, np.full((np.shape(x)[0], np.shape(y)[1]), 10.0, dtype=float), rstride=5, cstride=5, facecolors=(img_colors))
         tf_colors=np.abs(m[:,:,3:6])
 
         ax.plot_surface(x, y, np.full((np.shape(x)[0], np.shape(y)[1]), 0.0, dtype=float), rstride=5, cstride=5, facecolors=(tf_colors))
@@ -143,6 +160,10 @@ class TextFeatures:
         v_max = nparray.max(axis=0, keepdims=True)
         return (nparray - v_min)/(v_max - v_min) if (v_max - v_min) != 0 else nparray
 
+    def normalize_3d(self, nparray):
+        v_min = nparray.min(axis=(0,1,2), keepdims=True) #axis=(0,1)
+        v_max = nparray.max(axis=(0,1,2), keepdims=True)
+        return (nparray - v_min)/(v_max - v_min) if (v_max - v_min) != 0 else nparray
 
     def confirm_empty(self, arr):
         if(np.mean(arr) != 0.0):
