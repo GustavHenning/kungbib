@@ -1,11 +1,17 @@
 #!/bin/bash
-
 d=$1 # directory of checkpoint (workdir)
 
 mkdir -p $d/analysis
 
+
+if [ $(ls $d/*.log.json | wc -l) -eq 0 ]; then
+    echo "No logs found, skipping..."
+    exit 0
+fi
+
 echo "$d"
 LATEST_LOG=$(ls $d/*.log.json | sort -V | tail -n 1)
+echo "$?"
 echo $LATEST_LOG
 
 if [[ $(cat $LATEST_LOG | grep -v env_info | wc -l) -gt 0 ]]; then
@@ -29,6 +35,15 @@ fi
 # create log from val because its strictly made for 1 val 1 train
 cat $LATEST_LOG | grep val > $d/latest.log.val.json
 
+if [ ! -f $d/latest.log.val.json ]; then
+    echo "no latest log found, skipping"
+    exit 0
+fi
+
+if [ $(cat $d/latest.log.val.json | grep -v env_info | wc -l) -eq 0 ]; then
+    echo "Latest log contains no valid lines, skipping..."
+    exit 0
+fi
 
 if [[ $(cat $d/latest.log.val.json | grep -v env_info | grep 0_bbox_mAP | wc -l) -gt 0 ]]; then
     cp $d/latest.log.val.json $d/latest.log.val.formatted.json

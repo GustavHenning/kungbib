@@ -1,3 +1,4 @@
 #!/bin/bash
 
-bash train.sh kungbib-cascade-mask-101-32x8d vanilla-101-32x8d
+bash train.sh kungbib-cascade-mask-101-32x8d vanilla-101-32x8d_2 2
+bash train.sh kungbib-cascade-mask-101-32x8d vanilla-101-32x8d_1 1

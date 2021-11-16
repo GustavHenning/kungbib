@@ -2,15 +2,49 @@
 
 CONFIG_NAME=$1
 CHECKPOINT_DIR_NAME=$2
+IMAGE_SCALE_MODIFIER=$3
+
+img_scales () {
+IS_TRAIN=$1
+SCALE=$2
+
+SCALED_WIDTH=$((1333*$SCALE))
+
+if [ $IS_TRAIN -eq 0 ]; then
+    echo "[($SCALED_WIDTH,$((640*$SCALE))),($SCALED_WIDTH,$((800*$SCALE)))]"
+else
+    echo "($SCALED_WIDTH,$((800*$SCALE)))"
+fi
+}
+
+TRAIN_IMG_SIZES="$(img_scales 0 $IMAGE_SCALE_MODIFIER)"
+TEST_IMG_SIZES="$(img_scales 1 $IMAGE_SCALE_MODIFIER)"
 
 echo "Running training for $CONFIG_NAME found in checkpoints/custom/tf/$CHECKPOINT_DIR_NAME"
 
 python3 -W ignore tools/train.py \
 configs/gustav/$CONFIG_NAME.py \
 --seed=0 \
---work-dir=checkpoints/custom/tf/$CHECKPOINT_DIR_NAME
+--work-dir=checkpoints/custom/tf/$CHECKPOINT_DIR_NAME \
+--cfg-options test_pipeline.1.transforms.0.extra_dims=$DIMENSIONS \
+train_pipeline.3.img_scale=$TRAIN_IMG_SIZES \
+test_pipeline.1.img_scale=$TEST_IMG_SIZES \
+data.train.pipeline.3.img_scale=$TRAIN_IMG_SIZES \
+data.val.pipeline.1.img_scale=$TEST_IMG_SIZES \
+data.test.pipeline.1.img_scale=$TEST_IMG_SIZES 
 
 cd checkpoints/custom/tf/$CHECKPOINT_DIR_NAME
+
+if [ -f analysis.zip ]; then
+    rm -f analysis.zip
+fi
+
+if [ -f results.zip ]; then
+    rm -f results.zip
+fi
+
+zip -r analysis.zip ./analysis
+zip -r results.zip ./results
 
 # remove previous test results
 rm -rf ./analysis && mkdir -p ./analysis
@@ -25,6 +59,12 @@ python3 tools/test.py \
 configs/gustav/$CONFIG_NAME.py \
 checkpoints/custom/tf/$CHECKPOINT_DIR_NAME/latest.pth \
 --work-dir=checkpoints/custom/tf/$CHECKPOINT_DIR_NAME \
+--cfg-options test_pipeline.1.transforms.0.extra_dims=$DIMENSIONS \
+train_pipeline.3.img_scale=$TRAIN_IMG_SIZES \
+test_pipeline.1.img_scale=$TEST_IMG_SIZES \
+data.train.pipeline.3.img_scale=$TRAIN_IMG_SIZES \
+data.val.pipeline.1.img_scale=$TEST_IMG_SIZES \
+data.test.pipeline.1.img_scale=$TEST_IMG_SIZES \
 --eval segm bbox \
 --show-dir checkpoints/custom/tf/$CHECKPOINT_DIR_NAME/analysis \
 --show-score-thr 0.8
@@ -32,6 +72,12 @@ checkpoints/custom/tf/$CHECKPOINT_DIR_NAME/latest.pth \
 python3 tools/test.py \
 configs/gustav/$CONFIG_NAME.py \
 checkpoints/custom/tf/$CHECKPOINT_DIR_NAME/latest.pth \
+--cfg-options test_pipeline.1.transforms.0.extra_dims=$DIMENSIONS \
+train_pipeline.3.img_scale=$TRAIN_IMG_SIZES \
+test_pipeline.1.img_scale=$TEST_IMG_SIZES \
+data.train.pipeline.3.img_scale=$TRAIN_IMG_SIZES \
+data.val.pipeline.1.img_scale=$TEST_IMG_SIZES \
+data.test.pipeline.1.img_scale=$TEST_IMG_SIZES \
 --format-only \
 --options "jsonfile_prefix=./checkpoints/custom/tf/$CHECKPOINT_DIR_NAME/results"
 
@@ -65,9 +111,26 @@ fi
 python3 -W ignore tools/train.py \
 configs/gustav/$CONFIG_NAME-1c.py \
 --seed=0 \
---work-dir=checkpoints/custom/tf/$CHECKPOINT_DIR_NAME-1c
+--work-dir=checkpoints/custom/tf/$CHECKPOINT_DIR_NAME-1c \
+--cfg-options test_pipeline.1.transforms.0.extra_dims=$DIMENSIONS \
+train_pipeline.3.img_scale=$TRAIN_IMG_SIZES \
+test_pipeline.1.img_scale=$TEST_IMG_SIZES \
+data.train.pipeline.3.img_scale=$TRAIN_IMG_SIZES \
+data.val.pipeline.1.img_scale=$TEST_IMG_SIZES \
+data.test.pipeline.1.img_scale=$TEST_IMG_SIZES 
 
 cd checkpoints/custom/tf/$CHECKPOINT_DIR_NAME-1c
+
+if [ -f analysis.zip ]; then
+    rm -f analysis.zip
+fi
+
+if [ -f results.zip ]; then
+    rm -f results.zip
+fi
+
+zip -r analysis.zip ./analysis
+zip -r results.zip ./results
 
 # remove previous test results
 rm -rf ./analysis && mkdir -p ./analysis
@@ -82,6 +145,12 @@ python3 tools/test.py \
 configs/gustav/$CONFIG_NAME-1c.py \
 checkpoints/custom/tf/$CHECKPOINT_DIR_NAME-1c/latest.pth \
 --work-dir=checkpoints/custom/tf/$CHECKPOINT_DIR_NAME-1c \
+--cfg-options test_pipeline.1.transforms.0.extra_dims=$DIMENSIONS \
+train_pipeline.3.img_scale=$TRAIN_IMG_SIZES \
+test_pipeline.1.img_scale=$TEST_IMG_SIZES \
+data.train.pipeline.3.img_scale=$TRAIN_IMG_SIZES \
+data.val.pipeline.1.img_scale=$TEST_IMG_SIZES \
+data.test.pipeline.1.img_scale=$TEST_IMG_SIZES \
 --eval segm bbox \
 --show-dir checkpoints/custom/tf/$CHECKPOINT_DIR_NAME-1c/analysis \
 --show-score-thr 0.8
@@ -89,6 +158,12 @@ checkpoints/custom/tf/$CHECKPOINT_DIR_NAME-1c/latest.pth \
 python3 tools/test.py \
 configs/gustav/$CONFIG_NAME-1c.py \
 checkpoints/custom/tf/$CHECKPOINT_DIR_NAME-1c/latest.pth \
+--cfg-options test_pipeline.1.transforms.0.extra_dims=$DIMENSIONS \
+train_pipeline.3.img_scale=$TRAIN_IMG_SIZES \
+test_pipeline.1.img_scale=$TEST_IMG_SIZES \
+data.train.pipeline.3.img_scale=$TRAIN_IMG_SIZES \
+data.val.pipeline.1.img_scale=$TEST_IMG_SIZES \
+data.test.pipeline.1.img_scale=$TEST_IMG_SIZES \
 --format-only \
 --options "jsonfile_prefix=./checkpoints/custom/tf/$CHECKPOINT_DIR_NAME-1c/results"
 

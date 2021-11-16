@@ -7,5 +7,9 @@ declare -a bert_models=( "KBLab/sentence-bert-swedish-cased" "KB/bert-base-swedi
 # size 384: "multi-qa-MiniLM-L6-cos-v1" "all-mpnet-base-v2" "multi-qa-mpnet-base-dot-v1" "all-distilroberta-v1" "all-MiniLM-L12-v2" "multi-qa-distilbert-cos-v1" "all-MiniLM-L6-v2" "paraphrase-multilingual-mpnet-base-v2" "paraphrase-albert-small-v2" "paraphrase-multilingual-MiniLM-L12-v2" "paraphrase-MiniLM-L3-v2" "distiluse-base-multilingual-cased-v1" "distiluse-base-multilingual-cased-v2"
 
 for m in "${bert_models[@]}"; do
-    bash train_tf.sh kungbib-cascade-mask-tf bert 768 $m
+    bash train_tf.sh kungbib-cascade-mask-tf bert 768 $m 1
+done
+
+for m in "${bert_models[@]}"; do
+    bash train_tf.sh kungbib-cascade-mask-tf bert 768 $m 2
 done

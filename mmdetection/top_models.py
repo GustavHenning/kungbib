@@ -12,14 +12,12 @@ def compare():
     for dir in dirs:
         latest = path.join(dir, "latest.log.val.json")
         if path.exists(latest):
-
             with open(latest, 'r') as f:
                 lines = f.read().splitlines()
                 if len(lines) > 0:
                     last_line = lines[-1]
                     d = json.loads(last_line)
-                    
-                    if not "bbox_mAP" in d.keys():
+                    if not "0_bbox_mAP" in d.keys():
                         continue
                     for key in d.keys():
                         if not key in results.keys():
