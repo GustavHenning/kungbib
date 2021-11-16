@@ -1,6 +1,6 @@
-_base_ = '../mask_rcnn/mask_rcnn_x101_64x4d_fpn_mstrain-poly_3x_coco.py'
+_base_ = '../mask_rcnn/mask_rcnn_x101_64x4d_fpn_mstrain-poly_3x_coco-tf-1c.py'
     
-NUM_CLASSES=6
+NUM_CLASSES=1
 
 model = dict(
     roi_head=dict(

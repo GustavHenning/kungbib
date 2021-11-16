@@ -1,8 +1,18 @@
 #!/bin/bash
 
 cp -rf /home/gush/git/kungbib/mmdetection/configs/gustav/* /home/gush/git/kungbib/mmdetection/mm_additions/configs/gustav/
-cp -rf /home/gush/git/kungbib/mmdetection/configs/mask_rcnn/mask_rcnn_r50_caffe_fpn_mstrain-poly_1x_coco-tf.py /home/gush/git/kungbib/mmdetection/mm_additions/configs/mask_rcnn/mask_rcnn_r50_caffe_fpn_mstrain-poly_1x_coco-tf.py
-cp -rf /home/gush/git/kungbib/mmdetection/configs/mask_rcnn/mask_rcnn_r50_fpn_1x_coco-tf.py /home/gush/git/kungbib/mmdetection/mm_additions/configs/mask_rcnn/mask_rcnn_r50_fpn_1x_coco-tf.py
+# common
+cp -rf /home/gush/git/kungbib/mmdetection/configs/common/mstrain-poly_3x_coco_instance* /home/gush/git/kungbib/mmdetection/mm_additions/configs/common/
+#mask rcnn
+#r50
+cp -rf /home/gush/git/kungbib/mmdetection/configs/mask_rcnn/mask_rcnn_r50_fpn_mstrain-poly_3x_coco* /home/gush/git/kungbib/mmdetection/mm_additions/configs/mask_rcnn/
+#r101
+cp -rf /home/gush/git/kungbib/mmdetection/configs/mask_rcnn/mask_rcnn_r101_fpn_mstrain-poly_3x_coco* /home/gush/git/kungbib/mmdetection/mm_additions/configs/mask_rcnn/
+#r101-32x8d
+cp -rf /home/gush/git/kungbib/mmdetection/configs/mask_rcnn/mask_rcnn_x101_32x8d_fpn_mstrain-poly_3x_coco* /home/gush/git/kungbib/mmdetection/mm_additions/configs/mask_rcnn/
+#r101-64x4d
+cp -rf /home/gush/git/kungbib/mmdetection/configs/mask_rcnn/mask_rcnn_x101_64x4d_fpn_mstrain-poly_3x_coco* /home/gush/git/kungbib/mmdetection/mm_additions/configs/mask_rcnn/
+
 cp -rf /home/gush/git/kungbib/mmdetection/pipelines/text_features.py /home/gush/git/kungbib/mmdetection/mm_additions/pipelines/text_features.py
 cp -rf /home/gush/git/kungbib/mmdetection/pipelines/transforms.py /home/gush/git/kungbib/mmdetection/mm_additions/pipelines/transforms.py
 cp -rf /home/gush/git/kungbib/mmdetection/pipelines/encoders/* /home/gush/git/kungbib/mmdetection/mm_additions/pipelines/encoders
