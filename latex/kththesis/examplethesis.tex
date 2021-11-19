@@ -841,7 +841,7 @@ In each dataset, the labels are produced at the page level. In the first dataset
 
 \subsubsection{DN 2010 - 2020 (In-set)}
 
-Sampled from Dagens Nyheter in the time period 2010 to 2020, this dataset contains plenty of articles with rich graphics such as visualizations of data related to the content. Many images related to the articles are very large, sometimes spanning the entire first page of a multi-page article. 
+Sampled from Dagens Nyheter in the time period 2010 to 2020, this dataset contains plenty of articles with rich graphics such as visualizations of data related to the content. Many images related to the articles are very large, sometimes spanning the entire first page of a multi-page article. Sampling ratio is 70/15/15.
 
 \begin{table}[!ht]
   \begin{center}
@@ -850,13 +850,12 @@ Sampled from Dagens Nyheter in the time period 2010 to 2020, this dataset contai
     \begin{tabular}{l|l|l|l|l|l|l} % <-- Alignments: 1st column left, 2nd middle, with vertical lines in between
     \textbf{Dataset} & \textbf{News Unit} & \textbf{Advertisement} & \textbf{Listing} & \textbf{Death Notice} & \textbf{Game} & \textbf{Weather}  \\ 
     \hline
-    \textbf{Train} & 721 & 427 & 110 & 69 & 13 & 10 \\    \hline
-    \textbf{Test} & 394 & 214 & 29 & 7 & 7 & 4 \\    \hline
-    \textbf{Validation} & 340 & 177 & 48 & 50 & 6 & 3 \\    \hline
+    \textbf{Train} & 1027 & 554 & 920 & 105 & 55 & 12 \\    \hline
+    \textbf{Test} & 179 & 166 & 196 & 19 & 5 & 2 \\    \hline
+    \textbf{Validation} & 240 & 135 & 259 & 2 & 6 & 3 \\    \hline
     \end{tabular}
   \end{center}
 \end{table}
-
 
 \subsubsection{DN SvD 2001 - 2004 (Near-set)}
 
@@ -869,7 +868,7 @@ Sampled from Dagens Nyheter in the time period 2010 to 2020, this dataset contai
     \begin{tabular}{l|l|l|l|l|l|l} % <-- Alignments: 1st column left, 2nd middle, with vertical lines in between
     \textbf{Dataset} & \textbf{News Unit} & \textbf{Advertisement} & \textbf{Listing} & \textbf{Death Notice} & \textbf{Game} & \textbf{Weather}  \\ 
     \hline
-    \textbf{Test} & ? & ? & ? & ? & ? & ? \\    \hline
+    \textbf{Test} & 544 & 599 & 664 & 40 & 11 & 2 \\    \hline
     \end{tabular}
   \end{center}
 \end{table}
@@ -880,17 +879,15 @@ Sampled from Dagens Nyheter in the time period 2010 to 2020, this dataset contai
 
 \begin{table}[!ht]
   \begin{center}
-    \caption{Class distribution in the  Aftonbladet Expressen ? - ? dataset}
+    \caption{Class distribution in the  Aftonbladet Expressen 2001 - 2004 dataset}
     \label{tab:outsetclassdist}
     \begin{tabular}{l|l|l|l|l|l|l} % <-- Alignments: 1st column left, 2nd middle, with vertical lines in between
     \textbf{Dataset} & \textbf{News Unit} & \textbf{Advertisement} & \textbf{Listing} & \textbf{Death Notice} & \textbf{Game} & \textbf{Weather}  \\ 
     \hline
-    \textbf{Test} & ? & ? & ? & ? & ? & ? \\    \hline
+    \textbf{Test} & 619 & 214 & 489 & 0 & 15 & 5 \\    \hline
     \end{tabular}
   \end{center}
 \end{table}
-
-
 \subsection{Classes and labels}
 
 \subsubsection{News Unit}
