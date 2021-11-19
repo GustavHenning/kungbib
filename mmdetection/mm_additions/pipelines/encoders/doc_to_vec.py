@@ -10,7 +10,9 @@ from tqdm import tqdm
 class Doc2Vec(Encoder):
     def __init__(self, dimensions, texts_location="/data/gustav/datalab_data/model/text", model_name=""):
         print("initializing Doc2Vec")
-        self.pattern = re.compile('[^\w\d ]+')
+        # ((0?1?[1-9]|1[0-2])(:|.)[0-5][0-9])* matches for example 18.00 or 18:00
+        # the rest captures sentences
+        self.pattern = re.compile('(^|[\s])(((0?1?[1-9]|1[0-2])(:|.)[0-5][0-9])*[^.!?]*)([.!?]|$)')
         sentences = self.build_corpus(texts_location)
         print("Tagging documents")
         documents = [TaggedDocument(doc, [i]) for i, doc in enumerate(sentences[0:10])]
@@ -35,10 +37,25 @@ class Doc2Vec(Encoder):
             with open(file, encoding='utf-8') as fh:
                 data = json.load(fh)
                 for d in data["content"]:
-                    res = self.pattern.sub('', d["text"])
-                    sentences.append(res)
+                    extracted_sentences = self.extract_sentences(d['text'])
+                    for res in extracted_sentences:
+                        sentences.append(res)
         return sentences
 
     def encode(self, text):
-        res = self.pattern.sub('', text)
-        return self.model.infer_vector(res.split(" "))
+        res = self.extract_sentences(text)
+        tokens = []
+        for sen in res:
+            for word in sen.split(" "):
+                subbed = re.sub(r'[^a-zA-Z0-9ÅÄÖåäö_]+', '', word)
+                if len(subbed) > 0:
+                    tokens.append(subbed)
+        return self.model.infer_vector(tokens)
+
+    def extract_sentences(self, text):
+        sentences = []
+        res = self.pattern.findall(text)
+        for tuple in res:
+            sentences.append(''.join(tuple).strip())
+        return sentences
+        

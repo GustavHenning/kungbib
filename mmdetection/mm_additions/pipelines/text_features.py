@@ -17,7 +17,7 @@ from mpl_toolkits.mplot3d import Axes3D
 BASE_CHANNELS = 3
 DEBUG_IMAGE = False
 DEBUG_TIME = False
-VISUALIZE_EMBEDDINGS = False
+VISUALIZE_EMBEDDINGS = True
 
 @PIPELINES.register_module()
 class TextFeatures:
@@ -72,6 +72,7 @@ class TextFeatures:
         # TODO how do we handle set dimensional sizes from the encoders?
         for block in texts["content"]:
             text = block["text"]
+            #print(text)
             norm = self.normalize(self.encoder.encode(text))
             encoded_vector = np.pad(norm, (3,0), 'constant') # prepad rgb channels 
 
