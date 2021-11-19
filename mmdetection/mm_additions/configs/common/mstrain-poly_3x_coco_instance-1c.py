@@ -3,10 +3,10 @@ _base_ = '../_base_/default_runtime.py'
 dataset_type = 'CocoDataset'
 data_root = "/data/gustav/datalab_data/model/dn-2010-2020/"
 
-MAX_EPOCHS=64
+MAX_EPOCHS=32
 EVAL_INTERVAL=1
 
-LEARNING_RATE=0.002
+LEARNING_RATE=0.005
 MOMENTUM=0.9
 WEIGHT_DECAY=0.0001
 

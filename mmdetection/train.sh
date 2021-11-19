@@ -4,16 +4,19 @@ CONFIG_NAME=$1
 CHECKPOINT_DIR_NAME=$2
 IMAGE_SCALE_MODIFIER=$3
 
+
 img_scales () {
 IS_TRAIN=$1
 SCALE=$2
 
-SCALED_WIDTH=$((1333*$SCALE))
+SCALED_WIDTH=$(bc -l <<< "scale=0; (1333*$SCALE)/1")
+SCALLED_SMALL_HEIGHT=$(bc -l <<< "scale=0; (640*$SCALE)/1")
+SCALED_HEIGHT=$(bc -l <<< "scale=0; (800*$SCALE)/1")
 
 if [ $IS_TRAIN -eq 0 ]; then
-    echo "[($SCALED_WIDTH,$((640*$SCALE))),($SCALED_WIDTH,$((800*$SCALE)))]"
+    echo "[($SCALED_WIDTH,$SCALLED_SMALL_HEIGHT),($SCALED_WIDTH,$SCALED_HEIGHT)]"
 else
-    echo "($SCALED_WIDTH,$((800*$SCALE)))"
+    echo "($SCALED_WIDTH,$SCALED_HEIGHT)"
 fi
 }
 

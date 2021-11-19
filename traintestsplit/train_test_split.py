@@ -123,6 +123,6 @@ def train_val_split(dataset_folder_path, json_filename, train_prop=0.8, test_pro
         create_annotations(dataset_folder_path, "valid", valid_images, data)
 
 
-train_val_split(dataset_folder_path="dn-2010-2020/", json_filename="result.json", train_prop=0.5, test_prop=0.25, seed=5)
+train_val_split(dataset_folder_path="dn-2010-2020/", json_filename="result.json", train_prop=0.7, test_prop=0.15, seed=5)
 train_val_split(dataset_folder_path="dn-svd-2001-2004/", json_filename="result.json", train_prop=1.0, seed=5)
 train_val_split(dataset_folder_path="ab-ex-2001-2004/", json_filename="result.json", train_prop=1.0, seed=5)
