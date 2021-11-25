@@ -497,12 +497,8 @@ Advertisements occur consistently on front pages although to a lesser degree tha
 
 Any page that is not a \textit{placard} or a \textit{front page} is considered a \textbf{content page}. Single page articles are the most common form of content page.
 In this context, an article fits on a single page, but the page itself may contain many different articles and other elements such as advertisements.
-If two elements discuss the same topic but have different authors they will be considered two different news units.
 
 Multi page articles are content pages in which the content spans multiple pages.
-Thus, a single page may only display half of an image, or a few elements of the complete body text.
-If the page is the first of a multi page article the byline may be missing, but the elements will still be considered a news unit.
-Similarly, if the page is not the first of a multi page article, a headline may be missing, but the elements will still count as a news unit.
 
 \subsubsection{Listings}
 
@@ -754,7 +750,7 @@ The deconvolution layer simply reverses the process of the convolutional layer, 
 
 \subsection{Feature Pyramid Network}
 
-Recognizing objects at vastly different scales is one of the fundamental challenges in computer vision. One approach which has proven to be successful in both performance on competitive datasets (e.g. the COCO detection benchmark without bells and whistles\footnote{Bells and whistles are classes that are excluded in their performance benchmark.} in this case) and in the sense that it adds little overhead, is the Feature Pyramid Network (FPN). The idea is intuitive: To offset the problem of objects being of vastly different scales in images, the features maps generated from the images are scaled to different resolutions as seen in \autoref{fig:fpn}, and predictions are made on each of these scaled feature maps.
+Recognizing objects at vastly different scales is one of the fundamental challenges in computer vision. One approach which has proven to be successful in both performance on competitive datasets (e.g. the MS COCO detection benchmark without bells and whistles\footnote{Bells and whistles are classes that are excluded in their performance benchmark.} in this case) and in the sense that it adds little overhead, is the Feature Pyramid Network (FPN). The idea is intuitive: To offset the problem of objects being of vastly different scales in images, the features maps generated from the images are scaled to different resolutions as seen in \autoref{fig:fpn}, and predictions are made on each of these scaled feature maps.
 
 Previous approaches similar to the FPN also leverage the pyramid scheme to predict objects at different resolutions. However, as in the case of Featurized image pyramid a) in \autoref{fig:fpn}, inference time could increase by up to four times making the approach impractical for real world applications.
 
@@ -769,6 +765,7 @@ Convolutional neural networks typically narrow it’s hidden layers in common ar
 \end{figure}
 
 \subsection{Mask R-CNN}
+\label{subs:maskrcnn}
 
 Mask R-CNN is a deep learning neural network architecture designed for object instance detection and segmentation. Given an input image, the network produces bounding boxes, segmentation masks, and an estimated class for each object detected in the image. Mask R-CNN is an extension in a longer line of extensions of neural network architectures.
 
@@ -780,7 +777,18 @@ Mask R-CNN is a deep learning neural network architecture designed for object in
 
 \textbf{Mask R-CNN}. Mask R-CNN contributes to this architecture by adding a parallel prediction of masks alongside its original output which is a class label and a bounding-box offset. This parallel proposal is what made Mask R-CNN unique compared to other extensions of Faster R-CNN at the time, where other methods often depended on the mask predictions for the class prediction. Mask R-CNN also introduces the concept of RoIAlign, to address misalignment issues between the RoI and the extracted features which impacts the pixel-accurate masks it produces due to quantization which is avoided with RoIAlign. More thorough details can be found in the original Mask R-CNN paper, He et al~\cite{DBLP:journals/corr/HeGDG17}. All deviations from the standard configuration will be noted in the implementation details chapter of this paper.
 
-\textbf{Weaknesses of Mask R-CNN} \textbf{TODO text about bad performance on small objects.}~\cite{DBLP:journals/corr/abs-1902-07296}
+\textbf{Weaknesses of Mask R-CNN}.
+M. Kisantal et al~\cite{DBLP:journals/corr/abs-1902-07296} describe a problem for Mask R-CNN in the fact that it struggles to perform well on small objects.
+There are a number of factors that contribute to this deficit.
+
+Firstly, in the MS COCO dataset, the number of images with small objects are significantly fewer than the number of images with medium or large objects ($51.82\%$ vs $70.07\%$ and $82.28\%$ respectively).
+
+The total annotated pixels per object size also differs significantly ($1.23\%$ vs $10.18\%$ and $88.59\%$ respectively).
+
+Lastly, each predicted anchor from the RPN receives a positive label if it has the highest IoU with a ground truth bounding box or if it has an IoU higher than 0.7 for any ground truth box. As the authors describe, this procedure favors large objects because "A large object spanning multiple spanning-window locations often has a high IoU with many anchor boxes, while a small object may only be matched with a single anchor box with a low IoU".
+
+\subsection{MS COCO dataset}
+\textbf{Since we mention this dataset multiple times throughout the thesis, perhaps we should describe it.}
 
 \section{Related work: Segmentation Algorithms}
 \label{sec:relwork}
@@ -852,13 +860,91 @@ Finally, Barman et al~\cite{jdmdh:7097} combine word embeddings with a deep neur
 
 \section{Data}
 
-A broad overview of the different datasets labeled specifically for this thesis will be introduced.
-Then a formal definition of a news unit will be made, which will be derived from the definition of a news article.
-This definition will be based on what a user might like to query as content on an article-level search of a newspaper.
+A description of the labeling strategy will be introduced, as well as the caveats that arise from working with newspaper data.
+Each class will be described and any special delimitations will be detailed.
 
+Definitions will be based on what a user might like to query as content on an article-level search of a newspaper.
 Because of this rather subjective definition, a systematic description of how elements of units are labeled will be produced in this chapter.
 
-\subsection{Classes and labels}
+\subsection{Labeling strategy}
+\label{subsec:labelingstrat}
+
+In this thesis we are concerned with grouping elements together that relate by their contents.
+For example, a news article might have an image depicting the contents, a title, a body of text possibly spanning multiple paragraphs, and a byline.
+These elements are one \textit{instance} of a class.
+
+Some elements of the newspaper do not by themselves convey any news. One example are elements used for navigating the newspaper itself.
+Such elements include titles, section titles and subsection titles. Another example could be instructions for participating in debate, or footers that present the newspaper publishing team.
+These elements are considered \textit{static} and receive no label in this thesis.
+
+The label bounding box will be the smallest spanning bounding box, including white spaces between the elements, should they make up a rectangular shape.
+In the case that elements are organized such that they do not make up a rectangular shape, a smallest rectangular shape will be made excluding the protruding elements,
+which are then included by extending the border of the original rectangular shape in an asymmetric manner as can be seen in \autoref{fig:asymextention}.
+
+\begin{figure}[H]
+\label{fig:asymextention}
+\begin{tikzpicture}
+\draw[step=1cm,white,very thin] (-2.9,-2.9) grid (6.9,6.9);
+\draw[red] (-2,-2) -- (2,-2) -- (2,4) -- (6,4) -- (6,6) -- (-2,6) -- (-2,-2);
+
+\node[draw] at (0,2) {A};
+
+\draw[red, densely dotted] (2,4) -- (2,6);
+
+\node[draw] at (4,5) {B};
+
+\draw[blue]           (2.1,-2) -- (2.1,1.9) -- (6,1.9) -- (6,-2) -- (2.1, -2);
+
+\node[draw] at (4,0) {C};
+
+\end{tikzpicture}
+\caption{Asymmetric extension of the label. A is labeled red, and B should belong to the same label, while C should not.}
+\end{figure}
+
+There are instances where elements that should be grouped together cannot easily be captured in the same bounding box.
+For example, if a section of a newspaper has very densely formatted text, and the image and image caption is pushed far from its textual contents as seen in \autoref{fig:blockingelements}, a decision has to be made for how to label this instance.
+One strategy to deal with this problem could be to connect two bounding boxes by extending a thin line between the related elements. Another could be to regard the two elements as two instances.
+
+Each of these proposed solutions have their disadvantages. In the case of connecting them with a thin line, the surface on which the thin line extends may not actually be a true label for the instance.
+In the case of regarding them as two instances, the obvious problem is that they are in fact one instance, and the model has to learn that this compromise is due to the spatial layout of the elements.
+
+In this thesis we regard such cases as two instances.
+
+\begin{figure}[H]
+\label{fig:blockingelements}
+\begin{tikzpicture}
+\draw[step=1cm,white,very thin] (-2.9,-2.9) grid (6.9,6.9);
+\draw[red] (-2,-2) -- (2,-2) -- (2,6) -- (-2,6) -- (-2,-2);
+
+\node[draw] at (0,2) {A};
+
+\draw[blue] (2.1,-2) -- (5.9,-2) -- (5.9,6) -- (2.1,6) -- (2.1, -2);
+
+\node[draw] at (4,2) {C};
+
+\draw[red] (6,-2) -- (10,-2) -- (10,6) -- (6,6) -- (6,-2);
+
+\node[draw] at (8,2) {B};
+
+\end{tikzpicture}
+\caption{Example where other content (C) is blocking elements (A and B) from becoming one label.}
+\end{figure}
+
+\subsection{Caveats of processing individual pages}
+
+As the model proposed in this thesis processes one image at a time, while content can be split across two pages or more, special delimitations have to be considered when labeling.
+
+If two elements discuss the same topic but have different authors they will be considered two different instances.
+
+A single page may only display half of an image, or a few elements of the complete body text.
+If the page is the first page of a multi page article the byline may be missing, but the elements will still be considered an instance.
+Similarly, if the page in question is the second page of a multi page article, a headline may be missing, but the elements will still count as an instance.
+
+\subsection{Labels}
+
+In this section, each label will be described, as well as the caveats related to each class.
+
+\subsubsection{Background}
 
 When labeling input for Mask R-CNN, any pixel that does not receive a label will automatically receive the implied label 'Background'.
 Thus, when making the choice of what to label, one is also implying what the background will look like as perceived by the model.
@@ -931,49 +1017,6 @@ A \textbf{news unit} is a written work published in a print or electronic medium
 \end{definition}
 
 A \textit{news unit} may contain all of the above, including an image of the author themselves and smaller elements of text that usually contain explanatory contents, such as definitions or facts associated with the article itself.
-The label bounding box will be the smallest spanning bounding box, including white spaces between the elements, should they make up a rectangular shape.
-In the case that elements are organized such that they do not make up a rectangular shape, a smallest rectangular shape will be made excluding the protruding elements,
-which are then included by extending the border of the original rectangular shape in an asymmetric manner.
-
-\begin{figure}[H]
-\begin{tikzpicture}
-\draw[step=1cm,white,very thin] (-2.9,-2.9) grid (6.9,6.9);
-\draw[red] (-2,-2) -- (2,-2) -- (2,2) -- (6,2) -- (6,6) -- (-2,6) -- (-2,-2);
-
-\node[draw] at (0,2) {A};
-
-\draw[red, densely dotted] (2,2) -- (2,6);
-
-\node[draw] at (4,4) {B};
-
-\draw[blue]           (2.1,-2) -- (2.1,1.9) -- (6,1.9) -- (6,-2) -- (2.1, -2);
-
-\node[draw] at (4,0) {C};
-
-\end{tikzpicture}
-\caption{Asymmetric extension of the label. A is labeled red, and B should belong to the same label, while C should not.}
-\end{figure}
-
-Example where article cannot be labeled as one unit.
-
-\begin{figure}[H]
-\begin{tikzpicture}
-\draw[step=1cm,white,very thin] (-2.9,-2.9) grid (6.9,6.9);
-\draw[red] (-2,-2) -- (2,-2) -- (2,6) -- (-2,6) -- (-2,-2);
-
-\node[draw] at (0,2) {A};
-
-\draw[blue] (2.1,-2) -- (5.9,-2) -- (5.9,6) -- (2.1,6) -- (2.1, -2);
-
-\node[draw] at (4,2) {C};
-
-\draw[red] (6,-2) -- (10,-2) -- (10,6) -- (6,6) -- (6,-2);
-
-\node[draw] at (8,2) {B};
-
-\end{tikzpicture}
-\caption{Example where other content (C) is blocking elements (A and B) from becoming one label.}
-\end{figure}
 
 \subsubsection{News Unit Delimitations}
 
@@ -1002,10 +1045,8 @@ Elements that are list-like instructions to participate in a debate remain unlab
 Finally there are advertisements made to look like news articles.
 They are intentionally structured and formatted to appear exactly as news articles do,
 except for the fact that a small warning is made that the section is in fact an advertisement.
-In this project, these types of advertisements are labeled as news articles.
 One could argue to support both that they should be labeled as ads (because they truly are ads), and that they should be labeled as news articles (because they look like news articles).
-In this thesis we are concerned with the fact that the elements are labeled as the same unit by the model.
-The classes are made in an attempt to support the model's ability to discriminate between units of content.
+In this project, these types of advertisements are labeled as news articles.
 
 \subsubsection{Listing}
 
@@ -1045,12 +1086,13 @@ In the case that weather information is split by other types of content, two ins
 A strong black border surrounds a text describing the person, usually beginning with a smaller graphic,
 the name of the person and an addition of information regarding the person or details regarding their passing. These elements received the class "Death Notice".
 
-On pages usually containing death notices, In memoriam texts occur: Longer texts describing the person in question, usually submitted by a number of people.
+On pages usually containing death notices, "In memoriam" texts occur: Longer texts describing the person in question, usually submitted by a number of people.
 These submissions are labeled as news units as per the definition of a news unit.
 
 \subsubsection{Game}
 
 Any form of game found within the newspaper is labeled as one and the same class: Game.
+The bounding box for the instance will include the game itself, any text related to the game, and its width is decided by the title element width.
 
 \subsubsection{Publication Unit}
 
@@ -1059,10 +1101,10 @@ Therefore, if an element or group of elements are assigned any class, previously
 
 \subsubsection{Delimitations}
 
-Titles, section titles and subsection titles are not included in the definition of any class. The guiding principle is that content labeled as a class should be presenting detailed news. Plenty of elements found in the newspaper are simply repeated and do not, by themselves, convey any news. Some of the elements act as a guide for the reader to navigate the newspaper, e.g. topics or sections. Other elements convey information about the newspaper itself, usually repeated in every edition found in the datasets. A comprehensive list of these unlabeled elements follows:
+As described in \autoref{subsec:labelingstrat}, some elements found in the newspaper are simply repeated and do not, by themselves, convey any news content.
+A comprehensive list of these unlabeled elements follows:
 
 \begin{description}
-\item[$\bullet$] Titles
 \item[$\bullet$] Logos of newspaper
 \item[$\bullet$] Section titles
 \item[$\bullet$] Subsection titles
@@ -1162,9 +1204,16 @@ Our objective is to segment newspaper images and to classify detected segments o
 
 \subsection{Modifications to the primary architecture}
 
-\textbf{Preprocessing}. Text embeddings are added to the data during the preprocessing step. Because we want to avoid image normalization of the textual embeddings, and other preprocessing methods used by Mask R-CNN to augment the image data, the textual embeddings are added as the last step. By the time we add the textual embeddings, the image may have been resized, padded and flipped horizontally. The bounding boxes of the text embeddings are offset and scaled accordingly to align with the new dimensions.
+\textbf{Preprocessing}. Text embeddings are added to the data during the preprocessing step.
+Because we want to avoid image normalization of the textual embeddings, and other preprocessing methods used by Mask R-CNN to augment the image data,
+the textual embeddings are added as the last step. By the time we add the textual embeddings, the image may have been resized, padded and flipped horizontally.
+The bounding boxes of the text embeddings are offset and scaled accordingly to align with the new dimensions.
 
-\textbf{Evaluation}. In the original COCO dataset (on which Mask R-CNN is usually evaluated), there is size partitioning depending on the size of the object being detected when presented in the results. Since the classes found in this project are generally larger on average than the size of the objects found in the coco dataset, the partitioning size thresholds are adjusted for these results to provide more useful information about different objects being detected(Using the standard thresholds, almost all objects are considered “large”). This alteration has no impact on the performance of the solution itself, but must be considered when evaluating the results.
+\textbf{Evaluation}. In the original MS COCO dataset (on which Mask R-CNN is usually evaluated),
+there is size partitioning depending on the size of the object being detected when presented in the results.
+Since the classes found in this project are generally larger on average than the size of the objects found in the MS COCO dataset,
+the partitioning size thresholds are adjusted for these results to provide more useful information about different objects being detected (Using the standard thresholds, almost all objects are considered “large”).
+This alteration has no impact on the performance of the solution itself, but must be considered when evaluating the results.
 
 \begin{table}[!htb]
   \begin{center}
@@ -1173,8 +1222,8 @@ Our objective is to segment newspaper images and to classify detected segments o
     \begin{tabular}{l|l|l|l} % <-- Alignments: 1st column left, 2nd middle, with vertical lines in between
     \textbf{Dataset} & \textbf{Small} & \textbf{Medium} & \textbf{Large}  \\
     \hline
-    COCO dataset & area < $32^2$ & $32^2$ < area < $96^2$ & area > $96^2$  \\    \hline
-    This project & area < X & X < area < X & area > X \\    \hline
+    MS COCO dataset & area < $32^2$ & $32^2$ < area < $96^2$ & area > $96^2$  \\    \hline
+    This thesis & area < X & X < area < X & area > X \\    \hline
     \end{tabular}
   \end{center}
 \end{table}
@@ -1216,7 +1265,7 @@ In this section we will introduce the experiments that will be conducted in orde
 
 Because we labeled classes in the dataset creation process, we conduct an experiment to understand the impact of these classes on the model performance.
 
-As mentioned in the background \textbf{TODO}, Mask R-CNN performs worse on smaller objects. An experiment will be conducted to investigate if we can exploit the large image sizes in our dataset.
+As mentioned in \autoref{subs:maskrcnn}, Mask R-CNN performs worse on smaller objects. An experiment will be conducted to investigate if we can exploit the large image sizes in our dataset to improve performance.
 
 
 \subsection{Unimodal versus multimodal input}

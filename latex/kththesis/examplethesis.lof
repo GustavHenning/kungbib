@@ -19,8 +19,8 @@
 \contentsline {figure}{\numberline {2.8}{\ignorespaces Evolution of the Feature Pyramid Network~\cite {DBLP:journals/corr/LinDGHHB16}. \textbf {TODO explain blue borders}}}{19}{figure.2.8}%
 \contentsline {figure}{\numberline {2.9}{\ignorespaces Hierarchical typology of document segmentation algorithms~\cite {ESKENAZI20171}. }}{23}{figure.2.9}%
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {3.1}{\ignorespaces Asymmetric extension of the label. A is labeled red, and B should belong to the same label, while C should not.}}{28}{figure.3.1}%
-\contentsline {figure}{\numberline {3.2}{\ignorespaces Example where other content (C) is blocking elements (A and B) from becoming one label.}}{29}{figure.3.2}%
+\contentsline {figure}{\numberline {3.1}{\ignorespaces Asymmetric extension of the label. A is labeled red, and B should belong to the same label, while C should not.}}{27}{figure.3.1}%
+\contentsline {figure}{\numberline {3.2}{\ignorespaces Example where other content (C) is blocking elements (A and B) from becoming one label.}}{28}{figure.3.2}%
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }
