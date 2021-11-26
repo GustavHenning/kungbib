@@ -53,4 +53,5 @@ def combine_results(dir):
 if __name__ == "__main__":
     dirs = glob(path.join(model_dir, "*/"))
     for dir in dirs:
+        print(dir)
         combine_results(dir)
