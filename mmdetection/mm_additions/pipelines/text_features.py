@@ -17,7 +17,7 @@ from mpl_toolkits.mplot3d import Axes3D
 BASE_CHANNELS = 3
 DEBUG_IMAGE = False
 DEBUG_TIME = False
-VISUALIZE_EMBEDDINGS = True
+VISUALIZE_EMBEDDINGS = False
 
 @PIPELINES.register_module()
 class TextFeatures:

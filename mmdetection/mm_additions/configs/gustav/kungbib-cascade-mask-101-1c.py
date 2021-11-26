@@ -7,4 +7,4 @@ model = dict(
         bbox_head=dict(num_classes=NUM_CLASSES),
         mask_head=dict(num_classes=NUM_CLASSES)))
 
-load_from = 'checkpoints/resnet101_caffe-3ad79236.pth'
+load_from = 'checkpoints/full/mask_rcnn_r101_fpn_mstrain-poly_3x_coco_20210524_200244-5675c317.pth'
