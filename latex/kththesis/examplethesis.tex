@@ -20,6 +20,7 @@
 \documentclass[english, bibtex]{kththesis}
 %\documentclass[swedish, biblatex]{kththesis}
 
+\usepackage{tikz}
 % \usepackage[style=numeric,sorting=none,backend=biber]{biblatex}
 \ifbiblatex
     %\usepackage[language=english,bibstyle=authoryear,citestyle=authoryear, maxbibnames=99]{biblatex}
@@ -201,7 +202,7 @@
 %%%%
 %%%% Some examples of these codes are shown below:
 % 102 Data- och informationsvetenskap (Datateknik)    Computer and Information Sciences
-% 10201 Datavetenskap (datalogi) Computer Sciences 
+% 10201 Datavetenskap (datalogi) Computer Sciences
 % 10202 Systemvetenskap, informationssystem och informatik (samhällsvetenskaplig inriktning under 50804)
 % Information Systems (Social aspects to be 50804)
 % 10203 Bioinformatik (beräkningsbiologi) (tillämpningar under 10610)
@@ -236,7 +237,7 @@
 \include{lib/pdf_related_includes}
 
 
-% the custom colors and the commands are defined in defines.tex    
+% the custom colors and the commands are defined in defines.tex
 \hypersetup{
 	colorlinks  = true,
 	breaklinks  = true,
@@ -274,13 +275,13 @@ eng
 %%% These page(s) will be removed before the thesis is inserted into DiVA.
 \begin{scontents}[store-env=abstracts,print-env=true]
 
-In this century and the last, serious efforts have been made to digitize the content housed by memory institutions across the world. In order to open up these volumes to content-based information retrieval, these digitized print media pages have to be segmented into semantically connected components, i.e. articles. To query on facets such as author, section, content type or other metadata, further processing of these documents is required to attain this information.  
+In this century and the last, serious efforts have been made to digitize the content housed by memory institutions across the world. In order to open up these volumes to content-based information retrieval, these digitized print media pages have to be segmented into semantically connected components, i.e. articles. To query on facets such as author, section, content type or other metadata, further processing of these documents is required to attain this information.
 
 Even though humans have shown exceptional ability to segment different types of elements into related components, even in languages foreign to them, this task has proven difficult for computers. The challenge of semantic segmentation in newspapers lies in the diversity of the medium: Newspapers have vastly different layouts, covering diverse content, from news articles to ads to weather reports.
 
 The extraordinary progress made in the field of instance segmentation of real-world objects using deep learning techniques begs the question: \textit{Can the same methodology be applied in the domain of newspaper articles?}
 
-The state-of-the-art approaches are made to detect real-world objects. In this domain we have access to textual information through a potentially noisy Optical Character Recognition. We investigate one possible approach to encode the textual signal into the image in an attempt to improve performance. 
+The state-of-the-art approaches are made to detect real-world objects. In this domain we have access to textual information through a potentially noisy Optical Character Recognition. We investigate one possible approach to encode the textual signal into the image in an attempt to improve performance.
 
 Based on the newspaper from the National Library of Sweden, we investigate the predictive power of visual and textual features and their capacity to generalize across different typographic designs. Results show…
 
@@ -308,9 +309,9 @@ Historiska tidningar, Bildsegmentering, Multimodal inlärning, Djupinlärning, D
 \end{scontents}
 \begin{scontents}[store-env=abstracts,print-env=true]
 
-I detta och det förra århundradet har kraftiga åtaganden gjorts för att digitalisera traditionellt medieinnehåll som tidigare endast tryckts i pappersformat. För att kunna stödja sökningar och fasetter i detta innehåll krävs bearbetning på semantisk nivå, det vill säga att innehållet styckas upp på artikelnivå, istället för per sida. Trots att människor har lätt att dela upp innehåll på semantisk nivå, även på ett främmande språk, fortsätter arbetet för automatisering av denna uppgift. 
+I detta och det förra århundradet har kraftiga åtaganden gjorts för att digitalisera traditionellt medieinnehåll som tidigare endast tryckts i pappersformat. För att kunna stödja sökningar och fasetter i detta innehåll krävs bearbetning på semantisk nivå, det vill säga att innehållet styckas upp på artikelnivå, istället för per sida. Trots att människor har lätt att dela upp innehåll på semantisk nivå, även på ett främmande språk, fortsätter arbetet för automatisering av denna uppgift.
 
-Utmaningen i att segmentera nyhetsartiklar återfinns i den otroliga mångfald av utseende och format. Innehållet är även detta  mångfaldigt, där man återfinner allt ifrån faktamässiga artiklar, till debatter, listor av fakta och upplysningar, reklam och väder bland annat. Otroliga framsteg har gjorts inom djupinlärning just för objektdetektering och semantisk segmentering bara de senaste årtiondet. Frågan vi ställer oss är: \textit{Kan samma metodik appliceras inom domänen nyhetsartiklar?} 
+Utmaningen i att segmentera nyhetsartiklar återfinns i den otroliga mångfald av utseende och format. Innehållet är även detta  mångfaldigt, där man återfinner allt ifrån faktamässiga artiklar, till debatter, listor av fakta och upplysningar, reklam och väder bland annat. Otroliga framsteg har gjorts inom djupinlärning just för objektdetektering och semantisk segmentering bara de senaste årtiondet. Frågan vi ställer oss är: \textit{Kan samma metodik appliceras inom domänen nyhetsartiklar?}
 
 Dessa modeller är skapta för att klassificera världsliga ting. I denna domän har vi tillgång till texten och dess koordinater via en potentiellt bristfällig optisk teckenigenkänning. Vi undersöker ett sätt att utnyttja denna textinformation i ett försök att förbättra resultatet i denna specifika domän. Baserat på data från Kungliga Biblioteket undersöker vi hur väl denna metod lämpar sig för uppstyckandet av innehåll i tidningar längsmed tidsperioder där designen förändrar sig markant. Resultaten visar....
 
@@ -330,12 +331,12 @@ Dessa modeller är skapta för att klassificera världsliga ting. I denna domän
 \markboth{Acknowledgments}{}
 
 In this section, I would like to acknowledge the people who have encouraged, influenced, helped and supported me during the duration of this study.
-    I would like to start by thanking and acknowledging my examiner Aristides Gionis and my supervisor Jakob Nyberg. \textbf{TODO Text about their support.} I would also like to thank Kungliga Biblioteket, especially Faton Rekathati and Chris Haffenden, for their encouragement, interest in the topic, and invaluable help across the timeline of the project. 
-    
+    I would like to start by thanking and acknowledging my examiner Aristides Gionis and my supervisor Jakob Nyberg. \textbf{TODO Text about their support.} I would also like to thank Kungliga Biblioteket, especially Faton Rekathati and Chris Haffenden, for their encouragement, interest in the topic, and invaluable help across the timeline of the project.
+
 \acknowlegmentssignature
 
 \fancypagestyle{plain}{}
-\renewcommand{\chaptermark}[1]{ \markboth{#1}{}} 
+\renewcommand{\chaptermark}[1]{ \markboth{#1}{}}
 \tableofcontents
   \markboth{\contentsname}{}
 
@@ -372,22 +373,31 @@ In this section, I would like to acknowledge the people who have encouraged, inf
 \chapter{Introduction}
 \label{ch:introduction}
 
-Nowadays it is commonplace for many memory institutions to create and maintain large digital repositories that offer rapid, time- and location-independent access to documents. This is the culmination of a continuous digitization effort spanning several decades of great achievements in preservation and accessibility. The real promise of digitization however, is the exploitation of the contents of these digital assets~\cite{jdmdh:7097}. As we will see in this chapter and the next, there are many challenges yet to be addressed before exploitation will be seamless and fully automatic. 
+Nowadays it is commonplace for many memory institutions to create and maintain large digital repositories that offer rapid, time- and location-independent access to documents.
+This is the culmination of a continuous digitization effort spanning several decades of great achievements in preservation and accessibility.
+
+Another promise of digitization, aside from the aspect of access, are the benefits of exploration support gained by processing the documents~\cite{jdmdh:7097}.
+To query on facets such as topics or type of content, processing is required that can distinguish different contents found in the documents.
+To create such features, the novel techniques of processing documents need to improve.
+As we will see in this chapter and the next, there are many challenges yet to be addressed before exploration tools are fully developed to support advanced use cases while reducing or eliminating manual labor.
+
 
 \section{Background and problem context}
 \label{sec:background}
 %\todo[inline, backgroundcolor=kth-lightblue]{svensk: Bakgrund}
 
-The processing of historical newspapers consists of three steps: 
+The processing of historical newspapers consists of three steps:
 \begin{itemize}
 \item Facsimile processing: Deriving the structure and the text from the document images via document layout analysis, commonly using Optical Character Recognition (\gls{OCR})
 \item Content enrichment: Extracting and connecting relevant information from both the textual and visual parts of the contents
-\item Exploration support: To enable searching and visualizing the contents.  
+\item Exploration support: To enable searching and visualizing the contents.
 \end{itemize}
 
-Document layout analysis aims at segmenting a document image into meaningful segments and at classifying those segments according to their contents~\cite{ESKENAZI20171}. 
-    
-Within the domain of newspapers, the task of image segmentation and classification is particularly difficult due to the complexity and diversity of content across several typographic designs. Layout analysis is however essential for historical newspaper exploitation. From an information retrieval perspective, being able to query articles as well as whole pages, and being able to facet over different types of segments has advantages to end users. 
+Document layout analysis aims at segmenting a document image into meaningful segments and at classifying those segments according to their contents~\cite{ESKENAZI20171}.
+
+Within the domain of newspapers, the task of image segmentation and classification is particularly difficult due to the complexity and diversity of content across several typographic designs.
+Layout analysis is however essential for efficient historical newspaper exploration.
+From an information retrieval perspective, being able to query articles as well as whole pages, and being able to facet over different types of segments has advantages to end users.
 
 %\todo[inline]{Present the background for the area. Set the context for your project – so that your reader can understand both your project and this thesis. (Give detailed background information in Chapter 2 - together with related work.)
 %Sometimes it is useful to insert a system diagram here so that the reader
@@ -402,12 +412,12 @@ Within the domain of newspapers, the task of image segmentation and classificati
 \label{sec:problem}
 
 The first part of this project is concerned with the creation and definition of a dataset for news article segmentation. In the second part, a state-of-the-art neural network for object detection and segmentation in images is introduced. We investigate one method of adapting the architecture to the domain of newspaper segmentation. The problem statement can be formulated as follows:
-	
+
 	\textit{How well can neural networks, developed for object detection and segmentation of real-world objects, perform in the domain of news article segmentation?}
 
 \section{Purpose}
 
-The purpose of this thesis is two-fold. Firstly, we want to investigate the efficacy of the current state-of-the-art object detection and segmentation model in the domain of newspaper article segmentation. Second, we evaluate one method of including the textual modality in the algorithm. 
+The purpose of this thesis is two-fold. Firstly, we want to investigate the efficacy of the current state-of-the-art object detection and segmentation model in the domain of newspaper article segmentation. Second, we evaluate one method of including the textual modality in the algorithm.
 
 \section{Goals}
 
@@ -420,90 +430,97 @@ The goal of this project is to classify news article boundaries in digitized new
 
 \section{Research Methodology}
 
-The initial phase of the project aims to investigate the efficiency of applying a state-of-the-art neural network developed for real world object detection and segmentation in the domain of newspaper article segmentation. The selected methods, based on previous work from other papers investigating a multimodal approach to newspaper article segmentation, are then evaluated on the dataset created during this project. Alterations to the selected methods are then presented and evaluated. Finally the results are presented and later discussed.
+The initial phase of the project aims to investigate the efficiency of applying a state-of-the-art neural network developed for real world object detection and segmentation in the domain of newspaper article segmentation.
+The selected methods, based on previous work which can be found in \autoref{sec:relwork} from researchers investigating a multimodal approach to newspaper article segmentation, are then evaluated on the dataset created during this project.
+Alterations to the selected methods are then presented and evaluated. Finally the results are presented and later discussed.
 
 \section{Delimitations}
 
-We recognize that there are many ways to extend or alter a neural network to adapt to new input. Only one such method of approaching text modality is introduced and evaluated. Other methods will be discussed and suggested in the final chapter. 
+There are many ways to extend or alter a neural network to adapt to new input. Only one such method of approaching text modality is introduced and evaluated. Other methods will be discussed and suggested in the final chapter.
 
-Another delimitation is that the size of the datasets created in this project may be insufficient to show the full potential of this approach. Investigation into this question will be addressed in this thesis. Only a limited number of typographic designs will be evaluated in this project, which may impact the generality of the solution discussed.
+Additionally, the size of the datasets created in this project may be insufficient to show the full potential of this approach.
+Investigation into this question will be addressed in this thesis.
+Only a limited number of typographic designs will be evaluated in this project, which may impact the generality of the solution discussed.
 
 \section{Ethical considerations}
 
-The dataset created in this project consists of published newspapers which have seen wide circulation. No special consideration needs to be taken in terms of sensitive or personally identifiable information.   
+The dataset created in this project consists of published newspapers which have seen wide circulation.
+No special consideration needs to be taken in terms of sensitive or personally identifiable information.
 
 \section{Structure of the thesis}
 
-In \autoref{ch:background}, we introduce the relevant background to understand the subject matter and briefly recaps the previous work. In order to understand the solution used in this thesis, the concepts used will be introduced in \autoref{sec:preliminaries}. \autoref{ch:data} describes in detail the dataset created from the data accessed at The National Library of Sweden.  Next, \autoref{ch:modelarch} introduces the neural network employed in the study, the relevant adaptations to the pre-processing and manipulation of the data, implementation details of the neural network architecture. Finally the metrics used to quantitatively describe the results and the results are presented in \autoref{ch:eval} and discussed in \autoref{ch:disc}, while outlining potential avenues for future work.
+In \autoref{ch:background}, we introduce the historical background to understand the subject matter, the preliminaries for grasping the proposed solution, and recap the previous work in document segmentation.
+
+\autoref{ch:method} begins with a detailed description of the dataset created from the data accessed at The National Library of Sweden.
+Next, the neural network employed in the study is introduced in \autoref{sec:modelarch}, and the relevant adaptations to the pre-processing and manipulation of the data is explained.
+What follows is a description of the experiments conducted to test our formulated goals in \autoref{sec:experiments}, as well as the tools used to perform them in \autoref{sec:sysdoc}.
+Finally the metrics used to quantitatively describe the results are detailed.
+
+The results are presented in \autoref{ch:results} and discussed in \autoref{ch:disc},
+while outlining potential avenues for future work.
 
 \cleardoublepage
 \chapter{Background}
 \label{ch:background}
 
-In this chapter, the history of digitization of historical documents will be reviewed. Then, we will look at the history of segmentation algorithms, as well as the history of the deep learning model that we intend to extend and evaluate. Further details about how the deep learning model functions will be introduced in \autoref{sec:preliminaries}. 
+In this chapter, the history of digitization of historical documents will be reviewed. Then, we will look at the history of segmentation algorithms, as well as the history of the deep learning model that we intend to extend and evaluate. Further details about how the deep learning model functions will be introduced in \autoref{sec:preliminaries}.
 
 \section{Data}
 
 \subsection{Digitization of historical documents}
 
-Libraries and other memory institutions across the world house a large collection of diverse media, often printed. Serious efforts have been made in the past decades to digitize this content by scanning printed pages into images. Beyond this large feat in preservation and accessibility, these scanned images need further processing before becoming searchable to the end library user. 
+Libraries and other memory institutions across the world house a large collection of diverse media, often printed. Serious efforts have been made in the past decades to digitize this content by scanning printed pages into images. Beyond this large feat in preservation and accessibility, these scanned images need further processing before becoming searchable to the end library user.
 
-In order to open up these volumes to content-based information retrieval, these digitized print media pages have to be segmented into semantically connected components, i.e. articles. Since even a single page can contain a variety of different types of content, retrieval based on articles (instead of whole pages) allow for more complex types of queries that are related to a single artifact. To be able to query on facets such as author, section, content type or other metadata, further processing of these documents is required to attain this information.  
+In order to open up these volumes to content-based information retrieval, these digitized print media pages have to be segmented into semantically connected components, i.e. articles. Since even a single page can contain a variety of different types of content, retrieval based on articles (instead of whole pages) allow for more complex types of queries that are related to a single artifact. To be able to query on facets such as author, section, content type or other metadata, further processing of these documents is required to attain this information.
 
-Even though humans have shown exceptional ability to segment different types of elements into related components, even in languages foreign to them~\cite{8270006}, this task has proven difficult for computers. 
+Even though humans have shown exceptional ability to segment different types of elements into related components, even in languages foreign to them~\cite{8270006}, this task has proven difficult for computers.
 
-The challenge of semantic segmentation in newspapers lies in the diversity of the medium: Newspapers have vastly different layouts, covering diverse content, from news articles to ads to weather reports. Layout and style differs across newspapers, and even within the same newspaper as stylistic trends change across time. 
+The challenge of semantic segmentation in newspapers lies in the diversity of the medium: Newspapers have vastly different layouts, covering diverse content, from news articles to ads to weather reports. Layout and style differs across newspapers, and even within the same newspaper as stylistic trends change across time.
 
 
 \subsection{Digitization at the National Library of Sweden}
 
-The National Library of Sweden (Kungliga Biblioteket) started digitizing their materials in the late 1990s. The motivation for digitization has shifted from only preservation to also improving access and facilitating research conducted on the content itself. ~\cite{Rekathati_2020} The digital archives of the National Library of Sweden contain scanned images from four of the country’s largest newspaper publications dating back to the 19th century. 
+The National Library of Sweden (Kungliga Biblioteket) started digitizing their materials in the late 1990s. The motivation for digitization has shifted from only preservation to also improving access and facilitating research conducted on the content itself. ~\cite{Rekathati_2020} The digital archives of the National Library of Sweden contain scanned images from four of the country’s largest newspaper publications dating back to the 19th century.
 
-The digitization of these newspaper images has occurred in two steps: Firstly, a segmentation algorithm splits the newspaper page into larger layout component zones. Within each zone, further segmentation is performed to identify sub-zones. These sub-zones may either be composed of images or blocks of text. In the second step, OCR is applied to the segmented sub-zones to extract the textual contents. 
+The digitization of these newspaper images has occurred in two steps: Firstly, a segmentation algorithm splits the newspaper page into larger layout component zones. Within each zone, further segmentation is performed to identify sub-zones. These sub-zones may either be composed of images or blocks of text. In the second step, OCR is applied to the segmented sub-zones to extract the textual contents.
 
 \subsection{Description}
 
-In this section we will attempt to give a systematic overview of the types of content a newspaper within the dataset contains. 
+In this section we will attempt to give a systematic overview of the types of content a newspaper within the dataset contains.
 
-\subsubsection{Placards}
+The \textbf{placard}, usually found as advertisement for the newspaper itself, typically consists of a single page containing the main story headline and is included in the datasets.
 
-The placard, usually found as advertisement for the newspaper itself, typically consists of a single page containing the main story headline and is included in the datasets. 
+The \textbf{front page} of a newspaper generally contains one or more logos of the newspaper,
+the date of publication, a “main story” consisting of a headline, a subhead, a body text, and a reference page number.
+Smaller elements advertising other articles are usually more concise, typically containing no more than a headline and a reference page number.
+Advertisements occur consistently on front pages although to a lesser degree than in content pages.
 
-\subsubsection{Front pages}
+Any page that is not a \textit{placard} or a \textit{front page} is considered a \textbf{content page}. Single page articles are the most common form of content page.
+In this context, an article fits on a single page, but the page itself may contain many different articles and other elements such as advertisements.
 
-The front page of a newspaper generally contains one or more logos of the newspaper, the date of publication, a “main story” consisting of a headline, a subhead, a body text, and a reference page number. Smaller elements advertising other articles are usually more concise, typically containing no more than a headline and a reference page number. Advertisements occur consistently on front pages although to a lesser degree than in content pages. 
-
-\subsubsection{Content Pages}
-
-Single page articles are the most common form of content page. In this context, an article fits on a single page, but the page itself may contain many different articles and other elements such as advertisements. If two elements discuss the same topic but have different authors they will be considered two different news units.
-
-Multi page articles are content pages in which the content spans multiple pages. Thus, a single page may only display half of an image, or a few elements of the complete body text. If the page is the first of a multi page article the byline may be missing, but the elements will still count as a news unit. Similarly, if the page is not the first of a multi page article, a headline may be missing, but the elements will still count as a news unit.
+Multi page articles are content pages in which the content spans multiple pages.
 
 \subsubsection{Listings}
 
-There are many different types of listings that commonly occur in newspapers. These listings are typically dense lists of information, such as stock listings, TV-Radio broadcast timetables, or movie timetables.
+Sometimes content is conveyed using dense lists of information, such as stock listings or TV-Radio broadcast timetables.
 
 \subsubsection{Comics, artwork and poems}
 
-Comics, artwork and poems pose an interesting challenge in labeling because of the creative freedom of the composition of elements. Many of them border on being included in the definition of a news unit.
+Comics, as opposed to news article related images, are typically hand-drawn with optional separator to introduce a narrative, with speech bubbles narrating the fictional characters.
 
-Comics, as opposed to news article related images, are typically hand-drawn with optional separator to introduce a narrative, with speech bubbles narrating the fictional characters. Comics received no label in this project.
-
-Artwork is also common in some sections of the newspapers. In this project artwork is treated like a potential image to a news article, as it is often accompanied by a text.
+Artwork is also common in some sections of the newspapers.
 
 Poems can range from an essay to a single word with the author omitted.
 
 \subsubsection{Games, puzzles and quizzes}
 
-There are a number of games prevalent in the dataset. The most common being crossword puzzles and sudoku puzzles. Less frequent games that do occur are card game positions.
+There are a number of games prevalent in the dataset. The most common being crossword puzzles, sudoku puzzles, and pop quizzes. Less frequent games that do occur are card game positions.
 
 Quizzes are generally structured as a list of questions. The key to these questions can often be found on the same page in a smaller font, often upside-down.
 
 \subsubsection{Weather}
 
-Weather information can almost always be found in newspapers. They usually consist of tables of temperatures or weather states, maps of the regions that the newspaper published in, and images of weather states. 
-
-
+Weather information elements usually consist of tables of temperatures or weather states, maps of the regions that the newspaper published in, or images of weather states.
 
 \section{Deep learning preliminaries}
 \label{sec:preliminaries}
@@ -512,13 +529,13 @@ In this chapter, we will introduce the theory that our model is based on. Since 
 
 \subsection{Artificial Neural Network}
 
-The term 'Machine Learning' was coined by A. L. Samuel~\cite{samuela1959} in the 1950s as he as working on producing what we today know as the minimax algorithm for tabletop games. Similarly, the early building blocks of neural networks were also invented during the same decade by F. Rosenblatt~\cite{rosenblatt1958perceptron}. Despite these early discoveries, progress has only in the recent decades taken bounds and leaps beyond classical algorithm performance. Part of the explanation will be examined in this chapter, where we will encounter the difficulties in training these networks, as well as the solutions that modern architectures employ today. The other part of the explanation may be credited to the advances in hardware, enabling complex models to fit in memory and to train in a reasonable timeframe. The time aspect of training can largely be credited to the advancements in the Graphical Processing Unit (GPU).    
+The term 'Machine Learning' was coined by A. L. Samuel~\cite{samuela1959} in the 1950s as he as working on producing what we today know as the minimax algorithm for tabletop games. Similarly, the early building blocks of neural networks were also invented during the same decade by F. Rosenblatt~\cite{rosenblatt1958perceptron}. Despite these early discoveries, progress has only in the recent decades taken bounds and leaps beyond classical algorithm performance. Part of the explanation will be examined in this chapter, where we will encounter the difficulties in training these networks, as well as the solutions that modern architectures employ today. The other part of the explanation may be credited to the advances in hardware, enabling complex models to fit in memory and to train in a reasonable timeframe. The time aspect of training can largely be credited to the advancements in the Graphical Processing Unit (GPU).
 
 \subsubsection{Perceptron}
 The basic building block of an Artificial Neural Network (ANN) is called a perceptron. The perceptron is loosely inspired by the neurons of the brain~\cite{rosenblatt1958perceptron}. The arriving signals, called inputs, are multiplied by learnable weights, which is then added to a constant bias value for each input channel. The resulting value from the input, weight and bias is summed up and if the resulting value is above zero, the perceptron outputs a 1. A single perceptron does not terminate if the learning set is not linearly separable. The most famous example of a perceptron's inability to solve problems with linearly nonseparable vectors is the Boolean exclusive-or problem.
 
 \begin{equation}
-    f(x) = 
+    f(x) =
         \begin{cases}
           1, & \text{if}\ w * x + b > 0 \\
           0, & \text{otherwise}
@@ -559,12 +576,12 @@ By updating the weights according to a paradigm, the cost can be minimized. A gr
 
 \begin{enumerate}
 \item Forward the input through the neural network to generate a prediction $\hat{y}$.
-\item Measure the cross-entropy loss e.g. according to \autoref{eqn:crossentropy} 
+\item Measure the cross-entropy loss e.g. according to \autoref{eqn:crossentropy}
 \item Propagate back the error’s gradient from the last(output) to the first(input) layer of the network.
 \item Change the weights and biases based on the gradient.
 \end{enumerate}
 
-The error or loss can be calculated according to \autoref{eqn:crossentropy} as such: 
+The error or loss can be calculated according to \autoref{eqn:crossentropy} as such:
 
 \begin{equation}
     J(w_j) = cross\_entropy(y_j,\hat{y_j}) = - \sum_{j} y_j log(\hat{y_j})
@@ -572,14 +589,14 @@ The error or loss can be calculated according to \autoref{eqn:crossentropy} as s
 \end{equation}
 
 
-where $w_j$ is the weights of the DNN at layer $j$ and $\hat{y}$ can be seen as a non-linear function of the weights. The updated weight values can be seen in \autoref{eqn:weights}. 
+where $w_j$ is the weights of the DNN at layer $j$ and $\hat{y}$ can be seen as a non-linear function of the weights. The updated weight values can be seen in \autoref{eqn:weights}.
 
 \begin{equation}
     w_{i,j}^{(next)} = w_{i,j} - \eta \frac{\partial J(w_j)}{\partial w_i}
     \label{eqn:weights}
 \end{equation}
 
-To update the weight $w_{i,j}$ using gradient descent, a \textit{learning rate} $\eta > 0$ must be chosen. Each value of the updated weights in the next layer depends on the partial derivative of the previous layer. That is why each activation function has to be differentiable (Nevertheless, the ReLU activation function is non-differentiable at 0), and why the error has to be \textit{propagated backwards}. 
+To update the weight $w_{i,j}$ using gradient descent, a \textit{learning rate} $\eta > 0$ must be chosen. Each value of the updated weights in the next layer depends on the partial derivative of the previous layer. That is why each activation function has to be differentiable (Nevertheless, the ReLU activation function is non-differentiable at 0), and why the error has to be \textit{propagated backwards}.
 
 \textbf{Should this be explained in more detail? Cases where the $w_i$ is an output neuron vs hidden. }
 
@@ -589,7 +606,7 @@ In real world applications, there are many challenges when training a deep neura
 
 \subsubsection{Overfitting/underfitting}
 
-With a large number of parameters, the network can be said to have a high degree of freedom. It becomes so complex that it will encounter the overfitting problem~\cite{doi:10.1021/ci0342472}. Overfitting means that the network will tend towards having lower accuracy of the test dataset, despite an increasing accuracy on the training dataset. This phenomenon can be anecdotally compared to memorizing the training dataset by heart, and thus losing the generalization property when tested on data outside the training dataset. 
+With a large number of parameters, the network can be said to have a high degree of freedom. It becomes so complex that it will encounter the overfitting problem~\cite{doi:10.1021/ci0342472}. Overfitting means that the network will tend towards having lower accuracy of the test dataset, despite an increasing accuracy on the training dataset. This phenomenon can be anecdotally compared to memorizing the training dataset by heart, and thus losing the generalization property when tested on data outside the training dataset.
 
 \begin{figure}[H]
   \begin{center}
@@ -602,8 +619,8 @@ With a large number of parameters, the network can be said to have a high degree
 Several approaches can be taken to minimize or resolve the problem of overfitting.
 \begin{enumerate}
 \item Regularization~\cite{10.1038/317314a0}: By imposing a cost (or penalty) on the optimization function, the optimal solution can be made unique.
-\item Early stopping~\cite{Prechelt2012}: By halting the training when the error of the test dataset reaches its minimum, overfitting can be avoided. Early stopping can be thought of as regularization in the temporal domain. 
-\item Dropout~\cite{JMLR:v15:srivastava14a}: By randomly ignoring some neurons during training to reduce the model complexity, an increase in model sparsity is gained. 
+\item Early stopping~\cite{Prechelt2012}: By halting the training when the error of the test dataset reaches its minimum, overfitting can be avoided. Early stopping can be thought of as regularization in the temporal domain.
+\item Dropout~\cite{JMLR:v15:srivastava14a}: By randomly ignoring some neurons during training to reduce the model complexity, an increase in model sparsity is gained.
 \item Data augmentation~\cite{10.2307/2289457}: Additional data is created, typically in preprocessing, by altering the original data in a number of ways which are added in addition to the original data. For visual data, some examples are: changing angles, illumination, saturation, exposure, etc. This creates additional variance which prevents simply memorizing shallow features in the dataset.
 \end{enumerate}
 
@@ -613,7 +630,7 @@ When the backpropagation algorithm backflows the error gradient from the output 
 Some techniques for overcoming the exploding/vanishing gradient problem are~\cite{doi:10.1142/S0218488598000094}:
 
 \begin{enumerate}
-\item Non-saturating activation functions: Using e.g. ReLU~\cite{maas2013rectifier} instead of the commonly used sigmoid activation function can help during training. The gradient is minimal when the sigmoid function is close to its output limits $(-1/1)$ meaning it will saturate. Using ReLU = $max(0,z)$ won't have this problem. However, ReLU has its own problem in that some perceptrons may stop outputting values except for 0. This is known as the dying ReLU problem. The solution is to use leaky ReLU = $max(az,z)$ where $a$ is the slope when $z < 0$. 
+\item Non-saturating activation functions: Using e.g. ReLU~\cite{maas2013rectifier} instead of the commonly used sigmoid activation function can help during training. The gradient is minimal when the sigmoid function is close to its output limits $(-1/1)$ meaning it will saturate. Using ReLU = $max(0,z)$ won't have this problem. However, ReLU has its own problem in that some perceptrons may stop outputting values except for 0. This is known as the dying ReLU problem. The solution is to use leaky ReLU = $max(az,z)$ where $a$ is the slope when $z < 0$.
 
 \begin{figure}[H]
   \begin{center}
@@ -623,7 +640,7 @@ Some techniques for overcoming the exploding/vanishing gradient problem are~\cit
   \label{fig:leaky_relu}
 \end{figure}
 
-\begin{center} 
+\begin{center}
 The leaky ReLU activation function prevents the \textit{dying ReLU problem}.
 \end{center}
 
@@ -657,7 +674,7 @@ where $\epsilon$ is an arbitary small constant added for numerical stability.
 
 Training speed can be improved by using techniques to update the learning rate during training, making the model converge faster towards the desired weight distribution.
 \begin{enumerate}
-\item Momentum~\cite{Rumelhart1986}: In order to improve an otherwise static learning rate, momentum was introduced by Rumelhart, Hinton and Williams. The idea is to remember the update $\Delta w$ at each iteration, and determine the next update as a linear combination of the gradient and the previous update: 
+\item Momentum~\cite{Rumelhart1986}: In order to improve an otherwise static learning rate, momentum was introduced by Rumelhart, Hinton and Williams. The idea is to remember the update $\Delta w$ at each iteration, and determine the next update as a linear combination of the gradient and the previous update:
 
 \begin{equation}
     w = w - \eta \nabla Q_i(w)- \alpha \Delta w
@@ -685,9 +702,9 @@ Traditional DNNs had, at the time of creation, very impressive results on many d
 \end{figure}
 
 
-Options for determining the resulting output size of the convolutional layer are called \textbf{stride} and \textbf{zero-padding}. Stride determines how many pixels the kernel shifts as it traverses. Increasing the stride will decrease the number of operations performed, and thus the output size. 
+Options for determining the resulting output size of the convolutional layer are called \textbf{stride} and \textbf{zero-padding}. Stride determines how many pixels the kernel shifts as it traverses. Increasing the stride will decrease the number of operations performed, and thus the output size.
 
-Since the kernel will pass the border of the image input fewer times than the pixels located closer to the center of the image, zero-padding can be used to improve the performance of the convolutional layer. Zero-padding adds zeros to the edges of the image, making it possible to traverse the original corners and borders of the image multiple times. The logical consequence of artificially increasing the width and height of the image is that more convolves occur, and thus the output size of the layer is increased. 
+Since the kernel will pass the border of the image input fewer times than the pixels located closer to the center of the image, zero-padding can be used to improve the performance of the convolutional layer. Zero-padding adds zeros to the edges of the image, making it possible to traverse the original corners and borders of the image multiple times. The logical consequence of artificially increasing the width and height of the image is that more convolves occur, and thus the output size of the layer is increased.
 
 \begin{figure}[H]
   \begin{center}
@@ -701,11 +718,11 @@ Since the kernel will pass the border of the image input fewer times than the pi
 Zero-padding the image input (in blue and on bottom) by 1 makes the convolutional layer produce the same output dimensions(green and on top) as the input. When the same dimensionality is produced, it is known as \textbf{same-padding}.
 \end{center}
 
-\textbf{Pooling layer.} Similar to how convolutional layers work, pooling layers are responsible for reducing the spatial size of the convolved features. This is to decrease the computational power required to process the data through dimensionality reduction. Another feature of the pooling layers is that, as we reduce the dimensionality of the layers further down the architecture, we force the layers to learn on higher and higher levels of abstraction of the features, since detail is lost with the compression of information. There are two important types of pooling layers: \textbf{Max pooling} and \textbf{average pooling}. As the names suggest, the operation applied to inputs of the layers is the maximum of the values or the average of the values respectively. 
+\textbf{Pooling layer.} Similar to how convolutional layers work, pooling layers are responsible for reducing the spatial size of the convolved features. This is to decrease the computational power required to process the data through dimensionality reduction. Another feature of the pooling layers is that, as we reduce the dimensionality of the layers further down the architecture, we force the layers to learn on higher and higher levels of abstraction of the features, since detail is lost with the compression of information. There are two important types of pooling layers: \textbf{Max pooling} and \textbf{average pooling}. As the names suggest, the operation applied to inputs of the layers is the maximum of the values or the average of the values respectively.
 
-\textbf{Dense layer}. Typically in these architectures, the final layers are traditional dense layers. These layers are used to output the probability of a certain class to be detected within the image. 
+\textbf{Dense layer}. Typically in these architectures, the final layers are traditional dense layers. These layers are used to output the probability of a certain class to be detected within the image.
 
-\textbf{Residual block}. As networks became deeper to improve results, the problems with vanishing and exploding gradients became more commonplace again. Residual neural network (ResNet), was proposed by Kaiming He et al~\cite{he2016deep}. It’s main contribution to the CNN architecture was the residual block, which introduced a short cut layer in order to improve learning as seen in \autoref{fig:residual}. 
+\textbf{Residual block}. As networks became deeper to improve results, the problems with vanishing and exploding gradients became more commonplace again. Residual neural network (ResNet), was proposed by Kaiming He et al~\cite{he2016deep}. It’s main contribution to the CNN architecture was the residual block, which introduced a short cut layer in order to improve learning as seen in \autoref{fig:residual}.
 
 \begin{figure}[H]
   \begin{center}
@@ -717,7 +734,7 @@ Zero-padding the image input (in blue and on bottom) by 1 makes the convolutiona
 
 \subsection{Fully Convolutional Network}
 
-Achieving state-of-the-art results on PASCAL VOC~\cite{DBLP:journals/corr/LongSD14}, among other datasets, at the time of creation, Fully Convolutional Networks (FCN) output a per-pixel prediction of the segmentation by first convoluting the features and the de-convoluting back to the original size of the input layer as can be seen in \autoref{fig:fcn}. 
+Achieving state-of-the-art results on PASCAL VOC~\cite{DBLP:journals/corr/LongSD14}, among other datasets, at the time of creation, Fully Convolutional Networks (FCN) output a per-pixel prediction of the segmentation by first convoluting the features and the de-convoluting back to the original size of the input layer as can be seen in \autoref{fig:fcn}.
 
 \begin{figure}[H]
   \begin{center}
@@ -733,7 +750,7 @@ The deconvolution layer simply reverses the process of the convolutional layer, 
 
 \subsection{Feature Pyramid Network}
 
-Recognizing objects at vastly different scales is one of the fundamental challenges in computer vision. One approach which has proven to be successful in both performance on competitive datasets (e.g. the COCO detection benchmark without bells and whistles\footnote{Bells and whistles are classes that are excluded in their performance benchmark.} in this case) and in the sense that it adds little overhead, is the Feature Pyramid Network (FPN). The idea is intuitive: To offset the problem of objects being of vastly different scales in images, the features maps generated from the images are scaled to different resolutions as seen in \autoref{fig:fpn}, and predictions are made on each of these scaled feature maps.
+Recognizing objects at vastly different scales is one of the fundamental challenges in computer vision. One approach which has proven to be successful in both performance on competitive datasets (e.g. the MS COCO detection benchmark without bells and whistles\footnote{Bells and whistles are classes that are excluded in their performance benchmark.} in this case) and in the sense that it adds little overhead, is the Feature Pyramid Network (FPN). The idea is intuitive: To offset the problem of objects being of vastly different scales in images, the features maps generated from the images are scaled to different resolutions as seen in \autoref{fig:fpn}, and predictions are made on each of these scaled feature maps.
 
 Previous approaches similar to the FPN also leverage the pyramid scheme to predict objects at different resolutions. However, as in the case of Featurized image pyramid a) in \autoref{fig:fpn}, inference time could increase by up to four times making the approach impractical for real world applications.
 
@@ -748,24 +765,37 @@ Convolutional neural networks typically narrow it’s hidden layers in common ar
 \end{figure}
 
 \subsection{Mask R-CNN}
+\label{subs:maskrcnn}
 
 Mask R-CNN is a deep learning neural network architecture designed for object instance detection and segmentation. Given an input image, the network produces bounding boxes, segmentation masks, and an estimated class for each object detected in the image. Mask R-CNN is an extension in a longer line of extensions of neural network architectures.
 
-\textbf{R-CNN}. The reason the original CNN is not ideal to use for object detection in images is that the output may be variable since you might have a variable amount of objects being detected in the image, making the output size vary from one image to the next. Region Based Convolutional Neural Network (R-CNN), proposed by Ross Girshick et al~\cite{Girshick_2014_CVPR}, uses a method where selective search is used to extract 2000 regions from the image called region proposals. Each proposal is warped into a square and fed into a CNN that produces a 4096-dimensional feature vector as output. In this case, the CNN acts as a feature extractor and the output dense layer consists of the features extracted from the image. These features are fed into a Support Vector Machine to classify the presence of an object within the region proposal. The algorithm also predicts four values which are offset values to increase the precision of the bounding box.  
+\textbf{R-CNN}. The reason the original CNN is not ideal to use for object detection in images is that the output may be variable since you might have a variable amount of objects being detected in the image, making the output size vary from one image to the next. Region Based Convolutional Neural Network (R-CNN), proposed by Ross Girshick et al~\cite{Girshick_2014_CVPR}, uses a method where selective search is used to extract 2000 regions from the image called region proposals. Each proposal is warped into a square and fed into a CNN that produces a 4096-dimensional feature vector as output. In this case, the CNN acts as a feature extractor and the output dense layer consists of the features extracted from the image. These features are fed into a Support Vector Machine to classify the presence of an object within the region proposal. The algorithm also predicts four values which are offset values to increase the precision of the bounding box.
 
-\textbf{Fast R-CNN}. The next evolution of the R-CNN, called “Fast R-CNN”~\cite{Girshick_2015_ICCV}, hints at the problems that R-CNN had and that its extension is trying to solve. R-CNN took a very long time to produce its output, and the selective search algorithm used to propose the regions is fixed, neglecting the possibility to learn in this stage of the architecture. Fast R-CNN introduces a RoI (Region of Interest) pooling layer, making it possible to skip generating 2000 region proposals and instead only have the convolution operation done once per image. 
+\textbf{Fast R-CNN}. The next evolution of the R-CNN, called “Fast R-CNN”~\cite{Girshick_2015_ICCV}, hints at the problems that R-CNN had and that its extension is trying to solve. R-CNN took a very long time to produce its output, and the selective search algorithm used to propose the regions is fixed, neglecting the possibility to learn in this stage of the architecture. Fast R-CNN introduces a RoI (Region of Interest) pooling layer, making it possible to skip generating 2000 region proposals and instead only have the convolution operation done once per image.
 
-\textbf{Faster R-CNN}. Fast, but not fast enough, the Fast R-CNN still took a significant time generating the region proposal, albeit much faster than its predecessor. Shaoqing Ren et al~\cite{7485869} came up with a replacement for the selective search algorithm with the added bonus that it lets the network learn in the region proposal step. This part of the network is called the Region Proposal Network (RPN). 
+\textbf{Faster R-CNN}. Fast, but not fast enough, the Fast R-CNN still took a significant time generating the region proposal, albeit much faster than its predecessor. Shaoqing Ren et al~\cite{7485869} came up with a replacement for the selective search algorithm with the added bonus that it lets the network learn in the region proposal step. This part of the network is called the Region Proposal Network (RPN).
 
 \textbf{Mask R-CNN}. Mask R-CNN contributes to this architecture by adding a parallel prediction of masks alongside its original output which is a class label and a bounding-box offset. This parallel proposal is what made Mask R-CNN unique compared to other extensions of Faster R-CNN at the time, where other methods often depended on the mask predictions for the class prediction. Mask R-CNN also introduces the concept of RoIAlign, to address misalignment issues between the RoI and the extracted features which impacts the pixel-accurate masks it produces due to quantization which is avoided with RoIAlign. More thorough details can be found in the original Mask R-CNN paper, He et al~\cite{DBLP:journals/corr/HeGDG17}. All deviations from the standard configuration will be noted in the implementation details chapter of this paper.
 
-\textbf{Weaknesses of Mask R-CNN} \textbf{TODO text about bad performance on small objects.}~\cite{DBLP:journals/corr/abs-1902-07296}
+\textbf{Weaknesses of Mask R-CNN}.
+M. Kisantal et al~\cite{DBLP:journals/corr/abs-1902-07296} describe a problem for Mask R-CNN in the fact that it struggles to perform well on small objects.
+There are a number of factors that contribute to this deficit.
+
+Firstly, in the MS COCO dataset, the number of images with small objects are significantly fewer than the number of images with medium or large objects ($51.82\%$ vs $70.07\%$ and $82.28\%$ respectively).
+
+The total annotated pixels per object size also differs significantly ($1.23\%$ vs $10.18\%$ and $88.59\%$ respectively).
+
+Lastly, each predicted anchor from the RPN receives a positive label if it has the highest IoU with a ground truth bounding box or if it has an IoU higher than 0.7 for any ground truth box. As the authors describe, this procedure favors large objects because "A large object spanning multiple spanning-window locations often has a high IoU with many anchor boxes, while a small object may only be matched with a single anchor box with a low IoU".
+
+\subsection{MS COCO dataset}
+\textbf{Since we mention this dataset multiple times throughout the thesis, perhaps we should describe it.}
 
 \section{Related work: Segmentation Algorithms}
+\label{sec:relwork}
 
-In the survey "A comprehensive survey of mostly textual document segmentation algorithms since 2008"~\cite{ESKENAZI20171} a topology for organizing segmentation algorithms is introduced based on the details of the algorithmic approach. 
+In the survey "A comprehensive survey of mostly textual document segmentation algorithms since 2008"~\cite{ESKENAZI20171} a topology for organizing segmentation algorithms is introduced based on the details of the algorithmic approach.
 
-According to this survey, three groups of approaches can be identified: 
+According to this survey, three groups of approaches can be identified:
 
 \begin{enumerate}
 \item Top-down
@@ -782,14 +812,14 @@ Each algorithm noted in the following chapter is classified depending on from wh
 \textbf{Layout constrained algorithms}. The first algorithms to appear in semantic segmentation tasks usually made strong assumptions about the layout of the documents. The algorithms can be further categorized into three groups based on how they assume the layout as can be seen in \autoref{fig:classicalgs}.
 
 The earliest attempts at semantic segmentation made clear assumptions about the document layout, either with grammar (a set of rules), or by assuming the Manhattan layout and using projection profiles.
-    
-Second came the algorithms that rely on Run-Length Smoothing Algorithm (RLSA), mathematical morphology or other filters. The characteristics of these filters reflect the assumptions made on the layout geometry. 
-    
-Lastly, algorithms focused on detecting straight lines or square borders appeared e.g. using the Hough transform. This includes detecting white space alignment in which case the lines may appear “invisible”.
-    
-\textbf{Parameter constrained algorithms}. Moving away from the rigid assumptions, the second group of algorithms try to adapt to local variations in the document in order to be able to segment a broader range of layouts without changing the algorithm itself. The drawback of these techniques is the increased complexity and number of parameters associated with the algorithms. These parameters can be difficult to tune and may require larger datasets to train on. In this group we find the clustering algorithms, the algorithms based on function analysis, and the classification algorithms. 
 
-Finally, in an attempt to overcome the limitations of the already mentioned algorithms, several techniques are combined in hybrid algorithms. Thus they cannot be categorized as either bottom-up or top-down algorithms since they may be both.  
+Second came the algorithms that rely on Run-Length Smoothing Algorithm (RLSA), mathematical morphology or other filters. The characteristics of these filters reflect the assumptions made on the layout geometry.
+
+Lastly, algorithms focused on detecting straight lines or square borders appeared e.g. using the Hough transform. This includes detecting white space alignment in which case the lines may appear “invisible”.
+
+\textbf{Parameter constrained algorithms}. Moving away from the rigid assumptions, the second group of algorithms try to adapt to local variations in the document in order to be able to segment a broader range of layouts without changing the algorithm itself. The drawback of these techniques is the increased complexity and number of parameters associated with the algorithms. These parameters can be difficult to tune and may require larger datasets to train on. In this group we find the clustering algorithms, the algorithms based on function analysis, and the classification algorithms.
+
+Finally, in an attempt to overcome the limitations of the already mentioned algorithms, several techniques are combined in hybrid algorithms. Thus they cannot be categorized as either bottom-up or top-down algorithms since they may be both.
 
 \begin{figure}[H]
   \begin{center}
@@ -807,15 +837,15 @@ Top-down (TD) and bottom-up (BU) algorithms are also denoted.
 
 In an attempt to trade prior handcrafted features for learning capabilities, machine learning techniques, especially deep neural networks have outperformed classical algorithms in recent papers. These approaches can be categorized by the input they receive.
 
-\textbf{Image modality only}. Convolutional neural networks were originally created to classify objects in images such as hand written numbers by LeCunn et al~\cite{lecun1989}. Since then, CNNs are used in a wide variety of image classification domains~\cite{deng2009}. Since CNNs can use images as input to the network, they naturally lend themselves to be applied in this domain as well. Attempts have been made~\cite{DBLP:journals/corr/0011S17}, as well as several variants~\cite{he2017, xu2017, wickpuppe2018, oliveira2018} of the Fully Convolutional Network (FCN) introduced by Long et al~\cite{DBLP:journals/corr/LongSD14}. The major drawback of these techniques is that they do not exploit the often available localized, two-dimensional, textual input obtained through OCR scanning.  
+\textbf{Image modality only}. Convolutional neural networks were originally created to classify objects in images such as hand written numbers by LeCunn et al~\cite{lecun1989}. Since then, CNNs are used in a wide variety of image classification domains~\cite{deng2009}. Since CNNs can use images as input to the network, they naturally lend themselves to be applied in this domain as well. Attempts have been made~\cite{DBLP:journals/corr/0011S17}, as well as several variants~\cite{he2017, xu2017, wickpuppe2018, oliveira2018} of the Fully Convolutional Network (FCN) introduced by Long et al~\cite{DBLP:journals/corr/LongSD14}. The major drawback of these techniques is that they do not exploit the often available localized, two-dimensional, textual input obtained through OCR scanning.
 
-\textbf{Image and text modalities}. The representation of text as input to deep neural networks has increased in complexity since it was first tried in Meier et al~\cite{8270006} using a FCN based approach. In this attempt, the textual information was represented as a binary feature (a pixel has text or not), where lexical and semantic dimensions are not taken into account. 
+\textbf{Image and text modalities}. The representation of text as input to deep neural networks has increased in complexity since it was first tried in Meier et al~\cite{8270006} using a FCN based approach. In this attempt, the textual information was represented as a binary feature (a pixel has text or not), where lexical and semantic dimensions are not taken into account.
 
 Katti et al~\cite{katti2018} introduced the concept of \textit{chargrid}, a two dimensional representation of text where characters are localized on the image and encoded as a one-hot vector. This study shows that model variants exploiting both modalities achieve better results, at the cost of high-computing. While Dang and Nguyen Thanh~\cite{DBLP:journals/corr/abs-2106-00952} build on this approach and show an impressive mIoU of 87\% for template-like administrative documents, Denk and Reisswig~\cite{DBLP:journals/corr/abs-1909-04948} (who also build upon Katti et al~\cite{katti2018}), consider not only characters, but words and their corresponding embeddings. Using BERTgrid for the automatic extraction of key-value information from invoice images (amount, number, date, etc), they obtain the best results with document representation based on one-hot character embedding and word-level BERT embeddings with no image information.
 
-Moving from character, to word, to sentence representations, Yang et al~\cite{DBLP:journals/corr/YangYAKKG17} represent text via text embedding maps, where the two-dimensional text representation is mapped to the pixel information. Textual features correspond to sentence embeddings in this case, with the use of word vectors obtained with word2vec~\cite{mikolov2013} and averaged in the final embedding. 
+Moving from character, to word, to sentence representations, Yang et al~\cite{DBLP:journals/corr/YangYAKKG17} represent text via text embedding maps, where the two-dimensional text representation is mapped to the pixel information. Textual features correspond to sentence embeddings in this case, with the use of word vectors obtained with word2vec~\cite{mikolov2013} and averaged in the final embedding.
 
-Finally, Barman et al~\cite{jdmdh:7097} combine word embeddings with a deep neural network approach specifically within the domain of newspaper segmentation. The critical difference to this paper is that Barman et al~\cite{jdmdh:7097} uses word embeddings, where we will vary difference sentence embedding encoders. The primary architecture used in Barman et al~\cite{jdmdh:7097} is dhSegment, where we will vary different settings within the newer architecture Mask R-CNN, developed specifically for instance segmentation. Similarly to Barman et al~\cite{jdmdh:7097}, we will modify the architecture to fit the text embeddings behind the image pixels by extending the number of channels in the image and inserting the text embeddings at the coordinates of the text bounding box produced by the OCR. 
+Finally, Barman et al~\cite{jdmdh:7097} combine word embeddings with a deep neural network approach specifically within the domain of newspaper segmentation. The critical difference to this paper is that Barman et al~\cite{jdmdh:7097} uses word embeddings, where we will vary difference sentence embedding encoders. The primary architecture used in Barman et al~\cite{jdmdh:7097} is dhSegment, where we will vary different settings within the newer architecture Mask R-CNN, developed specifically for instance segmentation. Similarly to Barman et al~\cite{jdmdh:7097}, we will modify the architecture to fit the text embeddings behind the image pixels by extending the number of channels in the image and inserting the text embeddings at the coordinates of the text bounding box produced by the OCR.
 
 \section{Summary}
 
@@ -830,69 +860,106 @@ Finally, Barman et al~\cite{jdmdh:7097} combine word embeddings with a deep neur
 
 \section{Data}
 
-A broad overview of the different datasets labeled specifically for this paper will be introduced. Then a formal definition of a news unit will be made, which will be derived from the definition of a news article. This definition will be based on what a user might like to query as content on an article-level search of a newspaper. Since the data, made available by Kungliga Biblioteket is strictly non-disclosure (meaning no example figures from the real data can be submitted) an attempt to produce a systematic overview of the contents of the dataset will explain what elements may or may not be included in the definition of a news unit.
+A description of the labeling strategy will be introduced, as well as the caveats that arise from working with newspaper data.
+Each class will be described and any special delimitations will be detailed.
 
-\subsection{Sampling}
+Definitions will be based on what a user might like to query as content on an article-level search of a newspaper.
+Because of this rather subjective definition, a systematic description of how elements of units are labeled will be produced in this chapter.
 
-Three datasets from three different time periods were produced during this project. The time periods were chosen carefully to differ typographically. The first and largest dataset, DN 2010 - 2020,  is exclusively labeled from the newspaper Dagens Nyheter. Model training is performed on a subset of the DN 2010 - 2020 dataset, which is split into three parts: Train, test and validation. The remaining two datasets are used for evaluation of the trained models.
+\subsection{Labeling strategy}
+\label{subsec:labelingstrat}
 
-In each dataset, the labels are produced at the page level. In the first dataset, DN 2010 - 2020, the first newspaper was labeled from start to end. After that, random sampling was used for the remaining data. 
+In this thesis we are concerned with grouping elements together that relate by their contents.
+For example, a news article might have an image depicting the contents, a title, a body of text possibly spanning multiple paragraphs, and a byline.
+These elements are one \textit{instance} of a class.
 
+Some elements of the newspaper do not by themselves convey any news. One example are elements used for navigating the newspaper itself.
+Such elements include titles, section titles and subsection titles. Another example could be instructions for participating in debate, or footers that present the newspaper publishing team.
+These elements are considered \textit{static} and receive no label in this thesis.
 
-\subsubsection{DN 2010 - 2020 (In-set)}
+The label bounding box will be the smallest spanning bounding box, including white spaces between the elements, should they make up a rectangular shape.
+In the case that elements are organized such that they do not make up a rectangular shape, a smallest rectangular shape will be made excluding the protruding elements,
+which are then included by extending the border of the original rectangular shape in an asymmetric manner as can be seen in \autoref{fig:asymextention}.
 
-Sampled from Dagens Nyheter in the time period 2010 to 2020, this dataset contains plenty of articles with rich graphics such as visualizations of data related to the content. Many images related to the articles are very large, sometimes spanning the entire first page of a multi-page article. Sampling ratio is 70/15/15.
+\begin{figure}[H]
+\label{fig:asymextention}
+\begin{tikzpicture}
+\draw[step=1cm,white,very thin] (-2.9,-2.9) grid (6.9,6.9);
+\draw[red] (-2,-2) -- (2,-2) -- (2,4) -- (6,4) -- (6,6) -- (-2,6) -- (-2,-2);
 
-\begin{table}[!ht]
-  \begin{center}
-    \caption{Class distribution in the DN 2010 - 2020 dataset}
-    \label{tab:trainclassdist}
-    \begin{tabular}{l|l|l|l|l|l|l} % <-- Alignments: 1st column left, 2nd middle, with vertical lines in between
-    \textbf{Dataset} & \textbf{News Unit} & \textbf{Advertisement} & \textbf{Listing} & \textbf{Death Notice} & \textbf{Game} & \textbf{Weather}  \\ 
-    \hline
-    \textbf{Train} & 1027 & 554 & 920 & 105 & 55 & 12 \\    \hline
-    \textbf{Test} & 179 & 166 & 196 & 19 & 5 & 2 \\    \hline
-    \textbf{Validation} & 240 & 135 & 259 & 2 & 6 & 3 \\    \hline
-    \end{tabular}
-  \end{center}
-\end{table}
+\node[draw] at (0,2) {A};
 
-\subsubsection{DN SvD 2001 - 2004 (Near-set)}
+\draw[red, densely dotted] (2,4) -- (2,6);
 
-\textbf{Text describing dataset}
+\node[draw] at (4,5) {B};
 
-\begin{table}[!ht]
-  \begin{center}
-    \caption{Class distribution in the  DN SvD 2001 - 2004 dataset}
-    \label{tab:insetclassdist}
-    \begin{tabular}{l|l|l|l|l|l|l} % <-- Alignments: 1st column left, 2nd middle, with vertical lines in between
-    \textbf{Dataset} & \textbf{News Unit} & \textbf{Advertisement} & \textbf{Listing} & \textbf{Death Notice} & \textbf{Game} & \textbf{Weather}  \\ 
-    \hline
-    \textbf{Test} & 544 & 599 & 664 & 40 & 11 & 2 \\    \hline
-    \end{tabular}
-  \end{center}
-\end{table}
+\draw[blue]           (2.1,-2) -- (2.1,1.9) -- (6,1.9) -- (6,-2) -- (2.1, -2);
 
-\subsubsection{Aftonbladet Expressen 2001 - 2004 (Out-set)}
+\node[draw] at (4,0) {C};
 
-\textbf{Text describing dataset}
+\end{tikzpicture}
+\caption{Asymmetric extension of the label. A is labeled red, and B should belong to the same label, while C should not.}
+\end{figure}
 
-\begin{table}[!ht]
-  \begin{center}
-    \caption{Class distribution in the  Aftonbladet Expressen 2001 - 2004 dataset}
-    \label{tab:outsetclassdist}
-    \begin{tabular}{l|l|l|l|l|l|l} % <-- Alignments: 1st column left, 2nd middle, with vertical lines in between
-    \textbf{Dataset} & \textbf{News Unit} & \textbf{Advertisement} & \textbf{Listing} & \textbf{Death Notice} & \textbf{Game} & \textbf{Weather}  \\ 
-    \hline
-    \textbf{Test} & 619 & 214 & 489 & 0 & 15 & 5 \\    \hline
-    \end{tabular}
-  \end{center}
-\end{table}
-\subsection{Classes and labels}
+There are instances where elements that should be grouped together cannot easily be captured in the same bounding box.
+For example, if a section of a newspaper has very densely formatted text, and the image and image caption is pushed far from its textual contents as seen in \autoref{fig:blockingelements}, a decision has to be made for how to label this instance.
+One strategy to deal with this problem could be to connect two bounding boxes by extending a thin line between the related elements. Another could be to regard the two elements as two instances.
+
+Each of these proposed solutions have their disadvantages. In the case of connecting them with a thin line, the surface on which the thin line extends may not actually be a true label for the instance.
+In the case of regarding them as two instances, the obvious problem is that they are in fact one instance, and the model has to learn that this compromise is due to the spatial layout of the elements.
+
+In this thesis we regard such cases as two instances.
+
+\begin{figure}[H]
+\label{fig:blockingelements}
+\begin{tikzpicture}
+\draw[step=1cm,white,very thin] (-2.9,-2.9) grid (6.9,6.9);
+\draw[red] (-2,-2) -- (2,-2) -- (2,6) -- (-2,6) -- (-2,-2);
+
+\node[draw] at (0,2) {A};
+
+\draw[blue] (2.1,-2) -- (5.9,-2) -- (5.9,6) -- (2.1,6) -- (2.1, -2);
+
+\node[draw] at (4,2) {C};
+
+\draw[red] (6,-2) -- (10,-2) -- (10,6) -- (6,6) -- (6,-2);
+
+\node[draw] at (8,2) {B};
+
+\end{tikzpicture}
+\caption{Example where other content (C) is blocking elements (A and B) from becoming one label.}
+\end{figure}
+
+\subsection{Caveats of processing individual pages}
+
+As the model proposed in this thesis processes one image at a time, while content can be split across two pages or more, special delimitations have to be considered when labeling.
+
+If two elements discuss the same topic but have different authors they will be considered two different instances.
+
+A single page may only display half of an image, or a few elements of the complete body text.
+If the page is the first page of a multi page article the byline may be missing, but the elements will still be considered an instance.
+Similarly, if the page in question is the second page of a multi page article, a headline may be missing, but the elements will still count as an instance.
+
+\subsection{Labels}
+
+In this section, each label will be described, as well as the caveats related to each class.
+
+\subsubsection{Background}
+
+When labeling input for Mask R-CNN, any pixel that does not receive a label will automatically receive the implied label 'Background'.
+Thus, when making the choice of what to label, one is also implying what the background will look like as perceived by the model.
+
+In this thesis, we consider both the "white" newspaper background and static content such as logos or footers that appear in the same place for the same typographic design as 'Background'.
+This type of content may not be completely static: In a footer the names of publishers may vary across time. The core idea is that this type of information does not propagate news by itself.
+
+Following this assertion, all other content which is not static should receive a label and a class.
 
 \subsubsection{News Unit}
 
-Due to the spatial requirements or stylistic choices made by the publicist, some news article elements may be omitted. The consequence of this fact is that news articles vary greatly in their composition. Thus, when labeling news articles, a systematic definition has to be produced so that labels are consistent across newspapers. In this section, we will attempt to produce such a definition derived from the definition of a news article.
+Due to the spatial requirements or stylistic choices made by the publicist, some news article elements may be omitted.
+The consequence of this fact is that news articles vary greatly in their composition.
+Thus, when labeling news articles, a systematic definition has to be produced so that labels are consistent across newspapers.
+In this section, we will attempt to produce such a definition derived from the definition of a news article.
 
 \newtheorem{lemma}{Lemma}[chapter]
 \newcommand{\lemmaautorefname}{Lemma}
@@ -901,7 +968,10 @@ Due to the spatial requirements or stylistic choices made by the publicist, some
 
 \begin{definition}
 \label{newsarticle}
-A \textbf{news article} is a written work published in a print or electronic medium with the purpose of propagating news, research results, academic analysis or debate. News articles tend to be composed of a headline, a subhead, a preamble, a body text, and a byline. Some elements, such as the subhead and preamble, may be omitted due to stylistic choices or space requirements. News articles are often extended by a number of other optional elements, such as images and image captions. Digitally published news articles may also include video and video captions.
+A \textbf{news article} is a written work published in a print or electronic medium with the purpose of propagating news, research results, academic analysis or debate.
+News articles tend to be composed of a headline, a subhead, a preamble, a body text, and a byline.
+Some elements, such as the subhead and preamble, may be omitted due to stylistic choices or space requirements.
+News articles are often extended by a number of other optional elements, such as images and image captions.
 \end{definition}
 
 \begin{definition}
@@ -934,7 +1004,7 @@ A \textbf{byline} is a line at the top or bottom of a newspaper or magazine arti
 An \textbf{image caption} or a \textbf{video caption} is a title or brief explanation accompanying an illustration, cartoon, poster or in the latter case a video. [Oxford Languages]
 \end{definition}
 
-Given Defintion \ref{newsarticle} of a \textit{news article}, we will now introduce the concept of a \textit{news unit}, which will determine what elements will be labeled in the newspaper data as representative of a news article.
+Given Definition \ref{newsarticle} of a \textit{news article}, we will now introduce the concept of a \textit{news unit}, which will determine what elements will be labeled in the newspaper data as representative of a news article.
 
 \begin{definition}
 \label{newsunit}
@@ -946,9 +1016,7 @@ A \textbf{news unit} is a written work published in a print or electronic medium
 \end{enumerate}
 \end{definition}
 
-A \textit{news unit} may contain all of the above, including an image of the author themselves and smaller elements of text that usually contain explanatory contents, such as definitions or facts associated with the article itself. The label bounding box will be the smallest spanning bounding box, including white spaces between the elements, should they make up a rectangular shape. In the case that elements are organized such that they do not make up a rectangular shape, a smallest rectangular shape will be made excluding the protruding elements, which are then included by extending the border of the original rectangular shape in an asymmetric manner.
-
-\textbf{TODO explain with images}
+A \textit{news unit} may contain all of the above, including an image of the author themselves and smaller elements of text that usually contain explanatory contents, such as definitions or facts associated with the article itself.
 
 \subsubsection{News Unit Delimitations}
 
@@ -962,46 +1030,156 @@ Some elements were included in the news unit due to the fact that they contained
 
 \subsubsection{Advertisement}
 
-The most common form of advertisement found in our dataset is that of rectangular images possibly containing text. They vary greatly in size, sometimes stretching the entire page. Purely textual advertisement also occurs frequently, sometimes with clear bounding boxes to indicate a separation from the journalistic content. Advertisements usually contain contact information of the provider of a service or product. 
+The most common form of advertisement found in our dataset is that of rectangular images possibly containing text.
+They vary in size, sometimes stretching the entire page.
+Purely textual advertisement also occurs frequently, sometimes with clear bounding boxes to indicate a separation from the journalistic content.
+Advertisements usually contain contact information of the provider of a service or product.
 
-There are advertisements for the newspaper itself. It could be an offer for a subscription to the newspaper, an encouragement from the newspaper company to participate in a debate, an ad for the ad space itself, or a way to give feedback to the authors. Elements that suggest to the reader to visit the website of the newspaper or to explore other sections of the newspaper are labeled as Advertisement. Elements that are list-like instructions to participate remain unlabeled due to their generic format and repeated textual content.
+There are advertisements for the newspaper itself.
+It could be an offer for a subscription to the newspaper,
+an encouragement from the newspaper company to participate in a debate, an ad for the ad space itself,
+or a way to give feedback to the authors. Elements that suggest to the reader to visit the website of the newspaper
+or to explore other sections of the newspaper are labeled as Advertisement.
+Elements that are list-like instructions to participate in a debate remain unlabeled due to their generic format and repeated textual content.
 
-Finally one must mention that there are advertisements made to look like news articles. They are intentionally structured and formatted to appear exactly as news articles do, except for the fact that a small warning is made that the section is in fact an advertisement. In this project, these types of advertisements are labeled as news articles. \textbf{TODO maybe discuss more?}
+Finally there are advertisements made to look like news articles.
+They are intentionally structured and formatted to appear exactly as news articles do,
+except for the fact that a small warning is made that the section is in fact an advertisement.
+One could argue to support both that they should be labeled as ads (because they truly are ads), and that they should be labeled as news articles (because they look like news articles).
+In this project, these types of advertisements are labeled as news articles.
 
 \subsubsection{Listing}
 
-Listings are typically very distinguishable from the other types of content, yet there are some examples where the label could be more difficult to establish. In the case of movie advertisement, depending on the style of presentation the format could be argued to be similar to a Listing.
+Dense lists of information has received its own class. As seen in \textbf{reference to visual description of listings},
+there are frequently occurring lists of different types of content.
 
-Yet in this project, all movie related content is labeled as Advertisement. Another form of content that can easily border between Listing and Advertisement is the “Kungörelser” section(English: Announcement or notification). Sometimes containing advertisements, the format is usually very dense and a brief language is used. “Kungörelser” are labeled as Listings, although their individual subheadings remain unlabeled.
+Due to that other classes, such as advertisements, sometimes appears between the columns of the lists, each column is labeled as an instance of a listing.
+The width of the column is decided by the width of the column header. In some list contents, columns headers appear at the top of the page or table,
+and in others right after the last line of the previous list.
+
+There are some examples where the label could be more difficult to establish.
+In the case of movie advertisement, depending on the style of presentation the format could be argued to be similar to a Listing.
+However, these types of lists (of movie dates, theaters etc) vary from very detailed information to single words appearing in a dotted list without line breaking.
+Because these elements should belong to one instance of a label, they are labeled as advertisement.
+
+Another form of content that can easily border between Listing and Advertisement is the “Kungörelser” section (English: Announcement or notification).
+Sometimes containing advertisements, the format is usually very dense and a brief language is used.
+“Kungörelser” are labeled as Listings,
+although their individual subheadings remain unlabeled similar to the labeling strategy of Listing,
+with the exception of self advertisement by the newspaper.
+
+\subsubsection{Comics, artwork and poems}
+Comics, artwork and poems pose an interesting challenge in labeling because of the creative freedom of the composition of elements.
+Many of them border on being included in the definition of a news unit.
+
+These types of creative content received no separate class. If they are labeled, they fulfilled the definition of a news unit. Comics received no label.
+Artwork is also common in some sections of the newspapers. In this thesis artwork is treated like a potential image to a news article, as it is often accompanied by a text.
 
 \subsubsection{Weather}
 
-Weather information is labeled as the Weather class. Sometimes appearing as whole-page content, sometimes as snippets or previews on other pages, the smallest bounding box containing all types of weather information (maps, tables, graphics) are labeled as an instance. In the case that weather information is split by other types of content, two instances are labeled.
+Weather information is labeled as the Weather class.
+Sometimes appearing as whole-page content, sometimes as snippets or previews on other pages, the smallest bounding box containing all types of weather information (maps, tables, graphics) are labeled as an instance.
+In the case that weather information is split by other types of content, two instances are labeled.
 
 \subsubsection{Death Notice}
 
-Death notices are obvious in their pattern. A strong black border surrounds a text describing the person, usually beginning with a smaller graphic, the name of the person and an addition of information regarding the person or details regarding their passing. On pages usually containing death notices, In memoriam texts occur: Longer texts describing the person in question, usually submitted by a number of people. These submissions are labeled as news units as per the definition. 
+A strong black border surrounds a text describing the person, usually beginning with a smaller graphic,
+the name of the person and an addition of information regarding the person or details regarding their passing. These elements received the class "Death Notice".
+
+On pages usually containing death notices, "In memoriam" texts occur: Longer texts describing the person in question, usually submitted by a number of people.
+These submissions are labeled as news units as per the definition of a news unit.
 
 \subsubsection{Game}
 
-Any form of game found within the newspaper is labeled as one and the same class: Game.  
+Any form of game found within the newspaper is labeled as one and the same class: Game.
+The bounding box for the instance will include the game itself, any text related to the game, and its width is decided by the title element width.
 
 \subsubsection{Publication Unit}
 
-In order to investigate the impact of classes on the performance of the model, we perform the same experiments where all annotations are set to the same class. In the experiments using the publication unit, all other classes are converted to the same class. Therefore, if an element or group of elements are assigned any class, previously mentioned in this chapter, they will be labeled as a publication unit in the experiments where class confusion is investigated.
+In order to investigate the impact of classes on the performance of the model, we perform the same experiments where all annotations are set to the same class.
+Therefore, if an element or group of elements are assigned any class, previously mentioned in this chapter, they will be labeled as a publication unit in the experiments where class confusion is investigated.
 
 \subsubsection{Delimitations}
 
-Titles, section titles and subsection titles are not included in the definition of any class. The guiding principle is that content labeled as a class should be presenting detailed news. Plenty of elements found in the newspaper are simply repeated and do not, by themselves, convey any news. Some of the elements act as a guide for the reader to navigate the newspaper, e.g. topics or sections. Other elements convey information about the newspaper itself, usually repeated in every edition found in the datasets. A comprehensive list of these unlabeled elements follows:
+As described in \autoref{subsec:labelingstrat}, some elements found in the newspaper are simply repeated and do not, by themselves, convey any news content.
+A comprehensive list of these unlabeled elements follows:
 
 \begin{description}
-\item[$\bullet$] Titles
 \item[$\bullet$] Logos of newspaper
 \item[$\bullet$] Section titles
 \item[$\bullet$] Subsection titles
 \item[$\bullet$] Instructions how to participate in debates
 \item[$\bullet$] Footers and headers describing the news team / publishing team
 \end{description}
+
+
+\subsection{Sampling}
+
+Three datasets from three different time periods were produced during this project.
+The time periods were chosen carefully to differ typographically.
+The first and largest dataset, DN 2010 - 2020,
+is exclusively labeled from the newspaper Dagens Nyheter.
+Model training is performed on a subset of the DN 2010 - 2020 dataset,
+which is split into three parts: Train, test and validation.
+The remaining two datasets are used for evaluation of the trained models.
+
+In each dataset, the labels are produced at the page level.
+In the first dataset, DN 2010 - 2020, the first newspaper was labeled from start to end.
+After that, random sampling was used for the remaining data.
+
+\subsubsection{DN 2010 - 2020 (In-set)}
+
+Sampled from Dagens Nyheter in the time period 2010 to 2020,
+this dataset contains plenty of articles with rich graphics such as visualizations of data related to the content.
+Many images related to the articles are large, sometimes spanning the entire first page of a multi-page article.
+
+Sampling ratio is 70/15/15 for Train/Test/Validation respectively.
+
+\begin{table}[!ht]
+  \begin{center}
+    \caption{Class distribution in the DN 2010 - 2020 dataset}
+    \label{tab:trainclassdist}
+    \begin{tabular}{l|l|l|l|l|l|l} % <-- Alignments: 1st column left, 2nd middle, with vertical lines in between
+    \textbf{Dataset} & \textbf{News Unit} & \textbf{Advertisement} & \textbf{Listing} & \textbf{Death Notice} & \textbf{Game} & \textbf{Weather}  \\
+    \hline
+    \textbf{Train} & 1027 & 554 & 920 & 105 & 55 & 12 \\    \hline
+    \textbf{Test} & 179 & 166 & 196 & 19 & 5 & 2 \\    \hline
+    \textbf{Validation} & 240 & 135 & 259 & 2 & 6 & 3 \\    \hline
+    \end{tabular}
+  \end{center}
+\end{table}
+
+\subsubsection{DN SvD 2001 - 2004 (Near-set)}
+
+\textbf{Text describing dataset}
+
+\begin{table}[!ht]
+  \begin{center}
+    \caption{Class distribution in the  DN SvD 2001 - 2004 dataset}
+    \label{tab:insetclassdist}
+    \begin{tabular}{l|l|l|l|l|l|l} % <-- Alignments: 1st column left, 2nd middle, with vertical lines in between
+    \textbf{Dataset} & \textbf{News Unit} & \textbf{Advertisement} & \textbf{Listing} & \textbf{Death Notice} & \textbf{Game} & \textbf{Weather}  \\
+    \hline
+    \textbf{Test} & 544 & 599 & 664 & 40 & 11 & 2 \\    \hline
+    \end{tabular}
+  \end{center}
+\end{table}
+
+\subsubsection{Aftonbladet Expressen 2001 - 2004 (Out-set)}
+
+\textbf{Text describing dataset}
+
+\begin{table}[!ht]
+  \begin{center}
+    \caption{Class distribution in the  Aftonbladet Expressen 2001 - 2004 dataset}
+    \label{tab:outsetclassdist}
+    \begin{tabular}{l|l|l|l|l|l|l} % <-- Alignments: 1st column left, 2nd middle, with vertical lines in between
+    \textbf{Dataset} & \textbf{News Unit} & \textbf{Advertisement} & \textbf{Listing} & \textbf{Death Notice} & \textbf{Game} & \textbf{Weather}  \\
+    \hline
+    \textbf{Test} & 619 & 214 & 489 & 0 & 15 & 5 \\    \hline
+    \end{tabular}
+  \end{center}
+\end{table}
 
 \clearpage
 
@@ -1019,28 +1197,40 @@ Our objective is to segment newspaper images and to classify detected segments o
 \item[$\bullet$ Head] Used for bounding-box recognition (classification and regression)
 \end{description}
 
+\textbf{TODO describe what is found in mstrain files img norm cfg, preprocessing steps, optimizer, lr config}
+\textbf{TODO describe steps to use text-features}
+\textbf{TODO describe steps to use 1 class}
+\textbf{TODO maybe in the next section}
+
 \subsection{Modifications to the primary architecture}
 
-\textbf{Preprocessing}. Text embeddings are added to the data during the preprocessing step. Because we want to avoid image normalization of the textual embeddings, and other preprocessing methods used by Mask R-CNN to augment the image data, the textual embeddings are added as the last step. By the time we add the textual embeddings, the image may have been resized, padded and flipped horizontally. The bounding boxes of the text embeddings are offset and scaled accordingly to align with the new dimensions.
+\textbf{Preprocessing}. Text embeddings are added to the data during the preprocessing step.
+Because we want to avoid image normalization of the textual embeddings, and other preprocessing methods used by Mask R-CNN to augment the image data,
+the textual embeddings are added as the last step. By the time we add the textual embeddings, the image may have been resized, padded and flipped horizontally.
+The bounding boxes of the text embeddings are offset and scaled accordingly to align with the new dimensions.
 
-\textbf{Evaluation}. In the original COCO dataset (on which Mask R-CNN is usually evaluated), there is size partitioning depending on the size of the object being detected when presented in the results. Since the classes found in this project are generally larger on average than the size of the objects found in the coco dataset, the partitioning size thresholds are adjusted for these results to provide more useful information about different objects being detected(Using the standard thresholds, almost all objects are considered “large”). This alteration has no impact on the performance of the solution itself, but must be considered when evaluating the results.
+\textbf{Evaluation}. In the original MS COCO dataset (on which Mask R-CNN is usually evaluated),
+there is size partitioning depending on the size of the object being detected when presented in the results.
+Since the classes found in this project are generally larger on average than the size of the objects found in the MS COCO dataset,
+the partitioning size thresholds are adjusted for these results to provide more useful information about different objects being detected (Using the standard thresholds, almost all objects are considered “large”).
+This alteration has no impact on the performance of the solution itself, but must be considered when evaluating the results.
 
 \begin{table}[!htb]
   \begin{center}
     \caption{Object size threshold differences}
     \label{tab:objectsizes}
     \begin{tabular}{l|l|l|l} % <-- Alignments: 1st column left, 2nd middle, with vertical lines in between
-    \textbf{Dataset} & \textbf{Small} & \textbf{Medium} & \textbf{Large}  \\ 
+    \textbf{Dataset} & \textbf{Small} & \textbf{Medium} & \textbf{Large}  \\
     \hline
-    COCO dataset & area < $32^2$ & $32^2$ < area < $96^2$ & area > $96^2$  \\    \hline
-    This project & area < X & X < area < X & area > X \\    \hline
+    MS COCO dataset & area < $32^2$ & $32^2$ < area < $96^2$ & area > $96^2$  \\    \hline
+    This thesis & area < X & X < area < X & area > X \\    \hline
     \end{tabular}
   \end{center}
 \end{table}
 
 \subsection{Text Embedding map}
 
-In order to combine the visual and textual information as input to the model, we map the one-dimensional representation of textual information (e.g. a word vector or paragraph vector) into a three-dimensional representation by positioning the embedding representation into a two-dimensional space (e.g. a word or paragraph has a certain width, height, x-, and y-coordinate of the top left corner when printed on a page). 
+In order to combine the visual and textual information as input to the model, we map the one-dimensional representation of textual information (e.g. a word vector or paragraph vector) into a three-dimensional representation by positioning the embedding representation into a two-dimensional space (e.g. a word or paragraph has a certain width, height, x-, and y-coordinate of the top left corner when printed on a page).
 
 This new textual embedding vector, corresponding to a character, word or paragraph, is equivalent to the original vector, augmented with the positional information. We refer to this three-dimensional representation of textual information, as mentioned in Barman et al~\cite{jdmdh:7097} and introduced in Yang et al.~\cite{DBLP:journals/corr/YangYAKKG17} as a ‘text embedding map’.
 
@@ -1048,10 +1238,10 @@ Notably, the key difference from the earlier works by Barman et al~\cite{jdmdh:7
 
 The three-dimensional encoding of textual information is produced by using the result of an OCR process which outputs coordinates of bounding boxes for blocks of text together with its textual content.
 
-We define this process formally as follows. Given an image of size $H$ $x$ $W$ and a list of tokens $T$ where each token $t$ is associated with a bounding box $b_t$ on the image, a text embedding map $G$ of size $H$ $x$ $W$ $x$ $N$ is produced, where $N$ is the dimension of the embeddings. Specifically, all pixels contained in the bounding box of a token $t$ are defined as the set $b_t \in {\rm I\!R}^2$ and each pixel $g_{i,j} \in G$ of the text embedding map is computed with 
+We define this process formally as follows. Given an image of size $H$ $x$ $W$ and a list of tokens $T$ where each token $t$ is associated with a bounding box $b_t$ on the image, a text embedding map $G$ of size $H$ $x$ $W$ $x$ $N$ is produced, where $N$ is the dimension of the embeddings. Specifically, all pixels contained in the bounding box of a token $t$ are defined as the set $b_t \in {\rm I\!R}^2$ and each pixel $g_{i,j} \in G$ of the text embedding map is computed with
 
 \begin{equation}
-	g_{ij} = 
+	g_{ij} =
 	    \begin{cases}
 	      E(t), & \text{if}\ (i,j) \in b_t \\
 	      0^N, & \text{otherwise}
@@ -1061,7 +1251,7 @@ We define this process formally as follows. Given an image of size $H$ $x$ $W$ a
 
 where $E(t)$ is a mapping of $t \rightarrow {\rm I\!R}^N$ corresponding for example to a paragraph embedding, and $0^N$ is a null vector in case there is no text in the corresponding pixel. Each pixel overlapping with a bounding box produced by the OCR process is therefore mapped to its corresponding embedding. In this project, no bounding boxes are overlapping, which means no statement will be made regarding a strategy for such a case.
 
-The result is a text embedding map, i.e. a three-dimensional matrix where the first two dimensions correspond to the image-localized representation of the text, and the third to the embedding itself. Given that the resulting matrix has the same width and height as the original image, it lends itself to easily extend the image input layer to accept more than its 3 original channels (RGB), that is to also fit an N-dimensional vector behind each pixel in a preprocessing step. The final number of channels of the input layer is therefore $3+N$, where the first 3 dimensions of each pixel contain the original RGB values of the input image. 
+The result is a text embedding map, i.e. a three-dimensional matrix where the first two dimensions correspond to the image-localized representation of the text, and the third to the embedding itself. Given that the resulting matrix has the same width and height as the original image, it lends itself to easily extend the image input layer to accept more than its 3 original channels (RGB), that is to also fit an N-dimensional vector behind each pixel in a preprocessing step. The final number of channels of the input layer is therefore $3+N$, where the first 3 dimensions of each pixel contain the original RGB values of the input image.
 
 \textbf{TODO Maybe visualization of the embedding maps?}
 
@@ -1071,15 +1261,41 @@ The result is a text embedding map, i.e. a three-dimensional matrix where the fi
 \section{Experiments}
 \label{sec:experiments}
 
+In this section we will introduce the experiments that will be conducted in order to attempt to achieve the goals outlined in \autoref{}.
+
+Because we labeled classes in the dataset creation process, we conduct an experiment to understand the impact of these classes on the model performance.
+
+As mentioned in \autoref{subs:maskrcnn}, Mask R-CNN performs worse on smaller objects. An experiment will be conducted to investigate if we can exploit the large image sizes in our dataset to improve performance.
+
 
 \subsection{Unimodal versus multimodal input}
 
-\subsection{Class impact on performance}
+One part of this thesis investigates the efficacy to one method of incorporating the textual modality into the model.
+Baseline will be the unaltered Mask R-CNN models as they are implemented in framework we are using.
 
-\subsection{Image scaling}
+\subsection{Impact of class labels}
 
+For the dataset created in this thesis, a number of classes are defined.
+To investigate how these classes may impact performance, we conduct an experiment where all classes are converted to the same class.
+In the comparison we will make, all other settings and parameters are equal.
+
+\subsection{Impact of dataset size}
+
+\subsection{Impact of image scaling}
+
+In Mask R-CNN, two preprocessing pipelines are defined. One for data augmentation in the training process, and another for the evaluation step.
+
+Preprocessing by data augmentation is common in deep learning in order to increase performance of the model.
+
+One of these data augmentation steps resizes the input images to a range between $1333$ by $640$ pixels and $1333$ by $800$ pixels in the training phase. For evaluation, the images are resized to $1333$ by $800$ pixels.
+
+As the images we have labeled in this thesis are larger than the images this model is usually trained and evaluated on,
+we conduct an experiment where we scale these baseline values ($1333$, $640$, $800$) by a factor $0.5$, $1$, $2$, and $4$ to investigate model performance on this specific dataset.
+
+By training and evaluating models with the same parameters while only varying the scaling factor mentioned previously, the impact can be investigated by comparing the performance of the models.
 
 \section{System documentation}
+\label{sec:sysdoc}
 
 \subsection{Hardware specifications}
 
@@ -1093,7 +1309,7 @@ The result is a text embedding map, i.e. a three-dimensional matrix where the fi
 
 \subsection{Mean Intersection over Union}
 
-The Intersection over Union (IoU) is the standard metrics for semantic image segmentation and measures how well two sets of pixels are aligned. This is used to measure how much the boundary predicted by the algorithm overlaps with the ground truth (the real object boundary). Traditionally, with state-of-the-art datasets, an IoU threshold equal or greater to 0.5 \textbf{(? TODO verify)} is used to classify whether the prediction is a true positive or a false positive.  
+The Intersection over Union (IoU) is the standard metrics for semantic image segmentation and measures how well two sets of pixels are aligned. This is used to measure how much the boundary predicted by the algorithm overlaps with the ground truth (the real object boundary). Traditionally, with state-of-the-art datasets, an IoU threshold equal or greater to 0.5 \textbf{(? TODO verify)} is used to classify whether the prediction is a true positive or a false positive.
 
 \begin{equation}
 	IoU = \frac{Area \: Overlap}{Area \: Union}
@@ -1121,9 +1337,9 @@ where $n_{ij}$ is the number of pixels of class $i$ predicted to belong to class
 
 \subsection{Precision and Recall}
 
-The IoU does not quantify performances in terms of True Positives (TP), True Negatives (TN), False Positives (FP) and False Negatives (FN)~\cite{davis2006relationship}. These values are relevant when considering whether a model can be useful for real world applications, that is, if most of the segments are correctly recognized. 
+The IoU does not quantify performances in terms of True Positives (TP), True Negatives (TN), False Positives (FP) and False Negatives (FN)~\cite{davis2006relationship}. These values are relevant when considering whether a model can be useful for real world applications, that is, if most of the segments are correctly recognized.
 
-The standard way to measure these values in the field of segmentation is to consider a prediction as positive when above a certain threshold $\tau \in [0,1]$ of IoU. If the prediction is above the threshold $\tau$, it is well enough aligned with the ground truth and to be considered correct. 
+The standard way to measure these values in the field of segmentation is to consider a prediction as positive when above a certain threshold $\tau \in [0,1]$ of IoU. If the prediction is above the threshold $\tau$, it is well enough aligned with the ground truth and to be considered correct.
 
 Given this definition, we can now consider:
 \begin{enumerate}
@@ -1157,7 +1373,7 @@ It should be noted that metrics such as IoU, mIoU, Precision and Recall are comp
 
 \subsection{Mean Average Precision}
 
-The mean Average Precision (mAP)~\cite{zhang2009average} was used to evaluate detection performance. The mAP metric is the product of precision and recall of detected bounding boxes. The mAP value ranges from 0 to 1, with higher values being better. The mAP can be computed by calculating average precision (AP) separately for each class (including background) and then averaging over the classes. A detection is considered a true positive only if the IoU is above a certain threshold. 
+The mean Average Precision (mAP)~\cite{zhang2009average} was used to evaluate detection performance. The mAP metric is the product of precision and recall of detected bounding boxes. The mAP value ranges from 0 to 1, with higher values being better. The mAP can be computed by calculating average precision (AP) separately for each class (including background) and then averaging over the classes. A detection is considered a true positive only if the IoU is above a certain threshold.
 
 All detections from test images may be combined in a precision/recall curve. The final area under the curve is used to compare the algorithms. If $N$ represents the number of images, the mAP can be computed as follows:
 
@@ -1168,6 +1384,7 @@ mAP = \frac{1}{N} \sum_{i=1}^{N} AP_i
 
 
 \chapter{Results}
+\label{ch:results}
 
 In this section we present the results of the neural network architectures for the datasets created in this thesis. Naming convention follows the original Mask R-CNN paper and results are presented by bounding box ($bb$) and segmentation mask ($m$) respectively, as it is presented in the Mask R-CNN paper.
 
@@ -1178,8 +1395,8 @@ In this section we present the results of the neural network architectures for t
     \caption{Model names}
     \label{tab:modelnames}
     \resizebox{\columnwidth}{!}{
-    \begin{tabular}{l|l|l|l|p{1.5cm}} 
-    \textbf{Final name} & \textbf{Head} & \textbf{Backbone} & \textbf{Sentence transformer} & \textbf{Text embeddings length} \\ 
+    \begin{tabular}{l|l|l|l|p{1.5cm}}
+    \textbf{Final name} & \textbf{Head} & \textbf{Backbone} & \textbf{Sentence transformer} & \textbf{Text embeddings length} \\
     \hline
     resnet50-FPN-vanilla & resnet50 & FPN & None & 0 \\    \hline
     resnext101-32x8d-FPN-vanilla & resnext101 & FPN & None & 0 \\    \hline
@@ -1197,8 +1414,8 @@ In this section we present the results of the neural network architectures for t
     \caption{Results on the DN 2010 - 2020 (Training) dataset}
     \label{tab:dn2010results}
     \resizebox{\columnwidth}{!}{
-    \begin{tabular}{l|l|l|l|l|l|l} % 
-    \textbf{Final name} & \textbf{$mAP_m$} & \textbf{$mAP_m^{50}$} & \textbf{$mAP_m^{75}$} & \textbf{$mAP_{bb}$} & \textbf{$mAP_{bb}^{50}$} & \textbf{$mAP_{bb}^{75}$} \\ 
+    \begin{tabular}{l|l|l|l|l|l|l} %
+    \textbf{Final name} & \textbf{$mAP_m$} & \textbf{$mAP_m^{50}$} & \textbf{$mAP_m^{75}$} & \textbf{$mAP_{bb}$} & \textbf{$mAP_{bb}^{50}$} & \textbf{$mAP_{bb}^{75}$} \\
     \hline
     resnet50-FPN-vanilla & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 \\    \hline
     resnext101-32x8d-FPN-vanilla & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 \\    \hline
@@ -1212,8 +1429,8 @@ In this section we present the results of the neural network architectures for t
     \caption{Results on the DN SvD 2001 - 2004 (In-set) dataset}
     \label{tab:dnsvd2001results}
     \resizebox{\columnwidth}{!}{
-    \begin{tabular}{l|l|l|l|l|l|l} 
-    \textbf{Final name} & \textbf{$mAP_m$} & \textbf{$mAP_m^{50}$} & \textbf{$mAP_m^{75}$} & \textbf{$mAP_{bb}$} & \textbf{$mAP_{bb}^{50}$} & \textbf{$mAP_{bb}^{75}$} \\ 
+    \begin{tabular}{l|l|l|l|l|l|l}
+    \textbf{Final name} & \textbf{$mAP_m$} & \textbf{$mAP_m^{50}$} & \textbf{$mAP_m^{75}$} & \textbf{$mAP_{bb}$} & \textbf{$mAP_{bb}^{50}$} & \textbf{$mAP_{bb}^{75}$} \\
     \hline
     resnet50-FPN-vanilla & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 \\    \hline
     resnext101-32x8d-FPN-vanilla & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 \\    \hline
@@ -1227,8 +1444,8 @@ In this section we present the results of the neural network architectures for t
     \caption{Results on the Aftonbladet Expressen ? - ? (Out-set) dataset}
     \label{tab:abexpresults}
     \resizebox{\columnwidth}{!}{
-    \begin{tabular}{l|l|l|l|l|l|l} 
-    \textbf{Final name} & \textbf{$mAP_m$} & \textbf{$mAP_m^{50}$} & \textbf{$mAP_m^{75}$} & \textbf{$mAP_{bb}$} & \textbf{$mAP_{bb}^{50}$} & \textbf{$mAP_{bb}^{75}$} \\ 
+    \begin{tabular}{l|l|l|l|l|l|l}
+    \textbf{Final name} & \textbf{$mAP_m$} & \textbf{$mAP_m^{50}$} & \textbf{$mAP_m^{75}$} & \textbf{$mAP_{bb}$} & \textbf{$mAP_{bb}^{50}$} & \textbf{$mAP_{bb}^{75}$} \\
     \hline
     resnet50-FPN-vanilla & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 \\    \hline
     resnext101-32x8d-FPN-vanilla & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 \\    \hline
@@ -1245,7 +1462,7 @@ In this section we present the results of the neural network architectures for t
 
 \textbf{TODO text and table here about results of dataset size variation.}
 
-\section{Image scaling}
+\section{Impact of image scaling}
 
 \textbf{TODO text and table here about results of image size augmentation.}
 
@@ -1260,7 +1477,7 @@ In this section we present the results of the neural network architectures for t
 \section{Future work}
 
 %The thesis contributes to the \gls{UN}\enspace\glspl{SDG} numbers 1 and 9 by
-%xxxx. 
+%xxxx.
 
 \noindent\rule{\textwidth}{0.4mm}
 
