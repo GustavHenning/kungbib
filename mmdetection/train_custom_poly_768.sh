@@ -12,6 +12,18 @@ declare -a bert_models=( "KBLab/sentence-bert-swedish-cased" "KB/bert-base-swedi
 
 for m in "${bert_models[@]}"; do
     bash train_tf.sh kungbib-cascade-mask-tf bert 768 $m 1
+    bash train_tf.sh kungbib-cascade-mask-101-tf bert 768 $m 1
+    bash train_tf.sh kungbib-cascade-mask-101-32x4d-tf bert 768 $m 1
+    bash train_tf.sh kungbib-cascade-mask-101-32x8d-tf bert 768 $m 1
+    bash train_tf.sh kungbib-cascade-mask-101-64x4d-tf bert 768 $m 1
+done
+
+for m in "${bert_models[@]}"; do
+    bash train_tf.sh kungbib-cascade-mask-tf bert 768 $m 0.5
+    bash train_tf.sh kungbib-cascade-mask-101-tf bert 768 $m 0.5
+    bash train_tf.sh kungbib-cascade-mask-101-32x4d-tf bert 768 $m 0.5
+    bash train_tf.sh kungbib-cascade-mask-101-32x8d-tf bert 768 $m 0.5
+    bash train_tf.sh kungbib-cascade-mask-101-64x4d-tf bert 768 $m 0.5
 done
 
 # for m in "${bert_models[@]}"; do

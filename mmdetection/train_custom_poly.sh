@@ -11,7 +11,21 @@ declare -a bert_models=( "all-mpnet-base-v2" "multi-qa-mpnet-base-dot-v1" "all-d
 
 for m in "${bert_models[@]}"; do
     bash train_tf.sh kungbib-cascade-mask-tf bert 384 $m 1
+    bash train_tf.sh kungbib-cascade-mask-101-tf bert 384 $m 1
+    bash train_tf.sh kungbib-cascade-mask-101-32x4d-tf bert 384 $m 1
+    bash train_tf.sh kungbib-cascade-mask-101-32x8d-tf bert 384 $m 1
+    bash train_tf.sh kungbib-cascade-mask-101-64x4d-tf bert 384 $m 1
 done
+
+for m in "${bert_models[@]}"; do
+    bash train_tf.sh kungbib-cascade-mask-tf bert 384 $m 0.5
+    bash train_tf.sh kungbib-cascade-mask-101-tf bert 384 $m 0.5
+    bash train_tf.sh kungbib-cascade-mask-101-32x4d-tf bert 384 $m 0.5
+    bash train_tf.sh kungbib-cascade-mask-101-32x8d-tf bert 384 $m 0.5
+    bash train_tf.sh kungbib-cascade-mask-101-64x4d-tf bert 384 $m 0.5
+done
+
+
 # for m in "${bert_models[@]}"; do
 #     bash train_tf.sh kungbib-cascade-mask-tf bert 384 $m 2
 # done
