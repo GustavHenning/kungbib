@@ -3,7 +3,7 @@ _base_ = '../_base_/default_runtime.py'
 dataset_type = 'CocoDataset'
 data_root = "/data/gustav/datalab_data/model/dn-2010-2020/"
 
-MAX_EPOCHS=32
+MAX_EPOCHS=64
 EVAL_INTERVAL=1
 
 LEARNING_RATE=0.005
@@ -70,7 +70,7 @@ data = dict(
     workers_per_gpu=10, 
     train=dict(    
         type='RepeatDataset',
-        times=3, # Big load time
+        times=1, # Large dimensions cant fit into memory. Might have to up epochs to compensate
         dataset=dict(
             type=dataset_type,
             img_prefix=IN_SET_FOLDERS,
@@ -96,10 +96,24 @@ optimizer = dict(type='SGD', lr=LEARNING_RATE, momentum=MOMENTUM, weight_decay=W
 optimizer_config = dict(grad_clip=dict(max_norm=35, norm_type=2))
 
 runner = dict(type='EpochBasedRunner', max_epochs=MAX_EPOCHS)
-# learning policy
+# learning policy https://arxiv.org/pdf/1506.01186.pdf
+
 lr_config = dict(
-    policy='step',
-    warmup='linear',
-    warmup_iters=500,
-    warmup_ratio=0.001,
-    step=[9,11])    
+    policy='cyclic',
+    target_ratio=(10, 1e-4),
+    cyclic_times=1,
+    step_ratio_up=0.4,
+)
+momentum_config = dict(
+    policy='cyclic',
+    target_ratio=(0.85 / 0.95, 1),
+    cyclic_times=1,
+    step_ratio_up=0.4,
+)
+
+#lr_config = dict(
+#    policy='step',
+#    warmup='linear',
+#    warmup_iters=500,
+#    warmup_ratio=0.001,
+#    step=[9,11])    

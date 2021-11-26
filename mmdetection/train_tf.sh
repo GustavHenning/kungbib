@@ -240,14 +240,14 @@ data.test.pipeline.1.img_scale=$TEST_IMG_SIZES \
 python3 tools/analysis_tools/coco_error_analysis.py \
 ./checkpoints/custom/tf/$MODEL_DIR-1c/results.bbox.json \
 ./checkpoints/custom/tf/$MODEL_DIR-1c/results \
---ann=/data/gustav/datalab_data/model/dn-2010-2020/test_annotations.json \
+--ann=/data/gustav/datalab_data/model/dn-2010-2020/test_1c_annotations.json \
 --extraplots \
 --areas 80000 360000 10000000000
 
 python3 tools/analysis_tools/coco_error_analysis.py \
 ./checkpoints/custom/tf/$MODEL_DIR-1c/results.segm.json \
 ./checkpoints/custom/tf/$MODEL_DIR-1c/results \
---ann=/data/gustav/datalab_data/model/dn-2010-2020/test_annotations.json \
+--ann=/data/gustav/datalab_data/model/dn-2010-2020/test_1c_annotations.json \
 --types='segm' \
 --extraplots \
 --areas 80000 360000 10000000000
