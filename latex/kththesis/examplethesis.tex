@@ -17,9 +17,9 @@
 % set the default language to english or swedish by passing an option to the documentclass - this handles the inside tile page
 % To optimize for digital output (this changes the color palette add the option: digitaloutput
 % To use bibtex or biblatex - include one of these as an option
-\documentclass[english, bibtex]{kththesis}
-%\documentclass[swedish, biblatex]{kththesis}
-
+\documentclass[oneside, english, bibtex]{kththesis}
+%\documentclass[oneside, swedish, biblatex]{kththesis}
+\usepackage[activate={true,nocompatibility},final,tracking=true,kerning=true,spacing=true,factor=1100,stretch=10,shrink=10]{microtype}
 \usepackage{tikz}
 % \usepackage[style=numeric,sorting=none,backend=biber]{biblatex}
 \ifbiblatex
@@ -420,6 +420,7 @@ The first part of this project is concerned with the creation and definition of 
 The purpose of this thesis is two-fold. Firstly, we want to investigate the efficacy of the current state-of-the-art object detection and segmentation model in the domain of newspaper article segmentation. Second, we evaluate one method of including the textual modality in the algorithm.
 
 \section{Goals}
+\label{sec:goals}
 
 The goal of this project is to classify news article boundaries in digitized newspaper pages. This is done by investigating to which extent the classification can be improved by combining inputs from the image and text modalities, as opposed to the traditional unimodal image classification architectures. Specifically for the data provided by The National Library of Sweden, we further investigate the difficulty of classifying news article boundaries depending on the age of publication and hence the design changes taking place across this timeline. The research questions are:
 
@@ -683,7 +684,10 @@ Training speed can be improved by using techniques to update the learning rate d
 
 where the parameter $w$ which minimizes $Q(w)$ is estimated, $\eta$ is the learning rate, and $\alpha$ is an exponential decay factor between 0 and 1.
 
-\item Weight decay: \textbf{TODO if we use it}
+\item Weight decay~\cite{DBLP:journals/corr/abs-1711-05101}: When using stochastic gradient descent (and rescaling with the learning rate), weight decay
+is a form of regularization which adds a penalty term to the loss in order to encourage the model to select smaller or sparser weights,
+depending on whether one uses $L_1$ or $L_2$ weight decay.
+
 \end{enumerate}
 
 
@@ -760,7 +764,7 @@ Convolutional neural networks typically narrow it’s hidden layers in common ar
   \begin{center}
     \includegraphics[width=1.0\textwidth]{figures/fpn.png}
   \end{center}
-  \caption{Evolution of the Feature Pyramid Network~\cite{DBLP:journals/corr/LinDGHHB16}. \textbf{TODO explain blue borders}}
+  \caption{Evolution of the Feature Pyramid Network~\cite{DBLP:journals/corr/LinDGHHB16}.}
   \label{fig:fpn}
 \end{figure}
 
@@ -787,8 +791,21 @@ The total annotated pixels per object size also differs significantly ($1.23\%$ 
 
 Lastly, each predicted anchor from the RPN receives a positive label if it has the highest IoU with a ground truth bounding box or if it has an IoU higher than 0.7 for any ground truth box. As the authors describe, this procedure favors large objects because "A large object spanning multiple spanning-window locations often has a high IoU with many anchor boxes, while a small object may only be matched with a single anchor box with a low IoU".
 
-\subsection{MS COCO dataset}
-\textbf{Since we mention this dataset multiple times throughout the thesis, perhaps we should describe it.}
+\subsection{Microsoft COCO: Common Objects in Context}
+
+The Microsoft COCO: Common Objects in Context or MS COCO is a dataset for object recognition, classification and semantic segmentation.
+It contains 328k images, 2.5 million labeled instances and 91 object types grouped in 11 super-categories.
+As the name suggests MS COCO is described as "a collection of objects found in everyday life in their natural environments", as seen in \autoref{fig:mscoco}.
+The resolution of the images found in the dataset are $640$x$480$ pixels.
+
+\begin{figure}[H]
+  \begin{center}
+    \includegraphics[width=1.0\textwidth]{figures/mscoco.png}
+  \end{center}
+  \caption{Mask R-CNN results on the MS COCO dataset~\cite{DBLP:journals/corr/HeGDG17}. Masks are shown in color. Bounding boxes, category and confidence are also shown.   }
+  \label{fig:mscoco}
+\end{figure}
+
 
 \section{Related work: Segmentation Algorithms}
 \label{sec:relwork}
@@ -1197,10 +1214,43 @@ Our objective is to segment newspaper images and to classify detected segments o
 \item[$\bullet$ Head] Used for bounding-box recognition (classification and regression)
 \end{description}
 
-\textbf{TODO describe what is found in mstrain files img norm cfg, preprocessing steps, optimizer, lr config}
-\textbf{TODO describe steps to use text-features}
-\textbf{TODO describe steps to use 1 class}
-\textbf{TODO maybe in the next section}
+\subsubsection{Preprocessing}
+
+Before training and inference, data augmentation is done to improve performance of the model. The following steps are taken to augment the data:
+
+\begin{enumerate}
+\item Loading annotations (if training)
+\item Image normalization
+\item Image resizing
+\item Random flipping
+\item Padding
+\item Image to tensor
+\end{enumerate}
+
+\textbf{Image normalization} normalizes the images by subtracting the mean and standard deviation of the RGB values of the dataset from the color channels.
+When using pre-trained models it is advised to use the image normalization values for the dataset that the weights were acquired from.
+
+\textbf{Image resizing} resizes the images' width and height to a random value in a fixed interval specified in the code. Annotation coordinates are scaled accordingly.
+
+\textbf{Random flipping} flips the images horizontally at a rate of 50\%. Annotation coordinates are flipped accordingly.
+
+\textbf{Padding} pads the images to a width and height divisible by 32.
+Padding is done on the right and bottom side of the image, requiring no update to the coordinate of the masks and bounding boxes.
+Padding is required when using FPNs to ensure that the feature maps align correctly when merged in a later stage of the network, unless all the input images can be assumed to have dimensions divisible by 32.
+
+\textbf{Image to tensor} converts the resulting input into a \textit{tensor}.
+A tensor is a data structure used to feed input to a neural network, and can contain more than one data point when using batches.
+
+\subsubsection{Optimizer}
+
+In the Mask R-CNN paper, the training is done on 8 GPUs, where each GPU processes 2 samples at a time (effective mini-batch size of 16) for a total of 280k iterations.
+In this thesis, models were only trained using 1 GPU.
+
+Stochastic gradient descent is used, with a learning rate is set to $0.02$ (for the first 160k iterations, which is decreased by 10 for the remaining 120k), a weight decay of $0.0001$, and momentum set to $0.9$.
+
+Since we use only 1 GPU for training, according to the Linear Scaling Rule~\cite{DBLP:journals/corr/GoyalDGNWKTJH17}, we acquire a learning rate of $0.02/8=0.0025$.
+
+\textbf{TODO lr\_config, momentum\_config}
 
 \subsection{Modifications to the primary architecture}
 
@@ -1208,6 +1258,10 @@ Our objective is to segment newspaper images and to classify detected segments o
 Because we want to avoid image normalization of the textual embeddings, and other preprocessing methods used by Mask R-CNN to augment the image data,
 the textual embeddings are added as the last step. By the time we add the textual embeddings, the image may have been resized, padded and flipped horizontally.
 The bounding boxes of the text embeddings are offset and scaled accordingly to align with the new dimensions.
+
+\textbf{Classes}. Separate annotation files were generated to produce annotations for testing class confusion.
+All values are identical except for the class id and names, which are all set to 'Publication unit'.
+To conduct these experiments, the configuration files were duplicated and adjusted where classes were declared.
 
 \textbf{Evaluation}. In the original MS COCO dataset (on which Mask R-CNN is usually evaluated),
 there is size partitioning depending on the size of the object being detected when presented in the results.
@@ -1261,7 +1315,7 @@ The result is a text embedding map, i.e. a three-dimensional matrix where the fi
 \section{Experiments}
 \label{sec:experiments}
 
-In this section we will introduce the experiments that will be conducted in order to attempt to achieve the goals outlined in \autoref{}.
+In this section we will introduce the experiments that will be conducted in order to attempt to achieve the goals outlined in \autoref{sec:goals}.
 
 Because we labeled classes in the dataset creation process, we conduct an experiment to understand the impact of these classes on the model performance.
 
@@ -1303,13 +1357,22 @@ By training and evaluating models with the same parameters while only varying th
 
 \subsection{Software specifications}
 
+\subsubsection{MMDetection}
+The MMDetection~\cite{DBLP:journals/corr/abs-1906-07155} framework was used to conduct the experiments in \autoref{sec:experiments}.
+MMDetection is an object detection toolbox in which includes training and inferences codes, in addition to weights for over 200 network models.
+
+MMDetection allows for inheritance of configuration files, making it possible to conduct various experiments while varying small parts of the code.
+In addition to modular config loading, the parameters can also be inserted at runtime to reduce the amount of static files needed to vary hyperparameters.
+
+\subsubsection{Label studios}
+Label studios was used to produce the labels for the datasets created in this thesis.
 \textbf{TODO text about using the mmdetection framework. Text about using labelstudios for labeling.}
 
 \section{Metrics}
 
 \subsection{Mean Intersection over Union}
 
-The Intersection over Union (IoU) is the standard metrics for semantic image segmentation and measures how well two sets of pixels are aligned. This is used to measure how much the boundary predicted by the algorithm overlaps with the ground truth (the real object boundary). Traditionally, with state-of-the-art datasets, an IoU threshold equal or greater to 0.5 \textbf{(? TODO verify)} is used to classify whether the prediction is a true positive or a false positive.
+The Intersection over Union (IoU) is the standard metrics for semantic image segmentation and measures how well two sets of pixels are aligned. This is used to measure how much the boundary predicted by the algorithm overlaps with the ground truth (the real object boundary). Traditionally, with state-of-the-art datasets, an IoU threshold equal or greater to 0.5 is used to classify whether the prediction is a true positive or a false positive.
 
 \begin{equation}
 	IoU = \frac{Area \: Overlap}{Area \: Union}
