@@ -139,7 +139,7 @@ python3 tools/analysis_tools/coco_error_analysis.py \
 ./checkpoints/custom/tf/$MODEL_DIR/results \
 --ann=/data/gustav/datalab_data/model/dn-2010-2020/test_annotations.json \
 --extraplots \
---areas 80000 360000 10000000000
+--areas 80089 360000 10000000000
 
 python3 tools/analysis_tools/coco_error_analysis.py \
 ./checkpoints/custom/tf/$MODEL_DIR/results.segm.json \
@@ -147,7 +147,7 @@ python3 tools/analysis_tools/coco_error_analysis.py \
 --ann=/data/gustav/datalab_data/model/dn-2010-2020/test_annotations.json \
 --types='segm' \
 --extraplots \
---areas 80000 360000 10000000000
+--areas 80089 360000 10000000000
 
             #
             #   1 class
@@ -242,7 +242,7 @@ python3 tools/analysis_tools/coco_error_analysis.py \
 ./checkpoints/custom/tf/$MODEL_DIR-1c/results \
 --ann=/data/gustav/datalab_data/model/dn-2010-2020/test_1c_annotations.json \
 --extraplots \
---areas 80000 360000 10000000000
+--areas 80089 360000 10000000000
 
 python3 tools/analysis_tools/coco_error_analysis.py \
 ./checkpoints/custom/tf/$MODEL_DIR-1c/results.segm.json \
@@ -250,4 +250,4 @@ python3 tools/analysis_tools/coco_error_analysis.py \
 --ann=/data/gustav/datalab_data/model/dn-2010-2020/test_1c_annotations.json \
 --types='segm' \
 --extraplots \
---areas 80000 360000 10000000000
+--areas 80089 360000 10000000000
