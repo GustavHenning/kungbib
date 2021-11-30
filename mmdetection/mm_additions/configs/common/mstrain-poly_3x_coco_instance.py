@@ -5,8 +5,9 @@ data_root = "/data/gustav/datalab_data/model/dn-2010-2020/"
 
 MAX_EPOCHS=16
 EVAL_INTERVAL=1
+REPEAT_TRAIN=3
 
-LEARNING_RATE=0.005
+LEARNING_RATE=0.0025
 MOMENTUM=0.9
 WEIGHT_DECAY=0.0001
 
@@ -69,7 +70,7 @@ data = dict(
     workers_per_gpu=12,  # Worker to pre-fetch data for each single GPU
     train=dict(    
         type='RepeatDataset',
-        times=3,
+        times=REPEAT_TRAIN,
         dataset=dict(
             type=dataset_type,
             img_prefix=IN_SET_FOLDERS,
@@ -97,22 +98,10 @@ optimizer_config = dict(grad_clip=dict(max_norm=35, norm_type=2))
 runner = dict(type='EpochBasedRunner', max_epochs=MAX_EPOCHS)
 # learning policy https://arxiv.org/pdf/1506.01186.pdf
 
-lr_config = dict(
-    policy='cyclic',
-    target_ratio=(10, 1e-4),
-    cyclic_times=1,
-    step_ratio_up=0.4,
-)
-momentum_config = dict(
-    policy='cyclic',
-    target_ratio=(0.85 / 0.95, 1),
-    cyclic_times=1,
-    step_ratio_up=0.4,
-)
-
-#lr_config = dict(
-#    policy='step',
-#    warmup='linear',
-#    warmup_iters=500,
-#    warmup_ratio=0.001,
-#    step=[9,11])    
+lr_config = dict(  
+    policy='step',  
+    warmup='linear',  
+    warmup_iters=500, 
+    warmup_ratio=0.001,
+    gamma=0.2,  
+    step=8) # lr divided by 5 every 8 epochs
