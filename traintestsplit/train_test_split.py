@@ -112,6 +112,7 @@ def train_val_split(dataset_folder_path, json_filename, train_prop=0.8, test_pro
         test_images = random.sample(rest_images["images"], k=int(nr_obs * test_prop))
         valid_images = [image for image in data["images"] if image not in train_images and image not in test_images]
 
+        create_increasing_size(dataset_folder_path, "train", train_images, data, train_prop)
         create_annotations(dataset_folder_path, "train", train_images, data)
         create_annotations(dataset_folder_path, "test", test_images, data)
         create_annotations(dataset_folder_path, "valid", valid_images, data)
@@ -121,6 +122,15 @@ def train_val_split(dataset_folder_path, json_filename, train_prop=0.8, test_pro
 
         create_annotations(dataset_folder_path, "train", train_images, data)
         create_annotations(dataset_folder_path, "valid", valid_images, data)
+
+def create_increasing_size(dataset_folder_path, annotations_prefix, images, data, train_prop):
+    nr_obs = len(data["images"])
+
+    ratios = [0.25, 0.5, 0.75, 0.9]
+    for ratio in ratios:
+        train_images = random.sample(data["images"], k=int(nr_obs * train_prop * ratio))
+        create_annotations(dataset_folder_path, annotations_prefix + "_{}".format(ratio), train_images, data)
+
 
 
 train_val_split(dataset_folder_path="dn-2010-2020/", json_filename="result.json", train_prop=0.7, test_prop=0.15, seed=5)
