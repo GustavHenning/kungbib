@@ -422,7 +422,7 @@ The purpose of this thesis is two-fold. Firstly, we want to investigate the effi
 \section{Goals}
 \label{sec:goals}
 
-The goal of this project is to classify news article boundaries in digitized newspaper pages. This is done by investigating to which extent the classification can be improved by combining inputs from the image and text modalities, as opposed to the traditional unimodal image classification architectures. Specifically for the data provided by The National Library of Sweden, we further investigate the difficulty of classifying news article boundaries depending on the age of publication and hence the design changes taking place across this timeline. The research questions are:
+The goal of this project is to classify news article boundaries in digitized newspaper pages. This is done by investigating to which extent the classification can be improved by combining inputs from the image and text modalities, as opposed to the traditional unimodal image classification architectures. Specifically for the data provided by the National Library of Sweden, we further investigate the difficulty of classifying news article boundaries depending on the age of publication and hence the design changes taking place across this timeline. The research questions are:
 
 \begin{enumerate}
 \item Do multimodal neural network architectures outperform unimodal neural network architectures, using image and text input as opposed to only using image input, in the field of instance segmentation?
@@ -452,7 +452,7 @@ No special consideration needs to be taken in terms of sensitive or personally i
 
 In \autoref{ch:background}, we introduce the historical background to understand the subject matter, the preliminaries for grasping the proposed solution, and recap the previous work in document segmentation.
 
-\autoref{ch:method} begins with a detailed description of the dataset created from the data accessed at The National Library of Sweden.
+\autoref{ch:method} begins with a detailed description of the dataset created from the data accessed at the National Library of Sweden.
 Next, the neural network employed in the study is introduced in \autoref{sec:modelarch}, and the relevant adaptations to the pre-processing and manipulation of the data is explained.
 What follows is a description of the experiments conducted to test our formulated goals in \autoref{sec:experiments}, as well as the tools used to perform them in \autoref{sec:sysdoc}.
 Finally the metrics used to quantitatively describe the results are detailed.
@@ -464,7 +464,7 @@ while outlining potential avenues for future work.
 \chapter{Background}
 \label{ch:background}
 
-In this chapter, the history of digitization of historical documents will be reviewed. Then, we will look at the history of segmentation algorithms, as well as the history of the deep learning model that we intend to extend and evaluate. Further details about how the deep learning model functions will be introduced in \autoref{sec:preliminaries}.
+In this chapter, the history of digitization of historical documents will be reviewed. A description of the data accessed at the National Library of Sweden will be produced. Details about how the deep learning model functions will be introduced in \autoref{sec:preliminaries}. Then, we will look at the history of segmentation algorithms, as well as the history of the deep learning model that we intend to extend and evaluate. 
 
 \section{Data}
 
@@ -502,7 +502,7 @@ In this context, an article fits on a single page, but the page itself may conta
 Multi page articles are content pages in which the content spans multiple pages.
 
 \subsubsection{Listings}
-
+\label{bgsubsec:listings}
 Sometimes content is conveyed using dense lists of information, such as stock listings or TV-Radio broadcast timetables.
 
 \subsubsection{Comics, artwork and poems}
@@ -528,39 +528,39 @@ Weather information elements usually consist of tables of temperatures or weathe
 
 In this chapter, we will introduce the theory that our model is based on. Since this thesis only concerns supervised learning, the scope of the preliminaries will only cover supervised learning with neural networks.
 
-\subsection{Artificial Neural Network}
+%\subsection{Artificial Neural Network}
 
-The term 'Machine Learning' was coined by A. L. Samuel~\cite{samuela1959} in the 1950s as he as working on producing what we today know as the minimax algorithm for tabletop games. Similarly, the early building blocks of neural networks were also invented during the same decade by F. Rosenblatt~\cite{rosenblatt1958perceptron}. Despite these early discoveries, progress has only in the recent decades taken bounds and leaps beyond classical algorithm performance. Part of the explanation will be examined in this chapter, where we will encounter the difficulties in training these networks, as well as the solutions that modern architectures employ today. The other part of the explanation may be credited to the advances in hardware, enabling complex models to fit in memory and to train in a reasonable timeframe. The time aspect of training can largely be credited to the advancements in the Graphical Processing Unit (GPU).
+%The term 'Machine Learning' was coined by A. L. Samuel~\cite{samuela1959} in the 1950s as he as working on producing what we today know as the minimax algorithm for tabletop games. Similarly, the early building blocks of neural networks were also invented during the same decade by F. Rosenblatt~\cite{rosenblatt1958perceptron}. Despite these early discoveries, progress has only in the recent decades taken bounds and leaps beyond classical algorithm performance. Part of the explanation will be examined in this chapter, where we will encounter the difficulties in training these networks, as well as the solutions that modern architectures employ today. The other part of the explanation may be credited to the advances in hardware, enabling complex models to fit in memory and to train in a reasonable timeframe. The time aspect of training can largely be credited to the advancements in the Graphical Processing Unit (GPU).
 
-\subsubsection{Perceptron}
-The basic building block of an Artificial Neural Network (ANN) is called a perceptron. The perceptron is loosely inspired by the neurons of the brain~\cite{rosenblatt1958perceptron}. The arriving signals, called inputs, are multiplied by learnable weights, which is then added to a constant bias value for each input channel. The resulting value from the input, weight and bias is summed up and if the resulting value is above zero, the perceptron outputs a 1. A single perceptron does not terminate if the learning set is not linearly separable. The most famous example of a perceptron's inability to solve problems with linearly nonseparable vectors is the Boolean exclusive-or problem.
+%\subsubsection{Perceptron}
+%The basic building block of an Artificial Neural Network (ANN) is called a perceptron. The perceptron is loosely inspired by the neurons of the brain~\cite{rosenblatt1958perceptron}. The arriving signals, called inputs, are multiplied by learnable weights, which is then added to a constant bias value for each input channel. The resulting value from the input, weight and bias is summed up and if the resulting value is above zero, the perceptron outputs a 1. A single perceptron does not terminate if the learning set is not linearly separable. The most famous example of a perceptron's inability to solve problems with linearly nonseparable vectors is the Boolean exclusive-or problem.
 
-\begin{equation}
-    f(x) =
-        \begin{cases}
-          1, & \text{if}\ w * x + b > 0 \\
-          0, & \text{otherwise}
-        \end{cases}
-    \label{eqn:perceptron}
-\end{equation}
+%\begin{equation}
+%    f(x) =
+%        \begin{cases}
+%          1, & \text{if}\ w * x + b > 0 \\
+%          0, & \text{otherwise}
+%        \end{cases}
+%    \label{eqn:perceptron}
+%\end{equation}
 
-where $w$ is a vector of real-valued weights, $w * x$ is the dot product \[\sum_{i=1}^{m} w_i x_i\] where $m$ is the number of inputs to the perceptrion, and $b$ is the bias. This perceptron uses a \textit{Heaviside step activation function} whose value is zero for a negative input and one for a positive output.
+%where $w$ is a vector of real-valued weights, $w * x$ is the dot product \[\sum_{i=1}^{m} w_i x_i\] where $m$ is the number of inputs to the perceptrion, and $b$ is the bias. This perceptron uses a \textit{Heaviside step activation function} whose value is zero for a negative input and one for a positive output.
 
-\begin{figure}[H]
-  \begin{center}
-    \includegraphics[width=0.5\textwidth]{figures/perceptron.png}
-  \end{center}
-  \caption{Model of a perceptron.}
-  \label{fig:perceptron}
-\end{figure}
+%\begin{figure}[H]
+%  \begin{center}
+%    \includegraphics[width=0.5\textwidth]{figures/perceptron.png}
+%  \end{center}
+%  \caption{Model of a perceptron.}
+%  \label{fig:perceptron}
+%\end{figure}
 
-\begin{center}
-Bias is omitted in this figure.
-\end{center}
+%\begin{center}
+%Bias is omitted in this figure.
+%\end{center}
 
-To solve more complex problems than binary classification problems in a linearly nonseparable vector space one has to alter the activation function and in many cases use a deeper and wider ensemble of perceptrons. Depending on the activation function used, the perceptron can output a different range of values. Traditionally a very popular activation function was the non-linear \textit{sigmoid activation function}. Lately, due to the problems with vanishing gradients (which we will cover shortly) the piecewise linear function \textit{Rectified Linear Unit} (ReLU) is the standard activation function today.
+%To solve more complex problems than binary classification problems in a linearly nonseparable vector space one has to alter the activation function and in many cases use a deeper and wider ensemble of perceptrons. Depending on the activation function used, the perceptron can output a different range of values. Traditionally a very popular activation function was the non-linear \textit{sigmoid activation function}. Lately, due to the problems with vanishing gradients (which we will cover shortly) the piecewise linear function \textit{Rectified Linear Unit} (ReLU) is the standard activation function today.
 
-Perceptrons can be stacked after and next to one another (in the latter case known as a layer), called a multi-layer perceptron (MLP). The first layer, where the input signal is the input data itself, represented in floating point numbers, is called the input layer. The last layer, where the output signal corresponds to the decision or classification, is called the output layer. Any layer between the input layer and the output layer is called a hidden layer. Together these layers form what is known as an Artificial Neural Network. Any ANN with at least two hidden layers is called a Deep Neural Network (DNN).
+%Perceptrons can be stacked after and next to one another (in the latter case known as a layer), called a multi-layer perceptron (MLP). The first layer, where the input signal is the input data itself, represented in floating point numbers, is called the input layer. The last layer, where the output signal corresponds to the decision or classification, is called the output layer. Any layer between the input layer and the output layer is called a hidden layer. Together these layers form what is known as an Artificial Neural Network. Any ANN with at least two hidden layers is called a Deep Neural Network (DNN).
 
 
 
@@ -851,6 +851,7 @@ Top-down (TD) and bottom-up (BU) algorithms are also denoted.
 \end{center}
 
 \subsection{Deep Learning Approaches}
+\label{subs:dlapproaches}
 
 In an attempt to trade prior handcrafted features for learning capabilities, machine learning techniques, especially deep neural networks have outperformed classical algorithms in recent papers. These approaches can be categorized by the input they receive.
 
@@ -866,13 +867,32 @@ Finally, Barman et al~\cite{jdmdh:7097} combine word embeddings with a deep neur
 
 \section{Summary}
 
-\textbf{TODO}
+In this chapter we have reviewed the necessary preliminaries for understanding the work done in this thesis. We have reviewed the history of semantic segmentation, the data we are about to present methods and results for, as well as the preliminaries for understanding the challenges of working with neural networks in this context.
 
 \clearpage
 
 
 \chapter{Method}
 \label{ch:method}
+
+\section{System documentation}
+\label{sec:sysdoc}
+
+\subsection{Hardware specifications}
+
+\textbf{TODO computer specs, maybe even model sizes in memory and running time for training?}
+
+\subsection{Software specifications}
+
+\subsubsection{MMDetection}
+The MMDetection~\cite{DBLP:journals/corr/abs-1906-07155} framework was used to conduct the experiments in \autoref{sec:experiments}.
+MMDetection is an object detection toolbox in which includes training and inferences codes, in addition to weights for over 200 network models.
+
+MMDetection allows for inheritance of configuration files, making it possible to conduct various experiments while varying small parts of the code.
+In addition to modular config loading, the parameters can also be inserted at runtime to reduce the amount of static files needed to vary hyperparameters.
+
+\subsubsection{Label studios}
+Label studios was used to produce the labels for the datasets created in this thesis. In the interest of time, labels were first created using rectangles, exported, converted to polygons, and then imported again to be reviewed and edited where necessary. 
 
 
 \section{Data}
@@ -1067,7 +1087,7 @@ In this project, these types of advertisements are labeled as news articles.
 
 \subsubsection{Listing}
 
-Dense lists of information has received its own class. As seen in \textbf{reference to visual description of listings},
+Dense lists of information has received its own class. As seen in \autoref{bgsubsec:listings},
 there are frequently occurring lists of different types of content.
 
 Due to that other classes, such as advertisements, sometimes appears between the columns of the lists, each column is labeled as an instance of a listing.
@@ -1144,6 +1164,21 @@ In each dataset, the labels are produced at the page level.
 In the first dataset, DN 2010 - 2020, the first newspaper was labeled from start to end.
 After that, random sampling was used for the remaining data.
 
+\begin{table}[!ht]
+  \begin{center}
+    \caption{Annotated pages in the datasets}
+    \label{tab:pagedist}
+    \begin{tabular}{l|l|l|l|l|l|l} % <-- Alignments: 1st column left, 2nd middle, with vertical lines in between
+    \textbf{Dataset} & \textbf{Number of annotated pages} \\
+    \hline
+    DN 2010 - 2020 & 730 \\    \hline
+    DN SvD 2001 - 2004 & 195 \\    \hline
+    Aftonbladet Expressen 2001 - 2004 & 200  \\    \hline
+    \end{tabular}
+  \end{center}
+\end{table}
+
+
 \subsubsection{DN 2010 - 2020 (In-set)}
 
 Sampled from Dagens Nyheter in the time period 2010 to 2020,
@@ -1168,7 +1203,7 @@ Sampling ratio is 70/15/15 for Train/Test/Validation respectively.
 
 \subsubsection{DN SvD 2001 - 2004 (Near-set)}
 
-\textbf{Text describing dataset}
+This dataset was sampled for two newspapers: Dagens Nyheter and Svenska Dagbladet. The font size is generally smaller on these newspaper pages, and the content denser. In addition, there are less large graphics compared to the training dataset. There were fewer multi page articles found in this dataset.
 
 \begin{table}[!ht]
   \begin{center}
@@ -1184,11 +1219,11 @@ Sampling ratio is 70/15/15 for Train/Test/Validation respectively.
 
 \subsubsection{Aftonbladet Expressen 2001 - 2004 (Out-set)}
 
-\textbf{Text describing dataset}
+In this dataset many of the pages have a pink background color. Multi page articles are frequent similar to the training dataset. As can bee sen in \autoref{tab:outsetclassdist}, no death notices were sampled. 
 
 \begin{table}[!ht]
   \begin{center}
-    \caption{Class distribution in the  Aftonbladet Expressen 2001 - 2004 dataset}
+    \caption{Class distribution in the Aftonbladet Expressen 2001 - 2004 dataset}
     \label{tab:outsetclassdist}
     \begin{tabular}{l|l|l|l|l|l|l} % <-- Alignments: 1st column left, 2nd middle, with vertical lines in between
     \textbf{Dataset} & \textbf{News Unit} & \textbf{Advertisement} & \textbf{Listing} & \textbf{Death Notice} & \textbf{Game} & \textbf{Weather}  \\
@@ -1203,7 +1238,7 @@ Sampling ratio is 70/15/15 for Train/Test/Validation respectively.
 \section{Model Architecture}
 \label{sec:modelarch}
 
-Our objective is to segment newspaper images and to classify detected segments of news units according to a fine-grained newspaper section typology. To this end, we introduce a method which performs supervised, pixel-wise multiclass classification using both visual and textual features. This method builds on the Mask R-CNN architecture by He et al~\cite{DBLP:journals/corr/HeGDG17}. While varying the primary architecture, we explore the use of sentence transformers that map sentences of text to a vector space, which is embedded in the image input channels.
+Our objective is to segment newspaper images and to classify detected segments of news units according to a fine-grained newspaper section typology. To this end, we introduce a method which performs supervised, pixel-wise multiclass classification using both visual and textual features. This method builds on the Mask R-CNN architecture by He et al~\cite{DBLP:journals/corr/HeGDG17}. While varying the primary architecture, we explore the use of sentence transformers that map sentences of text to a vector space, which are embedded in the image input channels.
 
 \subsection{Primary architecture}
 
@@ -1241,16 +1276,6 @@ Padding is required when using FPNs to ensure that the feature maps align correc
 \textbf{Image to tensor} converts the resulting input into a \textit{tensor}.
 A tensor is a data structure used to feed input to a neural network, and can contain more than one data point when using batches.
 
-\subsubsection{Optimizer}
-
-In the Mask R-CNN paper, the training is done on 8 GPUs, where each GPU processes 2 samples at a time (effective mini-batch size of 16) for a total of 280k iterations.
-In this thesis, models were only trained using 1 GPU.
-
-Stochastic gradient descent is used, with a learning rate is set to $0.02$ (for the first 160k iterations, which is decreased by 10 for the remaining 120k), a weight decay of $0.0001$, and momentum set to $0.9$.
-
-Since we use only 1 GPU for training, according to the Linear Scaling Rule~\cite{DBLP:journals/corr/GoyalDGNWKTJH17}, we acquire a learning rate of $0.02/8=0.0025$.
-
-\textbf{TODO lr\_config, momentum\_config}
 
 \subsection{Modifications to the primary architecture}
 
@@ -1271,16 +1296,33 @@ This alteration has no impact on the performance of the solution itself, but mus
 
 \begin{table}[!htb]
   \begin{center}
-    \caption{Object size threshold differences}
+    \caption{Object size threshold differences in pixels}
     \label{tab:objectsizes}
     \begin{tabular}{l|l|l|l} % <-- Alignments: 1st column left, 2nd middle, with vertical lines in between
     \textbf{Dataset} & \textbf{Small} & \textbf{Medium} & \textbf{Large}  \\
     \hline
     MS COCO dataset & area < $32^2$ & $32^2$ < area < $96^2$ & area > $96^2$  \\    \hline
-    This thesis & area < X & X < area < X & area > X \\    \hline
+    This thesis & area < $283^2$ & $283^2$ < area < $600^2$ & area > $600^2$ \\    \hline
     \end{tabular}
   \end{center}
 \end{table}
+
+\subsubsection{Multiscale training}
+
+All models used in this thesis were trained using multiscale training. When using multiscale training in MMdetection, the training dataset can be repeated a number of times during training. When specifying the dimensions for the resizing operation in the preprocessing pipeline, the values are submitted as a range instead of fixed values which is the case for non-multiscale training. During training, a random width and height are generated from the ranges submitted in the configration. 
+
+For the models that were altered to use text embeddings, the training dataset was not repeated due to insufficient memory. This was compensated for by increasing the number of epochs to 3 times that of other models. Consequently, the evaluation interval was increased from 1 to 3 to have an equal number of evaluation steps for all models. For all models not using text embeddings, the default value was used to repeat the training dataset during training, which is 3.
+
+\subsubsection{Optimizer}
+
+In the Mask R-CNN paper, the training is done on 8 GPUs, where each GPU processes 2 samples at a time (effective mini-batch size of 16) for a total of 280k iterations.
+In this thesis, models were only trained using 1 GPU.
+
+Stochastic gradient descent is used, with a learning rate is set to $0.02$ (for the first 160k iterations, which is decreased by 10 for the remaining 120k), a weight decay of $0.0001$, and momentum set to $0.9$.
+
+Since we use only 1 GPU for training, according to the Linear Scaling Rule~\cite{DBLP:journals/corr/GoyalDGNWKTJH17}, we acquire a learning rate of $0.02/8=0.0025$.
+
+A linear learning rate configuration was used. The learning rate was divided by 5 every 8th epoch.
 
 \subsection{Text Embedding map}
 
@@ -1309,6 +1351,17 @@ The result is a text embedding map, i.e. a three-dimensional matrix where the fi
 
 \textbf{TODO Maybe visualization of the embedding maps?}
 
+\subsubsection{Text embedding strategy}
+
+There are a number of ways to embed the text behind the image channels in the final input.
+
+\textbf{Text granularity}. As seen in \autoref{subs:dlapproaches}, there are options for encoding the text at different levels. There are binary masks, encoded vectors at word level, sentence level and paragraph level. When deciding to encode at word or sentence level, a strategy can be used to summarize the vectors across the entire text block if the exact coordiantes for the words or sentences cannot be attained. Alternatively, a strategy could be made to divide the text block into sections for each sentence within the block. 
+
+In this thesis we transform the entire content of the text block and repeat the vector produced across the dimensions of the text block. 
+
+\textbf{Normalization}. In the MMDetection framework, we found that pixel color was represented in the range of $[0.0,1.0]$ instead of the more familiar range of $0-255$ for RGB values.
+
+\textbf{Dimensionality reduction}. Principle Component Analysis (PCA) or any other dimensionality reduction algorithm could be used to compress the vector representation. This could be useful to limit the memory footprint of the input. In this thesis, no such strategy was used.
 
 \clearpage
 
@@ -1335,6 +1388,8 @@ In the comparison we will make, all other settings and parameters are equal.
 
 \subsection{Impact of dataset size}
 
+At the request of the researchers at the laboratory of the National Library of Sweden, we conduct an experiment to investigate if the model could potentially improve if a larger dataset was labeled. To investigate this matter, we create subsets of the training dataset at ratios of $0.25$, $0.5$, $0.75$ and $0.9$ and compare the results to the full training dataset size. 
+
 \subsection{Impact of image scaling}
 
 In Mask R-CNN, two preprocessing pipelines are defined. One for data augmentation in the training process, and another for the evaluation step.
@@ -1348,25 +1403,6 @@ we conduct an experiment where we scale these baseline values ($1333$, $640$, $8
 
 By training and evaluating models with the same parameters while only varying the scaling factor mentioned previously, the impact can be investigated by comparing the performance of the models.
 
-\section{System documentation}
-\label{sec:sysdoc}
-
-\subsection{Hardware specifications}
-
-\textbf{TODO computer specs, maybe even model sizes in memory and running time for training?}
-
-\subsection{Software specifications}
-
-\subsubsection{MMDetection}
-The MMDetection~\cite{DBLP:journals/corr/abs-1906-07155} framework was used to conduct the experiments in \autoref{sec:experiments}.
-MMDetection is an object detection toolbox in which includes training and inferences codes, in addition to weights for over 200 network models.
-
-MMDetection allows for inheritance of configuration files, making it possible to conduct various experiments while varying small parts of the code.
-In addition to modular config loading, the parameters can also be inserted at runtime to reduce the amount of static files needed to vary hyperparameters.
-
-\subsubsection{Label studios}
-Label studios was used to produce the labels for the datasets created in this thesis.
-\textbf{TODO text about using the mmdetection framework. Text about using labelstudios for labeling.}
 
 \section{Metrics}
 
@@ -1504,7 +1540,7 @@ In this section we present the results of the neural network architectures for t
 
 \begin{table}[!htbp]
   \begin{center}
-    \caption{Results on the Aftonbladet Expressen ? - ? (Out-set) dataset}
+    \caption{Results on the Aftonbladet Expressen 2001 - 2004 (Out-set) dataset}
     \label{tab:abexpresults}
     \resizebox{\columnwidth}{!}{
     \begin{tabular}{l|l|l|l|l|l|l}

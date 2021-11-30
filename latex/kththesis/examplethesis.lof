@@ -9,19 +9,18 @@
 \babel@toc {english}{}
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {2.1}{\ignorespaces Model of a perceptron.}}{9}{figure.2.1}%
-\contentsline {figure}{\numberline {2.2}{\ignorespaces Model complexity and overfitting~\cite {Wang_2019}. }}{11}{figure.2.2}%
-\contentsline {figure}{\numberline {2.3}{\ignorespaces Leaky ReLU~\cite {Wang_2019}.}}{12}{figure.2.3}%
-\contentsline {figure}{\numberline {2.4}{\ignorespaces Movement of the kernel within the input image or filter matrix~\cite {Kang2020DeepCN}.}}{15}{figure.2.4}%
-\contentsline {figure}{\numberline {2.5}{\ignorespaces Zero-padding~\cite {Kang2020DeepCN}.}}{16}{figure.2.5}%
-\contentsline {figure}{\numberline {2.6}{\ignorespaces Residual block~\cite {he2016deep}.}}{17}{figure.2.6}%
-\contentsline {figure}{\numberline {2.7}{\ignorespaces Fully Convolutional Network architecture as depicted in the original paper~\cite {DBLP:journals/corr/LongSD14}.}}{18}{figure.2.7}%
-\contentsline {figure}{\numberline {2.8}{\ignorespaces Evolution of the Feature Pyramid Network~\cite {DBLP:journals/corr/LinDGHHB16}.}}{19}{figure.2.8}%
-\contentsline {figure}{\numberline {2.9}{\ignorespaces Mask R-CNN results on the MS COCO dataset~\cite {DBLP:journals/corr/HeGDG17}. Masks are shown in color. Bounding boxes, category and confidence are also shown. }}{21}{figure.2.9}%
-\contentsline {figure}{\numberline {2.10}{\ignorespaces Hierarchical typology of document segmentation algorithms~\cite {ESKENAZI20171}. }}{23}{figure.2.10}%
+\contentsline {figure}{\numberline {2.1}{\ignorespaces Model complexity and overfitting~\cite {Wang_2019}. }}{9}{figure.2.1}%
+\contentsline {figure}{\numberline {2.2}{\ignorespaces Leaky ReLU~\cite {Wang_2019}.}}{11}{figure.2.2}%
+\contentsline {figure}{\numberline {2.3}{\ignorespaces Movement of the kernel within the input image or filter matrix~\cite {Kang2020DeepCN}.}}{13}{figure.2.3}%
+\contentsline {figure}{\numberline {2.4}{\ignorespaces Zero-padding~\cite {Kang2020DeepCN}.}}{14}{figure.2.4}%
+\contentsline {figure}{\numberline {2.5}{\ignorespaces Residual block~\cite {he2016deep}.}}{15}{figure.2.5}%
+\contentsline {figure}{\numberline {2.6}{\ignorespaces Fully Convolutional Network architecture as depicted in the original paper~\cite {DBLP:journals/corr/LongSD14}.}}{16}{figure.2.6}%
+\contentsline {figure}{\numberline {2.7}{\ignorespaces Evolution of the Feature Pyramid Network~\cite {DBLP:journals/corr/LinDGHHB16}.}}{17}{figure.2.7}%
+\contentsline {figure}{\numberline {2.8}{\ignorespaces Mask R-CNN results on the MS COCO dataset~\cite {DBLP:journals/corr/HeGDG17}. Masks are shown in color. Bounding boxes, category and confidence are also shown. }}{19}{figure.2.8}%
+\contentsline {figure}{\numberline {2.9}{\ignorespaces Hierarchical typology of document segmentation algorithms~\cite {ESKENAZI20171}. }}{21}{figure.2.9}%
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {3.1}{\ignorespaces Asymmetric extension of the label. A is labeled red, and B should belong to the same label, while C should not.}}{27}{figure.3.1}%
-\contentsline {figure}{\numberline {3.2}{\ignorespaces Example where other content (C) is blocking elements (A and B) from becoming one label.}}{28}{figure.3.2}%
+\contentsline {figure}{\numberline {3.1}{\ignorespaces Asymmetric extension of the label. A is labeled red, and B should belong to the same label, while C should not.}}{26}{figure.3.1}%
+\contentsline {figure}{\numberline {3.2}{\ignorespaces Example where other content (C) is blocking elements (A and B) from becoming one label.}}{27}{figure.3.2}%
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }
