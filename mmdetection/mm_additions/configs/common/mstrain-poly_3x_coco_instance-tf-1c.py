@@ -10,6 +10,7 @@ REPEAT_TRAIN=1
 LEARNING_RATE=0.0025
 MOMENTUM=0.9
 WEIGHT_DECAY=0.0001
+STEP_LENGTH=24
 
 classes = ('Publication Unit',)
 
@@ -76,19 +77,19 @@ data = dict(
             type=dataset_type,
             img_prefix=IN_SET_FOLDERS,
             classes=classes,
-            ann_file=IN_SET_FOLDERS + '/train_annotations.json',
+            ann_file=IN_SET_FOLDERS + '/train_1c_annotations.json',
             pipeline=train_pipeline)),
     val=dict(
         type=dataset_type,
         img_prefix=[IN_SET_FOLDERS, NEAR_SET_FOLDERS, OUT_SET_FOLDERS],
         classes=classes,
-        ann_file=[IN_SET_FOLDERS + '/valid_annotations.json', NEAR_SET_FOLDERS + '/valid_annotations.json', OUT_SET_FOLDERS + '/valid_1c_annotations.json'],
+        ann_file=[IN_SET_FOLDERS + '/valid_1c_annotations.json', NEAR_SET_FOLDERS + '/valid_1c_annotations.json', OUT_SET_FOLDERS + '/valid_1c_annotations.json'],
         pipeline=test_pipeline),
     test=dict(
         type=dataset_type,
         img_prefix=IN_SET_FOLDERS,
         classes=classes,
-        ann_file=IN_SET_FOLDERS + '/test_annotations.json',
+        ann_file=IN_SET_FOLDERS + '/test_1c_annotations.json',
         pipeline=test_pipeline))
 
 
@@ -105,4 +106,4 @@ lr_config = dict(
     warmup_iters=500, 
     warmup_ratio=0.001,
     gamma=0.2,  
-    step=8) # lr divided by 5 every 8 epochs
+    step=STEP_LENGTH) # lr divided by 5 every 8 epochs

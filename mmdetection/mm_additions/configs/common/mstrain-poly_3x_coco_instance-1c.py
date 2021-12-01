@@ -10,6 +10,7 @@ REPEAT_TRAIN=3
 LEARNING_RATE=0.0025
 MOMENTUM=0.9
 WEIGHT_DECAY=0.0001
+STEP_LENGTH=8
 
 classes = ('Publication Unit',)
 
@@ -104,4 +105,4 @@ lr_config = dict(
     warmup_iters=500, 
     warmup_ratio=0.001,
     gamma=0.2,  
-    step=8) # lr divided by 5 every 8 epochs
+    step=STEP_LENGTH) # lr divided by 5 every 8 epochs

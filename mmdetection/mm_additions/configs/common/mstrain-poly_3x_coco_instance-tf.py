@@ -10,6 +10,7 @@ REPEAT_TRAIN=1
 LEARNING_RATE=0.0025
 MOMENTUM=0.9
 WEIGHT_DECAY=0.0001
+STEP_LENGTH=24
 
 classes = ('News Unit', 'Advertisement', 'Listing', 'Weather', 'Death Notice', 'Game',)
 
@@ -105,4 +106,4 @@ lr_config = dict(
     warmup_iters=500, 
     warmup_ratio=0.001,
     gamma=0.2,  
-    step=8) # lr divided by 5 every 8 epochs
+    step=STEP_LENGTH) # lr divided by 5 every 8 epochs
