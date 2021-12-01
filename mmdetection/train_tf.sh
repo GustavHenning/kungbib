@@ -10,7 +10,10 @@ IMAGES_SCALE_MODIFIER=$5
 BASE_CHANNELS=3
 TOTAL_CHANNELS="$((DIMENSIONS+BASE_CHANNELS))"
 
-MODEL_DIR=$(echo "${ENCODER}_dim_${DIMENSIONS}_${MODEL_NAME}_${IMAGES_SCALE_MODIFIER}" | tr "/" "_")
+COMMON_CONFIG_NAME="kungbib-cascade-mask"
+CONFIG_NAME_IDENTIFYER=${CONFIG_NAME#"$COMMON_CONFIG_NAME"}
+echo "$CONFIG_NAME_IDENTIFYER"
+MODEL_DIR=$(echo "${ENCODER}_${DIMENSIONS}_${MODEL_NAME}${CONFIG_NAME_IDENTIFYER}_${IMAGES_SCALE_MODIFIER}" | tr "/" "_")
 
 img_scales () {
 IS_TRAIN=$1
@@ -154,25 +157,28 @@ python3 tools/analysis_tools/coco_error_analysis.py \
             #
 
 python3 -W ignore tools/train.py \
-configs/gustav/$CONFIG_NAME.1c.py \
+configs/gustav/$CONFIG_NAME-1c.py \
 --seed=0 \
 --work-dir=checkpoints/custom/tf/$MODEL_DIR-1c \
 --cfg-options model.backbone.in_channels=$TOTAL_CHANNELS \
 img_norm_cfg.extra_dims=$DIMENSIONS \
-data.train.pipeline.6.dimensions=$DIMENSIONS \
-data.train.pipeline.6.encoder=$ENCODER \
-data.train.pipeline.6.model_name=$MODEL_NAME \
+data.train.dataset.pipeline.2.extra_dims=$DIMENSIONS \
+data.train.dataset.pipeline.6.dimensions=$DIMENSIONS \
+data.train.dataset.pipeline.6.encoder=$ENCODER \
+data.train.dataset.pipeline.6.model_name=$MODEL_NAME \
+data.test.pipeline.1.transforms.2.extra_dims=$DIMENSIONS \
 data.test.pipeline.1.transforms.4.encoder=$ENCODER \
 data.test.pipeline.1.transforms.4.dimensions=$DIMENSIONS \
 data.test.pipeline.1.transforms.4.model_name=$MODEL_NAME \
+data.val.pipeline.1.transforms.2.extra_dims=$DIMENSIONS \
 data.val.pipeline.1.transforms.4.encoder=$ENCODER \
 data.val.pipeline.1.transforms.4.dimensions=$DIMENSIONS \
-data.val.pipeline.1.transforms.4.model_name=$MODEL_NAME
+data.val.pipeline.1.transforms.4.model_name=$MODEL_NAME \
 train_pipeline.2.extra_dims=$DIMENSIONS \
-test_pipeline.1.transforms.0.extra_dims=$DIMENSIONS \
+test_pipeline.1.transforms.2.extra_dims=$DIMENSIONS \
 train_pipeline.3.img_scale=$TRAIN_IMG_SIZES \
 test_pipeline.1.img_scale=$TEST_IMG_SIZES \
-data.train.pipeline.3.img_scale=$TRAIN_IMG_SIZES \
+data.train.dataset.pipeline.3.img_scale=$TRAIN_IMG_SIZES \
 data.val.pipeline.1.img_scale=$TEST_IMG_SIZES \
 data.test.pipeline.1.img_scale=$TEST_IMG_SIZES
 
