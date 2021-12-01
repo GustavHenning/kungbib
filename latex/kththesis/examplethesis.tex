@@ -21,6 +21,8 @@
 %\documentclass[oneside, swedish, biblatex]{kththesis}
 \usepackage[activate={true,nocompatibility},final,tracking=true,kerning=true,spacing=true,factor=1100,stretch=10,shrink=10]{microtype}
 \usepackage{tikz}
+\usepackage{float}
+
 % \usepackage[style=numeric,sorting=none,backend=biber]{biblatex}
 \ifbiblatex
     %\usepackage[language=english,bibstyle=authoryear,citestyle=authoryear, maxbibnames=99]{biblatex}
@@ -445,8 +447,8 @@ Only a limited number of typographic designs will be evaluated in this project, 
 
 \section{Ethical considerations}
 
-The dataset created in this project consists of published newspapers which have seen wide circulation.
-No special consideration needs to be taken in terms of sensitive or personally identifiable information.
+The dataset created in this project consists of published newspapers which have seen wide circulation in the public domain. 
+Obituaries will be blurred if included as visual examples in the thesis. No further special consideration is to be taken in terms of sensitive or personally identifiable information.
 
 \section{Structure of the thesis}
 
@@ -892,7 +894,7 @@ MMDetection allows for inheritance of configuration files, making it possible to
 In addition to modular config loading, the parameters can also be inserted at runtime to reduce the amount of static files needed to vary hyperparameters.
 
 \subsubsection{Label studios}
-Label studios was used to produce the labels for the datasets created in this thesis. In the interest of time, labels were first created using rectangles, exported, converted to polygons, and then imported again to be reviewed and edited where necessary. 
+Label studios was used to produce the labels for the datasets created in this thesis. In the interest of time and precision of the labels, the labels were first created using rectangles, exported, converted to polygons, and then imported again to be reviewed and edited where necessary. 
 
 
 \section{Data}
@@ -907,8 +909,8 @@ Because of this rather subjective definition, a systematic description of how el
 \label{subsec:labelingstrat}
 
 In this thesis we are concerned with grouping elements together that relate by their contents.
-For example, a news article might have an image depicting the contents, a title, a body of text possibly spanning multiple paragraphs, and a byline.
-These elements are one \textit{instance} of a class.
+For example, a news article might have an image depicting the contents, a title, a body of text possibly spanning multiple text blocks, and a byline.
+These elements together form one \textit{instance} of a class.
 
 Some elements of the newspaper do not by themselves convey any news. One example are elements used for navigating the newspaper itself.
 Such elements include titles, section titles and subsection titles. Another example could be instructions for participating in debate, or footers that present the newspaper publishing team.
@@ -1011,49 +1013,15 @@ Some elements, such as the subhead and preamble, may be omitted due to stylistic
 News articles are often extended by a number of other optional elements, such as images and image captions.
 \end{definition}
 
-\begin{definition}
-\label{headline}
-A \textbf{headline} is a very short summary of a news report. It normally appears in large letters above the report. [Cambridge Dictionary]
-\end{definition}
-
-\begin{definition}
-\label{subhead}
-A \textbf{subhead} or subheading is a word, phrase, or sentence that is used to introduce part of a text. [Cambridge Dictionary]
-\end{definition}
-
-\begin{definition}
-\label{preamble}
-A \textbf{preamble} is an introduction to a speech or piece of writing. [Cambridge Dictionary]
-\end{definition}
-
-\begin{definition}
-\label{body text}
-A \textbf{body text} is the main part of a printed text, excluding items such as headings and footnotes. [Oxford Languages]
-\end{definition}
-
-\begin{definition}
-\label{byline}
-A \textbf{byline} is a line at the top or bottom of a newspaper or magazine article giving the writer's name. [Cambridge Dictionary]
-\end{definition}
-
-\begin{definition}
-\label{img}
-An \textbf{image caption} or a \textbf{video caption} is a title or brief explanation accompanying an illustration, cartoon, poster or in the latter case a video. [Oxford Languages]
-\end{definition}
 
 Given Definition \ref{newsarticle} of a \textit{news article}, we will now introduce the concept of a \textit{news unit}, which will determine what elements will be labeled in the newspaper data as representative of a news article.
 
 \begin{definition}
 \label{newsunit}
-A \textbf{news unit} is a written work published in a print or electronic medium with the purpose of propagating news, research results, academic analysis or debate. It’s minimum requirement is that it contains at least:
-
-\begin{enumerate}
-\item a headline or a preamble or a body text or an image with an optional image caption
-\item a reference page number or a byline
-\end{enumerate}
+A \textbf{news unit} is a written work published in a print or electronic medium with the purpose of propagating news, research results, academic analysis or debate. Any element which conveys the content of the written work is to be regarded as part of the news unit.
 \end{definition}
 
-A \textit{news unit} may contain all of the above, including an image of the author themselves and smaller elements of text that usually contain explanatory contents, such as definitions or facts associated with the article itself.
+For a complete list of definitions of words related to news articles, see \autoref{app:newsarticle}
 
 \subsubsection{News Unit Delimitations}
 
@@ -1083,7 +1051,7 @@ Finally there are advertisements made to look like news articles.
 They are intentionally structured and formatted to appear exactly as news articles do,
 except for the fact that a small warning is made that the section is in fact an advertisement.
 One could argue to support both that they should be labeled as ads (because they truly are ads), and that they should be labeled as news articles (because they look like news articles).
-In this project, these types of advertisements are labeled as news articles.
+In this project, these types of advertisements are labeled as if they were news articles.
 
 \subsubsection{Listing}
 
@@ -1192,7 +1160,7 @@ Sampling ratio is 70/15/15 for Train/Test/Validation respectively.
     \caption{Class distribution in the DN 2010 - 2020 dataset}
     \label{tab:trainclassdist}
     \begin{tabular}{l|l|l|l|l|l|l} % <-- Alignments: 1st column left, 2nd middle, with vertical lines in between
-    \textbf{Dataset} & \textbf{News Unit} & \textbf{Advertisement} & \textbf{Listing} & \textbf{Death Notice} & \textbf{Game} & \textbf{Weather}  \\
+    \textbf{Subset} & \textbf{News Unit} & \textbf{Advertisement} & \textbf{Listing} & \textbf{Death Notice} & \textbf{Game} & \textbf{Weather}  \\
     \hline
     \textbf{Train} & 1027 & 554 & 920 & 105 & 55 & 12 \\    \hline
     \textbf{Test} & 179 & 166 & 196 & 19 & 5 & 2 \\    \hline
@@ -1245,9 +1213,42 @@ Our objective is to segment newspaper images and to classify detected segments o
 \textbf{Network modularity}. The Mask R-CNN architecture is made up of modular networks, which can be varied. The modules are:
 
 \begin{description}
+\item[$\bullet$ Head] Used for bounding-box recognition (classification and regression) and mask prediction that is applied separately to each RoI. Referred to as \textit{neck} in MMDetection.
 \item[$\bullet$ Backbone] Used for feature extraction of an entire image
-\item[$\bullet$ Head] Used for bounding-box recognition (classification and regression)
 \end{description}
+
+\textbf{Head}. In this thesis we used the FPN head. Among the alternatives are C4 and C5. In the original Mask R-CNN paper the FPN head outperforms the alternatives. 
+
+\textbf{Backbone}. Backbones used in this thesis:
+
+\begin{itemize}
+\item ResNet-50
+\item ResNet-101
+\item ResNeXt-101 32x4d 
+\item ResNeXt-101 32x8d
+\item ResNeXt-101 64x4d
+\end{itemize}
+
+
+In the last 3 backbones, $N$x$M$d refers to the total number of paths in the convolutional transformation (\textit{cardinality}=$N$)~\cite{DBLP:journals/corr/XieGDTH16} and \textit{depth}=$M$ which denotes the number of convolutions before aggregation if necessary. See \autoref{fig:cardinality} and \autoref{fig:depth} for a visual description.
+
+\begin{figure}[H]
+  \begin{center}
+    \includegraphics[width=1.0\textwidth]{figures/resnext-cardinality.png}
+  \end{center}
+  \caption{\textbf{Left}: A block of ResNet. \textbf{Right}: A block of ResNeXt with cardinality = 32. ~\cite{DBLP:journals/corr/XieGDTH16}}
+  \label{fig:cardinality}
+\end{figure}
+
+\begin{figure}[H]
+  \begin{center}
+    \includegraphics[width=1.0\textwidth]{figures/resnext-depth.png}
+  \end{center}
+  \caption{\textbf{Left}: Aggregating transformations of depth = 2 \textbf{Right}: An equivalent block, which is trivially wider.~\cite{DBLP:journals/corr/XieGDTH16}}
+  \label{fig:depth}
+\end{figure}
+
+
 
 \subsubsection{Preprocessing}
 
@@ -1294,7 +1295,7 @@ Since the classes found in this project are generally larger on average than the
 the partitioning size thresholds are adjusted for these results to provide more useful information about different objects being detected (Using the standard thresholds, almost all objects are considered “large”).
 This alteration has no impact on the performance of the solution itself, but must be considered when evaluating the results.
 
-\begin{table}[!htb]
+\begin{table}[H]
   \begin{center}
     \caption{Object size threshold differences in pixels}
     \label{tab:objectsizes}
@@ -1322,7 +1323,7 @@ Stochastic gradient descent is used, with a learning rate is set to $0.02$ (for 
 
 Since we use only 1 GPU for training, according to the Linear Scaling Rule~\cite{DBLP:journals/corr/GoyalDGNWKTJH17}, we acquire a learning rate of $0.02/8=0.0025$.
 
-A linear learning rate configuration was used. The learning rate was divided by 5 every 8th epoch.
+A linear learning rate configuration was used. The learning rate was divided by 5 every 8th epoch for models without text embeddings, and every 24th epoch for models with text embeddings (resulting in the same number of iterations before every divide).
 
 \subsection{Text Embedding map}
 
@@ -1359,8 +1360,6 @@ There are a number of ways to embed the text behind the image channels in the fi
 
 In this thesis we transform the entire content of the text block and repeat the vector produced across the dimensions of the text block. 
 
-\textbf{Normalization}. In the MMDetection framework, we found that pixel color was represented in the range of $[0.0,1.0]$ instead of the more familiar range of $0-255$ for RGB values.
-
 \textbf{Dimensionality reduction}. Principle Component Analysis (PCA) or any other dimensionality reduction algorithm could be used to compress the vector representation. This could be useful to limit the memory footprint of the input. In this thesis, no such strategy was used.
 
 \clearpage
@@ -1388,7 +1387,22 @@ In the comparison we will make, all other settings and parameters are equal.
 
 \subsection{Impact of dataset size}
 
-At the request of the researchers at the laboratory of the National Library of Sweden, we conduct an experiment to investigate if the model could potentially improve if a larger dataset was labeled. To investigate this matter, we create subsets of the training dataset at ratios of $0.25$, $0.5$, $0.75$ and $0.9$ and compare the results to the full training dataset size. 
+At the request of the researchers at the laboratory of the National Library of Sweden, we conduct an experiment to investigate if the model could potentially improve if a larger dataset was labeled. To investigate this matter, we create subsets of the training dataset at ratios of $0.25$, $0.5$, $0.75$ and $0.9$ and compare the results to the full training dataset size. All subsets were sampled using random sampling.
+
+\begin{table}[H]
+    \caption{Class distribution in partial datasets of DN 2010 - 2020 (In-set)}
+    \label{tab:partialdist}
+    \begin{tabular}{l|l|l|l|l|l|l} % <-- Alignments: 1st column left, 2nd middle, with vertical lines in between
+    \textbf{\% Train} & \textbf{News Unit} & \textbf{Advertisement} & \textbf{Listing} & \textbf{Death Notice} & \textbf{Game} & \textbf{Weather}  \\
+    \hline
+    25\% & 212 & 149 & 225 & 23 & 18 & 2 \\    \hline
+    50\% & 449 & 332 & 456 & 75 & 26 & 4 \\    \hline
+    75\% & 648 & 500 & 618 & 66 & 36 & 11 \\    \hline
+    90\% & 953 & 502 & 810 & 63 & 41 & 11 \\    \hline
+    100\% & 1027 & 554 & 920 & 105 & 55 & 12 \\    \hline
+    \end{tabular}
+\end{table}
+
 
 \subsection{Impact of image scaling}
 
@@ -1467,7 +1481,7 @@ M@\tau_{start}:\tau_{step}:\tau_{end} = \frac{1}{(\tau_{start}:\tau_{step}:\tau_
     \label{eqn:rangem}
 \end{equation}
 
-It should be noted that metrics such as IoU, mIoU, Precision and Recall are computed at the page level and not at the instance level. If a page contains several instances of a class and the prediction only matches some instances, thus not enough to reach an IoU threshold larger than $\tau$, the whole page is counted as negative. (TODO verify!)
+It should be noted that metrics such as IoU, mIoU, Precision and Recall are computed at the page level and not at the instance level. If a page contains several instances of a class and the prediction only matches some instances, thus not enough to reach an IoU threshold larger than $\tau$, the whole page is counted as negative.
 
 
 \subsection{Mean Average Precision}
@@ -1489,7 +1503,7 @@ In this section we present the results of the neural network architectures for t
 
 \section{Unimodal versus multimodal}
 
-\begin{table}[!htbp]
+\begin{table}[H]
   \begin{center}
     \caption{Model names}
     \label{tab:modelnames}
@@ -1497,18 +1511,18 @@ In this section we present the results of the neural network architectures for t
     \begin{tabular}{l|l|l|l|p{1.5cm}}
     \textbf{Final name} & \textbf{Head} & \textbf{Backbone} & \textbf{Sentence transformer} & \textbf{Text embeddings length} \\
     \hline
-    resnet50-FPN-vanilla & resnet50 & FPN & None & 0 \\    \hline
-    resnext101-32x8d-FPN-vanilla & resnext101 & FPN & None & 0 \\    \hline
-    resnext101-64x4d-FPN-vanilla & resnext101 & FPN & None & 0 \\     \hline
+    r50-FPN-vanilla & resnet50 & FPN & None & 0 \\    \hline
+    x101-32x8d-FPN-vanilla & resnext101 & FPN & None & 0 \\    \hline
+    x101-64x4d-FPN-vanilla & resnext101 & FPN & None & 0 \\     \hline
     More & models & in & final & paper \\     \hline
-    resnet50-FPN-KBLab & resnext101 & FPN & KBLab/sentence-bert-swedish-cased & 768 \\     \hline
-    resnet50-FPN-KB & resnet50 & FPN & KB/bert-base-swedish-cased & 768 \\     \hline
+    r50-FPN-KBLab & resnext101 & FPN & KBLab/sentence-bert-swedish-cased & 768 \\     \hline
+    r50-FPN-KB & resnet50 & FPN & KB/bert-base-swedish-cased & 768 \\     \hline
     \end{tabular}}
   \end{center}
 \end{table}
 
 
-\begin{table}[!htbp]
+\begin{table}[H]
   \begin{center}
     \caption{Results on the DN 2010 - 2020 (Training) dataset}
     \label{tab:dn2010results}
@@ -1516,14 +1530,14 @@ In this section we present the results of the neural network architectures for t
     \begin{tabular}{l|l|l|l|l|l|l} %
     \textbf{Final name} & \textbf{$mAP_m$} & \textbf{$mAP_m^{50}$} & \textbf{$mAP_m^{75}$} & \textbf{$mAP_{bb}$} & \textbf{$mAP_{bb}^{50}$} & \textbf{$mAP_{bb}^{75}$} \\
     \hline
-    resnet50-FPN-vanilla & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 \\    \hline
-    resnext101-32x8d-FPN-vanilla & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 \\    \hline
-    resnext101-64x4d-FPN-vanilla & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 \\     \hline
+    r50-FPN-vanilla & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 \\    \hline
+    x101-32x8d-FPN-vanilla & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 \\    \hline
+    x101-64x4d-FPN-vanilla & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 \\     \hline
     \end{tabular}}
   \end{center}
 \end{table}
 
-\begin{table}[!htbp]
+\begin{table}[H]
   \begin{center}
     \caption{Results on the DN SvD 2001 - 2004 (In-set) dataset}
     \label{tab:dnsvd2001results}
@@ -1531,14 +1545,14 @@ In this section we present the results of the neural network architectures for t
     \begin{tabular}{l|l|l|l|l|l|l}
     \textbf{Final name} & \textbf{$mAP_m$} & \textbf{$mAP_m^{50}$} & \textbf{$mAP_m^{75}$} & \textbf{$mAP_{bb}$} & \textbf{$mAP_{bb}^{50}$} & \textbf{$mAP_{bb}^{75}$} \\
     \hline
-    resnet50-FPN-vanilla & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 \\    \hline
-    resnext101-32x8d-FPN-vanilla & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 \\    \hline
-    resnext101-64x4d-FPN-vanilla & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 \\     \hline
+    r50-FPN-vanilla & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 \\    \hline
+    x101-32x8d-FPN-vanilla & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 \\    \hline
+    x101-64x4d-FPN-vanilla & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 \\     \hline
     \end{tabular}}
   \end{center}
 \end{table}
 
-\begin{table}[!htbp]
+\begin{table}[H]
   \begin{center}
     \caption{Results on the Aftonbladet Expressen 2001 - 2004 (Out-set) dataset}
     \label{tab:abexpresults}
@@ -1546,9 +1560,9 @@ In this section we present the results of the neural network architectures for t
     \begin{tabular}{l|l|l|l|l|l|l}
     \textbf{Final name} & \textbf{$mAP_m$} & \textbf{$mAP_m^{50}$} & \textbf{$mAP_m^{75}$} & \textbf{$mAP_{bb}$} & \textbf{$mAP_{bb}^{50}$} & \textbf{$mAP_{bb}^{75}$} \\
     \hline
-    resnet50-FPN-vanilla & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 \\    \hline
-    resnext101-32x8d-FPN-vanilla & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 \\    \hline
-    resnext101-64x4d-FPN-vanilla & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 \\     \hline
+    r50-FPN-vanilla & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 \\    \hline
+    x101-32x8d-FPN-vanilla & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 \\    \hline
+    x101-64x4d-FPN-vanilla & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 \\     \hline
     \end{tabular}}
   \end{center}
 \end{table}
@@ -1559,7 +1573,60 @@ In this section we present the results of the neural network architectures for t
 
 \section{Impact of dataset size}
 
-\textbf{TODO text and table here about results of dataset size variation.}
+\textbf{TODO average over 5 runs}
+
+\begin{table}[H]
+  \begin{center}
+    \caption{Gradually increasing dataset size - All classes - In set}
+    \label{tab:dsizeallcinset}
+    \resizebox{\columnwidth}{!}{
+    \begin{tabular}{l|l|l|l|l|l|l}
+    \textbf{\% Train} & \textbf{$mAP_m$} & \textbf{$mAP_m^{50}$} & \textbf{$mAP_m^{75}$} & \textbf{$mAP_{bb}$} & \textbf{$mAP_{bb}^{50}$} & \textbf{$mAP_{bb}^{75}$} \\
+    \hline
+    25\% & 0.460 & 0.690 & 0.482 & 0.448 & 0.597 & 0.430 \\    \hline
+    50\% & 0.747 & 0.832 & 0.790 & 0.713 & 0.832 & 0.789 \\    \hline
+    75\% & 0.750 & 0.822 & 0.808 & 0.752 & 0.822 & 0.810 \\     \hline
+    90\% & 0.595 & 0.664 & 0.620 & 0.592 & 0.665 & 0.617 \\     \hline
+    100\% & 0.851 & 0.944 & 0.875 & 0.842 & 0.943 & 0.878 \\     \hline
+    \end{tabular}}
+  \end{center}
+\end{table}
+
+\begin{table}[H]
+  \begin{center}
+    \caption{Gradually increasing dataset size - All classes - Near set}
+    \label{tab:dsizeallcnearset}
+    \resizebox{\columnwidth}{!}{
+    \begin{tabular}{l|l|l|l|l|l|l}
+    \textbf{\% Train} & \textbf{$mAP_m$} & \textbf{$mAP_m^{50}$} & \textbf{$mAP_m^{75}$} & \textbf{$mAP_{bb}$} & \textbf{$mAP_{bb}^{50}$} & \textbf{$mAP_{bb}^{75}$} \\
+    \hline
+    25\% & 0.220 & 0.309 & 0.219 & 0.210 & 0.309 & 0.218 \\    \hline
+    50\% & 0.376 & 0.459 & 0.378 & 0.365 & 0.457 & 0.374 \\    \hline
+    75\% & 0.343 & 0.409 & 0.366 & 0.336 & 0.409 & 0.361 \\     \hline
+    90\% & 0.275 & 0.350 & 0.287 & 0.267 & 0.352 & 0.290 \\     \hline
+    100\% & 0.414 & 0.481 & 0.430 & 0.402 & 0.481 & 0.423 \\     \hline
+    \end{tabular}}
+  \end{center}
+\end{table}
+
+\begin{table}[H]
+  \begin{center}
+    \caption{Gradually increasing dataset size - All classes - Out set}
+    \label{tab:dsizeallcoutset}
+    \resizebox{\columnwidth}{!}{
+    \begin{tabular}{l|l|l|l|l|l|l}
+    \textbf{\% Train} & \textbf{$mAP_m$} & \textbf{$mAP_m^{50}$} & \textbf{$mAP_m^{75}$} & \textbf{$mAP_{bb}$} & \textbf{$mAP_{bb}^{50}$} & \textbf{$mAP_{bb}^{75}$} \\
+    \hline
+    25\% & 0.389 & 0.476 & 0.423 & 0.377 & 0.474 & 0.413 \\    \hline
+    50\% & 0.330 & 0.425 & 0.355 & 0.325 & 0.425 & 0.353 \\    \hline
+    75\% & 0.288 & 0.368 & 0.310 & 0.282 & 0.368 & 0.310 \\     \hline
+    90\% & 0.290 & 0.356 & 0.310 & 0.279 & 0.355 & 0.289 \\     \hline
+    100\% & 0.488 & 0.599 & 0.527 & 0.451 & 0.598 & 0.461 \\    \hline
+    \end{tabular}}
+  \end{center}
+\end{table}
+
+
 
 \section{Impact of image scaling}
 
@@ -1573,6 +1640,16 @@ In this section we present the results of the neural network architectures for t
 \label{ch:conc}
 \section{Conclusions}
 \section{Limitations}
+
+Notes to be formulated. Section undecided as of now.
+
+\begin{itemize}
+\item Per newspaper page instance segmentation has its drawbacks. Newspapers are meant to be read mostly overviewing two pages simultaniously. "Implied content" could be avoided by merging pages pairwise before annotation.
+\item Developing specific head and backbone architecture to incorporate the textual embeddings puts less reliance on the traditional head and backbone architectures to adapt to the new input medium.
+\item Dataset size increases could potentially lead to more stable results.
+\item The memory footprint of inserting large vectors of text embeddings behind the image RGB channels could make the models impractical to use in real world applications.
+\end{itemize}
+
 \section{Future work}
 
 %The thesis contributes to the \gls{UN}\enspace\glspl{SDG} numbers 1 and 9 by
@@ -1597,6 +1674,38 @@ In this section we present the results of the neural network architectures for t
 \appendix
 \renewcommand{\chaptermark}[1]{\markboth{Appendix \thechapter\relax:\thinspace\relax#1}{}}
 
+\section{Appendix A: Definitions related to news articles}
+\label{app:newsarticle}
+
+\begin{definition}
+\label{headline}
+A \textbf{headline} is a very short summary of a news report. It normally appears in large letters above the report. [Cambridge Dictionary]
+\end{definition}
+
+\begin{definition}
+\label{subhead}
+A \textbf{subhead} or subheading is a word, phrase, or sentence that is used to introduce part of a text. [Cambridge Dictionary]
+\end{definition}
+
+\begin{definition}
+\label{preamble}
+A \textbf{preamble} is an introduction to a speech or piece of writing. [Cambridge Dictionary]
+\end{definition}
+
+\begin{definition}
+\label{body text}
+A \textbf{body text} is the main part of a printed text, excluding items such as headings and footnotes. [Oxford Languages]
+\end{definition}
+
+\begin{definition}
+\label{byline}
+A \textbf{byline} is a line at the top or bottom of a newspaper or magazine article giving the writer's name. [Cambridge Dictionary]
+\end{definition}
+
+\begin{definition}
+\label{img}
+An \textbf{image caption} or a \textbf{video caption} is a title or brief explanation accompanying an illustration, cartoon, poster or in the latter case a video. [Oxford Languages]
+\end{definition}
 
 %% The following label is necessary for computing the last page number of the body of the report to include in the "For DIVA" information
 \label{pg:lastPageofMainmatter}
