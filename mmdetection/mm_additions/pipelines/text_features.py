@@ -73,7 +73,7 @@ class TextFeatures:
         for block in texts["content"]:
             text = block["text"]
             #print(text)
-            norm = self.normalize(self.encoder.encode(text))
+            norm = self.encoder.encode(text) #self.normalize(self.encoder.encode(text))
             encoded_vector = np.pad(norm, (3,0), 'constant') # prepad rgb channels 
 
             total_width = img_postpad_w
@@ -150,7 +150,7 @@ class TextFeatures:
         img_colors=self.normalize_3d(m[:,:,0:3])
 
         ax.plot_surface(x, y, np.full((np.shape(x)[0], np.shape(y)[1]), 10.0, dtype=float), rstride=5, cstride=5, facecolors=(img_colors))
-        tf_colors=np.abs(m[:,:,3:6])
+        tf_colors=np.abs(self.normalize_3d(m[:,:,3:6]))
 
         ax.plot_surface(x, y, np.full((np.shape(x)[0], np.shape(y)[1]), 0.0, dtype=float), rstride=5, cstride=5, facecolors=(tf_colors))
         plt.show()
