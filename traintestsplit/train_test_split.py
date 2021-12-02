@@ -104,7 +104,7 @@ def train_val_split(dataset_folder_path, json_filename, train_prop=0.8, test_pro
     
     if train_prop == 1.0: # this is sloppy coding, but I'm creating a validation dataset for both all classes and 1 class 
         print("creating validation set for {}".format(dataset_folder_path))
-        create_annotations(dataset_folder_path, "valid", data["images"], data)
+        create_annotations(dataset_folder_path, "test", data["images"], data)
     elif test_prop is not None: # train, test and validation
         train_images = random.sample(data["images"], k=int(nr_obs * train_prop))
         rest_images = {"images" : [image for image in data["images"] if image not in train_images]}

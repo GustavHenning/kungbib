@@ -81,15 +81,15 @@ data = dict(
             pipeline=train_pipeline)),
     val=dict(
         type=dataset_type,
-        img_prefix=[IN_SET_FOLDERS, NEAR_SET_FOLDERS, OUT_SET_FOLDERS],
+        img_prefix=IN_SET_FOLDERS,
         classes=classes,
-        ann_file=[IN_SET_FOLDERS + '/valid_annotations.json', NEAR_SET_FOLDERS + '/valid_annotations.json', OUT_SET_FOLDERS + '/valid_annotations.json'],
+        ann_file=IN_SET_FOLDERS + '/valid_annotations.json',
         pipeline=test_pipeline),
     test=dict(
         type=dataset_type,
-        img_prefix=IN_SET_FOLDERS,
+        img_prefix=[IN_SET_FOLDERS, NEAR_SET_FOLDERS, OUT_SET_FOLDERS],
         classes=classes,
-        ann_file=IN_SET_FOLDERS + '/test_annotations.json',
+        ann_file=[IN_SET_FOLDERS + '/test_annotations.json', NEAR_SET_FOLDERS + '/test_annotations.json', OUT_SET_FOLDERS + '/test_annotations.json'],
         pipeline=test_pipeline))
 
 
