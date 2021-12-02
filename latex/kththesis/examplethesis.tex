@@ -1308,6 +1308,15 @@ This alteration has no impact on the performance of the solution itself, but mus
   \end{center}
 \end{table}
 
+\begin{figure}[H]
+  \begin{center}
+    \includegraphics[width=1.0\textwidth]{figures/size_dist_annotations.png}
+  Visualization of the Test subset of the DN 2010 - 2020 (In-set) dataset.
+  \end{center}
+  \caption{\textbf{Left}: Number of annotations per annotation group. \textbf{Right}: Distribution of annotations by squareroot area.}
+  \label{fig:size_dist_annotations}
+\end{figure}
+
 \subsubsection{Multiscale training}
 
 All models used in this thesis were trained using multiscale training. When using multiscale training in MMdetection, the training dataset can be repeated a number of times during training. When specifying the dimensions for the resizing operation in the preprocessing pipeline, the values are submitted as a range instead of fixed values which is the case for non-multiscale training. During training, a random width and height are generated from the ranges submitted in the configration. 
