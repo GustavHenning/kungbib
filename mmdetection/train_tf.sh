@@ -87,79 +87,67 @@ ls | grep epoch | grep -v $(basename $(readlink -f latest.pth)) | xargs rm
 
 cd -
 
-python3 -W ignore tools/test.py \
-configs/gustav/$CONFIG_NAME.py \
-checkpoints/custom/tf/$MODEL_DIR/latest.pth \
---work-dir=checkpoints/custom/tf/$MODEL_DIR \
---cfg-options model.backbone.in_channels=$TOTAL_CHANNELS \
-img_norm_cfg.extra_dims=$DIMENSIONS \
-data.train.pipeline.6.dimensions=$DIMENSIONS \
-data.train.pipeline.6.encoder=$ENCODER \
-data.train.pipeline.6.model_name=$MODEL_NAME \
-data.test.pipeline.1.transforms.4.encoder=$ENCODER \
-data.test.pipeline.1.transforms.4.dimensions=$DIMENSIONS \
-data.test.pipeline.1.transforms.4.model_name=$MODEL_NAME \
-data.val.pipeline.1.transforms.4.encoder=$ENCODER \
-data.val.pipeline.1.transforms.4.dimensions=$DIMENSIONS \
-data.val.pipeline.1.transforms.4.model_name=$MODEL_NAME \
-train_pipeline.2.extra_dims=$DIMENSIONS \
-test_pipeline.1.transforms.0.extra_dims=$DIMENSIONS \
-train_pipeline.3.img_scale=$TRAIN_IMG_SIZES \
-test_pipeline.1.img_scale=$TEST_IMG_SIZES \
-data.train.pipeline.3.img_scale=$TRAIN_IMG_SIZES \
-data.val.pipeline.1.img_scale=$TEST_IMG_SIZES \
-data.test.pipeline.1.img_scale=$TEST_IMG_SIZES \
---eval segm bbox \
---show-dir checkpoints/custom/tf/$MODEL_DIR/analysis \
---show-score-thr 0.8
+# Generate images
 
-python3 tools/test.py \
-configs/gustav/$CONFIG_NAME.py \
-checkpoints/custom/tf/$MODEL_DIR/latest.pth \
---cfg-options model.backbone.in_channels=$TOTAL_CHANNELS \
-img_norm_cfg.extra_dims=$DIMENSIONS \
-data.train.pipeline.6.dimensions=$DIMENSIONS \
-data.train.pipeline.6.encoder=$ENCODER \
-data.train.pipeline.6.model_name=$MODEL_NAME \
-data.test.pipeline.1.transforms.4.encoder=$ENCODER \
-data.test.pipeline.1.transforms.4.dimensions=$DIMENSIONS \
-data.test.pipeline.1.transforms.4.model_name=$MODEL_NAME \
-data.val.pipeline.1.transforms.4.encoder=$ENCODER \
-data.val.pipeline.1.transforms.4.dimensions=$DIMENSIONS \
-data.val.pipeline.1.transforms.4.model_name=$MODEL_NAME \
-train_pipeline.2.extra_dims=$DIMENSIONS \
-test_pipeline.1.transforms.0.extra_dims=$DIMENSIONS \
-train_pipeline.3.img_scale=$TRAIN_IMG_SIZES \
-test_pipeline.1.img_scale=$TEST_IMG_SIZES \
-data.train.pipeline.3.img_scale=$TRAIN_IMG_SIZES \
-data.val.pipeline.1.img_scale=$TEST_IMG_SIZES \
-data.test.pipeline.1.img_scale=$TEST_IMG_SIZES \
---format-only \
---options "jsonfile_prefix=./checkpoints/custom/tf/$MODEL_DIR/results"
+# python3 -W ignore tools/test.py \
+# checkpoints/custom/tf/$MODEL_DIR/$CONFIG_NAME.py \
+# checkpoints/custom/tf/$MODEL_DIR/latest.pth \
+# --work-dir=checkpoints/custom/tf/$MODEL_DIR \
+# --eval segm bbox \
+# --show-dir checkpoints/custom/tf/$MODEL_DIR/analysis \
+# --show-score-thr 0.8
 
-python3 tools/analysis_tools/coco_error_analysis.py \
-./checkpoints/custom/tf/$MODEL_DIR/results.bbox.json \
-./checkpoints/custom/tf/$MODEL_DIR/results \
---ann=/data/gustav/datalab_data/model/dn-2010-2020/test_annotations.json \
---extraplots \
---areas 80089 360000 10000000000
+#
+# Produce graphs for each dataset
+# 
+DATASETS=(dn-2010-2020 dn-svd-2001-2004 ab-ex-2001-2004)
 
-python3 tools/analysis_tools/coco_error_analysis.py \
-./checkpoints/custom/tf/$MODEL_DIR/results.segm.json \
-./checkpoints/custom/tf/$MODEL_DIR/results \
---ann=/data/gustav/datalab_data/model/dn-2010-2020/test_annotations.json \
---types='segm' \
---extraplots \
---areas 80089 360000 10000000000
+for dataset in "${DATASETS[@]}"
+do
+    echo "$dataset"
+    python3 tools/test.py \
+    checkpoints/custom/tf/$MODEL_DIR/$CONFIG_NAME.py \
+    checkpoints/custom/tf/$MODEL_DIR/latest.pth \
+    --cfg-options data.test.img_prefix="/data/gustav/datalab_data/model/$dataset/" \
+    data.test.ann_file="/data/gustav/datalab_data/model/$dataset/test_annotations.json" \
+    --format-only \
+    --options "jsonfile_prefix=./checkpoints/custom/tf/$MODEL_DIR/results/$dataset-results"
+
+    python3 tools/analysis_tools/coco_error_analysis.py \
+    ./checkpoints/custom/tf/$MODEL_DIR/results/$dataset-results.bbox.json \
+    ./checkpoints/custom/tf/$MODEL_DIR/results/$dataset \
+    --ann=/data/gustav/datalab_data/model/$dataset/test_annotations.json \
+    --extraplots \
+    --areas 80089 360000 10000000000
+
+    python3 tools/analysis_tools/coco_error_analysis.py \
+    ./checkpoints/custom/tf/$MODEL_DIR/results/$dataset-results.segm.json \
+    ./checkpoints/custom/tf/$MODEL_DIR/results/$dataset \
+    --ann=/data/gustav/datalab_data/model/$dataset/test_annotations.json \
+    --types='segm' \
+    --extraplots \
+    --areas 80089 360000 10000000000
+done
 
             #
             #   1 class
             #
 
-python3 -W ignore tools/train.py \
-configs/gustav/$CONFIG_NAME-1c.py \
+ONE_CLASS_STRING="-1c"
+CONFIG_NAME+=$ONE_CLASS_STRING
+MODEL_DIR+=$ONE_CLASS_STRING
+
+if [ ! -f configs/gustav/$CONFIG_NAME.py ]; then
+    echo "$CONFIG_NAME.py not found! Assuming no 1 class model should be trained"
+    exit 0
+else 
+    echo "$CONFIG_NAME.py found! Training and evaluating for 1 class..."
+fi
+
+python3 tools/train.py \
+configs/gustav/$CONFIG_NAME.py \
 --seed=0 \
---work-dir=checkpoints/custom/tf/$MODEL_DIR-1c \
+--work-dir=checkpoints/custom/tf/$MODEL_DIR \
 --cfg-options model.backbone.in_channels=$TOTAL_CHANNELS \
 img_norm_cfg.extra_dims=$DIMENSIONS \
 data.train.dataset.pipeline.2.extra_dims=$DIMENSIONS \
@@ -182,7 +170,20 @@ data.train.dataset.pipeline.3.img_scale=$TRAIN_IMG_SIZES \
 data.val.pipeline.1.img_scale=$TEST_IMG_SIZES \
 data.test.pipeline.1.img_scale=$TEST_IMG_SIZES
 
-cd checkpoints/custom/tf/$MODEL_DIR-1c
+echo "Training done."
+
+cd checkpoints/custom/tf/$MODEL_DIR
+
+if [ -f analysis.zip ]; then
+    rm -f analysis.zip
+fi
+
+if [ -f results.zip ]; then
+    rm -f results.zip
+fi
+
+zip -r analysis.zip ./analysis
+zip -r results.zip ./results
 
 # remove previous test results
 rm -rf ./analysis && mkdir -p ./analysis
@@ -193,67 +194,44 @@ ls | grep epoch | grep -v $(basename $(readlink -f latest.pth)) | xargs rm
 
 cd -
 
+# Generate images
 
-python3 -W ignore tools/test.py \
-configs/gustav/$CONFIG_NAME-1c.py \
-checkpoints/custom/tf/$MODEL_DIR-1c/latest.pth \
---cfg-options model.backbone.in_channels=$TOTAL_CHANNELS \
-img_norm_cfg.extra_dims=$DIMENSIONS \
-data.train.pipeline.6.dimensions=$DIMENSIONS \
-data.train.pipeline.6.encoder=$ENCODER \
-data.train.pipeline.6.model_name=$MODEL_NAME \
-data.test.pipeline.1.transforms.4.encoder=$ENCODER \
-data.test.pipeline.1.transforms.4.dimensions=$DIMENSIONS \
-data.test.pipeline.1.transforms.4.model_name=$MODEL_NAME \
-data.val.pipeline.1.transforms.4.encoder=$ENCODER \
-data.val.pipeline.1.transforms.4.dimensions=$DIMENSIONS \
-data.val.pipeline.1.transforms.4.model_name=$MODEL_NAME \
-train_pipeline.2.extra_dims=$DIMENSIONS \
-test_pipeline.1.transforms.0.extra_dims=$DIMENSIONS \
-train_pipeline.3.img_scale=$TRAIN_IMG_SIZES \
-test_pipeline.1.img_scale=$TEST_IMG_SIZES \
-data.train.pipeline.3.img_scale=$TRAIN_IMG_SIZES \
-data.val.pipeline.1.img_scale=$TEST_IMG_SIZES \
-data.test.pipeline.1.img_scale=$TEST_IMG_SIZES \
---eval segm bbox \
---show-dir checkpoints/custom/tf/$MODEL_DIR/analysis \
---show-score-thr 0.8
+# python3 -W ignore tools/test.py \
+# checkpoints/custom/tf/$MODEL_DIR/$CONFIG_NAME.py \
+# checkpoints/custom/tf/$MODEL_DIR/latest.pth \
+# --work-dir=checkpoints/custom/tf/$MODEL_DIR \
+# --eval segm bbox \
+# --show-dir checkpoints/custom/tf/$MODEL_DIR/analysis \
+# --show-score-thr 0.8
 
-python3 -W ignore tools/test.py \
-configs/gustav/$CONFIG_NAME-1c.py \
-checkpoints/custom/tf/$MODEL_DIR-1c/latest.pth \
---cfg-options model.backbone.in_channels=$TOTAL_CHANNELS \
-img_norm_cfg.extra_dims=$DIMENSIONS \
-data.train.pipeline.6.dimensions=$DIMENSIONS \
-data.train.pipeline.6.encoder=$ENCODER \
-data.train.pipeline.6.model_name=$MODEL_NAME \
-data.test.pipeline.1.transforms.4.encoder=$ENCODER \
-data.test.pipeline.1.transforms.4.dimensions=$DIMENSIONS \
-data.test.pipeline.1.transforms.4.model_name=$MODEL_NAME \
-data.val.pipeline.1.transforms.4.encoder=$ENCODER \
-data.val.pipeline.1.transforms.4.dimensions=$DIMENSIONS \
-data.val.pipeline.1.transforms.4.model_name=$MODEL_NAME \
-train_pipeline.2.extra_dims=$DIMENSIONS \
-test_pipeline.1.transforms.0.extra_dims=$DIMENSIONS \
-train_pipeline.3.img_scale=$TRAIN_IMG_SIZES \
-test_pipeline.1.img_scale=$TEST_IMG_SIZES \
-data.train.pipeline.3.img_scale=$TRAIN_IMG_SIZES \
-data.val.pipeline.1.img_scale=$TEST_IMG_SIZES \
-data.test.pipeline.1.img_scale=$TEST_IMG_SIZES \
---format-only \
---options "jsonfile_prefix=./checkpoints/custom/tf/$MODEL_DIR-1c/results"
+#
+# Produce graphs for each dataset
+# 
+DATASETS=(dn-2010-2020 dn-svd-2001-2004 ab-ex-2001-2004)
 
-python3 tools/analysis_tools/coco_error_analysis.py \
-./checkpoints/custom/tf/$MODEL_DIR-1c/results.bbox.json \
-./checkpoints/custom/tf/$MODEL_DIR-1c/results \
---ann=/data/gustav/datalab_data/model/dn-2010-2020/test_1c_annotations.json \
---extraplots \
---areas 80089 360000 10000000000
+for dataset in "${DATASETS[@]}"
+do
+    echo "$dataset"
+    python3 tools/test.py \
+    checkpoints/custom/tf/$MODEL_DIR/$CONFIG_NAME.py \
+    checkpoints/custom/tf/$MODEL_DIR/latest.pth \
+    --cfg-options data.test.img_prefix="/data/gustav/datalab_data/model/$dataset/" \
+    data.test.ann_file="/data/gustav/datalab_data/model/$dataset/test_1c_annotations.json" \
+    --format-only \
+    --options "jsonfile_prefix=./checkpoints/custom/tf/$MODEL_DIR/results/$dataset-results"
 
-python3 tools/analysis_tools/coco_error_analysis.py \
-./checkpoints/custom/tf/$MODEL_DIR-1c/results.segm.json \
-./checkpoints/custom/tf/$MODEL_DIR-1c/results \
---ann=/data/gustav/datalab_data/model/dn-2010-2020/test_1c_annotations.json \
---types='segm' \
---extraplots \
---areas 80089 360000 10000000000
+    python3 tools/analysis_tools/coco_error_analysis.py \
+    ./checkpoints/custom/tf/$MODEL_DIR/results/$dataset-results.bbox.json \
+    ./checkpoints/custom/tf/$MODEL_DIR/results/$dataset \
+    --ann=/data/gustav/datalab_data/model/$dataset/test_1c_annotations.json \
+    --extraplots \
+    --areas 80089 360000 10000000000
+
+    python3 tools/analysis_tools/coco_error_analysis.py \
+    ./checkpoints/custom/tf/$MODEL_DIR/results/$dataset-results.segm.json \
+    ./checkpoints/custom/tf/$MODEL_DIR/results/$dataset \
+    --ann=/data/gustav/datalab_data/model/$dataset/test_1c_annotations.json \
+    --types='segm' \
+    --extraplots \
+    --areas 80089 360000 10000000000
+done
