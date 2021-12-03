@@ -60,11 +60,11 @@ cd -
 
 # Generate images
 
-# python3 tools/test.py \
-# checkpoints/custom/tf/$CHECKPOINT_DIR_NAME/$CONFIG_NAME.py \
-# checkpoints/custom/tf/$CHECKPOINT_DIR_NAME/latest.pth \
-# --work-dir=checkpoints/custom/tf/$CHECKPOINT_DIR_NAME \
-# --eval segm bbox \
+python3 tools/test.py \
+checkpoints/custom/tf/$CHECKPOINT_DIR_NAME/$CONFIG_NAME.py \
+checkpoints/custom/tf/$CHECKPOINT_DIR_NAME/latest.pth \
+--work-dir=checkpoints/custom/tf/$CHECKPOINT_DIR_NAME \
+--eval segm bbox 
 # --show-dir checkpoints/custom/tf/$CHECKPOINT_DIR_NAME/analysis \
 # --show-score-thr 0.8
 
@@ -148,11 +148,11 @@ cd -
 
 # Generate images
 
-# python3 tools/test.py \
-# checkpoints/custom/tf/$CHECKPOINT_DIR_NAME/$CONFIG_NAME.py \
-# checkpoints/custom/tf/$CHECKPOINT_DIR_NAME/latest.pth \
-# --work-dir=checkpoints/custom/tf/$CHECKPOINT_DIR_NAME \
-# --eval segm bbox \
+python3 tools/test.py \
+checkpoints/custom/tf/$CHECKPOINT_DIR_NAME/$CONFIG_NAME.py \
+checkpoints/custom/tf/$CHECKPOINT_DIR_NAME/latest.pth \
+--work-dir=checkpoints/custom/tf/$CHECKPOINT_DIR_NAME \
+--eval segm bbox 
 # --show-dir checkpoints/custom/tf/$CHECKPOINT_DIR_NAME/analysis \
 # --show-score-thr 0.8
 

@@ -89,11 +89,11 @@ cd -
 
 # Generate images
 
-# python3 -W ignore tools/test.py \
-# checkpoints/custom/tf/$MODEL_DIR/$CONFIG_NAME.py \
-# checkpoints/custom/tf/$MODEL_DIR/latest.pth \
-# --work-dir=checkpoints/custom/tf/$MODEL_DIR \
-# --eval segm bbox \
+python3 -W ignore tools/test.py \
+checkpoints/custom/tf/$MODEL_DIR/$CONFIG_NAME.py \
+checkpoints/custom/tf/$MODEL_DIR/latest.pth \
+--work-dir=checkpoints/custom/tf/$MODEL_DIR \
+--eval segm bbox 
 # --show-dir checkpoints/custom/tf/$MODEL_DIR/analysis \
 # --show-score-thr 0.8
 
@@ -196,11 +196,11 @@ cd -
 
 # Generate images
 
-# python3 -W ignore tools/test.py \
-# checkpoints/custom/tf/$MODEL_DIR/$CONFIG_NAME.py \
-# checkpoints/custom/tf/$MODEL_DIR/latest.pth \
-# --work-dir=checkpoints/custom/tf/$MODEL_DIR \
-# --eval segm bbox \
+python3 -W ignore tools/test.py \
+checkpoints/custom/tf/$MODEL_DIR/$CONFIG_NAME.py \
+checkpoints/custom/tf/$MODEL_DIR/latest.pth \
+--work-dir=checkpoints/custom/tf/$MODEL_DIR \
+--eval segm bbox 
 # --show-dir checkpoints/custom/tf/$MODEL_DIR/analysis \
 # --show-score-thr 0.8
 

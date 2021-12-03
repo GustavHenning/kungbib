@@ -53,20 +53,20 @@ fi
 zip -r analysis.zip ./analysis
 zip -r results.zip ./results
 
-remove previous test results
+#remove previous test results
 rm -rf ./analysis && mkdir -p ./analysis
 rm -rf ./results && mkdir -p ./results
 
-save space by removing all epochs that are not latest.pth
+#save space by removing all epochs that are not latest.pth
 ls | grep epoch | grep -v $(basename $(readlink -f latest.pth)) | xargs rm
 
 cd -
 
-# python3 tools/test.py \
-# checkpoints/custom/tf/$CHECKPOINT_DIR_NAME/$CONFIG_NAME.py \
-# checkpoints/custom/tf/$CHECKPOINT_DIR_NAME/latest.pth \
-# --work-dir=checkpoints/custom/tf/$CHECKPOINT_DIR_NAME \
-# --eval segm bbox \
+python3 tools/test.py \
+checkpoints/custom/tf/$CHECKPOINT_DIR_NAME/$CONFIG_NAME.py \
+checkpoints/custom/tf/$CHECKPOINT_DIR_NAME/latest.pth \
+--work-dir=checkpoints/custom/tf/$CHECKPOINT_DIR_NAME \
+--eval segm bbox 
 # --show-dir checkpoints/custom/tf/$CHECKPOINT_DIR_NAME/analysis \
 # --show-score-thr 0.8
 
@@ -153,11 +153,11 @@ cd -
 
 # Generate images
 
-# python3 tools/test.py \
-# checkpoints/custom/tf/$CHECKPOINT_DIR_NAME/$CONFIG_NAME.py \
-# checkpoints/custom/tf/$CHECKPOINT_DIR_NAME/latest.pth \
-# --work-dir=checkpoints/custom/tf/$CHECKPOINT_DIR_NAME \
-# --eval segm bbox \
+python3 tools/test.py \
+checkpoints/custom/tf/$CHECKPOINT_DIR_NAME/$CONFIG_NAME.py \
+checkpoints/custom/tf/$CHECKPOINT_DIR_NAME/latest.pth \
+--work-dir=checkpoints/custom/tf/$CHECKPOINT_DIR_NAME \
+--eval segm bbox 
 # --show-dir checkpoints/custom/tf/$CHECKPOINT_DIR_NAME/analysis \
 # --show-score-thr 0.8
 

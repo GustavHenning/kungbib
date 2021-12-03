@@ -11,7 +11,6 @@ declare -a bert_models=( "all-mpnet-base-v2" "all-MiniLM-L6-v2" "multi-qa-mpnet-
 
 for m in "${bert_models[@]}"; do
     bash train_tf.sh kungbib-cascade-mask-tf bert 384 $m 1
-    bash train_tf.sh kungbib-cascade-mask-tf bert 384 $m 1 #TODO remove this, its only for preprocessing the weights
     bash train_tf.sh kungbib-cascade-mask-101-tf bert 384 $m 1
     bash train_tf.sh kungbib-cascade-mask-101-32x4d-tf bert 384 $m 1
     bash train_tf.sh kungbib-cascade-mask-101-32x8d-tf bert 384 $m 1
