@@ -19,11 +19,13 @@
 \contentsline {figure}{\numberline {2.8}{\ignorespaces Mask R-CNN results on the MS COCO dataset~\cite {DBLP:journals/corr/HeGDG17}. Masks are shown in color. Bounding boxes, category and confidence are also shown. }}{19}{figure.2.8}%
 \contentsline {figure}{\numberline {2.9}{\ignorespaces Hierarchical typology of document segmentation algorithms~\cite {ESKENAZI20171}. }}{21}{figure.2.9}%
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {3.1}{\ignorespaces Asymmetric extension of the label. A is labeled red, and B should belong to the same label, while C should not.}}{26}{figure.3.1}%
-\contentsline {figure}{\numberline {3.2}{\ignorespaces Example where other content (C) is blocking elements (A and B) from becoming one label.}}{27}{figure.3.2}%
-\contentsline {figure}{\numberline {3.3}{\ignorespaces \textbf {Left}: A block of ResNet. \textbf {Right}: A block of ResNeXt with cardinality = 32. ~\cite {DBLP:journals/corr/XieGDTH16}}}{35}{figure.3.3}%
-\contentsline {figure}{\numberline {3.4}{\ignorespaces \textbf {Left}: Aggregating transformations of depth = 2 \textbf {Right}: An equivalent block, which is trivially wider.~\cite {DBLP:journals/corr/XieGDTH16}}}{35}{figure.3.4}%
-\contentsline {figure}{\numberline {3.5}{\ignorespaces \textbf {Left}: Number of annotations per annotation group. \textbf {Right}: Distribution of annotations by squareroot area.}}{37}{figure.3.5}%
+\contentsline {figure}{\numberline {3.1}{\ignorespaces Asymmetric extension of the label. A is labeled red, and B should belong to the same label, while C should not.}}{27}{figure.3.1}%
+\contentsline {figure}{\numberline {3.2}{\ignorespaces Example where other content (C) is blocking elements (A and B) from becoming one label.}}{28}{figure.3.2}%
+\contentsline {figure}{\numberline {3.3}{\ignorespaces \textbf {Left}: A block of ResNet. \textbf {Right}: A block of ResNeXt with cardinality = 32. ~\cite {DBLP:journals/corr/XieGDTH16}}}{36}{figure.3.3}%
+\contentsline {figure}{\numberline {3.4}{\ignorespaces \textbf {Left}: Aggregating transformations of depth = 2 \textbf {Right}: An equivalent block, which is trivially wider.~\cite {DBLP:journals/corr/XieGDTH16}}}{36}{figure.3.4}%
+\contentsline {figure}{\numberline {3.5}{\ignorespaces Distribution of annotations by squareroot area: Test subset of the DN 2010 - 2020 (In-set)}}{38}{figure.3.5}%
+\contentsline {figure}{\numberline {3.6}{\ignorespaces Distribution of annotations by squareroot area: DN SvD 2001 - 2004 (Near-set)}}{39}{figure.3.6}%
+\contentsline {figure}{\numberline {3.7}{\ignorespaces Distribution of annotations by squareroot area: Aftonbladet Expressen 2001 - 2004 (Out-set)}}{39}{figure.3.7}%
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }

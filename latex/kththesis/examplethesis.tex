@@ -313,7 +313,7 @@ Historiska tidningar, Bildsegmentering, Multimodal inlärning, Djupinlärning, D
 
 I detta och det förra århundradet har kraftiga åtaganden gjorts för att digitalisera traditionellt medieinnehåll som tidigare endast tryckts i pappersformat. För att kunna stödja sökningar och fasetter i detta innehåll krävs bearbetning på semantisk nivå, det vill säga att innehållet styckas upp på artikelnivå, istället för per sida. Trots att människor har lätt att dela upp innehåll på semantisk nivå, även på ett främmande språk, fortsätter arbetet för automatisering av denna uppgift.
 
-Utmaningen i att segmentera nyhetsartiklar återfinns i den otroliga mångfald av utseende och format. Innehållet är även detta  mångfaldigt, där man återfinner allt ifrån faktamässiga artiklar, till debatter, listor av fakta och upplysningar, reklam och väder bland annat. Otroliga framsteg har gjorts inom djupinlärning just för objektdetektering och semantisk segmentering bara de senaste årtiondet. Frågan vi ställer oss är: \textit{Kan samma metodik appliceras inom domänen nyhetsartiklar?}
+Utmaningen i att segmentera nyhetsartiklar återfinns i mångfalden av utseende och format. Innehållet är även detta  mångfaldigt, där man återfinner allt ifrån faktamässiga artiklar, till debatter, listor av fakta och upplysningar, reklam och väder bland annat. Stora framsteg har gjorts inom djupinlärning just för objektdetektering och semantisk segmentering bara de senaste årtiondet. Frågan vi ställer oss är: \textit{Kan samma metodik appliceras inom domänen nyhetsartiklar?}
 
 Dessa modeller är skapta för att klassificera världsliga ting. I denna domän har vi tillgång till texten och dess koordinater via en potentiellt bristfällig optisk teckenigenkänning. Vi undersöker ett sätt att utnyttja denna textinformation i ett försök att förbättra resultatet i denna specifika domän. Baserat på data från Kungliga Biblioteket undersöker vi hur väl denna metod lämpar sig för uppstyckandet av innehåll i tidningar längsmed tidsperioder där designen förändrar sig markant. Resultaten visar....
 
@@ -498,10 +498,10 @@ the date of publication, a “main story” consisting of a headline, a subhead,
 Smaller elements advertising other articles are usually more concise, typically containing no more than a headline and a reference page number.
 Advertisements occur consistently on front pages although to a lesser degree than in content pages.
 
-Any page that is not a \textit{placard} or a \textit{front page} is considered a \textbf{content page}. Single page articles are the most common form of content page.
+Any page that is not a \textit{placard} or a \textit{front page} is considered a \textbf{content page}. Single-page articles are the most common form of content page.
 In this context, an article fits on a single page, but the page itself may contain many different articles and other elements such as advertisements.
 
-Multi page articles are content pages in which the content spans multiple pages.
+Multi-page articles are content pages in which the content spans multiple pages.
 
 \subsubsection{Listings}
 \label{bgsubsec:listings}
@@ -528,7 +528,7 @@ Weather information elements usually consist of tables of temperatures or weathe
 \section{Deep learning preliminaries}
 \label{sec:preliminaries}
 
-In this chapter, we will introduce the theory that our model is based on. Since this thesis only concerns supervised learning, the scope of the preliminaries will only cover supervised learning with neural networks.
+In this section, we will introduce the theory that our model is based on. Since this thesis only concerns supervised learning, the scope of the preliminaries will only cover supervised learning with neural networks.
 
 %\subsection{Artificial Neural Network}
 
@@ -740,7 +740,7 @@ Zero-padding the image input (in blue and on bottom) by 1 makes the convolutiona
 
 \subsection{Fully Convolutional Network}
 
-Achieving state-of-the-art results on PASCAL VOC~\cite{DBLP:journals/corr/LongSD14}, among other datasets, at the time of creation, Fully Convolutional Networks (FCN) output a per-pixel prediction of the segmentation by first convoluting the features and the de-convoluting back to the original size of the input layer as can be seen in \autoref{fig:fcn}.
+Achieving state-of-the-art results on PASCAL VOC~\cite{DBLP:journals/corr/LongSD14}, among other datasets, at the time of creation, Fully Convolutional Networks (FCN) output a per-pixel prediction of the segmentation by first convoluting the features and then de-convoluting back to the original size of the input layer as can be seen in \autoref{fig:fcn}.
 
 \begin{figure}[H]
   \begin{center}
@@ -781,7 +781,7 @@ Mask R-CNN is a deep learning neural network architecture designed for object in
 
 \textbf{Faster R-CNN}. Fast, but not fast enough, the Fast R-CNN still took a significant time generating the region proposal, albeit much faster than its predecessor. Shaoqing Ren et al~\cite{7485869} came up with a replacement for the selective search algorithm with the added bonus that it lets the network learn in the region proposal step. This part of the network is called the Region Proposal Network (RPN).
 
-\textbf{Mask R-CNN}. Mask R-CNN contributes to this architecture by adding a parallel prediction of masks alongside its original output which is a class label and a bounding-box offset. This parallel proposal is what made Mask R-CNN unique compared to other extensions of Faster R-CNN at the time, where other methods often depended on the mask predictions for the class prediction. Mask R-CNN also introduces the concept of RoIAlign, to address misalignment issues between the RoI and the extracted features which impacts the pixel-accurate masks it produces due to quantization which is avoided with RoIAlign. More thorough details can be found in the original Mask R-CNN paper, He et al~\cite{DBLP:journals/corr/HeGDG17}. All deviations from the standard configuration will be noted in the implementation details chapter of this paper.
+\textbf{Mask R-CNN}. Mask R-CNN contributes to this architecture by adding a parallel prediction of masks alongside its original output which is a class label and a bounding-box offset. This parallel proposal is what made Mask R-CNN unique compared to other extensions of Faster R-CNN at the time, where other methods often depended on the mask predictions for the class prediction. Mask R-CNN also introduces the concept of RoIAlign, to address misalignment issues between the RoI and the extracted features which impacts the pixel-accurate masks it produces due to quantization which is avoided with RoIAlign. More thorough details can be found in the original Mask R-CNN paper, He et al~\cite{DBLP:journals/corr/HeGDG17}. All deviations from the standard configuration will be noted in \autoref{ch:method}.
 
 \textbf{Weaknesses of Mask R-CNN}.
 M. Kisantal et al~\cite{DBLP:journals/corr/abs-1902-07296} describe a problem for Mask R-CNN in the fact that it struggles to perform well on small objects.
@@ -857,7 +857,7 @@ Top-down (TD) and bottom-up (BU) algorithms are also denoted.
 
 In an attempt to trade prior handcrafted features for learning capabilities, machine learning techniques, especially deep neural networks have outperformed classical algorithms in recent papers. These approaches can be categorized by the input they receive.
 
-\textbf{Image modality only}. Convolutional neural networks were originally created to classify objects in images such as hand written numbers by LeCunn et al~\cite{lecun1989}. Since then, CNNs are used in a wide variety of image classification domains~\cite{deng2009}. Since CNNs can use images as input to the network, they naturally lend themselves to be applied in this domain as well. Attempts have been made~\cite{DBLP:journals/corr/0011S17}, as well as several variants~\cite{he2017, xu2017, wickpuppe2018, oliveira2018} of the Fully Convolutional Network (FCN) introduced by Long et al~\cite{DBLP:journals/corr/LongSD14}. The major drawback of these techniques is that they do not exploit the often available localized, two-dimensional, textual input obtained through OCR scanning.
+\textbf{Image modality only}. Convolutional neural networks were originally created to classify objects in images such as hand written numbers by LeCun et al~\cite{lecun1989}. Since then, CNNs are used in a wide variety of image classification domains~\cite{deng2009}. Since CNNs can use images as input to the network, they naturally lend themselves to be applied in this domain as well. Attempts have been made~\cite{DBLP:journals/corr/0011S17}, as well as several variants~\cite{he2017, xu2017, wickpuppe2018, oliveira2018} of the Fully Convolutional Network (FCN) introduced by Long et al~\cite{DBLP:journals/corr/LongSD14}. The major drawback of these techniques is that they do not exploit the often available localized, two-dimensional, textual input obtained through OCR scanning.
 
 \textbf{Image and text modalities}. The representation of text as input to deep neural networks has increased in complexity since it was first tried in Meier et al~\cite{8270006} using a FCN based approach. In this attempt, the textual information was represented as a binary feature (a pixel has text or not), where lexical and semantic dimensions are not taken into account.
 
@@ -880,9 +880,27 @@ In this chapter we have reviewed the necessary preliminaries for understanding t
 \section{System documentation}
 \label{sec:sysdoc}
 
+This chapter lists the versions and specifications for reproducibility purposes.
+
 \subsection{Hardware specifications}
 
 \textbf{TODO computer specs, maybe even model sizes in memory and running time for training?}
+
+
+\begin{table}[!ht]
+  \begin{center}
+    \caption{Hardware specifications}
+        \begin{tabular}{l*{6}{c}r}
+        \label{tab:hardwarestats}
+        \textbf{Component} & \textbf{Specification} & \\
+        \hline
+        CPU & Intel® Core™ i7-7820X CPU @ 3.60GHz × 16 & \\
+        GPU & NVIDIA GeForce RTX 3090 & \\
+        RAM & 125 GB \\
+        \end{tabular}
+  \end{center}
+\end{table}
+
 
 \subsection{Software specifications}
 
@@ -893,9 +911,32 @@ MMDetection is an object detection toolbox in which includes training and infere
 MMDetection allows for inheritance of configuration files, making it possible to conduct various experiments while varying small parts of the code.
 In addition to modular config loading, the parameters can also be inserted at runtime to reduce the amount of static files needed to vary hyperparameters.
 
-\subsubsection{Label studios}
-Label studios was used to produce the labels for the datasets created in this thesis. In the interest of time and precision of the labels, the labels were first created using rectangles, exported, converted to polygons, and then imported again to be reviewed and edited where necessary. 
+\subsubsection{Label studio}
+Label studio~\cite{Label_Studio} was used to produce the labels for the datasets created in this thesis. In the interest of time and precision of the labels, the labels were first created using rectangles, exported, converted to polygons, and then imported again to be reviewed and edited where necessary. 
 
+\subsubsection{Software versions}
+
+The following is a complete list of versions of software used in this thesis.
+
+\begin{table}[!ht]
+  \begin{center}
+    \caption{Software versions}
+        \begin{tabular}{l*{6}{c}r}
+        \label{tab:softwareversions}
+        \textbf{Software} & \textbf{Version} \\
+        \hline
+        Ubuntu & 20.04.3 LTS & \\
+        Nvidia driver     & 470.86 & \\
+        Python           & 3.8.11 & \\
+        CUDA     & 11.4 & \\
+        cudatoolkit     & 11.3.1 & \\
+        tensorflow (-gpu)     & 2.5.0 & \\
+        torch (vision)     & 0.9.0+cu111 & \\
+        MMDetection (mmdet)     & 2.18.0 & \\
+        Label Studio     & 1.2 & \\
+        \end{tabular}
+  \end{center}
+\end{table}
 
 \section{Data}
 
@@ -976,8 +1017,8 @@ As the model proposed in this thesis processes one image at a time, while conten
 If two elements discuss the same topic but have different authors they will be considered two different instances.
 
 A single page may only display half of an image, or a few elements of the complete body text.
-If the page is the first page of a multi page article the byline may be missing, but the elements will still be considered an instance.
-Similarly, if the page in question is the second page of a multi page article, a headline may be missing, but the elements will still count as an instance.
+If the page is the first page of a multi-page article the byline may be missing, but the elements will still be considered an instance.
+Similarly, if the page in question is the second page of a multi-page article, a headline may be missing, but the elements will still count as an instance.
 
 \subsection{Labels}
 
@@ -1102,7 +1143,7 @@ The bounding box for the instance will include the game itself, any text related
 \subsubsection{Publication Unit}
 
 In order to investigate the impact of classes on the performance of the model, we perform the same experiments where all annotations are set to the same class.
-Therefore, if an element or group of elements are assigned any class, previously mentioned in this chapter, they will be labeled as a publication unit in the experiments where class confusion is investigated.
+Therefore, if an element or group of elements are assigned any class (except background) previously mentioned in this chapter, they will be labeled as a publication unit in the experiments where class confusion is investigated.
 
 \subsubsection{Delimitations}
 
@@ -1120,7 +1161,7 @@ A comprehensive list of these unlabeled elements follows:
 
 \subsection{Sampling}
 
-Three datasets from three different time periods were produced during this project.
+Three datasets from different time periods were produced during this project.
 The time periods were chosen carefully to differ typographically.
 The first and largest dataset, DN 2010 - 2020,
 is exclusively labeled from the newspaper Dagens Nyheter.
@@ -1171,7 +1212,7 @@ Sampling ratio is 70/15/15 for Train/Test/Validation respectively.
 
 \subsubsection{DN SvD 2001 - 2004 (Near-set)}
 
-This dataset was sampled for two newspapers: Dagens Nyheter and Svenska Dagbladet. The font size is generally smaller on these newspaper pages, and the content denser. In addition, there are less large graphics compared to the training dataset. There were fewer multi page articles found in this dataset.
+This dataset was sampled for two newspapers: Dagens Nyheter and Svenska Dagbladet. The font size is generally smaller on these newspaper pages, and the content denser. In addition, there are less large graphics compared to the training dataset. There were fewer multi-page articles found in this dataset.
 
 \begin{table}[!ht]
   \begin{center}
@@ -1187,7 +1228,7 @@ This dataset was sampled for two newspapers: Dagens Nyheter and Svenska Dagblade
 
 \subsubsection{Aftonbladet Expressen 2001 - 2004 (Out-set)}
 
-In this dataset many of the pages have a pink background color. Multi page articles are frequent similar to the training dataset. As can bee sen in \autoref{tab:outsetclassdist}, no death notices were sampled. 
+In this dataset many of the pages have a pink background color. Multi-page articles are frequent similar to the training dataset. As can bee sen in \autoref{tab:outsetclassdist}, no death notices were sampled. 
 
 \begin{table}[!ht]
   \begin{center}
@@ -1263,7 +1304,7 @@ Before training and inference, data augmentation is done to improve performance 
 \item Image to tensor
 \end{enumerate}
 
-\textbf{Image normalization} normalizes the images by subtracting the mean and standard deviation of the RGB values of the dataset from the color channels.
+\textbf{Image normalization} normalizes the images by subtracting the mean and dividing by the inverse of the standard deviation of the RGB values of the dataset from the color channels.
 When using pre-trained models it is advised to use the image normalization values for the dataset that the weights were acquired from.
 
 \textbf{Image resizing} resizes the images' width and height to a random value in a fixed interval specified in the code. Annotation coordinates are scaled accordingly.
@@ -1308,13 +1349,44 @@ This alteration has no impact on the performance of the solution itself, but mus
   \end{center}
 \end{table}
 
+\begin{table}[H]
+  \begin{center}
+    \caption{Number of annotations per area group for the test sets}
+    \label{tab:annotationspertestset}
+    \begin{tabular}{l|l|l|l} % <-- Alignments: 1st column left, 2nd middle, with vertical lines in between
+    \textbf{Area group} & \textbf{In-set} & \textbf{Near-set} & \textbf{Out-set}  \\
+    \hline
+    Small & 275 & 1207 & 825  \\    \hline
+    Medium & 186 & 480 & 314 \\    \hline
+    Large & 106 & 173 & 203 \\    \hline
+    Total & 567 & 1860 & 1342 \\    \hline
+    \end{tabular}
+  \end{center}
+\end{table}
+
+
 \begin{figure}[H]
   \begin{center}
-    \includegraphics[width=1.0\textwidth]{figures/size_dist_annotations.png}
-  Visualization of the Test subset of the DN 2010 - 2020 (In-set) dataset.
+    \includegraphics[width=0.6\textwidth]{figures/annotation-histogram-inset.png}
   \end{center}
-  \caption{\textbf{Left}: Number of annotations per annotation group. \textbf{Right}: Distribution of annotations by squareroot area.}
-  \label{fig:size_dist_annotations}
+  \caption{Distribution of annotations by squareroot area: Test subset of the DN 2010 - 2020 (In-set)}
+  \label{fig:size_dist_annotations_in}
+\end{figure}
+
+\begin{figure}[H]
+  \begin{center}
+    \includegraphics[width=0.6\textwidth]{figures/annotation-histogram-nearset.png}
+  \end{center}
+  \caption{Distribution of annotations by squareroot area: DN SvD 2001 - 2004 (Near-set)}
+  \label{fig:size_dist_annotations_near}
+\end{figure}
+
+\begin{figure}[H]
+  \begin{center}
+    \includegraphics[width=0.6\textwidth]{figures/annotation-histogram-outset.png}
+  \end{center}
+  \caption{Distribution of annotations by squareroot area: Aftonbladet Expressen 2001 - 2004 (Out-set)}
+  \label{fig:size_dist_annotations_out}
 \end{figure}
 
 \subsubsection{Multiscale training}
@@ -1362,14 +1434,38 @@ The result is a text embedding map, i.e. a three-dimensional matrix where the fi
 \textbf{TODO Maybe visualization of the embedding maps?}
 
 \subsubsection{Text embedding strategy}
-
+\label{subs:textembeddingstrat}
 There are a number of ways to embed the text behind the image channels in the final input.
 
 \textbf{Text granularity}. As seen in \autoref{subs:dlapproaches}, there are options for encoding the text at different levels. There are binary masks, encoded vectors at word level, sentence level and paragraph level. When deciding to encode at word or sentence level, a strategy can be used to summarize the vectors across the entire text block if the exact coordiantes for the words or sentences cannot be attained. Alternatively, a strategy could be made to divide the text block into sections for each sentence within the block. 
 
 In this thesis we transform the entire content of the text block and repeat the vector produced across the dimensions of the text block. 
 
-\textbf{Dimensionality reduction}. Principle Component Analysis (PCA) or any other dimensionality reduction algorithm could be used to compress the vector representation. This could be useful to limit the memory footprint of the input. In this thesis, no such strategy was used.
+\textbf{Text embedding normalization}. \textbf{TODO implement and compare}.
+
+\textbf{Text embedding per sentence, divided equally on the text block}. \textbf{TODO implement and compare}.
+
+
+\subsubsection{Sentence transformers}
+
+We evaluate six different sentences transformers. Two are produced by the National Library of Sweden and output vectors of size 768. Four are created by Reimers et al~\cite{reimers-2019-sentence-bert, reimers-2020-multilingual-sentence-bert} and output vectors of size 384. These were selected by the performance on encoding sentences over 14 diverse tasks from different domains. 
+
+\begin{table}[H]
+  \begin{center}
+    \caption{Sentence transformers}
+    \label{tab:modeldimensions}
+    \begin{tabular}{l|l}
+    \textbf{Model name} & \textbf{Dimensions}  \\
+    \hline
+    all-mpnet-base-v2 & 384 \\    \hline
+    all-MiniLM-L6-v2 & 384 \\    \hline
+    multi-qa-mpnet-base-dot-v1 & 384 \\    \hline
+    all-distilroberta-v1 & 384 \\    \hline
+    KBLab/sentence-bert-swedish-cased & 768 \\    \hline
+    KB/bert-base-swedish-cased & 768 \\    \hline
+    \end{tabular}
+  \end{center}
+\end{table}
 
 \clearpage
 
@@ -1582,21 +1678,21 @@ In this section we present the results of the neural network architectures for t
 
 \section{Impact of dataset size}
 
-\textbf{TODO average over 5 runs}
+All results reported in this section are averaged over 5 runs. The standard deviation $\sigma$ denotes the average of the standard deviations of each column. 
 
 \begin{table}[H]
   \begin{center}
     \caption{Gradually increasing dataset size - All classes - In set}
     \label{tab:dsizeallcinset}
     \resizebox{\columnwidth}{!}{
-    \begin{tabular}{l|l|l|l|l|l|l}
-    \textbf{\% Train} & \textbf{$mAP_m$} & \textbf{$mAP_m^{50}$} & \textbf{$mAP_m^{75}$} & \textbf{$mAP_{bb}$} & \textbf{$mAP_{bb}^{50}$} & \textbf{$mAP_{bb}^{75}$} \\
+    \begin{tabular}{l|l|l|l|l|l|l|l}
+    \textbf{\% Train} & \textbf{$mAP_m$} & \textbf{$mAP_m^{50}$} & \textbf{$mAP_m^{75}$} & \textbf{$mAP_{bb}$} & \textbf{$mAP_{bb}^{50}$} & \textbf{$mAP_{bb}^{75}$} & \textbf{$\sigma$} \\
     \hline
-    25\% & 0.460 & 0.690 & 0.482 & 0.448 & 0.597 & 0.430 \\    \hline
-    50\% & 0.747 & 0.832 & 0.790 & 0.713 & 0.832 & 0.789 \\    \hline
-    75\% & 0.750 & 0.822 & 0.808 & 0.752 & 0.822 & 0.810 \\     \hline
-    90\% & 0.595 & 0.664 & 0.620 & 0.592 & 0.665 & 0.617 \\     \hline
-    100\% & 0.851 & 0.944 & 0.875 & 0.842 & 0.943 & 0.878 \\     \hline
+    25\% & 0.460 & 0.690 & 0.482 & 0.448 & 0.597 & 0.430 & 0 \\    \hline
+    50\% & 0.747 & 0.832 & 0.790 & 0.713 & 0.832 & 0.789 & 0  \\    \hline
+    75\% & 0.750 & 0.822 & 0.808 & 0.752 & 0.822 & 0.810 & 0  \\     \hline
+    90\% & 0.595 & 0.664 & 0.620 & 0.592 & 0.665 & 0.617 & 0 \\     \hline
+    100\% & 0.851 & 0.944 & 0.875 & 0.842 & 0.943 & 0.878 & 0  \\     \hline
     \end{tabular}}
   \end{center}
 \end{table}
@@ -1606,14 +1702,14 @@ In this section we present the results of the neural network architectures for t
     \caption{Gradually increasing dataset size - All classes - Near set}
     \label{tab:dsizeallcnearset}
     \resizebox{\columnwidth}{!}{
-    \begin{tabular}{l|l|l|l|l|l|l}
-    \textbf{\% Train} & \textbf{$mAP_m$} & \textbf{$mAP_m^{50}$} & \textbf{$mAP_m^{75}$} & \textbf{$mAP_{bb}$} & \textbf{$mAP_{bb}^{50}$} & \textbf{$mAP_{bb}^{75}$} \\
+    \begin{tabular}{l|l|l|l|l|l|l|l}
+    \textbf{\% Train} & \textbf{$mAP_m$} & \textbf{$mAP_m^{50}$} & \textbf{$mAP_m^{75}$} & \textbf{$mAP_{bb}$} & \textbf{$mAP_{bb}^{50}$} & \textbf{$mAP_{bb}^{75}$} & \textbf{$\sigma$} \\
     \hline
-    25\% & 0.220 & 0.309 & 0.219 & 0.210 & 0.309 & 0.218 \\    \hline
-    50\% & 0.376 & 0.459 & 0.378 & 0.365 & 0.457 & 0.374 \\    \hline
-    75\% & 0.343 & 0.409 & 0.366 & 0.336 & 0.409 & 0.361 \\     \hline
-    90\% & 0.275 & 0.350 & 0.287 & 0.267 & 0.352 & 0.290 \\     \hline
-    100\% & 0.414 & 0.481 & 0.430 & 0.402 & 0.481 & 0.423 \\     \hline
+    25\% & 0.220 & 0.309 & 0.219 & 0.210 & 0.309 & 0.218 & 0 \\    \hline
+    50\% & 0.376 & 0.459 & 0.378 & 0.365 & 0.457 & 0.374 & 0  \\    \hline
+    75\% & 0.343 & 0.409 & 0.366 & 0.336 & 0.409 & 0.361 & 0 \\     \hline
+    90\% & 0.275 & 0.350 & 0.287 & 0.267 & 0.352 & 0.290 & 0 \\     \hline
+    100\% & 0.414 & 0.481 & 0.430 & 0.402 & 0.481 & 0.423 & 0  \\     \hline
     \end{tabular}}
   \end{center}
 \end{table}
@@ -1623,14 +1719,14 @@ In this section we present the results of the neural network architectures for t
     \caption{Gradually increasing dataset size - All classes - Out set}
     \label{tab:dsizeallcoutset}
     \resizebox{\columnwidth}{!}{
-    \begin{tabular}{l|l|l|l|l|l|l}
-    \textbf{\% Train} & \textbf{$mAP_m$} & \textbf{$mAP_m^{50}$} & \textbf{$mAP_m^{75}$} & \textbf{$mAP_{bb}$} & \textbf{$mAP_{bb}^{50}$} & \textbf{$mAP_{bb}^{75}$} \\
+    \begin{tabular}{l|l|l|l|l|l|l|l}
+    \textbf{\% Train} & \textbf{$mAP_m$} & \textbf{$mAP_m^{50}$} & \textbf{$mAP_m^{75}$} & \textbf{$mAP_{bb}$} & \textbf{$mAP_{bb}^{50}$} & \textbf{$mAP_{bb}^{75}$} & \textbf{$\sigma$} \\
     \hline
-    25\% & 0.389 & 0.476 & 0.423 & 0.377 & 0.474 & 0.413 \\    \hline
-    50\% & 0.330 & 0.425 & 0.355 & 0.325 & 0.425 & 0.353 \\    \hline
-    75\% & 0.288 & 0.368 & 0.310 & 0.282 & 0.368 & 0.310 \\     \hline
-    90\% & 0.290 & 0.356 & 0.310 & 0.279 & 0.355 & 0.289 \\     \hline
-    100\% & 0.488 & 0.599 & 0.527 & 0.451 & 0.598 & 0.461 \\    \hline
+    25\% & 0.389 & 0.476 & 0.423 & 0.377 & 0.474 & 0.413 & 0 \\    \hline
+    50\% & 0.330 & 0.425 & 0.355 & 0.325 & 0.425 & 0.353 & 0  \\    \hline
+    75\% & 0.288 & 0.368 & 0.310 & 0.282 & 0.368 & 0.310 & 0  \\     \hline
+    90\% & 0.290 & 0.356 & 0.310 & 0.279 & 0.355 & 0.289 & 0 \\     \hline
+    100\% & 0.488 & 0.599 & 0.527 & 0.451 & 0.598 & 0.461 & 0 \\    \hline
     \end{tabular}}
   \end{center}
 \end{table}
@@ -1645,21 +1741,48 @@ In this section we present the results of the neural network architectures for t
 \chapter{Discussion}
 \label{ch:disc}
 
+\section{Mask R-CNN}
+
+\subsection{Higher performance is required for usefulness within the domain of newspaper article segmentation}
+
+Results reported on the performance of the Mask R-CNN architecture on the MS COCO dataset may seem less impressive for the metrics  \textbf{$mAP_m$} \textbf{$mAP_m^{50}$} \textbf{$mAP_m^{75}$} \textbf{$mAP_{bb}$} \textbf{$mAP_{bb}^{50}$} \textbf{$mAP_{bb}^{75}$}. These metrics are not directly comparable due to the lack of irregular shapes of news article content compared to "common objects in context". Mask R-CNN can however be said to be able to segment content based on multiple elements being seen as one instance of an object, which is essential to newspaper article segmentation.
+
+\subsection{Unaltered Mask R-CNN performs well on in-domain datasets} 
+
+The impressive results on the in-set indicate that the newspaper typology is learned well by the model, and the less impressive results on the near-set and out-set indicate that the generalization property is lacking purely from training on one typology and newspaper. Labeling a reasonable amount from each design era and newspaper respectively could give an overall well performing model.
+
+\section{Classes}
+By limiting the number of classes to one, the burden of determining the class becomes a boolean problem. It should be expected that this task yields greater performance, as this task is more trivial than additionally determining the specific subclass, which can be very punishing to the resulting metrics, and especially if the classes are constructed by subjective criteria or implication.
+
+\section{Sentence transformers}
+
+\subsection{Large text embeddings} 
+
+As seen \autoref{tab:modeldimensions}, the sentence transformers output their vectors of size $768$ or $384$. This adds a significant number of channels to the input if inserted without alteration. The consequence is a large memory footprint. Additionally, using an otherwise unaltered Mask R-CNN architecture, this puts a lot of responsibility for layers closer to the input layer to discern the importance of the additional information.  
+
+\subsection{Text granularity}
+
+As mentioned in \autoref{subs:textembeddingstrat}, there are many ways to segment the blocks of text recognized by the OCR. Further work is needed to determine the most effective way to present this information as input to deep learning models.
+
+\section{Combining other methods}
+
+The models proposed in this thesis need not be used in an end-to-end fashion. Spatial information available through OCR could be used in conjunction with these models to improve determining element relatedness or other end uses. 
+
 \chapter{Conclusions and Future Work}
 \label{ch:conc}
 \section{Conclusions}
 \section{Limitations}
 
-Notes to be formulated. Section undecided as of now.
-
-\begin{itemize}
-\item Per newspaper page instance segmentation has its drawbacks. Newspapers are meant to be read mostly overviewing two pages simultaniously. "Implied content" could be avoided by merging pages pairwise before annotation.
-\item Developing specific head and backbone architecture to incorporate the textual embeddings puts less reliance on the traditional head and backbone architectures to adapt to the new input medium.
-\item Dataset size increases could potentially lead to more stable results.
-\item The memory footprint of inserting large vectors of text embeddings behind the image RGB channels could make the models impractical to use in real world applications.
-\end{itemize}
 
 \section{Future work}
+
+\begin{itemize}
+\item \textbf{Pairwise merged newspaper pages.} Per newspaper page instance segmentation has its drawbacks. Newspapers are meant to be read mostly overviewing two pages simultaniously. "Implied content" could be avoided by merging pages pairwise before annotation.
+\item \textbf{Domain-specific architecture.} Developing specific head and backbone architecture to incorporate the textual embeddings puts less reliance on the traditional head and backbone architectures to adapt to the new input medium.
+\item \textbf{Dataset size}. Dataset size increases could potentially lead to more stable results and a greater diversity in topology and time-period could lead to a greater generalization property.
+\item \textbf{Dimensionality reduction}. Principle Component Analysis (PCA) or any other dimensionality reduction algorithm could be used to compress the vector representation. This could be useful to limit the memory footprint of the input, and potentially denoise the input.
+\end{itemize}
+
 
 %The thesis contributes to the \gls{UN}\enspace\glspl{SDG} numbers 1 and 9 by
 %xxxx.
