@@ -1752,7 +1752,7 @@ Results reported on the performance of the Mask R-CNN architecture on the MS COC
 The impressive results on the in-set indicate that the newspaper typology is learned well by the model, and the less impressive results on the near-set and out-set indicate that the generalization property is lacking purely from training on one typology and newspaper. Labeling a reasonable amount from each design era and newspaper respectively could give an overall well performing model.
 
 \section{Classes}
-By limiting the number of classes to one, the burden of determining the class becomes a boolean problem. It should be expected that this task yields greater performance, as this task is more trivial than additionally determining the specific subclass, which can be very punishing to the resulting metrics, and especially if the classes are constructed by subjective criteria or implication.
+By limiting the number of classes to one, the burden of determining the class becomes a boolean problem. It should be expected that this task yields greater performance, as this task is more trivial than additionally determining the specific subclass especially if the classes are constructed by subjective criteria or implication.
 
 \section{Sentence transformers}
 
@@ -1781,6 +1781,7 @@ The models proposed in this thesis need not be used in an end-to-end fashion. Sp
 \item \textbf{Domain-specific architecture.} Developing specific head and backbone architecture to incorporate the textual embeddings puts less reliance on the traditional head and backbone architectures to adapt to the new input medium.
 \item \textbf{Dataset size}. Dataset size increases could potentially lead to more stable results and a greater diversity in topology and time-period could lead to a greater generalization property.
 \item \textbf{Dimensionality reduction}. Principle Component Analysis (PCA) or any other dimensionality reduction algorithm could be used to compress the vector representation. This could be useful to limit the memory footprint of the input, and potentially denoise the input.
+\item \textbf{Image normalization and training without pretrained weights}. In this thesis, image normalization values were left unchanged and training was done using the pretrained weights for the respective architectures. Could using dataset specific image normalization values and training models from scratch improve results?
 \end{itemize}
 
 
