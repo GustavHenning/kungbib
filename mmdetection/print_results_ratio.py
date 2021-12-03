@@ -14,7 +14,12 @@ def generate_averages(cfg):
 
     for ratio in ratios:
         for run in range(1, runs+1):
-            fname = RATIO_EXPERIMENT_ROOT_FOLDER + "run_{}/vanilla_1_{}{}/*replace_me_with_eval_stats_TODO_replace_0_with_in_etc*.json".format(run, ratio, cfg)
+            dirname = RATIO_EXPERIMENT_ROOT_FOLDER + "run_{}/vanilla_1_{}{}/".format(run, ratio, cfg)
+            fnames = glob(dirname + "eval*.json")
+            if len(fnames) == 0:
+                print("no eval file found on path {}".format(dirname))
+                sys.exit()
+            fname = fnames[-1]
             if not os.path.isfile(fname):
                 print(fname + " could not be found!")
                 sys.exit()
@@ -22,30 +27,47 @@ def generate_averages(cfg):
                 lines = f.read().splitlines()
                 last_line = lines[-1]
                 data = eval(last_line)
-                del data['in_segm_mAP_copypaste']
-                del data['near_segm_mAP_copypaste']
-                del data['out_segm_mAP_copypaste']
-                del data['in_bbox_mAP_copypaste']
-                del data['near_bbox_mAP_copypaste']
-                del data['out_bbox_mAP_copypaste']
+                data = data['metric']
+                del data['0_segm_mAP_copypaste']
+                del data['1_segm_mAP_copypaste']
+                del data['2_segm_mAP_copypaste']
+                del data['0_bbox_mAP_copypaste']
+                del data['1_bbox_mAP_copypaste']
+                del data['2_bbox_mAP_copypaste']
                 for key in data:
+                    #print(key)
                     ratio_key = "{}_{}".format(key, ratio)
+                    if ratio_key.startswith('0_'):
+                        ratio_key = ratio_key.replace('0_','in_', 1)
+                    if ratio_key.startswith('1_'):
+                        ratio_key = ratio_key.replace('1_', 'near_', 1)
+                    if ratio_key.startswith('2_'):
+                        ratio_key = ratio_key.replace('2_', 'out_', 1)
+
                     if ratio_key not in stats:
                         stats[ratio_key] = []
                     stats[ratio_key].append(data[key])
-    print(stats)
+    #print(stats)
     sets = ["in", "near", "out"]
     for set in sets:
         print(set)
         for ratio in ratios:
-            print("{:.3f} & {:.3f} & {:.3f} & {:.3f} & {:.3f} & {:.3f}"
+            avg_stdev = statistics.mean([statistics.stdev(stats["{}_segm_mAP_{}".format(set, ratio)]) ,
+                            statistics.stdev(stats["{}_segm_mAP_50_{}".format(set, ratio)]),
+                            statistics.stdev(stats["{}_segm_mAP_75_{}".format(set, ratio)]),
+                            statistics.stdev(stats["{}_bbox_mAP_{}".format(set, ratio)]),
+                            statistics.stdev(stats["{}_bbox_mAP_50_{}".format(set, ratio)]),
+                            statistics.stdev(stats["{}_bbox_mAP_75_{}".format(set, ratio)])])
+            print("{} & {:.3f} & {:.3f} & {:.3f} & {:.3f} & {:.3f} & {:.3f} & {:.3f}"
                     .format(
+                        "{:.0f}\%".format(ratio*100),
                         statistics.mean(stats["{}_segm_mAP_{}".format(set, ratio)]), 
                         statistics.mean(stats["{}_segm_mAP_50_{}".format(set, ratio)]),
                         statistics.mean(stats["{}_segm_mAP_75_{}".format(set, ratio)]),
                         statistics.mean(stats["{}_bbox_mAP_{}".format(set, ratio)]),
                         statistics.mean(stats["{}_bbox_mAP_50_{}".format(set, ratio)]),
-                        statistics.mean(stats["{}_bbox_mAP_75_{}".format(set, ratio)])))
-
+                        statistics.mean(stats["{}_bbox_mAP_75_{}".format(set, ratio)]),
+                        avg_stdev))
 for cfg in class_configs:
+    print(cfg)
     generate_averages(cfg)
