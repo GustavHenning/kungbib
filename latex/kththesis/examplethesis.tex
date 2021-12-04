@@ -867,6 +867,71 @@ Moving from character, to word, to sentence representations, Yang et al~\cite{DB
 
 Finally, Barman et al~\cite{jdmdh:7097} combine word embeddings with a deep neural network approach specifically within the domain of newspaper segmentation. The critical difference to this paper is that Barman et al~\cite{jdmdh:7097} uses word embeddings, where we will vary difference sentence embedding encoders. The primary architecture used in Barman et al~\cite{jdmdh:7097} is dhSegment, where we will vary different settings within the newer architecture Mask R-CNN, developed specifically for instance segmentation. Similarly to Barman et al~\cite{jdmdh:7097}, we will modify the architecture to fit the text embeddings behind the image pixels by extending the number of channels in the image and inserting the text embeddings at the coordinates of the text bounding box produced by the OCR.
 
+\section{Related work: Word representation language models}
+\label{sec:langrep}
+
+In the survey "A Comprehensive Survey on Word Representation Models: From Classical to State-of-the-Art Word Representation Language Models" by Naseem et al~\cite{10.1145/3434237} a variety of different word representation langauge models are detailed.
+
+\subsection{From classical methods to state-of-the-art}
+
+What follows is a historical review of the methods to represent textual information for many downstream Natural Language Processing (NLP) tasks. 
+
+\subsubsection{Categorical word representation}
+
+The simplest way to represent text as a feature vector is to use categorical word representation. Two models that use categorical word representation are one hot encoding and bag-of-words (BoW). 
+
+In \textbf{one hot encoding} words are represented as either a $1$ or a $0$. The vector length or \textit{dimension} of the feature vector is equivalent to the number of terms in the vocabulary. 
+
+ \textbf{Bag-of-words} is an extension of the one hot encoding. Instead of representing terms as prevalent or not ($1$ or $0$), BOW represents occurences of the terms, the number representing the prevalence of a term is equal to the number of times it occurs in the text.
+
+\subsubsection{Weighted Word representation}
+
+Instead of representing only the prevalence or the number of times a term appears in a text, weighted models represent term based on its frequency in relation to the total number of terms in the document. 
+
+\textbf{Term Frequency} (TF) calculates the number of times a term appears in a text divided by the total number of terms in the text.
+
+\textbf{Term Frequency-Inverse Document Frequency} (TF-IDF) reduces the impact of common words, known as \textit{stop words}. The Inverse Document Frequency divides the number of documents by the number of documents in which the term appears, which is then logarithmically scaled. 
+
+\begin{equation}
+	tfidf(t,d,D) = tf(t,d) * idf(t,D)
+  	\label{eqn:tf-idf}
+\end{equation}
+
+
+\begin{equation}
+	tf(t,d) = \frac{f_{t,d}}{\sum_{t' \in d} f_{t', d}} 
+  	\label{eqn:tf}
+\end{equation}
+
+Where $f_{t,d}$ is the number of times that the term $t$ occurs in the document $d$, and $\sum_{t' \in d} f_{t', d}$ is the number of terms $t'$ in the document $d$.
+
+\begin{equation}
+	idf(t,d,D) = log \frac{N}{|d \in D : t \in d|}
+  	\label{eqn:idf}
+\end{equation}
+
+Where $N$ is the total number of documents in the corpus and $|d \in D : t \in d|$ is the number of documents where the term $t$ appears. Usually a constant term of $1$ is added to the denominator to avoid division by zero if the term is not in the corpus.
+
+\subsubsection{Word embeddings}
+
+The aforementioned methods have drawbacks. Vector representation where each term is assigned its own index results in very large dimensioanl arrays for large text corpora. Given that many terms may not appear in every document, the resulting representation can be said to be sparse. Furthermore, information is lost in this type of representation in regards to order of terms, as well as any information of the grammar used in the sentences.
+
+Since these models fail to capture syntactic and semantic meaning of words as well as suffer from the curse of high dimensionality, new methods like word embeddings have replaced categorical text representation methods for tasks in the domain of NLP.
+
+These models have been replaced by \textit{feature learning} or \textit{representation learning} using supervised or unsupervised neural network based methods.
+
+Word embedding is a feature learning method where a term from the vocabulary is mapped to a $N$ dimensional vector. Word2vec, GloVe, and FastText are some of the models that use word embeddings to represent features.
+
+Word2vec
+
+
+
+\subsection{BERT}
+
+\subsection{Sentence-BERT}
+
+TODO abbreviations for this section
+
 \section{Summary}
 
 In this chapter we have reviewed the necessary preliminaries for understanding the work done in this thesis. We have reviewed the history of semantic segmentation, the data we are about to present methods and results for, as well as the preliminaries for understanding the challenges of working with neural networks in this context.

@@ -59,18 +59,19 @@
 \backcite {jdmdh:7097}{{22}{2.3.2}{subsection.2.3.2}}
 \backcite {jdmdh:7097}{{22}{2.3.2}{subsection.2.3.2}}
 \backcite {jdmdh:7097}{{22}{2.3.2}{subsection.2.3.2}}
-\backcite {DBLP:journals/corr/abs-1906-07155}{{24}{3.1.2.1}{subsubsection.3.1.2.1}}
-\backcite {Label_Studio}{{25}{3.1.2.2}{subsubsection.3.1.2.2}}
-\backcite {DBLP:journals/corr/HeGDG17}{{35}{3.3}{section.3.3}}
-\backcite {DBLP:journals/corr/XieGDTH16}{{35}{3.3.1}{subsection.3.3.1}}
-\backcite {DBLP:journals/corr/XieGDTH16}{{36}{3.3}{figure.3.3}}
-\backcite {DBLP:journals/corr/XieGDTH16}{{36}{3.4}{figure.3.4}}
-\backcite {DBLP:journals/corr/GoyalDGNWKTJH17}{{40}{3.3.2.2}{subsubsection.3.3.2.2}}
-\backcite {jdmdh:7097}{{40}{3.3.3}{subsection.3.3.3}}
-\backcite {DBLP:journals/corr/YangYAKKG17}{{40}{3.3.3}{subsection.3.3.3}}
-\backcite {jdmdh:7097}{{40}{3.3.3}{subsection.3.3.3}}
-\backcite {DBLP:journals/corr/YangYAKKG17}{{40}{3.3.3}{subsection.3.3.3}}
-\backcite {reimers-2019-sentence-bert, reimers-2020-multilingual-sentence-bert}{{42}{3.3.3.2}{subsubsection.3.3.3.2}}
-\backcite {DBLP:journals/corr/LongSD14}{{44}{3.5.1}{equation.3.5.2}}
-\backcite {davis2006relationship}{{45}{3.5.2}{subsection.3.5.2}}
-\backcite {zhang2009average}{{46}{3.5.3}{subsection.3.5.3}}
+\backcite {10.1145/3434237}{{23}{2.4}{section.2.4}}
+\backcite {DBLP:journals/corr/abs-1906-07155}{{26}{3.1.2.1}{subsubsection.3.1.2.1}}
+\backcite {Label_Studio}{{27}{3.1.2.2}{subsubsection.3.1.2.2}}
+\backcite {DBLP:journals/corr/HeGDG17}{{37}{3.3}{section.3.3}}
+\backcite {DBLP:journals/corr/XieGDTH16}{{37}{3.3.1}{subsection.3.3.1}}
+\backcite {DBLP:journals/corr/XieGDTH16}{{38}{3.3}{figure.3.3}}
+\backcite {DBLP:journals/corr/XieGDTH16}{{38}{3.4}{figure.3.4}}
+\backcite {DBLP:journals/corr/GoyalDGNWKTJH17}{{42}{3.3.2.2}{subsubsection.3.3.2.2}}
+\backcite {jdmdh:7097}{{42}{3.3.3}{subsection.3.3.3}}
+\backcite {DBLP:journals/corr/YangYAKKG17}{{42}{3.3.3}{subsection.3.3.3}}
+\backcite {jdmdh:7097}{{42}{3.3.3}{subsection.3.3.3}}
+\backcite {DBLP:journals/corr/YangYAKKG17}{{42}{3.3.3}{subsection.3.3.3}}
+\backcite {reimers-2019-sentence-bert, reimers-2020-multilingual-sentence-bert}{{44}{3.3.3.2}{subsubsection.3.3.3.2}}
+\backcite {DBLP:journals/corr/LongSD14}{{46}{3.5.1}{equation.3.5.2}}
+\backcite {davis2006relationship}{{47}{3.5.2}{subsection.3.5.2}}
+\backcite {zhang2009average}{{48}{3.5.3}{subsection.3.5.3}}
