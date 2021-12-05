@@ -5,8 +5,12 @@
 		\setentrycounter[]{page}\glsnumberformat{xv}}}\glsgroupskip
 \glsgroupheading{B}\relax \glsresetentrylist %
 \glossentry{BERT}{\glossaryentrynumbers{\relax 
+		\setentrycounter[]{page}\glsnumberformat{xv}}}%
+\glossentry{BoW}{\glossaryentrynumbers{\relax 
 		\setentrycounter[]{page}\glsnumberformat{xv}}}\glsgroupskip
 \glsgroupheading{C}\relax \glsresetentrylist %
+\glossentry{CBOW}{\glossaryentrynumbers{\relax 
+		\setentrycounter[]{page}\glsnumberformat{xv}}}%
 \glossentry{CNN}{\glossaryentrynumbers{\relax 
 		\setentrycounter[]{page}\glsnumberformat{xv}}}%
 \glossentry{COCO}{\glossaryentrynumbers{\relax 
@@ -26,6 +30,8 @@
 \glossentry{FPN}{\glossaryentrynumbers{\relax 
 		\setentrycounter[]{page}\glsnumberformat{xv}}}\glsgroupskip
 \glsgroupheading{G}\relax \glsresetentrylist %
+\glossentry{GloVe}{\glossaryentrynumbers{\relax 
+		\setentrycounter[]{page}\glsnumberformat{xv}}}%
 \glossentry{GPU}{\glossaryentrynumbers{\relax 
 		\setentrycounter[]{page}\glsnumberformat{xv}}}\glsgroupskip
 \glsgroupheading{I}\relax \glsresetentrylist %
@@ -37,6 +43,9 @@
 \glossentry{mIoU}{\glossaryentrynumbers{\relax 
 		\setentrycounter[]{page}\glsnumberformat{xv}}}%
 \glossentry{MLP}{\glossaryentrynumbers{\relax 
+		\setentrycounter[]{page}\glsnumberformat{xv}}}\glsgroupskip
+\glsgroupheading{N}\relax \glsresetentrylist %
+\glossentry{NLP}{\glossaryentrynumbers{\relax 
 		\setentrycounter[]{page}\glsnumberformat{xv}}}\glsgroupskip
 \glsgroupheading{O}\relax \glsresetentrylist %
 \glossentry{OCR}{\glossaryentrynumbers{\relax 
@@ -58,9 +67,15 @@
 \glossentry{RPN}{\glossaryentrynumbers{\relax 
 		\setentrycounter[]{page}\glsnumberformat{xv}}}\glsgroupskip
 \glsgroupheading{S}\relax \glsresetentrylist %
+\glossentry{SBERT}{\glossaryentrynumbers{\relax 
+		\setentrycounter[]{page}\glsnumberformat{xv}}}%
 \glossentry{SvD}{\glossaryentrynumbers{\relax 
 		\setentrycounter[]{page}\glsnumberformat{xv}}}\glsgroupskip
 \glsgroupheading{T}\relax \glsresetentrylist %
+\glossentry{TF}{\glossaryentrynumbers{\relax 
+		\setentrycounter[]{page}\glsnumberformat{xv}}}%
+\glossentry{TF-IDF}{\glossaryentrynumbers{\relax 
+		\setentrycounter[]{page}\glsnumberformat{xv}}}%
 \glossentry{TN}{\glossaryentrynumbers{\relax 
 		\setentrycounter[]{page}\glsnumberformat{xv}}}%
 \glossentry{TP}{\glossaryentrynumbers{\relax 

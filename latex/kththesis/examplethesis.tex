@@ -628,7 +628,7 @@ Several approaches can be taken to minimize or resolve the problem of overfittin
 \end{enumerate}
 
 \subsubsection{Exploding/vanishing gradients}
-When the backpropagation algorithm backflows the error gradient from the output layer back towards the input layer, the gradient will diminish by the layer if the initial gradient is smaller than 1.0, and increase substantially when initially greater than 1.0. As a result, some parameters will either remain unchanged by the diminished gradient or changed by a very large value by the time the update process reaches very deep in large networks.
+When the backpropagation algorithm backflows the error gradient from the output layer back towards the input layer, the gradient will diminish by the layer if the initial gradient is smaller than 1.0, and increase substantially when initially greater than 1.0. As a result, some parameters will either remain unchanged by the diminished gradient or changed by a large value by the time the update process reaches very deep in large networks.
 
 Some techniques for overcoming the exploding/vanishing gradient problem are~\cite{doi:10.1142/S0218488598000094}:
 
@@ -863,7 +863,7 @@ In an attempt to trade prior handcrafted features for learning capabilities, mac
 
 Katti et al~\cite{katti2018} introduced the concept of \textit{chargrid}, a two dimensional representation of text where characters are localized on the image and encoded as a one-hot vector. This study shows that model variants exploiting both modalities achieve better results, at the cost of high-computing. While Dang and Nguyen Thanh~\cite{DBLP:journals/corr/abs-2106-00952} build on this approach and show an impressive mIoU of 87\% for template-like administrative documents, Denk and Reisswig~\cite{DBLP:journals/corr/abs-1909-04948} (who also build upon Katti et al~\cite{katti2018}), consider not only characters, but words and their corresponding embeddings. Using BERTgrid for the automatic extraction of key-value information from invoice images (amount, number, date, etc), they obtain the best results with document representation based on one-hot character embedding and word-level BERT embeddings with no image information.
 
-Moving from character, to word, to sentence representations, Yang et al~\cite{DBLP:journals/corr/YangYAKKG17} represent text via text embedding maps, where the two-dimensional text representation is mapped to the pixel information. Textual features correspond to sentence embeddings in this case, with the use of word vectors obtained with word2vec~\cite{mikolov2013} and averaged in the final embedding.
+Moving from character, to word, to sentence representations, Yang et al~\cite{DBLP:journals/corr/YangYAKKG17} represent text via text embedding maps, where the two-dimensional text representation is mapped to the pixel information. Textual features correspond to sentence embeddings in this case, with the use of word vectors obtained with Word2Vec~\cite{mikolov2013} and averaged in the final embedding.
 
 Finally, Barman et al~\cite{jdmdh:7097} combine word embeddings with a deep neural network approach specifically within the domain of newspaper segmentation. The critical difference to this paper is that Barman et al~\cite{jdmdh:7097} uses word embeddings, where we will vary difference sentence embedding encoders. The primary architecture used in Barman et al~\cite{jdmdh:7097} is dhSegment, where we will vary different settings within the newer architecture Mask R-CNN, developed specifically for instance segmentation. Similarly to Barman et al~\cite{jdmdh:7097}, we will modify the architecture to fit the text embeddings behind the image pixels by extending the number of channels in the image and inserting the text embeddings at the coordinates of the text bounding box produced by the OCR.
 
@@ -874,7 +874,7 @@ In the survey "A Comprehensive Survey on Word Representation Models: From Classi
 
 \subsection{From classical methods to state-of-the-art}
 
-What follows is a historical review of the methods to represent textual information for many downstream Natural Language Processing (NLP) tasks. 
+What follows is a historical review of the methods to represent textual information for many downstream Natural Language Processing (NLP) tasks, such as sentence similarity, which relates to the goal of the proposed architecture in this thesis. 
 
 \subsubsection{Categorical word representation}
 
@@ -882,7 +882,7 @@ The simplest way to represent text as a feature vector is to use categorical wor
 
 In \textbf{one hot encoding} words are represented as either a $1$ or a $0$. The vector length or \textit{dimension} of the feature vector is equivalent to the number of terms in the vocabulary. 
 
- \textbf{Bag-of-words} is an extension of the one hot encoding. Instead of representing terms as prevalent or not ($1$ or $0$), BOW represents occurences of the terms, the number representing the prevalence of a term is equal to the number of times it occurs in the text.
+ \textbf{Bag-of-words} is an extension of the one hot encoding. Instead of representing terms as prevalent or not ($1$ or $0$), BoW represents occurences of the terms, the number representing the prevalence of a term is equal to the number of times it occurs in the text.
 
 \subsubsection{Weighted Word representation}
 
@@ -914,27 +914,44 @@ Where $N$ is the total number of documents in the corpus and $|d \in D : t \in d
 
 \subsubsection{Word embeddings}
 
-The aforementioned methods have drawbacks. Vector representation where each term is assigned its own index results in very large dimensioanl arrays for large text corpora. Given that many terms may not appear in every document, the resulting representation can be said to be sparse. Furthermore, information is lost in this type of representation in regards to order of terms, as well as any information of the grammar used in the sentences.
+The aforementioned methods have drawbacks. Vector representation where each term is assigned its own index results in large dimensional arrays for large text corpora. Given that many terms may not appear in every document, the resulting representation can be said to be sparse. Furthermore, information is lost in this type of representation in regards to order of terms, as well as any information of the grammar used in the sentences.
 
 Since these models fail to capture syntactic and semantic meaning of words as well as suffer from the curse of high dimensionality, new methods like word embeddings have replaced categorical text representation methods for tasks in the domain of NLP.
 
 These models have been replaced by \textit{feature learning} or \textit{representation learning} using supervised or unsupervised neural network based methods.
 
-Word embedding is a feature learning method where a term from the vocabulary is mapped to a $N$ dimensional vector. Word2vec, GloVe, and FastText are some of the models that use word embeddings to represent features.
+Word embedding is a feature learning method where a term from the vocabulary is mapped to a $N$ dimensional vector. Word2Vec, GloVe, and FastText are some of the models that use word embeddings to represent features.
 
-Word2vec
+\textbf{Word2Vec}~\cite{mikolov2013} is a shallow neural network model for learning feature representations of words. It creates word representations using two hidden layers captured by either Continuous Bag of words (CBOW) or Skip-gram. Training is done using a local context window of predefined length. 
 
+\textbf{Global Vectors}\cite{pennington2014glove} (GloVe) is an expansion of the Word2Vec architecture where a local context window is extended by an additional global matrix factorization, becoming a global log-bilinear regression model.
 
+Both Word2Vec and GloVe are better at learning the semantic representation of words compared to categorical word representation and weighted word representation since they attempt to capture the context of nearby words in the learning procedure. Neither can however learn representations of words out-of-vocabulary. 
+
+\textbf{FastText}~\cite{DBLP:journals/corr/BojanowskiGJM16} is an attempt to improve previous architectures by also learning the word representations with regards to the morphology of words. It is based on the Skip-gram model, where each word is represented as a bag of character $n$-grams. It allows for computation of word reperesentations for words that did not appear in the training data. 
 
 \subsection{BERT}
 
+The Bidirectional Encoder Representations from Transformers~\cite{devlin2018bert} (BERT) is a multi-layer bidirectional Transformer~\cite{46201} encoder that is an extension of the OpenAI Generative Pre-training Transformer model~\cite{radford2018improving}  (GPT) Transformer architecture. Unlike GPT however, BERT uses bidirectional self-attention, while GPT uses constrained self-attention where every token can only attend to context to its left.
+
+Pre-trained BERT models can be fine-tuned with just one additional output layer to create state-of-the-art models for a wide range of tasks, such as question answering and language inference, without substantial architecture modifications.
+
 \subsection{Sentence-BERT}
 
-TODO abbreviations for this section
+Sentence-BERT~\cite{reimers-2019-sentence-bert, reimers-2020-multilingual-sentence-bert} (SBERT) is a modification of the pretrained BERT model that uses siamese and triplet network structures to derive semantically meaningful sentence embeddings that can be compared using cosine-similarity for tasks of Semantic Textual Similarity (STS). 
+
+Sentence-BERT is the chosen architecture for generating sentence embeddings in this thesis. As a final note for this section, on the topic of what a \textit{sentence} is in the context of BERT:
+
+
+\begin{displayquote}
+Throughout this work, a “sentence” can be an arbitrary span of contiguous text, rather than an actual linguistic sentence.~\cite{devlin2018bert}
+\end{displayquote}
+
+\textbf{TODO abbreviations for this section}
 
 \section{Summary}
 
-In this chapter we have reviewed the necessary preliminaries for understanding the work done in this thesis. We have reviewed the history of semantic segmentation, the data we are about to present methods and results for, as well as the preliminaries for understanding the challenges of working with neural networks in this context.
+In this chapter we have reviewed the necessary preliminaries for understanding the work done in this thesis. We have reviewed the history of semantic segmentation, the history of word representation language models, the data we are about to present methods and results for, as well as the preliminaries for understanding the challenges of working with neural networks in this context.
 
 \clearpage
 
@@ -1358,7 +1375,7 @@ In the last 3 backbones, $N$x$M$d refers to the total number of paths in the con
 
 \subsubsection{Preprocessing}
 
-Before training and inference, data augmentation is done to improve performance of the model. The following steps are taken to augment the data:
+Before training and inference, data augmentation is done to improve performance of the model or to make the model converge faster. The following steps are taken to augment the data:
 
 \begin{enumerate}
 \item Loading annotations (if training)
@@ -1513,7 +1530,7 @@ In this thesis we transform the entire content of the text block and repeat the 
 
 \subsubsection{Sentence transformers}
 
-We evaluate six different sentences transformers. Two are produced by the National Library of Sweden and output vectors of size 768. Four are created by Reimers et al~\cite{reimers-2019-sentence-bert, reimers-2020-multilingual-sentence-bert} and output vectors of size 384. These were selected by the performance on encoding sentences over 14 diverse tasks from different domains. 
+We evaluate six different sentence transformers. Two are produced by the National Library of Sweden~\cite{swedish-bert} and output vectors of size 768. Four are created by Reimers et al~\cite{reimers-2019-sentence-bert, reimers-2020-multilingual-sentence-bert} and output vectors of size 384. These were selected by the performance on encoding sentences over 14 diverse tasks from different domains. 
 
 \begin{table}[H]
   \begin{center}
@@ -1522,12 +1539,12 @@ We evaluate six different sentences transformers. Two are produced by the Nation
     \begin{tabular}{l|l}
     \textbf{Model name} & \textbf{Dimensions}  \\
     \hline
-    all-mpnet-base-v2 & 384 \\    \hline
-    all-MiniLM-L6-v2 & 384 \\    \hline
-    multi-qa-mpnet-base-dot-v1 & 384 \\    \hline
-    all-distilroberta-v1 & 384 \\    \hline
-    KBLab/sentence-bert-swedish-cased & 768 \\    \hline
-    KB/bert-base-swedish-cased & 768 \\    \hline
+    all-mpnet-base-v2~\cite{reimers-2019-sentence-bert, reimers-2020-multilingual-sentence-bert} & 384 \\    \hline
+    all-MiniLM-L6-v2~\cite{reimers-2019-sentence-bert, reimers-2020-multilingual-sentence-bert} & 384 \\    \hline
+    multi-qa-mpnet-base-dot-v1~\cite{reimers-2019-sentence-bert, reimers-2020-multilingual-sentence-bert} & 384 \\    \hline
+    all-distilroberta-v1~\cite{reimers-2019-sentence-bert, reimers-2020-multilingual-sentence-bert} & 384 \\    \hline
+    KBLab/sentence-bert-swedish-cased~\cite{swedish-bert} & 768 \\    \hline
+    KB/bert-base-swedish-cased~\cite{swedish-bert} & 768 \\    \hline
     \end{tabular}
   \end{center}
 \end{table}

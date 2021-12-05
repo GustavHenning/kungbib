@@ -10,23 +10,23 @@
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {table}{\numberline {3.1}{\ignorespaces Hardware specifications}}{26}{table.3.1}%
-\contentsline {table}{\numberline {3.2}{\ignorespaces Software versions}}{27}{table.3.2}%
-\contentsline {table}{\numberline {3.3}{\ignorespaces Annotated pages in the datasets}}{35}{table.3.3}%
-\contentsline {table}{\numberline {3.4}{\ignorespaces Class distribution in the DN 2010 - 2020 dataset}}{35}{table.3.4}%
-\contentsline {table}{\numberline {3.5}{\ignorespaces Class distribution in the DN SvD 2001 - 2004 dataset}}{36}{table.3.5}%
-\contentsline {table}{\numberline {3.6}{\ignorespaces Class distribution in the Aftonbladet Expressen 2001 - 2004 dataset}}{36}{table.3.6}%
-\contentsline {table}{\numberline {3.7}{\ignorespaces Object size threshold differences in pixels}}{40}{table.3.7}%
-\contentsline {table}{\numberline {3.8}{\ignorespaces Number of annotations per area group for the test sets}}{40}{table.3.8}%
-\contentsline {table}{\numberline {3.9}{\ignorespaces Sentence transformers}}{44}{table.3.9}%
-\contentsline {table}{\numberline {3.10}{\ignorespaces Class distribution in partial datasets of DN 2010 - 2020 (In-set)}}{45}{table.3.10}%
+\contentsline {table}{\numberline {3.1}{\ignorespaces Hardware specifications}}{27}{table.3.1}%
+\contentsline {table}{\numberline {3.2}{\ignorespaces Software versions}}{28}{table.3.2}%
+\contentsline {table}{\numberline {3.3}{\ignorespaces Annotated pages in the datasets}}{36}{table.3.3}%
+\contentsline {table}{\numberline {3.4}{\ignorespaces Class distribution in the DN 2010 - 2020 dataset}}{36}{table.3.4}%
+\contentsline {table}{\numberline {3.5}{\ignorespaces Class distribution in the DN SvD 2001 - 2004 dataset}}{37}{table.3.5}%
+\contentsline {table}{\numberline {3.6}{\ignorespaces Class distribution in the Aftonbladet Expressen 2001 - 2004 dataset}}{37}{table.3.6}%
+\contentsline {table}{\numberline {3.7}{\ignorespaces Object size threshold differences in pixels}}{41}{table.3.7}%
+\contentsline {table}{\numberline {3.8}{\ignorespaces Number of annotations per area group for the test sets}}{41}{table.3.8}%
+\contentsline {table}{\numberline {3.9}{\ignorespaces Sentence transformers}}{45}{table.3.9}%
+\contentsline {table}{\numberline {3.10}{\ignorespaces Class distribution in partial datasets of DN 2010 - 2020 (In-set)}}{46}{table.3.10}%
 \addvspace {10\p@ }
-\contentsline {table}{\numberline {4.1}{\ignorespaces Model names}}{49}{table.4.1}%
-\contentsline {table}{\numberline {4.2}{\ignorespaces Results on the DN 2010 - 2020 (In-set) dataset}}{49}{table.4.2}%
-\contentsline {table}{\numberline {4.3}{\ignorespaces Results on the DN SvD 2001 - 2004 (Near-set) dataset}}{50}{table.4.3}%
-\contentsline {table}{\numberline {4.4}{\ignorespaces Results on the Aftonbladet Expressen 2001 - 2004 (Out-set) dataset}}{50}{table.4.4}%
-\contentsline {table}{\numberline {4.5}{\ignorespaces Gradually increasing dataset size - All classes - In set}}{50}{table.4.5}%
-\contentsline {table}{\numberline {4.6}{\ignorespaces Gradually increasing dataset size - All classes - Near set}}{51}{table.4.6}%
-\contentsline {table}{\numberline {4.7}{\ignorespaces Gradually increasing dataset size - All classes - Out set}}{51}{table.4.7}%
+\contentsline {table}{\numberline {4.1}{\ignorespaces Model names}}{50}{table.4.1}%
+\contentsline {table}{\numberline {4.2}{\ignorespaces Results on the DN 2010 - 2020 (In-set) dataset}}{50}{table.4.2}%
+\contentsline {table}{\numberline {4.3}{\ignorespaces Results on the DN SvD 2001 - 2004 (Near-set) dataset}}{51}{table.4.3}%
+\contentsline {table}{\numberline {4.4}{\ignorespaces Results on the Aftonbladet Expressen 2001 - 2004 (Out-set) dataset}}{51}{table.4.4}%
+\contentsline {table}{\numberline {4.5}{\ignorespaces Gradually increasing dataset size - All classes - In set}}{51}{table.4.5}%
+\contentsline {table}{\numberline {4.6}{\ignorespaces Gradually increasing dataset size - All classes - Near set}}{52}{table.4.6}%
+\contentsline {table}{\numberline {4.7}{\ignorespaces Gradually increasing dataset size - All classes - Out set}}{52}{table.4.7}%
 \addvspace {10\p@ }
 \addvspace {10\p@ }
