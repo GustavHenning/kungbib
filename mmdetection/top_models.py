@@ -10,13 +10,21 @@ results = {}
 def compare():
     dirs = glob(path.join(model_dir, "*/"))
     for dir in dirs:
-        latest = path.join(dir, "latest.log.val.json")
-        if path.exists(latest):
-            with open(latest, 'r') as f:
+        if "ratio" in dir:
+            continue
+
+        fnames = glob(dir + "eval*.json")
+        if len(fnames) == 0:
+            print("no eval file found on path {}".format(dir))
+            continue
+        fname = fnames[-1]
+        if path.exists(fname):
+            with open(fname, 'r') as f:
                 lines = f.read().splitlines()
                 if len(lines) > 0:
                     last_line = lines[-1]
                     d = json.loads(last_line)
+                    d = d['metric']
                     if not "0_bbox_mAP" in d.keys():
                         continue
                     for key in d.keys():
