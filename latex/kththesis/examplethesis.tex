@@ -22,6 +22,7 @@
 \usepackage[activate={true,nocompatibility},final,tracking=true,kerning=true,spacing=true,factor=1100,stretch=10,shrink=10]{microtype}
 \usepackage{tikz}
 \usepackage{float}
+\usepackage{adjustbox}
 
 % \usepackage[style=numeric,sorting=none,backend=biber]{biblatex}
 \ifbiblatex
@@ -566,136 +567,136 @@ In this section, we will introduce the theory that our model is based on. Since 
 
 
 
-\subsection{Training a Deep Neural Network}
+%\subsection{Training a Deep Neural Network}
 
-Neural networks can learn to approximate functions through learning. Learning occurs by updating the weights and biases of the perceptrons gradually to approximate the desired output value of the last layer in the neural network. This difference between the desired output value and the output of the network, also known as the cost, is estimated by using a cost function. Cross-entropy is a popular cost function. In \autoref{eqn:crossentropy}, \(y\) is the true label, and \(\hat{y}\) is the predicted value of the current model.
+%Neural networks can learn to approximate functions through learning. Learning occurs by updating the weights and biases of the perceptrons gradually to approximate the desired output value of the last layer in the neural network. This difference between the desired output value and the output of the network, also known as the cost, is estimated by using a cost function. Cross-entropy is a popular cost function. In \autoref{eqn:crossentropy}, \(y\) is the true label, and \(\hat{y}\) is the predicted value of the current model.
 
-\begin{equation}
-    cost(y, \hat{y}) = - \sum\limits_{i=1}^{n} y_i log(\hat{y_i})
-    \label{eqn:crossentropy}
-\end{equation}
+%\begin{equation}
+%    cost(y, \hat{y}) = - \sum\limits_{i=1}^{n} y_i log(\hat{y_i})
+%    \label{eqn:crossentropy}
+%\end{equation}
 
-By updating the weights according to a paradigm, the cost can be minimized. A gradient-based approach to minimizing the cost is called backpropagation~\cite{Rumelhart1986}. Backpropagation is defined as taking the following steps:
+%By updating the weights according to a paradigm, the cost can be minimized. A gradient-based approach to minimizing the cost is called backpropagation~\cite{Rumelhart1986}. Backpropagation is defined as taking the following steps:
 
-\begin{enumerate}
-\item Forward the input through the neural network to generate a prediction $\hat{y}$.
-\item Measure the cross-entropy loss e.g. according to \autoref{eqn:crossentropy}
-\item Propagate back the error’s gradient from the last(output) to the first(input) layer of the network.
-\item Change the weights and biases based on the gradient.
-\end{enumerate}
+%\begin{enumerate}
+%\item Forward the input through the neural network to generate a prediction $\hat{y}$.
+%\item Measure the cross-entropy loss e.g. according to \autoref{eqn:crossentropy}
+%\item Propagate back the error’s gradient from the last(output) to the first(input) layer of the network.
+%\item Change the weights and biases based on the gradient.
+%\end{enumerate}
 
-The error or loss can be calculated according to \autoref{eqn:crossentropy} as such:
+%The error or loss can be calculated according to \autoref{eqn:crossentropy} as such:
 
-\begin{equation}
-    J(w_j) = cross\_entropy(y_j,\hat{y_j}) = - \sum_{j} y_j log(\hat{y_j})
-    \label{eqn:jacobian}
-\end{equation}
+%\begin{equation}
+%    J(w_j) = cross\_entropy(y_j,\hat{y_j}) = - \sum_{j} y_j log(\hat{y_j})
+%    \label{eqn:jacobian}
+%\end{equation}
 
 
-where $w_j$ is the weights of the DNN at layer $j$ and $\hat{y}$ can be seen as a non-linear function of the weights. The updated weight values can be seen in \autoref{eqn:weights}.
+%where $w_j$ is the weights of the DNN at layer $j$ and $\hat{y}$ can be seen as a non-linear function of the weights. The updated weight values can be seen in \autoref{eqn:weights}.
 
-\begin{equation}
-    w_{i,j}^{(next)} = w_{i,j} - \eta \frac{\partial J(w_j)}{\partial w_i}
-    \label{eqn:weights}
-\end{equation}
+%\begin{equation}
+%    w_{i,j}^{(next)} = w_{i,j} - \eta \frac{\partial J(w_j)}{\partial w_i}
+%    \label{eqn:weights}
+%\end{equation}
 
-To update the weight $w_{i,j}$ using gradient descent, a \textit{learning rate} $\eta > 0$ must be chosen. Each value of the updated weights in the next layer depends on the partial derivative of the previous layer. That is why each activation function has to be differentiable (Nevertheless, the ReLU activation function is non-differentiable at 0), and why the error has to be \textit{propagated backwards}.
+%To update the weight $w_{i,j}$ using gradient descent, a \textit{learning rate} $\eta > 0$ must be chosen. Each value of the updated weights in the next layer depends on the partial derivative of the previous layer. That is why each activation function has to be differentiable (Nevertheless, the ReLU activation function is non-differentiable at 0), and why the error has to be \textit{propagated backwards}.
 
-\textbf{Should this be explained in more detail? Cases where the $w_i$ is an output neuron vs hidden. }
+%\textbf{Should this be explained in more detail? Cases where the $w_i$ is an output neuron vs hidden. }
 
-\subsection{Challenges in training}
+%\subsection{Challenges in training}
 
-In real world applications, there are many challenges when training a deep neural network.
+%In real world applications, there are many challenges when training a deep neural network.
 
-\subsubsection{Overfitting/underfitting}
+%\subsubsection{Overfitting/underfitting}
 
-With a large number of parameters, the network can be said to have a high degree of freedom. It becomes so complex that it will encounter the overfitting problem~\cite{doi:10.1021/ci0342472}. Overfitting means that the network will tend towards having lower accuracy of the test dataset, despite an increasing accuracy on the training dataset. This phenomenon can be anecdotally compared to memorizing the training dataset by heart, and thus losing the generalization property when tested on data outside the training dataset.
+%With a large number of parameters, the network can be said to have a high degree of freedom. It becomes so complex that it will encounter the overfitting problem~\cite{doi:10.1021/ci0342472}. Overfitting means that the network will tend towards having lower accuracy of the test dataset, despite an increasing accuracy on the training dataset. This phenomenon can be anecdotally compared to memorizing the training dataset by heart, and thus losing the generalization property when tested on data outside the training dataset.
 
-\begin{figure}[H]
-  \begin{center}
-    \includegraphics[width=0.8\textwidth]{figures/overfitting.png}
-  \end{center}
-  \caption{Model complexity and overfitting~\cite{Wang_2019}. }
-  \label{fig:overfitting}
-\end{figure}
+%\begin{figure}[H]
+%  \begin{center}
+%    \includegraphics[width=0.8\textwidth]{figures/overfitting.png}
+%  \end{center}
+%  \caption{Model complexity and overfitting~\cite{Wang_2019}. }
+%  \label{fig:overfitting}
+%\end{figure}
 
-Several approaches can be taken to minimize or resolve the problem of overfitting.
-\begin{enumerate}
-\item Regularization~\cite{10.1038/317314a0}: By imposing a cost (or penalty) on the optimization function, the optimal solution can be made unique.
-\item Early stopping~\cite{Prechelt2012}: By halting the training when the error of the test dataset reaches its minimum, overfitting can be avoided. Early stopping can be thought of as regularization in the temporal domain.
-\item Dropout~\cite{JMLR:v15:srivastava14a}: By randomly ignoring some neurons during training to reduce the model complexity, an increase in model sparsity is gained.
-\item Data augmentation~\cite{10.2307/2289457}: Additional data is created, typically in preprocessing, by altering the original data in a number of ways which are added in addition to the original data. For visual data, some examples are: changing angles, illumination, saturation, exposure, etc. This creates additional variance which prevents simply memorizing shallow features in the dataset.
-\end{enumerate}
+%Several approaches can be taken to minimize or resolve the problem of overfitting.
+%\begin{enumerate}
+%\item Regularization~\cite{10.1038/317314a0}: By imposing a cost (or penalty) on the optimization function, the optimal solution can be made unique.
+%\item Early stopping~\cite{Prechelt2012}: By halting the training when the error of the test dataset reaches its minimum, %overfitting can be avoided. Early stopping can be thought of as regularization in the temporal domain.
+%\item Dropout~\cite{JMLR:v15:srivastava14a}: By randomly ignoring some neurons during training to reduce the model complexity, an increase in model sparsity is gained.
+%\item Data augmentation~\cite{10.2307/2289457}: Additional data is created, typically in preprocessing, by altering the original data in a number of ways which are added in addition to the original data. For visual data, some examples are: changing angles, illumination, saturation, exposure, etc. This creates additional variance which prevents simply memorizing shallow features in the dataset.
+%\end{enumerate}
 
-\subsubsection{Exploding/vanishing gradients}
-When the backpropagation algorithm backflows the error gradient from the output layer back towards the input layer, the gradient will diminish by the layer if the initial gradient is smaller than 1.0, and increase substantially when initially greater than 1.0. As a result, some parameters will either remain unchanged by the diminished gradient or changed by a large value by the time the update process reaches very deep in large networks.
+%\subsubsection{Exploding/vanishing gradients}
+%When the backpropagation algorithm backflows the error gradient from the output layer back towards the input layer, the gradient will diminish by the layer if the initial gradient is smaller than 1.0, and increase substantially when initially greater than 1.0. As a result, some parameters will either remain unchanged by the diminished gradient or changed by a large value by the time the update process reaches very deep in large networks.
 
-Some techniques for overcoming the exploding/vanishing gradient problem are~\cite{doi:10.1142/S0218488598000094}:
+%Some techniques for overcoming the exploding/vanishing gradient problem are~\cite{doi:10.1142/S0218488598000094}:
 
-\begin{enumerate}
-\item Non-saturating activation functions: Using e.g. ReLU~\cite{maas2013rectifier} instead of the commonly used sigmoid activation function can help during training. The gradient is minimal when the sigmoid function is close to its output limits $(-1/1)$ meaning it will saturate. Using ReLU = $max(0,z)$ won't have this problem. However, ReLU has its own problem in that some perceptrons may stop outputting values except for 0. This is known as the dying ReLU problem. The solution is to use leaky ReLU = $max(az,z)$ where $a$ is the slope when $z < 0$.
+%\begin{enumerate}
+%\item Non-saturating activation functions: Using e.g. ReLU~\cite{maas2013rectifier} instead of the commonly used sigmoid activation function can help during training. The gradient is minimal when the sigmoid function is close to its output limits $(-1/1)$ meaning it will saturate. Using ReLU = $max(0,z)$ won't have this problem. However, ReLU has its own problem in that some perceptrons may stop outputting values except for 0. This is known as the dying ReLU problem. The solution is to use leaky ReLU = $max(az,z)$ where $a$ is the slope when $z < 0$.
 
-\begin{figure}[H]
-  \begin{center}
-    \includegraphics[width=0.7\textwidth]{figures/leaky_relu.png}
-  \end{center}
-  \caption{Leaky ReLU~\cite{Wang_2019}.}
-  \label{fig:leaky_relu}
-\end{figure}
+%\begin{figure}[H]
+%  \begin{center}
+%    \includegraphics[width=0.7\textwidth]{figures/leaky_relu.png}
+%  \end{center}
+%  \caption{Leaky ReLU~\cite{Wang_2019}.}
+%  \label{fig:leaky_relu}
+%\end{figure}
 
-\begin{center}
-The leaky ReLU activation function prevents the \textit{dying ReLU problem}.
-\end{center}
+%\begin{center}
+%The leaky ReLU activation function prevents the \textit{dying ReLU problem}.
+%\end{center}
 
-\item Gradient clipping~\cite{quintana1974clipping}: Clipping the gradient by defining a max value it can attain during backpropagation means it will never exceed a certain threshold. This solves the exploding gradient problem.
+%\item Gradient clipping~\cite{quintana1974clipping}: Clipping the gradient by defining a max value it can attain during backpropagation means it will never exceed a certain threshold. This solves the exploding gradient problem.
 
-\item Batch Normalization~\cite{ioffe2015batch}: A technique used to address the problem that the distribution of each layer’s inputs changes during training, as the parameters of the previous layers change, by zero centering the input, scaling and then shifting the result. Due to the impracticality of using the global information for normalization, each normalization occurs at each mini-batch $B$ of size $m$. The mean $\mu_{B}$ and variance $\sigma_B^2$ can be calculated as follows:
+%\item Batch Normalization~\cite{ioffe2015batch}: A technique used to address the problem that the distribution of each layer’s inputs changes during training, as the parameters of the previous layers change, by zero centering the input, scaling and then shifting the result. Due to the impracticality of using the global information for normalization, each normalization occurs at each mini-batch $B$ of size $m$. The mean $\mu_{B}$ and variance $\sigma_B^2$ can be calculated as follows:
 
-\begin{equation}
-    \mu_B = \frac{1}{m_B} \sum_{i=1}^{m_B} x^{(i)}
-    \label{eqn:bnmean}
-\end{equation}
+%\begin{equation}
+%    \mu_B = \frac{1}{m_B} \sum_{i=1}^{m_B} x^{(i)}
+%    \label{eqn:bnmean}
+%\end{equation}
 
-And thus follows the calculation of the \textit{variance} $\sigma_B^2$ of $B$:
+%And thus follows the calculation of the \textit{variance} $\sigma_B^2$ of $B$:
 
-\begin{equation}
-    \sigma_B^2 = \frac{1}{m_B} (x^{(i)} - \mu_B)^2
-    \label{eqn:bnvariance}
-\end{equation}
+%\begin{equation}
+%    \sigma_B^2 = \frac{1}{m_B} (x^{(i)} - \mu_B)^2
+%    \label{eqn:bnvariance}
+%\end{equation}
 
-For a layer of the network with d-dimensional input, $ x = (x^{(1)}, ..., x^{(d)}) $, each dimension of its input is then normalized (re-centered and re-scaled) separately:
+%For a layer of the network with d-dimensional input, $ x = (x^{(1)}, ..., x^{(d)}) $, each dimension of its input is then normalized (re-centered and re-scaled) separately:
 
-\begin{equation}
-    \hat{x}_{i}^{(k)} = \frac{x_{i}^{(k)} - \mu_{B}^{(k)}}{\sqrt{\sigma_{B}^{(k)^2} + \epsilon}}
-    \label{eqn:bnorm}
-\end{equation}
+%\begin{equation}
+%    \hat{x}_{i}^{(k)} = \frac{x_{i}^{(k)} - \mu_{B}^{(k)}}{\sqrt{\sigma_{B}^{(k)^2} + \epsilon}}
+%    \label{eqn:bnorm}
+%\end{equation}
 
-where $\epsilon$ is an arbitary small constant added for numerical stability.
+%where $\epsilon$ is an arbitary small constant added for numerical stability.
 
-\end{enumerate}
-\subsubsection{Improving gradient descent}
+%\end{enumerate}
+%\subsubsection{Improving gradient descent}
 
-Training speed can be improved by using techniques to update the learning rate during training, making the model converge faster towards the desired weight distribution.
-\begin{enumerate}
-\item Momentum~\cite{Rumelhart1986}: In order to improve an otherwise static learning rate, momentum was introduced by Rumelhart, Hinton and Williams. The idea is to remember the update $\Delta w$ at each iteration, and determine the next update as a linear combination of the gradient and the previous update:
+%Training speed can be improved by using techniques to update the learning rate during training, making the model converge faster towards the desired weight distribution.
+%\begin{enumerate}
+%\item Momentum~\cite{Rumelhart1986}: In order to improve an otherwise static learning rate, momentum was introduced by Rumelhart, Hinton and Williams. The idea is to remember the update $\Delta w$ at each iteration, and determine the next update as a linear combination of the gradient and the previous update:
 
-\begin{equation}
-    w = w - \eta \nabla Q_i(w)- \alpha \Delta w
-    \label{eqn:momentum}
-\end{equation}
+%\begin{equation}
+%    w = w - \eta \nabla Q_i(w)- \alpha \Delta w
+%    \label{eqn:momentum}
+%\end{equation}
 
-where the parameter $w$ which minimizes $Q(w)$ is estimated, $\eta$ is the learning rate, and $\alpha$ is an exponential decay factor between 0 and 1.
+%where the parameter $w$ which minimizes $Q(w)$ is estimated, $\eta$ is the learning rate, and $\alpha$ is an exponential decay factor between 0 and 1.
 
-\item Weight decay~\cite{DBLP:journals/corr/abs-1711-05101}: When using stochastic gradient descent (and rescaling with the learning rate), weight decay
-is a form of regularization which adds a penalty term to the loss in order to encourage the model to select smaller or sparser weights,
-depending on whether one uses $L_1$ or $L_2$ weight decay.
+%\item Weight decay~\cite{DBLP:journals/corr/abs-1711-05101}: When using stochastic gradient descent (and rescaling with the learning rate), weight decay
+%is a form of regularization which adds a penalty term to the loss in order to encourage the model to select smaller or sparser weights,
+%depending on whether one uses $L_1$ or $L_2$ weight decay.
 
-\end{enumerate}
+%\end{enumerate}
 
 
 \subsection{Convolutional Neural Network}
 
-Traditional DNNs had, at the time of creation, very impressive results on many datasets and tasks. However, working with 2-D images, certain problems arose related to the architecture. Traditional MLPs encountered difficulty with learning spatial and translation features, such as lighting or distortion variance. The difficulty in learning spatial features is directly related to how DNNs treat each pixel individually as an input vector and thus losing spatial information on how pixels relate to each other.
+Traditional Deep Neural Networks (DNN) had, at the time of creation, very impressive results on many datasets and tasks. However, working with 2-D images, certain problems arose related to the architecture. Traditional MLPs encountered difficulty with learning spatial and translation features, such as lighting or distortion variance. The difficulty in learning spatial features is directly related to how DNNs treat each pixel individually as an input vector and thus losing spatial information on how pixels relate to each other.
 
 \textbf{Convolutional layer}. A 2-D image consists of 3 dimensions: The width, height and channels (Typically 3: Red, green and blue). The convolutional layer, when applying its operation to the input, slides across the image (also referred to as convolves) from the top left corner to the bottom right corner as depicted in \autoref{fig:kernelmovement}, performing a matrix multiplication operation between the kernel(a matrix of weights) and the portion of the image it is currently located at. Each kernel operation produces a number(after a bias value is added) which is inserted into a resulting matrix, named a \textit{filter}.
 
@@ -1222,10 +1223,24 @@ These submissions are labeled as news units as per the definition of a news unit
 Any form of game found within the newspaper is labeled as one and the same class: Game.
 The bounding box for the instance will include the game itself, any text related to the game, and its width is decided by the title element width.
 
+\subsubsection{Final classes}
+\label{subs:finalclasses}
+The final classes used in this thesis are the following:
+
+\begin{description}
+\item[$\bullet$] News Unit
+\item[$\bullet$] Advertisement
+\item[$\bullet$] Listing
+\item[$\bullet$] Weather
+\item[$\bullet$] Death Notice
+\item[$\bullet$] Game
+\end{description}
+
 \subsubsection{Publication Unit}
+\label{subs:pubunit}
 
 In order to investigate the impact of classes on the performance of the model, we perform the same experiments where all annotations are set to the same class.
-Therefore, if an element or group of elements are assigned any class (except background) previously mentioned in this chapter, they will be labeled as a publication unit in the experiments where class confusion is investigated.
+Therefore, if an element or group of elements are assigned any class (except background) previously mentioned in \autoref{subs:finalclasses}, they will be labeled as a publication unit in the experiments where class confusion is investigated.
 
 \subsubsection{Delimitations}
 
@@ -1340,9 +1355,7 @@ Our objective is to segment newspaper images and to classify detected segments o
 \item[$\bullet$ Backbone] Used for feature extraction of an entire image
 \end{description}
 
-\textbf{Head}. In this thesis we used the FPN head. Among the alternatives are C4 and C5. In the original Mask R-CNN paper the FPN head outperforms the alternatives. 
-
-\textbf{Backbone}. Backbones used in this thesis:
+\textbf{Head}. Heads used in this thesis:
 
 \begin{itemize}
 \item ResNet-50
@@ -1353,7 +1366,10 @@ Our objective is to segment newspaper images and to classify detected segments o
 \end{itemize}
 
 
-In the last 3 backbones, $N$x$M$d refers to the total number of paths in the convolutional transformation (\textit{cardinality}=$N$)~\cite{DBLP:journals/corr/XieGDTH16} and \textit{depth}=$M$ which denotes the number of convolutions before aggregation if necessary. See \autoref{fig:cardinality} and \autoref{fig:depth} for a visual description.
+\textbf{Backbone}. In this thesis we used the FPN backbone. Among the alternatives are C4 and C5. In the original Mask R-CNN paper the FPN backbone outperforms the alternatives. 
+
+
+In the last 3 heads, $N$x$M$d refers to the total number of paths in the convolutional transformation (\textit{cardinality}=$N$)~\cite{DBLP:journals/corr/XieGDTH16} and \textit{depth}=$M$ which denotes the number of convolutions before aggregation if necessary. See \autoref{fig:cardinality} and \autoref{fig:depth} for a visual description.
 
 \begin{figure}[H]
   \begin{center}
@@ -1688,137 +1704,324 @@ mAP = \frac{1}{N} \sum_{i=1}^{N} AP_i
 
 In this section we present the results of the neural network architectures for the datasets created in this thesis. Naming convention follows the original Mask R-CNN paper and results are presented by bounding box ($bb$) and segmentation mask ($m$) respectively, as it is presented in the Mask R-CNN paper.
 
+Throughout these results, we will divide each section to show results using the classes defined in \autoref{subs:finalclasses} and \autoref{subs:pubunit} respectively.
+
 \section{Unimodal versus multimodal}
 
 \begin{table}[H]
   \begin{center}
     \caption{Model names}
     \label{tab:modelnames}
+    \begin{adjustbox}{width=1.2\textwidth,center=\textwidth}
     \resizebox{\columnwidth}{!}{
     \begin{tabular}{l|l|l|l|p{1.5cm}}
     \textbf{Final name} & \textbf{Head} & \textbf{Backbone} & \textbf{Sentence transformer} & \textbf{Text embeddings length} \\
     \hline
-    r50-FPN-vanilla & resnet50 & FPN & None & 0 \\    \hline
-    x101-32x8d-FPN-vanilla & resnext101 & FPN & None & 0 \\    \hline
-    x101-64x4d-FPN-vanilla & resnext101 & FPN & None & 0 \\     \hline
-    More & models & in & final & paper \\     \hline
-    r50-FPN-KBLab & resnext101 & FPN & KBLab/sentence-bert-swedish-cased & 768 \\     \hline
-    r50-FPN-KB & resnet50 & FPN & KB/bert-base-swedish-cased & 768 \\     \hline
-    \end{tabular}}
+    r50 & resnet50 & FPN & None & 0 \\    \hline
+    x101 & resnext101 & FPN & None & 0 \\    \hline
+    x101-32x4d & resnext101-32x4d & FPN & None & 0 \\    \hline
+    x101-32x8d & resnext101-32x8d & FPN & None & 0 \\    \hline
+    x101-64x4d & resnext101-64x4d & FPN & None & 0 \\     \hline
+
+    r50-MiniLM & resnet50 & FPN & all-MiniLM-L6-v2 & 384 \\     \hline
+    x101-MiniLM & resnext101 & FPN & all-MiniLM-L6-v2 & 384 \\     \hline
+    x101-32x4d-MiniLM & resnext101-32x4d & FPN & all-MiniLM-L6-v2 & 384 \\     \hline
+    x101-32x8d-MiniLM & resnext101-32x8d & FPN & all-MiniLM-L6-v2 & 384 \\     \hline
+    x101-64x4d-MiniLM & resnext101-64x4d & FPN & all-MiniLM-L6-v2 & 384 \\     \hline
+
+    r50-all-mpnet & resnet50 & FPN & all-mpnet-base-v2 & 384 \\     \hline
+    x101-all-mpnet & resnext101 & FPN & all-mpnet-base-v2 & 384 \\     \hline
+    x101-32x4d-all-mpnet & resnext101-32x4d & FPN & all-mpnet-base-v2 & 384 \\     \hline
+    x101-32x8d-all-mpnet & resnext101-32x8d & FPN & all-mpnet-base-v2 & 384 \\     \hline
+    x101-64x4d-all-mpnet & resnext101-64x4d & FPN & all-mpnet-base-v2 & 384 \\     \hline
+
+    r50-mq-mpnet & resnet50 & FPN & multi-qa-mpnet-base-dot-v1 & 384 \\     \hline
+    x101-mq-mpnet & resnext101 & FPN & multi-qa-mpnet-base-dot-v1 & 384 \\     \hline
+    x101-32x4d-mq-mpnet & resnext101-32x4d & FPN & multi-qa-mpnet-base-dot-v1 & 384 \\     \hline
+    x101-32x8d-mq-mpnet & resnext101-32x8d & FPN & multi-qa-mpnet-base-dot-v1 & 384 \\     \hline
+    x101-64x4d-mq-mpnet & resnext101-64x4d & FPN & multi-qa-mpnet-base-dot-v1 & 384 \\     \hline
+
+    r50-distilroberta & resnet50 & FPN & all-distilroberta-v1 & 384 \\     \hline
+    x101-distilroberta & resnext101 & FPN & all-distilroberta-v1 & 384 \\     \hline
+    x101-32x4d-distilroberta & resnext101-32x4d& FPN & all-distilroberta-v1 & 384 \\     \hline
+    x101-32x8d-distilroberta & resnext101-32x8d& FPN & all-distilroberta-v1 & 384 \\     \hline
+    x101-64x4d-distilroberta & resnext101-64x4d & FPN & all-distilroberta-v1 & 384 \\     \hline
+
+    r50-KBLab & resnet50 & FPN & KBLab/sentence-bert-swedish-cased & 768 \\     \hline
+    x101-KBLab & resnext101 & FPN & KBLab/sentence-bert-swedish-cased & 768 \\     \hline
+    x101-32x4d-KBLab & resnext101-32x4d & FPN & KBLab/sentence-bert-swedish-cased & 768 \\     \hline
+    x101-32x8d-KBLab & resnext101-32x8d & FPN & KBLab/sentence-bert-swedish-cased & 768 \\     \hline
+    x101-64x4d-KBLab & resnext101-64x4d & FPN & KBLab/sentence-bert-swedish-cased & 768 \\     \hline
+
+    r50-KB & resnet50 & FPN & KB/bert-base-swedish-cased & 768 \\     \hline
+    x101-KB & resnext101 & FPN & KB/bert-base-swedish-cased & 768 \\     \hline
+    r101-32x4d-KB & resnext101-32x4d & FPN & KB/bert-base-swedish-cased & 768 \\     \hline
+    r101-32x8d-KB & resnext101-32x8d & FPN & KB/bert-base-swedish-cased & 768 \\     \hline
+    r101-64x4d-KB & resnext101-64x4d & FPN & KB/bert-base-swedish-cased & 768 \\     \hline
+    \end{tabular}
+    }
+    \end{adjustbox} 
   \end{center}
 \end{table}
 
+\begin{center}
+Note: All models have the equivalent configuration for 1 class training and evaluation postfixed \textbf{-1c} in the final model name.
+\end{center}
+
+\clearpage
+
+\subsection{6 classes}
+
+All model results in this section are sorted by the \textbf{$mAP_m$}, the mean Average Precision for the segmentation mask. \textbf{TODO Not all results are in}
 
 \begin{table}[H]
   \begin{center}
-    \caption{Results on the DN 2010 - 2020 (In-set) dataset}
-    \label{tab:dn2010results}
+    \caption{Top 5 results - 6 classes - In-set}
+    \label{tab:top5allcinset}
     \resizebox{\columnwidth}{!}{
     \begin{tabular}{l|l|l|l|l|l|l} %
     \textbf{Final name} & \textbf{$mAP_m$} & \textbf{$mAP_m^{50}$} & \textbf{$mAP_m^{75}$} & \textbf{$mAP_{bb}$} & \textbf{$mAP_{bb}^{50}$} & \textbf{$mAP_{bb}^{75}$} \\
     \hline
-    r50-FPN-vanilla & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 \\    \hline
-    x101-32x8d-FPN-vanilla & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 \\    \hline
-    x101-64x4d-FPN-vanilla & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 \\     \hline
+    x101-32x8d &                    0.910 & 0.964 & 0.936 & 0.906 & 0.964 & 0.937 \\    \hline
+    x101-32x4d &                    0.906 & 0.957 & 0.929 & 0.901 & 0.957 & 0.932 \\    \hline
+    x101-64x4d &                    0.903 & 0.954 & 0.934 & 0.893 & 0.954 & 0.934 \\    \hline
+    x101 &                          0.901 & 0.951 & 0.928 & 0.885 & 0.953 & 0.927 \\    \hline
+    r50 &                           0.875 & 0.958 & 0.930 & 0.868 & 0.960 & 0.933 \\    \hline
+
     \end{tabular}}
   \end{center}
 \end{table}
 
 \begin{table}[H]
   \begin{center}
-    \caption{Results on the DN SvD 2001 - 2004 (Near-set) dataset}
-    \label{tab:dnsvd2001results}
+    \caption{Top 5 results - 6 classes - Near-set}
+    \label{tab:top5allcnearset}
     \resizebox{\columnwidth}{!}{
     \begin{tabular}{l|l|l|l|l|l|l}
     \textbf{Final name} & \textbf{$mAP_m$} & \textbf{$mAP_m^{50}$} & \textbf{$mAP_m^{75}$} & \textbf{$mAP_{bb}$} & \textbf{$mAP_{bb}^{50}$} & \textbf{$mAP_{bb}^{75}$} \\
     \hline
-    r50-FPN-vanilla & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 \\    \hline
-    x101-32x8d-FPN-vanilla & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 \\    \hline
-    x101-64x4d-FPN-vanilla & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 \\     \hline
+r50                            & 0.419 & 0.496 & 0.446 & 0.407 & 0.496 & 0.436 \\ \hline
+x101-32x4d                     & 0.417 & 0.493 & 0.425 & 0.407 & 0.493 & 0.424 \\ \hline
+x101-64x4d                     & 0.416 & 0.509 & 0.414 & 0.406 & 0.491 & 0.412 \\ \hline
+x101-32x8d                     & 0.413 & 0.489 & 0.421 & 0.402 & 0.496 & 0.419 \\ \hline
+x101                           & 0.408 & 0.470 & 0.433 & 0.405 & 0.468 & 0.430 \\ \hline
+
+
+
     \end{tabular}}
   \end{center}
 \end{table}
 
 \begin{table}[H]
   \begin{center}
-    \caption{Results on the Aftonbladet Expressen 2001 - 2004 (Out-set) dataset}
-    \label{tab:abexpresults}
+    \caption{Top 5 results - 6 classes - Out-set}
+    \label{tab:top5allcoutset}
     \resizebox{\columnwidth}{!}{
     \begin{tabular}{l|l|l|l|l|l|l}
     \textbf{Final name} & \textbf{$mAP_m$} & \textbf{$mAP_m^{50}$} & \textbf{$mAP_m^{75}$} & \textbf{$mAP_{bb}$} & \textbf{$mAP_{bb}^{50}$} & \textbf{$mAP_{bb}^{75}$} \\
     \hline
-    r50-FPN-vanilla & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 \\    \hline
-    x101-32x8d-FPN-vanilla & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 \\    \hline
-    x101-64x4d-FPN-vanilla & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 \\     \hline
+r50                            & 0.490 & 0.589 & 0.545 & 0.486 & 0.589 & 0.534 \\ \hline
+x101-32x4d                     & 0.484 & 0.587 & 0.520 & 0.474 & 0.585 & 0.515 \\ \hline
+x101-64x4d                     & 0.482 & 0.581 & 0.510 & 0.478 & 0.576 & 0.524 \\ \hline
+r50-all-mpnet                  & 0.463 & 0.590 & 0.508 & 0.440 & 0.589 & 0.502 \\ \hline
+x101-all-mpnet                 & 0.455 & 0.581 & 0.486 & 0.439 & 0.580 & 0.485 \\ \hline
+
     \end{tabular}}
   \end{center}
 \end{table}
 
-\section{Impact of class labels}
+\clearpage
 
-\textbf{TODO text and table here.}
+\subsection{1 class}
+
+All model results in this section are sorted by the \textbf{$mAP_m$}, the mean Average Precision for the segmentation mask. \textbf{TODO Not all results are in}
+
+\begin{table}[H]
+  \begin{center}
+    \caption{Top 5 results - 1 class - In-set}
+    \label{tab:top5onecinset}
+    \resizebox{\columnwidth}{!}{
+    \begin{tabular}{l|l|l|l|l|l|l} %
+    \textbf{Final name} & \textbf{$mAP_m$} & \textbf{$mAP_m^{50}$} & \textbf{$mAP_m^{75}$} & \textbf{$mAP_{bb}$} & \textbf{$mAP_{bb}^{50}$} & \textbf{$mAP_{bb}^{75}$} \\
+    \hline
+r50-1c                         & 0.843 & 0.933 & 0.874 & 0.839 & 0.933 & 0.883 \\ \hline
+x101-64x4d-1c                  & 0.843 & 0.916 & 0.871 & 0.839 & 0.916 & 0.871 \\ \hline
+x101-32x4d-1c                  & 0.841 & 0.906 & 0.872 & 0.835 & 0.906 & 0.872 \\ \hline
+x101-32x8d-1c                  & 0.841 & 0.910 & 0.861 & 0.837 & 0.910 & 0.862 \\ \hline
+x101-1c                        & 0.840 & 0.917 & 0.862 & 0.832 & 0.917 & 0.862 \\ \hline
+
+
+    \end{tabular}}
+  \end{center}
+\end{table}
+
+\begin{table}[H]
+  \begin{center}
+    \caption{Top 5 results - 1 class - Near-set}
+    \label{tab:top5onecnearset}
+    \resizebox{\columnwidth}{!}{
+    \begin{tabular}{l|l|l|l|l|l|l}
+    \textbf{Final name} & \textbf{$mAP_m$} & \textbf{$mAP_m^{50}$} & \textbf{$mAP_m^{75}$} & \textbf{$mAP_{bb}$} & \textbf{$mAP_{bb}^{50}$} & \textbf{$mAP_{bb}^{75}$} \\
+    \hline
+r50-1c                         & 0.550 & 0.677 & 0.589 & 0.543 & 0.676 & 0.584 \\ \hline
+x101-64x4d-1c                  & 0.524 & 0.636 & 0.554 & 0.520 & 0.636 & 0.555 \\ \hline
+x101-32x8d-1c                  & 0.522 & 0.634 & 0.551 & 0.519 & 0.636 & 0.552 \\ \hline
+x101-1c                        & 0.516 & 0.622 & 0.552 & 0.511 & 0.623 & 0.553 \\ \hline
+x101-32x4d-1c                  & 0.506 & 0.618 & 0.532 & 0.502 & 0.617 & 0.530 \\ \hline
+    \end{tabular}}
+  \end{center}
+\end{table}
+
+\begin{table}[H]
+  \begin{center}
+    \caption{Top 5 results - 1 class - Out-set}
+    \label{tab:top5onecoutset}
+    \resizebox{\columnwidth}{!}{
+    \begin{tabular}{l|l|l|l|l|l|l}
+    \textbf{Final name} & \textbf{$mAP_m$} & \textbf{$mAP_m^{50}$} & \textbf{$mAP_m^{75}$} & \textbf{$mAP_{bb}$} & \textbf{$mAP_{bb}^{50}$} & \textbf{$mAP_{bb}^{75}$} \\
+    \hline
+r50-all-mpnet-1c               & 0.455 & 0.612 & 0.480 & 0.449 & 0.611 & 0.483 \\ \hline
+r50-1c                         & 0.438 & 0.560 & 0.460 & 0.432 & 0.556 & 0.462 \\ \hline
+x101-all-mpnet-1c              & 0.433 & 0.564 & 0.459 & 0.426 & 0.564 & 0.456 \\ \hline
+x101-1c                        & 0.421 & 0.532 & 0.436 & 0.416 & 0.529 & 0.437 \\ \hline
+x101-64x4d-1c                  & 0.419 & 0.519 & 0.445 & 0.414 & 0.517 & 0.438 \\ \hline
+    \end{tabular}}
+  \end{center}
+\end{table}
+
+
+\clearpage
 
 \section{Impact of dataset size}
 
-All results reported in this section are averaged over 5 runs. The standard deviation $\sigma$ denotes the average of the standard deviations of each column. 
+All results reported in this section are averaged over 5 runs. The standard deviation $\sigma$ denotes the average of the standard deviations of each cell in the row. All results derive from the model \textbf{r50}.
+
+\subsection{6 classes}
+
 
 \begin{table}[H]
   \begin{center}
-    \caption{Gradually increasing dataset size - All classes - In set}
+    \caption{Gradually increasing dataset size - 6 classes - In-set}
     \label{tab:dsizeallcinset}
     \resizebox{\columnwidth}{!}{
     \begin{tabular}{l|l|l|l|l|l|l|l}
     \textbf{\% Train} & \textbf{$mAP_m$} & \textbf{$mAP_m^{50}$} & \textbf{$mAP_m^{75}$} & \textbf{$mAP_{bb}$} & \textbf{$mAP_{bb}^{50}$} & \textbf{$mAP_{bb}^{75}$} & \textbf{$\sigma$} \\
     \hline
-    25\% & 0.460 & 0.690 & 0.482 & 0.448 & 0.597 & 0.430 & 0 \\    \hline
-    50\% & 0.747 & 0.832 & 0.790 & 0.713 & 0.832 & 0.789 & 0  \\    \hline
-    75\% & 0.750 & 0.822 & 0.808 & 0.752 & 0.822 & 0.810 & 0  \\     \hline
-    90\% & 0.595 & 0.664 & 0.620 & 0.592 & 0.665 & 0.617 & 0 \\     \hline
-    100\% & 0.851 & 0.944 & 0.875 & 0.842 & 0.943 & 0.878 & 0  \\     \hline
+    25\% & 0.723 & 0.848 & 0.790 & 0.688 & 0.847 & 0.781 & 0.027 \\    \hline
+    50\% & 0.883 & 0.964 & 0.945 & 0.850 & 0.965 & 0.943 & 0.003 \\    \hline
+    75\% & \textbf{0.939} & \textbf{0.989} & \textbf{0.981} & \textbf{0.927} & \textbf{0.989} & \textbf{0.980} & 0.004 \\    \hline
+    90\% & 0.934 & 0.976 & 0.963 & 0.921 & 0.975 & 0.962 & 0.006 \\    \hline
+    100\% & 0.901 & 0.960 & 0.935 & 0.895 & 0.960 & 0.934 & 0.005 \\    \hline
+
     \end{tabular}}
   \end{center}
 \end{table}
 
 \begin{table}[H]
   \begin{center}
-    \caption{Gradually increasing dataset size - All classes - Near set}
+    \caption{Gradually increasing dataset size - 6 classes - Near-set}
     \label{tab:dsizeallcnearset}
     \resizebox{\columnwidth}{!}{
     \begin{tabular}{l|l|l|l|l|l|l|l}
     \textbf{\% Train} & \textbf{$mAP_m$} & \textbf{$mAP_m^{50}$} & \textbf{$mAP_m^{75}$} & \textbf{$mAP_{bb}$} & \textbf{$mAP_{bb}^{50}$} & \textbf{$mAP_{bb}^{75}$} & \textbf{$\sigma$} \\
     \hline
-    25\% & 0.220 & 0.309 & 0.219 & 0.210 & 0.309 & 0.218 & 0 \\    \hline
-    50\% & 0.376 & 0.459 & 0.378 & 0.365 & 0.457 & 0.374 & 0  \\    \hline
-    75\% & 0.343 & 0.409 & 0.366 & 0.336 & 0.409 & 0.361 & 0 \\     \hline
-    90\% & 0.275 & 0.350 & 0.287 & 0.267 & 0.352 & 0.290 & 0 \\     \hline
-    100\% & 0.414 & 0.481 & 0.430 & 0.402 & 0.481 & 0.423 & 0  \\     \hline
+    25\% & 0.360 & 0.455 & 0.374 & 0.343 & 0.455 & 0.374 & 0.006 \\    \hline
+    50\% & 0.381 & 0.449 & 0.412 & 0.377 & 0.449 & 0.409 & 0.005 \\    \hline
+    75\% & 0.420 & 0.502 & \textbf{0.457} & 0.411 & 0.502 & \textbf{0.446} & 0.011 \\    \hline
+    90\% & \textbf{0.434} & \textbf{0.528} & 0.453 & \textbf{0.425} & \textbf{0.531} & \textbf{0.446} & 0.009 \\    \hline
+    100\% & 0.414 & 0.493 & 0.426 & 0.400 & 0.502 & 0.418 & 0.012 \\    \hline
+
     \end{tabular}}
   \end{center}
 \end{table}
 
 \begin{table}[H]
   \begin{center}
-    \caption{Gradually increasing dataset size - All classes - Out set}
+    \caption{Gradually increasing dataset size - 6 classes - Out-set}
     \label{tab:dsizeallcoutset}
     \resizebox{\columnwidth}{!}{
     \begin{tabular}{l|l|l|l|l|l|l|l}
     \textbf{\% Train} & \textbf{$mAP_m$} & \textbf{$mAP_m^{50}$} & \textbf{$mAP_m^{75}$} & \textbf{$mAP_{bb}$} & \textbf{$mAP_{bb}^{50}$} & \textbf{$mAP_{bb}^{75}$} & \textbf{$\sigma$} \\
     \hline
-    25\% & 0.389 & 0.476 & 0.423 & 0.377 & 0.474 & 0.413 & 0 \\    \hline
-    50\% & 0.330 & 0.425 & 0.355 & 0.325 & 0.425 & 0.353 & 0  \\    \hline
-    75\% & 0.288 & 0.368 & 0.310 & 0.282 & 0.368 & 0.310 & 0  \\     \hline
-    90\% & 0.290 & 0.356 & 0.310 & 0.279 & 0.355 & 0.289 & 0 \\     \hline
-    100\% & 0.488 & 0.599 & 0.527 & 0.451 & 0.598 & 0.461 & 0 \\    \hline
+    25\% & 0.296 & 0.393 & 0.314 & 0.286 & 0.391 & 0.312 & 0.009 \\    \hline
+    50\% & 0.421 & 0.505 & 0.452 & 0.405 & 0.500 & 0.444 & 0.023 \\    \hline
+    75\% & 0.437 & 0.515 & 0.471 & 0.424 & 0.515 & 0.458 & 0.008 \\    \hline
+    90\% & \textbf{0.501} & \textbf{0.600} & 0.540 & 0.489 & \textbf{0.598} & \textbf{0.535} & 0.021 \\    \hline
+    100\% & 0.499 & 0.590 & \textbf{0.543} & \textbf{0.490} & 0.590 & 0.533 & 0.016 \\    \hline
     \end{tabular}}
   \end{center}
 \end{table}
 
+\clearpage
 
+\subsection{1 class}
+
+
+\begin{table}[H]
+  \begin{center}
+    \caption{Gradually increasing dataset size - 1 class - In-set}
+    \label{tab:dsizeonecinset}
+    \resizebox{\columnwidth}{!}{
+    \begin{tabular}{l|l|l|l|l|l|l|l}
+    \textbf{\% Train} & \textbf{$mAP_m$} & \textbf{$mAP_m^{50}$} & \textbf{$mAP_m^{75}$} & \textbf{$mAP_{bb}$} & \textbf{$mAP_{bb}^{50}$} & \textbf{$mAP_{bb}^{75}$} & \textbf{$\sigma$} \\
+    \hline
+    25\% & 0.760 & 0.874 & 0.805 & 0.752 & 0.872 & 0.806 & 0.007 \\    \hline
+    50\% & 0.848 & 0.919 & 0.886 & 0.843 & 0.922 & 0.886 & 0.004 \\    \hline
+    75\% & \textbf{0.919} & \textbf{0.973} & \textbf{0.960} & \textbf{0.911} & \textbf{0.973} & \textbf{0.957} & 0.003 \\    \hline
+    90\% & 0.904 & 0.962 & 0.935 & 0.895 & 0.961 & 0.934 & 0.004 \\    \hline
+    100\% & 0.839 & 0.928 & 0.875 & 0.833 & 0.932 & 0.871 & 0.007 \\    \hline
+
+
+    \end{tabular}}
+  \end{center}
+\end{table}
+
+\begin{table}[H]
+  \begin{center}
+    \caption{Gradually increasing dataset size - 1 class - Near-set}
+    \label{tab:dsizeonecnearset}
+    \resizebox{\columnwidth}{!}{
+    \begin{tabular}{l|l|l|l|l|l|l|l}
+    \textbf{\% Train} & \textbf{$mAP_m$} & \textbf{$mAP_m^{50}$} & \textbf{$mAP_m^{75}$} & \textbf{$mAP_{bb}$} & \textbf{$mAP_{bb}^{50}$} & \textbf{$mAP_{bb}^{75}$} & \textbf{$\sigma$} \\
+    \hline
+    25\% & 0.477 & 0.605 & 0.518 & 0.472 & 0.607 & 0.514 & 0.005 \\    \hline
+    50\% & 0.507 & 0.631 & 0.542 & 0.499 & 0.631 & 0.536 & 0.005 \\    \hline
+    75\% & 0.530 & 0.652 & 0.568 & 0.520 & 0.650 & 0.560 & 0.008 \\    \hline
+    90\% & 0.543 & 0.662 & 0.584 & 0.536 & 0.664 & \textbf{0.580} & 0.010 \\    \hline
+    100\% & \textbf{0.546} & \textbf{0.668} & \textbf{0.585} & \textbf{0.539} & \textbf{0.669} & 0.577 & 0.006 \\    \hline
+
+
+    \end{tabular}}
+  \end{center}
+\end{table}
+
+\begin{table}[H]
+  \begin{center}
+    \caption{Gradually increasing dataset size - 1 class - Out-set}
+    \label{tab:dsizeonecoutset}
+    \resizebox{\columnwidth}{!}{
+    \begin{tabular}{l|l|l|l|l|l|l|l}
+    \textbf{\% Train} & \textbf{$mAP_m$} & \textbf{$mAP_m^{50}$} & \textbf{$mAP_m^{75}$} & \textbf{$mAP_{bb}$} & \textbf{$mAP_{bb}^{50}$} & \textbf{$mAP_{bb}^{75}$} & \textbf{$\sigma$} \\
+    \hline
+    25\% & 0.360 & 0.484 & 0.373 & 0.354 & 0.482 & 0.373 & 0.005 \\    \hline
+    50\% & 0.417 & 0.534 & 0.440 & 0.406 & 0.531 & 0.432 & 0.007 \\    \hline
+    75\% & 0.410 & 0.533 & 0.435 & 0.404 & 0.531 & 0.434 & 0.008 \\    \hline
+    90\% & 0.435 & 0.545 & 0.462 & 0.427 & 0.542 & 0.455 & 0.012 \\    \hline
+    100\% & \textbf{0.441} & \textbf{0.563} & \textbf{0.464} & \textbf{0.435} & \textbf{0.561} & \textbf{0.462} & 0.007 \\    \hline
+    \end{tabular}}
+  \end{center}
+\end{table}
+
+\clearpage
 
 \section{Impact of image scaling}
 
-\textbf{TODO text and table here about results of image size augmentation.}
+\textbf{TODO text and table here about results of image size augmentation. TODO text about how almost no annotations classify as < $32^2$. Talk about how mAP(l) and mAP(m) are always higher. We expect degredation of performance at 0.5, uncertain for upscaling.}
 
+
+\section{Impact of classes}
+
+\textbf{TODO show some class confusion matrices.}
 
 \chapter{Discussion}
 \label{ch:disc}
@@ -1840,7 +2043,7 @@ By limiting the number of classes to one, the burden of determining the class be
 
 \subsection{Large text embeddings} 
 
-As seen \autoref{tab:modeldimensions}, the sentence transformers output their vectors of size $768$ or $384$. This adds a significant number of channels to the input if inserted without alteration. The consequence is a large memory footprint. Additionally, using an otherwise unaltered Mask R-CNN architecture, this puts a lot of responsibility for layers closer to the input layer to discern the importance of the additional information.  
+As seen \autoref{tab:modeldimensions}, the sentence transformers output their vectors of size $768$ or $384$. This adds a significant number of channels to the input if inserted without alteration. The consequence is a large memory footprint.  
 
 \subsection{Text granularity}
 
@@ -1861,7 +2064,7 @@ The models proposed in this thesis need not be used in an end-to-end fashion. Sp
 \begin{itemize}
 \item \textbf{Pairwise merged newspaper pages.} Per newspaper page instance segmentation has its drawbacks. Newspapers are meant to be read mostly overviewing two pages simultaniously. "Implied content" could be avoided by merging pages pairwise before annotation.
 \item \textbf{Domain-specific architecture.} Developing specific head and backbone architecture to incorporate the textual embeddings puts less reliance on the traditional head and backbone architectures to adapt to the new input medium.
-\item \textbf{Dataset size}. Dataset size increases could potentially lead to more stable results and a greater diversity in topology and time-period could lead to a greater generalization property.
+\item \textbf{Dataset size}. Dataset size increases could potentially lead to more stable results and a greater diversity in topology and time-period of the training dataset could lead to a greater generalization property.
 \item \textbf{Dimensionality reduction}. Principle Component Analysis (PCA) or any other dimensionality reduction algorithm could be used to compress the vector representation. This could be useful to limit the memory footprint of the input, and potentially denoise the input.
 \item \textbf{Image normalization and training without pretrained weights}. In this thesis, image normalization values were left unchanged and training was done using the pretrained weights for the respective architectures. Could using dataset specific image normalization values and training models from scratch improve results?
 \end{itemize}

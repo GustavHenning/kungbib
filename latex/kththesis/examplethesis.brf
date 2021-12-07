@@ -1,5 +1,3 @@
-\backcite {Wang_2019}{{xi}{(document)}{Doc-Start}}
-\backcite {Wang_2019}{{xi}{(document)}{Doc-Start}}
 \backcite {Kang2020DeepCN}{{xi}{(document)}{Doc-Start}}
 \backcite {Kang2020DeepCN}{{xi}{(document)}{Doc-Start}}
 \backcite {he2016deep}{{xi}{(document)}{Doc-Start}}
@@ -13,80 +11,66 @@
 \backcite {ESKENAZI20171}{{2}{1.1}{section.1.1}}
 \backcite {8270006}{{6}{2.1.1}{subsection.2.1.1}}
 \backcite {Rekathati_2020}{{6}{2.1.2}{subsection.2.1.2}}
-\backcite {Rumelhart1986}{{8}{2.2.1}{equation.2.2.1}}
-\backcite {doi:10.1021/ci0342472}{{9}{2.2.2.1}{subsubsection.2.2.2.1}}
-\backcite {Wang_2019}{{9}{2.1}{figure.2.1}}
-\backcite {10.1038/317314a0}{{9}{1}{Item.7}}
-\backcite {Prechelt2012}{{9}{2}{Item.8}}
-\backcite {JMLR:v15:srivastava14a}{{10}{3}{Item.9}}
-\backcite {10.2307/2289457}{{10}{4}{Item.10}}
-\backcite {doi:10.1142/S0218488598000094}{{10}{2.2.2.2}{subsubsection.2.2.2.2}}
-\backcite {maas2013rectifier}{{10}{1}{Item.11}}
-\backcite {Wang_2019}{{11}{2.2}{figure.2.2}}
-\backcite {quintana1974clipping}{{11}{2}{Item.12}}
-\backcite {ioffe2015batch}{{11}{3}{Item.13}}
-\backcite {Rumelhart1986}{{12}{1}{Item.14}}
-\backcite {DBLP:journals/corr/abs-1711-05101}{{12}{2}{Item.15}}
-\backcite {Kang2020DeepCN}{{13}{2.3}{figure.2.3}}
-\backcite {Kang2020DeepCN}{{14}{2.4}{figure.2.4}}
-\backcite {he2016deep}{{14}{2.2.3}{figure.2.4}}
-\backcite {he2016deep}{{15}{2.5}{figure.2.5}}
-\backcite {DBLP:journals/corr/LongSD14}{{15}{2.2.4}{subsection.2.2.4}}
-\backcite {DBLP:journals/corr/LongSD14}{{16}{2.6}{figure.2.6}}
-\backcite {DBLP:journals/corr/LinDGHHB16}{{17}{2.7}{figure.2.7}}
-\backcite {Girshick_2014_CVPR}{{18}{2.2.6}{subsection.2.2.6}}
-\backcite {Girshick_2015_ICCV}{{18}{2.2.6}{subsection.2.2.6}}
-\backcite {7485869}{{18}{2.2.6}{subsection.2.2.6}}
-\backcite {DBLP:journals/corr/HeGDG17}{{18}{2.2.6}{subsection.2.2.6}}
-\backcite {DBLP:journals/corr/abs-1902-07296}{{18}{2.2.6}{subsection.2.2.6}}
-\backcite {DBLP:journals/corr/HeGDG17}{{19}{2.8}{figure.2.8}}
-\backcite {ESKENAZI20171}{{19}{2.3}{section.2.3}}
-\backcite {395720}{{20}{2.3}{Item.18}}
-\backcite {ESKENAZI20171}{{21}{2.9}{figure.2.9}}
-\backcite {lecun1989}{{22}{2.3.2}{subsection.2.3.2}}
-\backcite {deng2009}{{22}{2.3.2}{subsection.2.3.2}}
-\backcite {DBLP:journals/corr/0011S17}{{22}{2.3.2}{subsection.2.3.2}}
-\backcite {he2017, xu2017, wickpuppe2018, oliveira2018}{{22}{2.3.2}{subsection.2.3.2}}
-\backcite {DBLP:journals/corr/LongSD14}{{22}{2.3.2}{subsection.2.3.2}}
-\backcite {8270006}{{22}{2.3.2}{subsection.2.3.2}}
-\backcite {katti2018}{{22}{2.3.2}{subsection.2.3.2}}
-\backcite {DBLP:journals/corr/abs-2106-00952}{{22}{2.3.2}{subsection.2.3.2}}
-\backcite {DBLP:journals/corr/abs-1909-04948}{{22}{2.3.2}{subsection.2.3.2}}
-\backcite {katti2018}{{22}{2.3.2}{subsection.2.3.2}}
-\backcite {DBLP:journals/corr/YangYAKKG17}{{22}{2.3.2}{subsection.2.3.2}}
-\backcite {mikolov2013}{{22}{2.3.2}{subsection.2.3.2}}
-\backcite {jdmdh:7097}{{22}{2.3.2}{subsection.2.3.2}}
-\backcite {jdmdh:7097}{{22}{2.3.2}{subsection.2.3.2}}
-\backcite {jdmdh:7097}{{22}{2.3.2}{subsection.2.3.2}}
-\backcite {jdmdh:7097}{{22}{2.3.2}{subsection.2.3.2}}
-\backcite {10.1145/3434237}{{23}{2.4}{section.2.4}}
-\backcite {mikolov2013}{{24}{2.4.1.3}{subsubsection.2.4.1.3}}
-\backcite {pennington2014glove}{{25}{2.4.1.3}{subsubsection.2.4.1.3}}
-\backcite {DBLP:journals/corr/BojanowskiGJM16}{{25}{2.4.1.3}{subsubsection.2.4.1.3}}
-\backcite {devlin2018bert}{{25}{2.4.2}{subsection.2.4.2}}
-\backcite {46201}{{25}{2.4.2}{subsection.2.4.2}}
-\backcite {radford2018improving}{{25}{2.4.2}{subsection.2.4.2}}
-\backcite {reimers-2019-sentence-bert, reimers-2020-multilingual-sentence-bert}{{25}{2.4.3}{subsection.2.4.3}}
-\backcite {devlin2018bert}{{25}{2.4.3}{subsection.2.4.3}}
-\backcite {DBLP:journals/corr/abs-1906-07155}{{27}{3.1.2.1}{subsubsection.3.1.2.1}}
-\backcite {Label_Studio}{{28}{3.1.2.2}{subsubsection.3.1.2.2}}
-\backcite {DBLP:journals/corr/HeGDG17}{{38}{3.3}{section.3.3}}
-\backcite {DBLP:journals/corr/XieGDTH16}{{38}{3.3.1}{subsection.3.3.1}}
-\backcite {DBLP:journals/corr/XieGDTH16}{{39}{3.3}{figure.3.3}}
-\backcite {DBLP:journals/corr/XieGDTH16}{{39}{3.4}{figure.3.4}}
-\backcite {DBLP:journals/corr/GoyalDGNWKTJH17}{{43}{3.3.2.2}{subsubsection.3.3.2.2}}
-\backcite {jdmdh:7097}{{43}{3.3.3}{subsection.3.3.3}}
-\backcite {DBLP:journals/corr/YangYAKKG17}{{43}{3.3.3}{subsection.3.3.3}}
-\backcite {jdmdh:7097}{{43}{3.3.3}{subsection.3.3.3}}
-\backcite {DBLP:journals/corr/YangYAKKG17}{{43}{3.3.3}{subsection.3.3.3}}
-\backcite {swedish-bert}{{45}{3.3.3.2}{subsubsection.3.3.3.2}}
-\backcite {reimers-2019-sentence-bert, reimers-2020-multilingual-sentence-bert}{{45}{3.3.3.2}{subsubsection.3.3.3.2}}
-\backcite {reimers-2019-sentence-bert, reimers-2020-multilingual-sentence-bert}{{45}{3.9}{table.3.9}}
-\backcite {reimers-2019-sentence-bert, reimers-2020-multilingual-sentence-bert}{{45}{3.9}{table.3.9}}
-\backcite {reimers-2019-sentence-bert, reimers-2020-multilingual-sentence-bert}{{45}{3.9}{table.3.9}}
-\backcite {reimers-2019-sentence-bert, reimers-2020-multilingual-sentence-bert}{{45}{3.9}{table.3.9}}
-\backcite {swedish-bert}{{45}{3.9}{table.3.9}}
-\backcite {swedish-bert}{{45}{3.9}{table.3.9}}
-\backcite {DBLP:journals/corr/LongSD14}{{47}{3.5.1}{equation.3.5.2}}
-\backcite {davis2006relationship}{{48}{3.5.2}{subsection.3.5.2}}
-\backcite {zhang2009average}{{49}{3.5.3}{subsection.3.5.3}}
+\backcite {Kang2020DeepCN}{{8}{2.1}{figure.2.1}}
+\backcite {Kang2020DeepCN}{{9}{2.2}{figure.2.2}}
+\backcite {he2016deep}{{10}{2.2.1}{figure.2.2}}
+\backcite {he2016deep}{{10}{2.3}{figure.2.3}}
+\backcite {DBLP:journals/corr/LongSD14}{{10}{2.2.2}{subsection.2.2.2}}
+\backcite {DBLP:journals/corr/LongSD14}{{11}{2.4}{figure.2.4}}
+\backcite {DBLP:journals/corr/LinDGHHB16}{{12}{2.5}{figure.2.5}}
+\backcite {Girshick_2014_CVPR}{{13}{2.2.4}{subsection.2.2.4}}
+\backcite {Girshick_2015_ICCV}{{13}{2.2.4}{subsection.2.2.4}}
+\backcite {7485869}{{13}{2.2.4}{subsection.2.2.4}}
+\backcite {DBLP:journals/corr/HeGDG17}{{13}{2.2.4}{subsection.2.2.4}}
+\backcite {DBLP:journals/corr/abs-1902-07296}{{13}{2.2.4}{subsection.2.2.4}}
+\backcite {DBLP:journals/corr/HeGDG17}{{14}{2.6}{figure.2.6}}
+\backcite {ESKENAZI20171}{{14}{2.3}{section.2.3}}
+\backcite {395720}{{15}{2.3}{Item.5}}
+\backcite {ESKENAZI20171}{{16}{2.7}{figure.2.7}}
+\backcite {lecun1989}{{17}{2.3.2}{subsection.2.3.2}}
+\backcite {deng2009}{{17}{2.3.2}{subsection.2.3.2}}
+\backcite {DBLP:journals/corr/0011S17}{{17}{2.3.2}{subsection.2.3.2}}
+\backcite {he2017, xu2017, wickpuppe2018, oliveira2018}{{17}{2.3.2}{subsection.2.3.2}}
+\backcite {DBLP:journals/corr/LongSD14}{{17}{2.3.2}{subsection.2.3.2}}
+\backcite {8270006}{{17}{2.3.2}{subsection.2.3.2}}
+\backcite {katti2018}{{17}{2.3.2}{subsection.2.3.2}}
+\backcite {DBLP:journals/corr/abs-2106-00952}{{17}{2.3.2}{subsection.2.3.2}}
+\backcite {DBLP:journals/corr/abs-1909-04948}{{17}{2.3.2}{subsection.2.3.2}}
+\backcite {katti2018}{{17}{2.3.2}{subsection.2.3.2}}
+\backcite {DBLP:journals/corr/YangYAKKG17}{{17}{2.3.2}{subsection.2.3.2}}
+\backcite {mikolov2013}{{17}{2.3.2}{subsection.2.3.2}}
+\backcite {jdmdh:7097}{{17}{2.3.2}{subsection.2.3.2}}
+\backcite {jdmdh:7097}{{17}{2.3.2}{subsection.2.3.2}}
+\backcite {jdmdh:7097}{{17}{2.3.2}{subsection.2.3.2}}
+\backcite {jdmdh:7097}{{17}{2.3.2}{subsection.2.3.2}}
+\backcite {10.1145/3434237}{{18}{2.4}{section.2.4}}
+\backcite {mikolov2013}{{19}{2.4.1.3}{subsubsection.2.4.1.3}}
+\backcite {pennington2014glove}{{20}{2.4.1.3}{subsubsection.2.4.1.3}}
+\backcite {DBLP:journals/corr/BojanowskiGJM16}{{20}{2.4.1.3}{subsubsection.2.4.1.3}}
+\backcite {devlin2018bert}{{20}{2.4.2}{subsection.2.4.2}}
+\backcite {46201}{{20}{2.4.2}{subsection.2.4.2}}
+\backcite {radford2018improving}{{20}{2.4.2}{subsection.2.4.2}}
+\backcite {reimers-2019-sentence-bert, reimers-2020-multilingual-sentence-bert}{{20}{2.4.3}{subsection.2.4.3}}
+\backcite {devlin2018bert}{{20}{2.4.3}{subsection.2.4.3}}
+\backcite {DBLP:journals/corr/abs-1906-07155}{{22}{3.1.2.1}{subsubsection.3.1.2.1}}
+\backcite {Label_Studio}{{23}{3.1.2.2}{subsubsection.3.1.2.2}}
+\backcite {DBLP:journals/corr/HeGDG17}{{33}{3.3}{section.3.3}}
+\backcite {DBLP:journals/corr/XieGDTH16}{{33}{3.3.1}{subsection.3.3.1}}
+\backcite {DBLP:journals/corr/XieGDTH16}{{34}{3.3}{figure.3.3}}
+\backcite {DBLP:journals/corr/XieGDTH16}{{34}{3.4}{figure.3.4}}
+\backcite {DBLP:journals/corr/GoyalDGNWKTJH17}{{38}{3.3.2.2}{subsubsection.3.3.2.2}}
+\backcite {jdmdh:7097}{{38}{3.3.3}{subsection.3.3.3}}
+\backcite {DBLP:journals/corr/YangYAKKG17}{{38}{3.3.3}{subsection.3.3.3}}
+\backcite {jdmdh:7097}{{38}{3.3.3}{subsection.3.3.3}}
+\backcite {DBLP:journals/corr/YangYAKKG17}{{38}{3.3.3}{subsection.3.3.3}}
+\backcite {swedish-bert}{{40}{3.3.3.2}{subsubsection.3.3.3.2}}
+\backcite {reimers-2019-sentence-bert, reimers-2020-multilingual-sentence-bert}{{40}{3.3.3.2}{subsubsection.3.3.3.2}}
+\backcite {reimers-2019-sentence-bert, reimers-2020-multilingual-sentence-bert}{{40}{3.9}{table.3.9}}
+\backcite {reimers-2019-sentence-bert, reimers-2020-multilingual-sentence-bert}{{40}{3.9}{table.3.9}}
+\backcite {reimers-2019-sentence-bert, reimers-2020-multilingual-sentence-bert}{{40}{3.9}{table.3.9}}
+\backcite {reimers-2019-sentence-bert, reimers-2020-multilingual-sentence-bert}{{40}{3.9}{table.3.9}}
+\backcite {swedish-bert}{{40}{3.9}{table.3.9}}
+\backcite {swedish-bert}{{40}{3.9}{table.3.9}}
+\backcite {DBLP:journals/corr/LongSD14}{{42}{3.5.1}{equation.3.5.2}}
+\backcite {davis2006relationship}{{43}{3.5.2}{subsection.3.5.2}}
+\backcite {zhang2009average}{{44}{3.5.3}{subsection.3.5.3}}
