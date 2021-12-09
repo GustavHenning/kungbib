@@ -43,15 +43,28 @@ def stack_images(path):
     #imgs_comb.save( 'stacked_v.jpg' )
 
 def combine_results(dir):
-    bbox = path.join(dir, "results/bbox")
-    if path.exists(bbox):
-        stack_images(bbox)
-    segm = path.join(dir, "results/segm")
-    if path.exists(segm):
-        stack_images(segm)
+
+    test_sets = glob(path.join(dir, "results", "*/"))
+    for set in test_sets:
+        bbox = path.join(set, "bbox")
+        if path.exists(bbox):
+            stack_images(bbox)
+        segm = path.join(set, "segm")
+        if path.exists(segm):
+            stack_images(segm)
 
 if __name__ == "__main__":
+    runs = 5
+    for i in range(1,runs+1):
+        dirs = glob(path.join(model_dir, "ratio", "run_{}".format(i), "*/"))
+        for dir in dirs:
+            print(dir)
+            combine_results(dir)
+
+
     dirs = glob(path.join(model_dir, "*/"))
     for dir in dirs:
+        if "ratio" in dir:
+            continue
         print(dir)
         combine_results(dir)
