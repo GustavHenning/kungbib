@@ -16,8 +16,28 @@ from mpl_toolkits.mplot3d import Axes3D
 
 BASE_CHANNELS = 3
 DEBUG_IMAGE = False
+SIMPLE_VIZ_WITH_TF = False
 DEBUG_TIME = False
 VISUALIZE_EMBEDDINGS = False
+
+IMAGES_FOR_THESIS = ["images/dark-10120707_part01_page006_TFE3FSf.jpg",
+"images/dark-10120964_part01_page005_FZKQ4Zg.jpg",
+"images/dark-10120964_part01_page017_AVThDFz.jpg",
+"images/dark-10120964_part01_page018_OD046mU.jpg",
+"images/dark-10120964_part01_page032_y3LXnnL.jpg",
+"images/dark-10366628_part01_page002_KZBgVFj.jpg",
+"images/dark-10366628_part01_page021_BSsg1sL.jpg",
+"images/dark-10366628_part02_page017_9rwJ51v.jpg",
+"images/dark-4407198_part03_page015_7Zovctl.jpg",
+"images/dark-4425041_part01_page001_JIefsDa.jpg",
+"images/dark-4425337_part02_page051_GQU6vjW.jpg",
+"images/dark-4993682_part01_page022_zk6UnuL.jpg",
+"images/dark-5027440_part01_page028_Jd55Bvg.jpg",
+"images/dark-6608804_part01_page011_TZqA3El.jpg",
+"images/dark-6733161_part04_page033_GqEyiAA.jpg",
+"images/dark-6745860_part04_page037_1RoKim0.jpg",
+"images/dark-6748921_part04_page009_kvtooQ3.jpg",
+"images/dark-6749981_part02_page031_PuwcAOD.jpg"]
 
 @PIPELINES.register_module()
 class TextFeatures:
@@ -41,9 +61,9 @@ class TextFeatures:
         if DEBUG_TIME:
             start = timer()
 
-        if DEBUG_IMAGE:
+        if self.should_show_debug_img(results):
             fig, ax = self.draw_base_image(results)
-
+        
 
         scaleX = results["img_shape"][1] / results["ori_shape"][1]
         scaleY = results["img_shape"][0] / results["ori_shape"][0]
@@ -54,7 +74,7 @@ class TextFeatures:
         img_prepad_w = results["img_shape"][1]
         img_prepad_h = results["img_shape"][0]
 
-        if DEBUG_IMAGE:
+        if self.should_show_debug_img(results):
             #print(results)
             print(results["img_shape"])
             print(results["img"].shape)
@@ -93,12 +113,10 @@ class TextFeatures:
             #    for b in range(x, x+w):
             #        text_feature_array[a][b] = encoded_vector
             text_feature_array[y:(y+h),x:(x+w),:] = encoded_vector
-            if DEBUG_IMAGE:
+            if self.should_show_debug_img(results) and not SIMPLE_VIZ_WITH_TF:
                 self.draw_rect(ax,x,y,w,h)
         if DEBUG_TIME:
             print("blocks done at {}".format(timer() - start))
-        if DEBUG_IMAGE:
-            self.show_plot()
 
         len_y = results["img"].shape[0]
         len_x = results["img"].shape[1]
@@ -110,8 +128,17 @@ class TextFeatures:
             print("concatenate done at {}".format(timer() - start))
         results["img_rgb"] = results["img"]
         results["img"] = text_feature_array
-        if VISUALIZE_EMBEDDINGS:
+
+        if VISUALIZE_EMBEDDINGS and results["img_info"]["file_name"] in IMAGES_FOR_THESIS:
             self.visualize(results["img"])
+
+        if self.should_show_debug_img(results) and SIMPLE_VIZ_WITH_TF:
+            print(np.shape(results["img"][:,:,3:6]))
+            ax.imshow(np.abs(self.normalize_3d_non_zero(results["img"][:,:,3:6])))
+
+        if self.should_show_debug_img(results):
+            self.show_plot()
+
         if DEBUG_TIME:
             print("reassign at {}".format(timer() - start))
         # set image shape
@@ -119,6 +146,9 @@ class TextFeatures:
 
         return results
     
+    def should_show_debug_img(self, results):
+        return DEBUG_IMAGE and results["img_info"]["file_name"] in IMAGES_FOR_THESIS
+
     def get_text_json(self, image_file_path):
         text_file_path = image_file_path.replace("/images/", "/text/").replace(".jpg", ".json")
         with open(text_file_path, encoding='utf-8') as fh:
@@ -128,8 +158,12 @@ class TextFeatures:
     def draw_base_image(self, results):
         if not DEBUG_IMAGE:
             return 
-        fig, ax = plt.subplots()
-        ax.imshow(results["img"])
+        fig, ax = plt.subplots(figsize=(10,10))
+        
+        fig.set_dpi(100)
+        fig.canvas.manager.set_window_title(results["img_info"]["file_name"].split("/")[1])
+        if not SIMPLE_VIZ_WITH_TF:
+            ax.imshow(np.zeros(shape=np.shape(results["img"])))
         return fig, ax
 
     def draw_rect(self, ax, x, y, w, h):
@@ -164,6 +198,22 @@ class TextFeatures:
     def normalize_3d(self, nparray):
         v_min = nparray.min(axis=(0,1,2), keepdims=True) #axis=(0,1)
         v_max = nparray.max(axis=(0,1,2), keepdims=True)
+        return (nparray - v_min)/(v_max - v_min) if (v_max - v_min) != 0 else nparray
+
+    def normalize_3d(self, nparray):
+        v_min = nparray.min(axis=(0,1,2), keepdims=True) #axis=(0,1)
+        v_max = nparray.max(axis=(0,1,2), keepdims=True)
+        return (nparray - v_min)/(v_max - v_min) if (v_max - v_min) != 0 else nparray
+
+
+    def normalize_3d_non_zero(self, nparray):
+        v_min = nparray.min(axis=(0,1,2), keepdims=True) #axis=(0,1)
+        v_max = nparray.max(axis=(0,1,2), keepdims=True)
+        result = (nparray - v_min)/(v_max - v_min) if (v_max - v_min) != 0 else nparray
+        should_be_zero = (0.0 - v_min)/(v_max - v_min)
+
+        np.subtract(should_be_zero, result, out=result, where=result==should_be_zero)
+        return result
         return (nparray - v_min)/(v_max - v_min) if (v_max - v_min) != 0 else nparray
 
     def confirm_empty(self, arr):
