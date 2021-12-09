@@ -1495,14 +1495,14 @@ For the models that were altered to use text embeddings, the training dataset wa
 
 \subsubsection{Optimizer}
 
-In the Mask R-CNN paper, the training is done on 8 GPUs, where each GPU processes 2 samples at a time (effective mini-batch size of 16) for a total of 280k iterations.
+\textbf{Original paper}. In the Mask R-CNN paper, the training is done on 8 GPUs, where each GPU processes 2 samples at a time (effective mini-batch size of 16) for a total of 280k iterations.
 In this thesis, models were only trained using 1 GPU.
 
 Stochastic gradient descent is used, with a learning rate is set to $0.02$ (for the first 160k iterations, which is decreased by 10 for the remaining 120k), a weight decay of $0.0001$, and momentum set to $0.9$.
 
-Since we use only 1 GPU for training, according to the Linear Scaling Rule~\cite{DBLP:journals/corr/GoyalDGNWKTJH17}, we acquire a learning rate of $0.02/8=0.0025$.
+\textbf{This thesis}. Since we use only 1 GPU for training, according to the Linear Scaling Rule~\cite{DBLP:journals/corr/GoyalDGNWKTJH17}, we acquire a learning rate of $0.02/8=0.0025$.
 
-A linear learning rate configuration was used. The learning rate was divided by 5 every 8th epoch for models without text embeddings, and every 24th epoch for models with text embeddings (resulting in the same number of iterations before every divide).
+A linear learning rate configuration was used. The learning rate was divided by 5 every 8th epoch for models without text embeddings, and every 24th epoch for models with text embeddings (resulting in the same number of iterations before every divide). \textbf{TODO warmup. See config}
 
 \subsection{Text Embedding map}
 
