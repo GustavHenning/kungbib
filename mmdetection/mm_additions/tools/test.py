@@ -4,6 +4,7 @@ import pickle
 import shutil
 import tempfile
 import time
+import numpy as np
 
 import mmcv
 import torch
@@ -40,6 +41,7 @@ def single_gpu_test(model,
             for i, (img, img_meta) in enumerate(zip(imgs, img_metas)):
                 h, w, _ = img_meta['img_shape']
                 img_show = img[:h, :w, :3]
+                #img_show = np.zeros_like(img_show)
 
                 ori_h, ori_w = img_meta['ori_shape'][:-1]
                 img_show = mmcv.imresize(img_show, (ori_w, ori_h))
