@@ -24,6 +24,8 @@
 \usepackage{float}
 \usepackage{adjustbox}
 
+\usepackage{subfig}
+
 % \usepackage[style=numeric,sorting=none,backend=biber]{biblatex}
 \ifbiblatex
     %\usepackage[language=english,bibstyle=authoryear,citestyle=authoryear, maxbibnames=99]{biblatex}
@@ -124,6 +126,8 @@
     \fi%
     }
 \fi
+
+\usepackage{cleveref}
 \usepackage[all]{hypcap}	%% prevents an issue related to hyperref and caption linking
 
 
@@ -286,7 +290,7 @@ The extraordinary progress made in the field of instance segmentation of real-wo
 
 The state-of-the-art approaches are made to detect real-world objects. In this domain we have access to textual information through a potentially noisy Optical Character Recognition. We investigate one possible approach to encode the textual signal into the image in an attempt to improve performance.
 
-Based on the newspaper from the National Library of Sweden, we investigate the predictive power of visual and textual features and their capacity to generalize across different typographic designs. Results show…
+Based on the newspaper from the National Library of Sweden, we investigate the predictive power of visual and textual features and their capacity to generalize across different typographic designs. Results show impressive mean Average Precision scores (>$0.9$) for test sets sampled from the same newspaper topology as the training data \textit{using only the image modality}.
 
 
 \end{scontents}
@@ -316,7 +320,7 @@ I detta och det förra århundradet har kraftiga åtaganden gjorts för att digi
 
 Utmaningen i att segmentera nyhetsartiklar återfinns i mångfalden av utseende och format. Innehållet är även detta  mångfaldigt, där man återfinner allt ifrån faktamässiga artiklar, till debatter, listor av fakta och upplysningar, reklam och väder bland annat. Stora framsteg har gjorts inom djupinlärning just för objektdetektering och semantisk segmentering bara de senaste årtiondet. Frågan vi ställer oss är: \textit{Kan samma metodik appliceras inom domänen nyhetsartiklar?}
 
-Dessa modeller är skapta för att klassificera världsliga ting. I denna domän har vi tillgång till texten och dess koordinater via en potentiellt bristfällig optisk teckenigenkänning. Vi undersöker ett sätt att utnyttja denna textinformation i ett försök att förbättra resultatet i denna specifika domän. Baserat på data från Kungliga Biblioteket undersöker vi hur väl denna metod lämpar sig för uppstyckandet av innehåll i tidningar längsmed tidsperioder där designen förändrar sig markant. Resultaten visar....
+Dessa modeller är skapta för att klassificera världsliga ting. I denna domän har vi tillgång till texten och dess koordinater via en potentiellt bristfällig optisk teckenigenkänning. Vi undersöker ett sätt att utnyttja denna textinformation i ett försök att förbättra resultatet i denna specifika domän. Baserat på data från Kungliga Biblioteket undersöker vi hur väl denna metod lämpar sig för uppstyckandet av innehåll i tidningar längsmed tidsperioder där designen förändrar sig markant. Resultaten visar att Mask R-CNN lämpar sig väl för användning inom domänen nyhetsartikelsegmentering, \textit{även utan texten som input till modellen}.
 
 \end{scontents}
 \subsection*{Nyckelord}
@@ -435,7 +439,7 @@ The goal of this project is to classify news article boundaries in digitized new
 \section{Research Methodology}
 
 The initial phase of the project aims to investigate the efficiency of applying a state-of-the-art neural network developed for real world object detection and segmentation in the domain of newspaper article segmentation.
-The selected methods, based on previous work which can be found in \autoref{sec:relwork} from researchers investigating a multimodal approach to newspaper article segmentation, are then evaluated on the dataset created during this project.
+The selected methods, based on previous work which can be found in \Cref{sec:relwork} from researchers investigating a multimodal approach to newspaper article segmentation, are then evaluated on the dataset created during this project.
 Alterations to the selected methods are then presented and evaluated. Finally the results are presented and later discussed.
 
 \section{Delimitations}
@@ -453,21 +457,21 @@ Obituaries will be blurred if included as visual examples in the thesis. No furt
 
 \section{Structure of the thesis}
 
-In \autoref{ch:background}, we introduce the historical background to understand the subject matter, the preliminaries for grasping the proposed solution, and recap the previous work in document segmentation.
+In \Cref{ch:background}, we introduce the historical background to understand the subject matter, the preliminaries for grasping the proposed solution, and recap the previous work in document segmentation.
 
-\autoref{ch:method} begins with a detailed description of the dataset created from the data accessed at the National Library of Sweden.
-Next, the neural network employed in the study is introduced in \autoref{sec:modelarch}, and the relevant adaptations to the pre-processing and manipulation of the data is explained.
-What follows is a description of the experiments conducted to test our formulated goals in \autoref{sec:experiments}, as well as the tools used to perform them in \autoref{sec:sysdoc}.
+\Cref{ch:method} begins with a detailed description of the dataset created from the data accessed at the National Library of Sweden.
+Next, the neural network employed in the study is introduced in \Cref{sec:modelarch}, and the relevant adaptations to the pre-processing and manipulation of the data is explained.
+What follows is a description of the experiments conducted to test our formulated goals in \Cref{sec:experiments}, as well as the tools used to perform them in \Cref{sec:sysdoc}.
 Finally the metrics used to quantitatively describe the results are detailed.
 
-The results are presented in \autoref{ch:results} and discussed in \autoref{ch:disc},
+The results are presented in \Cref{ch:results} and discussed in \Cref{ch:disc},
 while outlining potential avenues for future work.
 
 \cleardoublepage
 \chapter{Background}
 \label{ch:background}
 
-In this chapter, the history of digitization of historical documents will be reviewed. A description of the data accessed at the National Library of Sweden will be produced. Details about how the deep learning model functions will be introduced in \autoref{sec:preliminaries}. Then, we will look at the history of segmentation algorithms, as well as the history of the deep learning model that we intend to extend and evaluate. 
+In this chapter, the history of digitization of historical documents will be reviewed. A description of the data accessed at the National Library of Sweden will be produced. Details about how the deep learning model functions will be introduced in \Cref{sec:preliminaries}. Then, we will look at the history of segmentation algorithms, as well as the history of the deep learning model that we intend to extend and evaluate. 
 
 \section{Data}
 
@@ -782,7 +786,7 @@ Mask R-CNN is a deep learning neural network architecture designed for object in
 
 \textbf{Faster R-CNN}. Fast, but not fast enough, the Fast R-CNN still took a significant time generating the region proposal, albeit much faster than its predecessor. Shaoqing Ren et al~\cite{7485869} came up with a replacement for the selective search algorithm with the added bonus that it lets the network learn in the region proposal step. This part of the network is called the Region Proposal Network (RPN).
 
-\textbf{Mask R-CNN}. Mask R-CNN contributes to this architecture by adding a parallel prediction of masks alongside its original output which is a class label and a bounding-box offset. This parallel proposal is what made Mask R-CNN unique compared to other extensions of Faster R-CNN at the time, where other methods often depended on the mask predictions for the class prediction. Mask R-CNN also introduces the concept of RoIAlign, to address misalignment issues between the RoI and the extracted features which impacts the pixel-accurate masks it produces due to quantization which is avoided with RoIAlign. More thorough details can be found in the original Mask R-CNN paper, He et al~\cite{DBLP:journals/corr/HeGDG17}. All deviations from the standard configuration will be noted in \autoref{ch:method}.
+\textbf{Mask R-CNN}. Mask R-CNN contributes to this architecture by adding a parallel prediction of masks alongside its original output which is a class label and a bounding-box offset. This parallel proposal is what made Mask R-CNN unique compared to other extensions of Faster R-CNN at the time, where other methods often depended on the mask predictions for the class prediction. Mask R-CNN also introduces the concept of RoIAlign, to address misalignment issues between the RoI and the extracted features which impacts the pixel-accurate masks it produces due to quantization which is avoided with RoIAlign. More thorough details can be found in the original Mask R-CNN paper, He et al~\cite{DBLP:journals/corr/HeGDG17}. All deviations from the standard configuration will be noted in \Cref{ch:method}.
 
 \textbf{Weaknesses of Mask R-CNN}.
 M. Kisantal et al~\cite{DBLP:journals/corr/abs-1902-07296} describe a problem for Mask R-CNN in the fact that it struggles to perform well on small objects.
@@ -967,9 +971,6 @@ This chapter lists the versions and specifications for reproducibility purposes.
 
 \subsection{Hardware specifications}
 
-\textbf{TODO computer specs, maybe even model sizes in memory and running time for training?}
-
-
 \begin{table}[!ht]
   \begin{center}
     \caption{Hardware specifications}
@@ -988,7 +989,7 @@ This chapter lists the versions and specifications for reproducibility purposes.
 \subsection{Software specifications}
 
 \subsubsection{MMDetection}
-The MMDetection~\cite{DBLP:journals/corr/abs-1906-07155} framework was used to conduct the experiments in \autoref{sec:experiments}.
+The MMDetection~\cite{DBLP:journals/corr/abs-1906-07155} framework was used to conduct the experiments in \Cref{sec:experiments}.
 MMDetection is an object detection toolbox in which includes training and inferences codes, in addition to weights for over 200 network models.
 
 MMDetection allows for inheritance of configuration files, making it possible to conduct various experiments while varying small parts of the code.
@@ -1042,10 +1043,9 @@ These elements are considered \textit{static} and receive no label in this thesi
 
 The label bounding box will be the smallest spanning bounding box, including white spaces between the elements, should they make up a rectangular shape.
 In the case that elements are organized such that they do not make up a rectangular shape, a smallest rectangular shape will be made excluding the protruding elements,
-which are then included by extending the border of the original rectangular shape in an asymmetric manner as can be seen in \autoref{fig:asymextention}.
+which are then included by extending the border of the original rectangular shape in an asymmetric manner as can be seen in \Cref{fig:asymextention}.
 
 \begin{figure}[H]
-\label{fig:asymextention}
 \begin{tikzpicture}
 \draw[step=1cm,white,very thin] (-2.9,-2.9) grid (6.9,6.9);
 \draw[red] (-2,-2) -- (2,-2) -- (2,4) -- (6,4) -- (6,6) -- (-2,6) -- (-2,-2);
@@ -1062,10 +1062,11 @@ which are then included by extending the border of the original rectangular shap
 
 \end{tikzpicture}
 \caption{Asymmetric extension of the label. A is labeled red, and B should belong to the same label, while C should not.}
+\label{fig:asymextention}%
 \end{figure}
 
 There are instances where elements that should be grouped together cannot easily be captured in the same bounding box.
-For example, if a section of a newspaper has very densely formatted text, and the image and image caption is pushed far from its textual contents as seen in \autoref{fig:blockingelements}, a decision has to be made for how to label this instance.
+For example, if a section of a newspaper has very densely formatted text, and the image and image caption is pushed far from its textual contents as seen in ~\Cref{fig:blockingelements}, a decision has to be made for how to label this instance.
 One strategy to deal with this problem could be to connect two bounding boxes by extending a thin line between the related elements. Another could be to regard the two elements as two instances.
 
 Each of these proposed solutions have their disadvantages. In the case of connecting them with a thin line, the surface on which the thin line extends may not actually be a true label for the instance.
@@ -1074,7 +1075,6 @@ In the case of regarding them as two instances, the obvious problem is that they
 In this thesis we regard such cases as two instances.
 
 \begin{figure}[H]
-\label{fig:blockingelements}
 \begin{tikzpicture}
 \draw[step=1cm,white,very thin] (-2.9,-2.9) grid (6.9,6.9);
 \draw[red] (-2,-2) -- (2,-2) -- (2,6) -- (-2,6) -- (-2,-2);
@@ -1091,13 +1091,13 @@ In this thesis we regard such cases as two instances.
 
 \end{tikzpicture}
 \caption{Example where other content (C) is blocking elements (A and B) from becoming one label.}
+\label{fig:blockingelements}%
 \end{figure}
 
 \subsection{Caveats of processing individual pages}
+\label{subs:caveatsindividualpages}
 
 As the model proposed in this thesis processes one image at a time, while content can be split across two pages or more, special delimitations have to be considered when labeling.
-
-If two elements discuss the same topic but have different authors they will be considered two different instances.
 
 A single page may only display half of an image, or a few elements of the complete body text.
 If the page is the first page of a multi-page article the byline may be missing, but the elements will still be considered an instance.
@@ -1145,9 +1145,11 @@ Given Definition \ref{newsarticle} of a \textit{news article}, we will now intro
 A \textbf{news unit} is a written work published in a print or electronic medium with the purpose of propagating news, research results, academic analysis or debate. Any element which conveys the content of the written work is to be regarded as part of the news unit.
 \end{definition}
 
-For a complete list of definitions of words related to news articles, see \autoref{app:newsarticle}
+For a complete list of definitions of words related to news articles, see ~\Cref{app:newsarticle}
 
 \subsubsection{News Unit Delimitations}
+
+If two elements discuss the same topic but have different authors they will be considered two different instances.
 
 Some elements were included in the news unit due to the fact that they contained text relevant to the article itself. These elements are:
 
@@ -1179,11 +1181,11 @@ In this project, these types of advertisements are labeled as if they were news 
 
 \subsubsection{Listing}
 
-Dense lists of information has received its own class. As seen in \autoref{bgsubsec:listings},
+Dense lists of information have received its own class. As seen in \Cref{bgsubsec:listings},
 there are frequently occurring lists of different types of content.
 
 Due to that other classes, such as advertisements, sometimes appears between the columns of the lists, each column is labeled as an instance of a listing.
-The width of the column is decided by the width of the column header. In some list contents, columns headers appear at the top of the page or table,
+The width of the label is decided by the width of the column header. In some list contents, columns headers appear at the top of the page or table,
 and in others right after the last line of the previous list.
 
 There are some examples where the label could be more difficult to establish.
@@ -1240,11 +1242,11 @@ The final classes used in this thesis are the following:
 \label{subs:pubunit}
 
 In order to investigate the impact of classes on the performance of the model, we perform the same experiments where all annotations are set to the same class.
-Therefore, if an element or group of elements are assigned any class (except background) previously mentioned in \autoref{subs:finalclasses}, they will be labeled as a publication unit in the experiments where class confusion is investigated.
+Therefore, if an element or group of elements are assigned any class (except background) previously mentioned in \Cref{subs:finalclasses}, they will be labeled as a publication unit in the experiments where class confusion is investigated.
 
 \subsubsection{Delimitations}
 
-As described in \autoref{subsec:labelingstrat}, some elements found in the newspaper are simply repeated and do not, by themselves, convey any news content.
+As described in \Cref{subsec:labelingstrat}, some elements found in the newspaper are simply repeated and do not, by themselves, convey any news content.
 A comprehensive list of these unlabeled elements follows:
 
 \begin{description}
@@ -1390,6 +1392,7 @@ In the last 3 heads, $N$x$M$d refers to the total number of paths in the convolu
 
 
 \subsubsection{Preprocessing}
+\label{subs:preprocessing}
 
 Before training and inference, data augmentation is done to improve performance of the model or to make the model converge faster. The following steps are taken to augment the data:
 
@@ -1529,20 +1532,78 @@ where $E(t)$ is a mapping of $t \rightarrow {\rm I\!R}^N$ corresponding for exam
 
 The result is a text embedding map, i.e. a three-dimensional matrix where the first two dimensions correspond to the image-localized representation of the text, and the third to the embedding itself. Given that the resulting matrix has the same width and height as the original image, it lends itself to easily extend the image input layer to accept more than its 3 original channels (RGB), that is to also fit an N-dimensional vector behind each pixel in a preprocessing step. The final number of channels of the input layer is therefore $3+N$, where the first 3 dimensions of each pixel contain the original RGB values of the input image.
 
-\textbf{TODO Maybe visualization of the embedding maps?}
+\begin{figure}[H]% trim = l b r t
+    \centering 
+    \subfloat[\centering OCR bounding boxes in red]{{\includegraphics[width=.45\textwidth, clip=true, trim = 50mm 20mm 60mm 0mm]{figures/ocr_bbox/JIefsDa.png} }}%
+    \qquad
+    \subfloat[\centering First 3 dimensions of all-mpnet-base-v2 vector representations normalized as RGB colors.]{{\includegraphics[width=.45\textwidth, clip=true, trim = 50mm 20mm 60mm 0mm]{figures/tf/JIefsDa.png} }}\\
+    \subfloat[\centering Labels produced by vanilla Mask R-CNN, trained on 75\% of the training data. See \Cref{tab:dsizeallcinset}. Teal labels are News units, purple is Advertisement.]{{\includegraphics[width=0.5\textwidth, clip=true, trim = 0mm 0mm 0mm 0mm]{figures/labels-vanilla-0.75/JIefsDa.jpg} }}%
+    \caption{A front page newspaper page from the DN 2010-2020 Test subset. Note how large black spaces in (a) and (b) often constitute images with no text inside.}%
+    \label{fig:frontpage}%
+\end{figure}
+
+\begin{figure}[H]% trim = l b r t
+    \centering 
+    \subfloat[\centering OCR bounding boxes in red]{{\includegraphics[width=.45\textwidth, clip=true, trim = 50mm 20mm 60mm 0mm]{figures/ocr_bbox/zk6UnuL.png} }}%
+    \qquad
+    \subfloat[\centering First 3 dimensions of all-mpnet-base-v2 vector representations normalized as RGB colors.]{{\includegraphics[width=.45\textwidth, clip=true, trim = 50mm 20mm 60mm 0mm]{figures/tf/zk6UnuL.png} }}\\
+    \subfloat[\centering Labels produced by vanilla Mask R-CNN, trained on 75\% of the training data. See \Cref{tab:dsizeallcinset}. Dark purple labels are Listings.]{{\includegraphics[width=0.5\textwidth, clip=true, trim = 0mm 0mm 0mm 0mm]{figures/labels-vanilla-0.75/zk6UnuL.jpg} }}%
+    \caption{A newspaper page with listing prices of funds and stocks from the DN 2010-2020 Test subset.}%
+    \label{fig:stocks}%
+\end{figure}
+
+\begin{figure}[H]% trim = l b r t
+    \centering 
+    \subfloat[\centering OCR bounding boxes in red]{{\includegraphics[width=.45\textwidth, clip=true, trim = 50mm 20mm 60mm 0mm]{figures/ocr_bbox/GQU6vjW.png} }}%
+    \qquad
+    \subfloat[\centering First 3 dimensions of all-mpnet-base-v2 vector representations normalized as RGB colors.]{{\includegraphics[width=.45\textwidth, clip=true, trim = 50mm 20mm 60mm 0mm]{figures/tf/GQU6vjW.png} }}\\
+    \subfloat[\centering Labels produced by vanilla Mask R-CNN, trained on 75\% of the training data. See \Cref{tab:dsizeallcinset}. Bright green labels are Death Notice (obituaries).]{{\includegraphics[width=0.5\textwidth, clip=true, trim = 0mm 0mm 0mm 0mm]{figures/labels-vanilla-0.75/GQU6vjW.jpg} }}%
+    \caption{A newspaper page with obituaries from the DN 2010-2020 Test subset.}%
+    \label{fig:obituaries}%
+\end{figure}
+
+\begin{figure}[H]% trim = l b r t
+    \centering 
+    \subfloat[\centering OCR bounding boxes in red]{{\includegraphics[width=.45\textwidth, clip=true, trim = 50mm 20mm 60mm 0mm]{figures/ocr_bbox/AVThDFz.png} }}%
+    \qquad
+    \subfloat[\centering First 3 dimensions of all-mpnet-base-v2 vector representations normalized as RGB colors.]{{\includegraphics[width=.45\textwidth, clip=true, trim = 50mm 20mm 60mm 0mm]{figures/tf/AVThDFz.png} }}\\
+
+    \subfloat[\centering Labels produced by vanilla Mask R-CNN, trained on 75\% of the training data. See \Cref{tab:dsizeallcinset}. Teal labels are News units.]{{\includegraphics[width=0.5\textwidth, clip=true, trim = 0mm 0mm 0mm 0mm]{figures/labels-vanilla-0.75/AVThDFz.jpg} }}%
+    \caption{A newspaper page consisting of news articles from the DN 2010-2020 Test subset.}%
+    \label{fig:newsarticles}%
+\end{figure}
+
+
+\begin{figure}[H]% trim = l b r t
+    \centering 
+    \subfloat[\centering OCR bounding boxes in red]{{\includegraphics[width=.45\textwidth, clip=true, trim = 50mm 20mm 60mm 0mm]{figures/ocr_bbox/Jd55Bvg.png} }}%
+    \qquad
+    \subfloat[\centering First 3 dimensions of all-mpnet-base-v2 vector representations normalized as RGB colors.]{{\includegraphics[width=.45\textwidth, clip=true, trim = 50mm 20mm 60mm 0mm]{figures/tf/Jd55Bvg.png} }}\\
+
+    \subfloat[\centering Labels produced by vanilla Mask R-CNN, trained on 75\% of the training data. See \Cref{tab:dsizeallcinset}. Blue label is Weather. Purple labels are Advertisement.]{{\includegraphics[width=0.5\textwidth, clip=true, trim = 0mm 0mm 0mm 0mm]{figures/labels-vanilla-0.75/Jd55Bvg.jpg} }}%
+    \caption{A newspaper page consisting of weather reports and advertisement from the DN 2010-2020 Test subset.}%
+    \label{fig:weather}%
+\end{figure}
+
+\begin{figure}[H]% trim = l b r t
+    \centering 
+    \subfloat[\centering OCR bounding boxes in red]{{\includegraphics[width=.45\textwidth, clip=true, trim = 20mm 20mm 30mm 0mm]{figures/ocr_bbox/1RoKim0.png} }}%
+    \qquad
+    \subfloat[\centering First 3 dimensions of all-mpnet-base-v2 vector representations normalized as RGB colors.]{{\includegraphics[width=.45\textwidth, clip=true, trim = 20mm 20mm 30mm 0mm]{figures/tf/1RoKim0.png} }}\\
+
+    \subfloat[\centering Labels produced by vanilla Mask R-CNN, trained on 75\% of the training data. See \Cref{tab:dsizeallcinset}. Teal label is News unit.]{{\includegraphics[width=0.5\textwidth, clip=true, trim = 0mm 0mm 0mm 0mm]{figures/labels-vanilla-0.75/1RoKim0.jpg} }}%
+    \caption{A newspaper page consisting of a single large image, part of a multi-page article from the DN 2010-2020 Test subset.}%
+    \label{fig:largeimage}%
+\end{figure}
+
 
 \subsubsection{Text embedding strategy}
 \label{subs:textembeddingstrat}
 There are a number of ways to embed the text behind the image channels in the final input.
 
-\textbf{Text granularity}. As seen in \autoref{subs:dlapproaches}, there are options for encoding the text at different levels. There are binary masks, encoded vectors at word level, sentence level and paragraph level. When deciding to encode at word or sentence level, a strategy can be used to summarize the vectors across the entire text block if the exact coordiantes for the words or sentences cannot be attained. Alternatively, a strategy could be made to divide the text block into sections for each sentence within the block. 
+\textbf{Text granularity}. As seen in \Cref{subs:dlapproaches}, there are options for encoding the text at different levels. There are binary masks, encoded vectors at word level, sentence level and paragraph level. When deciding to encode at word or sentence level, a strategy can be used to summarize the vectors across the entire text block if the exact coordiantes for the words or sentences cannot be attained. Alternatively, a strategy could be made to divide the text block into sections for each sentence within the block. 
 
 In this thesis we transform the entire content of the text block and repeat the vector produced across the dimensions of the text block. 
-
-\textbf{Text embedding normalization}. \textbf{TODO implement and compare}.
-
-\textbf{Text embedding per sentence, divided equally on the text block}. \textbf{TODO implement and compare}.
-
 
 \subsubsection{Sentence transformers}
 
@@ -1570,11 +1631,11 @@ We evaluate six different sentence transformers. Two are produced by the Nationa
 \section{Experiments}
 \label{sec:experiments}
 
-In this section we will introduce the experiments that will be conducted in order to attempt to achieve the goals outlined in \autoref{sec:goals}.
+In this section we will introduce the experiments that will be conducted in order to attempt to achieve the goals outlined in \Cref{sec:goals}.
 
 Because we labeled classes in the dataset creation process, we conduct an experiment to understand the impact of these classes on the model performance.
 
-As mentioned in \autoref{subs:maskrcnn}, Mask R-CNN performs worse on smaller objects. An experiment will be conducted to investigate if we can exploit the large image sizes in our dataset to improve performance.
+As mentioned in \Cref{subs:maskrcnn}, Mask R-CNN performs worse on smaller objects. An experiment will be conducted to investigate if we can exploit the large image sizes in our dataset to improve performance.
 
 
 \subsection{Unimodal versus multimodal input}
@@ -1704,7 +1765,7 @@ mAP = \frac{1}{N} \sum_{i=1}^{N} AP_i
 
 In this section we present the results of the neural network architectures for the datasets created in this thesis. Naming convention follows the original Mask R-CNN paper and results are presented by bounding box ($bb$) and segmentation mask ($m$) respectively, as it is presented in the Mask R-CNN paper.
 
-Throughout these results, we will divide each section to show results using the classes defined in \autoref{subs:finalclasses} and \autoref{subs:pubunit} respectively.
+Throughout these results, we will divide each section to show results using the classes defined in \Cref{subs:finalclasses} and \Cref{subs:pubunit} respectively.
 
 \section{Unimodal versus multimodal}
 
@@ -1762,11 +1823,11 @@ Throughout these results, we will divide each section to show results using the 
     }
     \end{adjustbox} 
   \end{center}
-\end{table}
-
 \begin{center}
 Note: All models have the equivalent configuration for 1 class training and evaluation postfixed \textbf{-1c} in the final model name.
 \end{center}
+\end{table}
+
 
 \clearpage
 
@@ -1782,12 +1843,11 @@ All model results in this section are sorted by the \textbf{$mAP_m$}, the mean A
     \begin{tabular}{l|l|l|l|l|l|l} %
     \textbf{Final name} & \textbf{$mAP_m$} & \textbf{$mAP_m^{50}$} & \textbf{$mAP_m^{75}$} & \textbf{$mAP_{bb}$} & \textbf{$mAP_{bb}^{50}$} & \textbf{$mAP_{bb}^{75}$} \\
     \hline
-    x101-32x8d &                    0.910 & 0.964 & 0.936 & 0.906 & 0.964 & 0.937 \\    \hline
-    x101-32x4d &                    0.906 & 0.957 & 0.929 & 0.901 & 0.957 & 0.932 \\    \hline
-    x101-64x4d &                    0.903 & 0.954 & 0.934 & 0.893 & 0.954 & 0.934 \\    \hline
-    x101 &                          0.901 & 0.951 & 0.928 & 0.885 & 0.953 & 0.927 \\    \hline
-    r50 &                           0.875 & 0.958 & 0.930 & 0.868 & 0.960 & 0.933 \\    \hline
-
+x101-32x8d                     & 0.910 & 0.964 & 0.936 & 0.906 & 0.964 & 0.937 \\ \hline
+x101-32x4d                     & 0.906 & 0.957 & 0.929 & 0.901 & 0.957 & 0.932 \\ \hline
+x101-64x4d                     & 0.903 & 0.954 & 0.934 & 0.893 & 0.954 & 0.934 \\ \hline
+x101                           & 0.901 & 0.951 & 0.928 & 0.885 & 0.953 & 0.927 \\ \hline
+x101-64x4d-all-mpnet           & 0.881 & 0.952 & 0.927 & 0.868 & 0.954 & 0.929 \\ \hline
     \end{tabular}}
   \end{center}
 \end{table}
@@ -1805,9 +1865,6 @@ x101-32x4d                     & 0.417 & 0.493 & 0.425 & 0.407 & 0.493 & 0.424 \
 x101-64x4d                     & 0.416 & 0.509 & 0.414 & 0.406 & 0.491 & 0.412 \\ \hline
 x101-32x8d                     & 0.413 & 0.489 & 0.421 & 0.402 & 0.496 & 0.419 \\ \hline
 x101                           & 0.408 & 0.470 & 0.433 & 0.405 & 0.468 & 0.430 \\ \hline
-
-
-
     \end{tabular}}
   \end{center}
 \end{table}
@@ -1820,12 +1877,11 @@ x101                           & 0.408 & 0.470 & 0.433 & 0.405 & 0.468 & 0.430 \
     \begin{tabular}{l|l|l|l|l|l|l}
     \textbf{Final name} & \textbf{$mAP_m$} & \textbf{$mAP_m^{50}$} & \textbf{$mAP_m^{75}$} & \textbf{$mAP_{bb}$} & \textbf{$mAP_{bb}^{50}$} & \textbf{$mAP_{bb}^{75}$} \\
     \hline
+x101-64x4d-all-mpnet           & 0.510 & 0.597 & 0.547 & 0.497 & 0.598 & 0.545 \\ \hline
 r50                            & 0.490 & 0.589 & 0.545 & 0.486 & 0.589 & 0.534 \\ \hline
 x101-32x4d                     & 0.484 & 0.587 & 0.520 & 0.474 & 0.585 & 0.515 \\ \hline
 x101-64x4d                     & 0.482 & 0.581 & 0.510 & 0.478 & 0.576 & 0.524 \\ \hline
-r50-all-mpnet                  & 0.463 & 0.590 & 0.508 & 0.440 & 0.589 & 0.502 \\ \hline
 x101-all-mpnet                 & 0.455 & 0.581 & 0.486 & 0.439 & 0.580 & 0.485 \\ \hline
-
     \end{tabular}}
   \end{center}
 \end{table}
@@ -1849,8 +1905,6 @@ x101-64x4d-1c                  & 0.843 & 0.916 & 0.871 & 0.839 & 0.916 & 0.871 \
 x101-32x4d-1c                  & 0.841 & 0.906 & 0.872 & 0.835 & 0.906 & 0.872 \\ \hline
 x101-32x8d-1c                  & 0.841 & 0.910 & 0.861 & 0.837 & 0.910 & 0.862 \\ \hline
 x101-1c                        & 0.840 & 0.917 & 0.862 & 0.832 & 0.917 & 0.862 \\ \hline
-
-
     \end{tabular}}
   \end{center}
 \end{table}
@@ -1867,7 +1921,7 @@ r50-1c                         & 0.550 & 0.677 & 0.589 & 0.543 & 0.676 & 0.584 \
 x101-64x4d-1c                  & 0.524 & 0.636 & 0.554 & 0.520 & 0.636 & 0.555 \\ \hline
 x101-32x8d-1c                  & 0.522 & 0.634 & 0.551 & 0.519 & 0.636 & 0.552 \\ \hline
 x101-1c                        & 0.516 & 0.622 & 0.552 & 0.511 & 0.623 & 0.553 \\ \hline
-x101-32x4d-1c                  & 0.506 & 0.618 & 0.532 & 0.502 & 0.617 & 0.530 \\ \hline
+r50-MiniLM-1c                  & 0.507 & 0.642 & 0.547 & 0.496 & 0.642 & 0.533 \\ \hline
     \end{tabular}}
   \end{center}
 \end{table}
@@ -1880,11 +1934,11 @@ x101-32x4d-1c                  & 0.506 & 0.618 & 0.532 & 0.502 & 0.617 & 0.530 \
     \begin{tabular}{l|l|l|l|l|l|l}
     \textbf{Final name} & \textbf{$mAP_m$} & \textbf{$mAP_m^{50}$} & \textbf{$mAP_m^{75}$} & \textbf{$mAP_{bb}$} & \textbf{$mAP_{bb}^{50}$} & \textbf{$mAP_{bb}^{75}$} \\
     \hline
+r50-MiniLM-1c                  & 0.465 & 0.622 & 0.490 & 0.458 & 0.622 & 0.488 \\ \hline
 r50-all-mpnet-1c               & 0.455 & 0.612 & 0.480 & 0.449 & 0.611 & 0.483 \\ \hline
+x101-64x4d-all-mpnet-1c        & 0.447 & 0.588 & 0.474 & 0.441 & 0.585 & 0.474 \\ \hline
 r50-1c                         & 0.438 & 0.560 & 0.460 & 0.432 & 0.556 & 0.462 \\ \hline
 x101-all-mpnet-1c              & 0.433 & 0.564 & 0.459 & 0.426 & 0.564 & 0.456 \\ \hline
-x101-1c                        & 0.421 & 0.532 & 0.436 & 0.416 & 0.529 & 0.437 \\ \hline
-x101-64x4d-1c                  & 0.419 & 0.519 & 0.445 & 0.414 & 0.517 & 0.438 \\ \hline
     \end{tabular}}
   \end{center}
 \end{table}
@@ -2026,6 +2080,7 @@ All results reported in this section are averaged over 5 runs. The standard devi
 \chapter{Discussion}
 \label{ch:disc}
 
+
 \section{Mask R-CNN}
 
 \subsection{Higher performance is required for usefulness within the domain of newspaper article segmentation}
@@ -2034,20 +2089,24 @@ Results reported on the performance of the Mask R-CNN architecture on the MS COC
 
 \subsection{Unaltered Mask R-CNN performs well on in-domain datasets} 
 
-The impressive results on the in-set indicate that the newspaper typology is learned well by the model, and the less impressive results on the near-set and out-set indicate that the generalization property is lacking purely from training on one typology and newspaper. Labeling a reasonable amount from each design era and newspaper respectively could give an overall well performing model.
+The impressive results on the in-domain test set indicate that the newspaper typology is learned well by the model, and the less impressive results on the near-set and out-set indicate that the generalization property is lacking from training on one typology and newspaper. 
 
 \section{Classes}
-By limiting the number of classes to one, the burden of determining the class becomes a boolean problem. It should be expected that this task yields greater performance, as this task is more trivial than additionally determining the specific subclass especially if the classes are constructed by subjective criteria or implication.
+By limiting the number of classes to one, the burden of determining the class becomes a boolean problem. It could be expected that this task yields greater performance, as this task is more trivial than additionally determining the specific subclass. However, with specific subclasses the model can learn different representations for each subclass leading to improved performance. 
+
+It is always possible to reduce a number of classes to a superclass with relatively little effort, while expansion of a superclass into subclasses may require a complete relabeling of the data.
 
 \section{Sentence transformers}
 
 \subsection{Large text embeddings} 
 
-As seen \autoref{tab:modeldimensions}, the sentence transformers output their vectors of size $768$ or $384$. This adds a significant number of channels to the input if inserted without alteration. The consequence is a large memory footprint.  
+As seen \autoref{tab:modeldimensions}, the sentence transformers output their vectors of size $768$ or $384$. This adds a significant number of channels to the input if inserted without alteration. The consequence is a large memory footprint. \textbf{TODO about the sparsity and distribution of the vector representation.}
 
-\subsection{Text granularity}
+\section{Impact of dataset size}
 
-As mentioned in \autoref{subs:textembeddingstrat}, there are many ways to segment the blocks of text recognized by the OCR. Further work is needed to determine the most effective way to present this information as input to deep learning models.
+As seen in \Cref{tab:dsizeallcinset} and \Cref{tab:dsizeonecinset}, performance peaks at 75\% training size. Part of the explanation could be the curious distribution produced by random sampling as seen in \Cref{tab:partialdist}. Another explanation could be that the 75\% subset better represents the distribution of the test subset. Because of the size of the test subset (111 newspaper images), it is more than possible that the test subset does not necessary reflect the diversity of the full dataset from which it was sampled. See \Cref{fig:size_dist_annotations_in} for a notion of the distribution in regards to annotation area.
+
+As we can see in \Cref{tab:dsizeallcnearset}, \Cref{tab:dsizeallcoutset}, \Cref{tab:dsizeonecnearset}, \Cref{tab:dsizeonecoutset}, performance in near- and out-of-domain test set improves with increasing train dataset size. This supports the aforementioned theory that there are more diverse examples left out of the 75\% subset.
 
 \section{Combining other methods}
 
@@ -2056,19 +2115,49 @@ The models proposed in this thesis need not be used in an end-to-end fashion. Sp
 \chapter{Conclusions and Future Work}
 \label{ch:conc}
 \section{Conclusions}
+
+\textbf{Problem statement}. In \Cref{sec:problem} we formualted the following problem statement:
+
+\textit{How well can neural networks, developed for object detection and segmentation of real-world objects, perform in the domain of news article segmentation?}
+
+Given the results reported on the in-domain test subset (DN 2010 - 2020) which is of the same newspaper topology as the training subset, we demonstrate that even the unimodal implementation of Mask R-CNN is able to exploit the spatial features of the newspaper article elements such that it can successfully learn to reproduce the label strategy found in \Cref{subsec:labelingstrat} for this specific newspaper topology, even with the caveats of processing individual pages found in \Cref{subs:caveatsindividualpages}.
+
+Given the results on the near- and out-of-domain test sets (DN SvD 2001-2004, Aftonbladet Expressen 2001-2004), we can conclude that training on one newspaper topology does not translate to a general solution. It remains to be shown if Mask R-CNN can learn to generalize across newspaper topologies to the extent that was shown for the In-domain test set.
+
+
+\textbf{Goals}. In \Cref{sec:goals} we formulated the research questions:
+
+\begin{enumerate}
+\item Do multimodal neural network architectures outperform unimodal neural network architectures, using image and text input as opposed to only using image input, in the field of instance segmentation?
+\item Is there a difference in how well multimodal neural network architectures perform in periods of changing typographic design as opposed to unimodal neural network architectures?
+\end{enumerate}
+
+We can only speak to the method proposed in this thesis in conjunction with the labeling strategy outlined and datasets found in this thesis. We were unable to show that multimodal ANNs generally outperform unimodal ANNs. Considering that there are many ways to adapt a neural network to several modalities, we cannot conclude a definite answer based on the results produced in this thesis. 
+
+As for the second goal, given that the results for the out-of-domain test set consistently features multimodal networks to a larger extent than the in- and near-domain test sets suggests that the representations learned by the multimodal networks are more generally applicable than the unimodal varaints when trained on a limited topology. We cannot support such a conclusion for more diverse training sets.
+
+
 \section{Limitations}
 
+\textbf{Pairwise merged newspaper pages.} Per newspaper page instance segmentation has its drawbacks. Newspapers are meant to be read mostly overviewing two pages simultaniously. "Implied content", as described in \Cref{subs:caveatsindividualpages} could be avoided by merging pages pairwise before annotation.
+
+
+\textbf{Dataset size and topology sample}. Dataset size increases could potentially lead to more stable results and a greater diversity in topology and time-period of the training dataset could lead to a greater generalization property.
+
+
+\textbf{Normalization of text embeddings}. When preprocessing images for object detection and segmentation, the RGB channels are normalized and zero-centered as seen in \Cref{subs:preprocessing}. No such strategy was evaluated for this thesis.
 
 \section{Future work}
 
-\begin{itemize}
-\item \textbf{Pairwise merged newspaper pages.} Per newspaper page instance segmentation has its drawbacks. Newspapers are meant to be read mostly overviewing two pages simultaniously. "Implied content" could be avoided by merging pages pairwise before annotation.
-\item \textbf{Domain-specific architecture.} Developing specific head and backbone architecture to incorporate the textual embeddings puts less reliance on the traditional head and backbone architectures to adapt to the new input medium.
-\item \textbf{Dataset size}. Dataset size increases could potentially lead to more stable results and a greater diversity in topology and time-period of the training dataset could lead to a greater generalization property.
-\item \textbf{Dimensionality reduction}. Principle Component Analysis (PCA) or any other dimensionality reduction algorithm could be used to compress the vector representation. This could be useful to limit the memory footprint of the input, and potentially denoise the input.
-\item \textbf{Image normalization and training without pretrained weights}. In this thesis, image normalization values were left unchanged and training was done using the pretrained weights for the respective architectures. Could using dataset specific image normalization values and training models from scratch improve results?
-\end{itemize}
+\textbf{Domain-specific architecture.} Developing specific head and backbone architecture to incorporate the textual embeddings puts less reliance on the traditional head and backbone architectures to adapt to the new input medium.
 
+\textbf{Normalization of text embeddings}. When preprocessing images for object detection and segmentation, the RGB channels are normalized and zero-centered as seen in \Cref{subs:preprocessing}. Could a similar method improve results when applied separately to the vector representations of the word embedding language models?
+
+\textbf{Dimensionality reduction}. Given the used method of text embeddings as seen in \Cref{subs:textembeddingstrat}, Principle Component Analysis (PCA) or any other dimensionality reduction algorithm could be used to compress the vector representation. This could be useful to limit the memory footprint of the input, and potentially strengthen the impact of the added dimensions.
+
+\textbf{Image normalization and training without pretrained weights}. In this thesis, image normalization values were left unchanged and training was done using the pretrained weights for the respective architectures. Could using dataset specific image normalization values and training models from scratch improve results?
+
+\textbf{Text granularity}. As mentioned in \Cref{subs:textembeddingstrat}, there are many ways to segment the blocks of text recognized by the OCR. Further work is needed to determine the most effective way to present this information as input to deep learning models.
 
 %The thesis contributes to the \gls{UN}\enspace\glspl{SDG} numbers 1 and 9 by
 %xxxx.
