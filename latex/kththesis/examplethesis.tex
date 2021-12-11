@@ -929,7 +929,7 @@ Word embedding is a feature learning method where a term from the vocabulary is 
 
 \textbf{Word2Vec}~\cite{mikolov2013} is a shallow neural network model for learning feature representations of words. It creates word representations using two hidden layers captured by either Continuous Bag of words (CBOW) or Skip-gram. Training is done using a local context window of predefined length. 
 
-\textbf{Global Vectors}\cite{pennington2014glove} (GloVe) is an expansion of the Word2Vec architecture where a local context window is extended by an additional global matrix factorization, becoming a global log-bilinear regression model.
+\textbf{Global Vectors}~\cite{pennington2014glove} (GloVe) is an expansion of the Word2Vec architecture where a local context window is extended by an additional global matrix factorization, becoming a global log-bilinear regression model.
 
 Both Word2Vec and GloVe are better at learning the semantic representation of words compared to categorical word representation and weighted word representation since they attempt to capture the context of nearby words in the learning procedure. Neither can however learn representations of words out-of-vocabulary. 
 
