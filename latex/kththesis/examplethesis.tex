@@ -446,13 +446,13 @@ Alterations to the selected methods are then presented and evaluated. Finally th
 
 There are many ways to extend or alter a neural network to adapt to new input. Only one such method of approaching text modality is introduced and evaluated. Other methods will be discussed and suggested in the final chapter.
 
-Additionally, the size of the datasets created in this project may be insufficient to show the full potential of this approach.
+Additionally, the size of the datasets created in this thesis may be insufficient to show the full potential of this approach.
 Investigation into this question will be addressed in this thesis.
-Only a limited number of typographic designs will be evaluated in this project, which may impact the generality of the solution discussed.
+Only a limited number of typographic designs will be evaluated in this thesis, which may impact the generality of the solution discussed.
 
 \section{Ethical considerations}
 
-The dataset created in this project consists of published newspapers which have seen wide circulation in the public domain. 
+The dataset created in this thesis consists of published newspapers which have seen wide circulation in the public domain. 
 Obituaries will be blurred if included as visual examples in the thesis. No further special consideration is to be taken in terms of sensitive or personally identifiable information.
 
 \section{Structure of the thesis}
@@ -929,7 +929,7 @@ Word embedding is a feature learning method where a term from the vocabulary is 
 
 \textbf{Word2Vec}~\cite{mikolov2013} is a shallow neural network model for learning feature representations of words. It creates word representations using two hidden layers captured by either Continuous Bag of words (CBOW) or Skip-gram. Training is done using a local context window of predefined length. 
 
-\textbf{Global Vectors}\cite{pennington2014glove} (GloVe) is an expansion of the Word2Vec architecture where a local context window is extended by an additional global matrix factorization, becoming a global log-bilinear regression model.
+\textbf{Global Vectors}~\cite{pennington2014glove} (GloVe) is an expansion of the Word2Vec architecture where a local context window is extended by an additional global matrix factorization, becoming a global log-bilinear regression model.
 
 Both Word2Vec and GloVe are better at learning the semantic representation of words compared to categorical word representation and weighted word representation since they attempt to capture the context of nearby words in the learning procedure. Neither can however learn representations of words out-of-vocabulary. 
 
@@ -1177,7 +1177,7 @@ Finally there are advertisements made to look like news articles.
 They are intentionally structured and formatted to appear exactly as news articles do,
 except for the fact that a small warning is made that the section is in fact an advertisement.
 One could argue to support both that they should be labeled as ads (because they truly are ads), and that they should be labeled as news articles (because they look like news articles).
-In this project, these types of advertisements are labeled as if they were news articles.
+In this thesis, these types of advertisements are labeled as if they were news articles.
 
 \subsubsection{Listing}
 
@@ -1433,7 +1433,7 @@ To conduct these experiments, the configuration files were duplicated and adjust
 
 \textbf{Evaluation}. In the original MS COCO dataset (on which Mask R-CNN is usually evaluated),
 there is size partitioning depending on the size of the object being detected when presented in the results.
-Since the classes found in this project are generally larger on average than the size of the objects found in the MS COCO dataset,
+Since the classes found in this thesis are generally larger on average than the size of the objects found in the MS COCO dataset,
 the partitioning size thresholds are adjusted for these results to provide more useful information about different objects being detected (Using the standard thresholds, almost all objects are considered “large”).
 This alteration has no impact on the performance of the solution itself, but must be considered when evaluating the results.
 
@@ -1528,7 +1528,7 @@ We define this process formally as follows. Given an image of size $H$ $x$ $W$ a
   	\label{eqn:textembedding}
 \end{equation}
 
-where $E(t)$ is a mapping of $t \rightarrow {\rm I\!R}^N$ corresponding for example to a paragraph embedding, and $0^N$ is a null vector in case there is no text in the corresponding pixel. Each pixel overlapping with a bounding box produced by the OCR process is therefore mapped to its corresponding embedding. In this project, no bounding boxes are overlapping, which means no statement will be made regarding a strategy for such a case.
+where $E(t)$ is a mapping of $t \rightarrow {\rm I\!R}^N$ corresponding for example to a paragraph embedding, and $0^N$ is a null vector in case there is no text in the corresponding pixel. Each pixel overlapping with a bounding box produced by the OCR process is therefore mapped to its corresponding embedding. In this thesis, if bounding boxes are overlapping the text embedding of the last bounding box will be placed in the overlapping area, where last refers to the order of the elements as they appear in the input. 
 
 The result is a text embedding map, i.e. a three-dimensional matrix where the first two dimensions correspond to the image-localized representation of the text, and the third to the embedding itself. Given that the resulting matrix has the same width and height as the original image, it lends itself to easily extend the image input layer to accept more than its 3 original channels (RGB), that is to also fit an N-dimensional vector behind each pixel in a preprocessing step. The final number of channels of the input layer is therefore $3+N$, where the first 3 dimensions of each pixel contain the original RGB values of the input image.
 
