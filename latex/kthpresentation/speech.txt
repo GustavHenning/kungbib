@@ -33,9 +33,9 @@ Using Mask-RCNN, we can vary differnt backbones and compare the results. The dif
 BERT, or Bidirectional Encoder Representations from Transformers is a neural network architecture with a variable number of encoder layers and self attention heads, based on the Transformer, which is a multi attention head feed forward neural network. BERT allows for extensions to target specific downstream Natural Language Processing tasks, such as Semantic Textual Similarity, in which we are interested in this thesis. Given a sentence, BERT produces a fixed size one dimensional vector of flaoting point decimals, representing the sentence in N-dimensional vector space.
 
 The figure shows a depiction of Sentence-BERT, an extension of BERT. In figure 1, a softmax classifier is added during the training stage for fine-tuning. At inference time in figure 2, similarity score can be computed between vectors u and v, produced by sentences A and B.
-
+----
 BERT has publically available pretrained weights depending on the text it was trained on. In this thesis, we vary these pretrained weights in our experiments.
-
+----
 In order to construct a multimodal neural network, we need a heuristic for representing the modalities. In this thesis, we use what is refered to as a text embedding map, where given the bounding box produced by the OCR, we transform the text into vector space using SBERT, and position the produced sentence embedding behind the RGB depth dimension of the image, repeated across the OCR bounding box coordiantes. 
 
 If there is for example an OCR bounding box in the 4 cubes in the top left corner of the figure, then the textual embedding of the OCR textual contents will be repeated in the gray text embedding channels, for those pixels where the OCR determined the bounding box to be. In this example, the vector representation is set to size 3. In our experiments, it is either 384, or 768 depending on the pretrained weights.
@@ -54,4 +54,4 @@ In the experiment testing impact of dataset size (which was requested by The Nat
 
 As for performance metrics we use the mean Average Precision which is a reoccuring measurement on datasets of instance segmentation. 
 
-Mean average precision is the average of precisions across each class. Precision at a certain threshold is defined as the number of True Positives divided by the True Positives plus the False Positives.
+Mean average precision is the average of precisions across each class. Precision at a certain threshold is defined as the number of True Positives divided by the True Positives plus the False Positives, where the threshold is defined by if a prediction is positive by exceeding a theshold of Intersection over Union comparing the ground truth label area with the predicted area. 

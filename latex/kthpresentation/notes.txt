@@ -58,9 +58,14 @@ Bidirectional Encoder Representations from Transformers
 
 Bert extensions allow to target specific downstream NLP tasks such as semantic textual similarity.
 
-Given a sentence -> fixed size one dimensional vector of floating point decimals representing the sentence in N-dim vec space.
+Given a sentence -> fixed size one dimensional vector 
 
 To BERT: A sentence is an arbitrary string.
 
-SBERT is an extension of BERT specifically trained for STS. Left: Training with softmax class, right: cosine sim for comparison of sentence vectors.
+SBERT is trained for STS. Left: Training with softmax class, right: cosine sim for comparison of sentence vectors.
 
+-------------------------------
+
+publically available pretrained weights. 
+
+---
