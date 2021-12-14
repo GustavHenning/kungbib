@@ -1,0 +1,66 @@
+* Welcome. Who am I? What are we talking about?
+------------------------
+
+* Memory instutions -> preservation, availiability -> large databases of images -> automatic processing -> OCR -> challenges, DLA. 
+
+* We will introduce dataset, labeling strategy, methods and report the results.
+
+--------------------------
+* Data is newspaper images
+
+* 115 years since publication
+
+* Right: Bbs for OCR.
+
+* Our data is of this century, we will only be able to show prediction results and OCR visualizations.
+
+* OCR is not perfect (logo + till salu)
+
+----------------------------
+
+* Computer vision remarkable progress in object detection and segmentation of real world objects.
+
+* multimodal vs unimodal
+
+* difference in how well they perform across typologies?
+
+-----------------------------
+
+* Mask R-CNN SOTA on instance detection and segmentation. Figure is simplified illusatration of pipeline.
+
+* Input -> Backbone is CNN used for feature extraction -> Simplest example is a backbone using resnet50-FPN. FPN scales at different resolutions. -> 
+
+RPN, sliding window, objectness and boundaries -> 
+
+RoIAlign operation to extract small feature maps avoiding quantization ->
+
+Regions passed to FCN -> mask predictions, separate head for BB and class with confidence.
+
+4 outputs per instance: mask, bb, class, confidence.
+
+--------------------------
+
+What do we see?
+
+BBs are green rects, masks are colored pixels inside BBs, class and confidence on top of bbs.
+
+-------------------------------
+
+Vary backbones -> compare results. Different pretrained weights. 
+
+FPN in figure, allows for prediction at different scales.
+
+-------------------------------
+
+Bidirectional Encoder Representations from Transformers 
+-> NN arch varying encoder layers & self attention heads
+-> based on transformer -> Multi attention head feed forward NN 
+
+Bert extensions allow to target specific downstream NLP tasks such as semantic textual similarity.
+
+Given a sentence -> fixed size one dimensional vector of floating point decimals representing the sentence in N-dim vec space.
+
+To BERT: A sentence is an arbitrary string.
+
+SBERT is an extension of BERT specifically trained for STS. Left: Training with softmax class, right: cosine sim for comparison of sentence vectors.
+

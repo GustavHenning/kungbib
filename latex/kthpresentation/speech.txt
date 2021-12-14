@@ -1,0 +1,57 @@
+Hello and welcome to this thesis presentation by me, Gustav Henning, on the topic of Newspaper article segmentation using Mask R-CNN and Sentence-BERT.
+
+Why do we want to segment newspaper articles? Libraries and other memory institutions across the world that focus on preservation and availability of historical and analog documents have increased their efforts gradually in digitization. What this means practically is that these institutions now have accumulated large databases of images depicting their analog contents. This opens up the door to automatic processing of theses documents, such as applying Optical Character Recognition to extract the text from the images. But many steps of fascimile processing remain challenging, such as Document Layout Analysis. That is, determining reading order of the elements detected, and grouping them in meaningful ways (according to their contents). 
+
+In this thesis, working with newspaper pages, we will introduce a dataset, a labeling strategy and a method of segmenting different types of contents within these newspaper images as well as report the results of this effort.
+
+To start with, we will review the data and the methods used in this thesis.
+
+The data itself is as mentioned newspaper images. The figure depicts a newspaper image that is no longer copyright protected, since it has been over 115 years since publication. On the left, we can see the raw image, and on the right, we can see in red bounding boxes, the output coordinates of the Optical Character Recognition applied to this document. Since the data labeled in this thesis is of this century, we will not be able to show the raw data as illustrations throughout this presentation. Instead, we will be showing the OCR output and the predicted labels by the best performing model which are very close to the ground truth labels.
+
+Note that OCR is not perfect. As can be seen in the logo of the newspaper in the top left corner, the logo is recognized as two differnent segments by the OCR. In the middle right we can see the subsection title "Till Salu" (or for sale in english). The word "salu" is not recognized by the OCR. This is but a footnote, but it is important to note that the OCR output is potentially noisy.
+
+In the field of computer vision, remarkable progress has been made in regards to object detection and segmentation of real world objects. So we ask ourselves, can the same methodology be applied in the domain of news article segmentation?
+
+Since we have access to the OCR output, we can simultaniously evaluate methods of incorporating the textual information as input to our models, making them multimodal. Our goal is to compare one approach of multimodality to the baseline unimodal neural networks, that simply only receive the image as input (that is, the visual modality). 
+
+As goals, we ask ourselves if multimodal neural networks outperform unimodal neural networks, and if there is a difference in how well these models perform across a changing typograpic design with regards to modality.
+
+Mask R-CNN is the name of a neural network architecture that has state of the art performance on instance detection and segmenation of real world objects. The figure depicts a simplified illustration of the pipeline of Mask R-CNN. 
+
+The input, an image, is passed to the backbone architecture. The backbone architecture is a convolutional neural network used for feature extraction over the entire image. In the simplest example used in this thesis, the backbone is a ResNet-50 CNN with a Feature Pyramid Network that simply scales the feature maps to different resolutions on which predictions can be made by the Region Proposal Network. The RPN applies a sliding window over the feature maps to make predictions on the objectness (object or not) and the object boundary box at each location resulting in boundary box propsals on the original resolution feature map.
+
+ROIAlign is an operation for extracting small feature maps from each proposed RoI. It replaces the previous RoIPool by removing quantization from the process, resulting in a better alignment. 
+
+The proposed regions are passed to a fully convolutional network that produces mask predictions in the region. Simultaniously, the regions are also passed to a FCN bbox head, which estimates the class accompanied by a prediction confidence and the resulting bounding box.
+
+Thus, Mask R-CNN produces types of 4 outputs: Bounding boxes, segmentation masks, class predictions, and a confidence score for each prediction above a certain threshold.
+
+In this figure, we can see the output of Mask R-CNN layered on top of the input image in four instances. The dataset is called Microsoft Common Objects in Context or MS COCO, where a variety of different items are placed in everyday situations. The bounding boxes are green rectangles, and the masks are of different colours inside the bounding boxes. The estimated class and confidence is denoted on top of the bounding box in each respective instance.
+
+Using Mask-RCNN, we can vary differnt backbones and compare the results. The different backbones have different architectures and pretrained weights. In the figure, we can see in the bottom right corner an illustration of the Feature Pyramid Network. The FPN allows us to make predictions at different scales of the feature map, to improve performance at different scales of objects in the image.
+
+BERT, or Bidirectional Encoder Representations from Transformers is a neural network architecture with a variable number of encoder layers and self attention heads, based on the Transformer, which is a multi attention head feed forward neural network. BERT allows for extensions to target specific downstream Natural Language Processing tasks, such as Semantic Textual Similarity, in which we are interested in this thesis. Given a sentence, BERT produces a fixed size one dimensional vector of flaoting point decimals, representing the sentence in N-dimensional vector space.
+
+The figure shows a depiction of Sentence-BERT, an extension of BERT. In figure 1, a softmax classifier is added during the training stage for fine-tuning. At inference time in figure 2, similarity score can be computed between vectors u and v, produced by sentences A and B.
+
+BERT has publically available pretrained weights depending on the text it was trained on. In this thesis, we vary these pretrained weights in our experiments.
+
+In order to construct a multimodal neural network, we need a heuristic for representing the modalities. In this thesis, we use what is refered to as a text embedding map, where given the bounding box produced by the OCR, we transform the text into vector space using SBERT, and position the produced sentence embedding behind the RGB depth dimension of the image, repeated across the OCR bounding box coordiantes. 
+
+If there is for example an OCR bounding box in the 4 cubes in the top left corner of the figure, then the textual embedding of the OCR textual contents will be repeated in the gray text embedding channels, for those pixels where the OCR determined the bounding box to be. In this example, the vector representation is set to size 3. In our experiments, it is either 384, or 768 depending on the pretrained weights.
+
+In this thesis, we have labeled newspaper images sampled from three different typological periods and 4 different newspapers. The first dataset is split into 3 subsets, train test and validation using a 70/15/15 random sampling split. The first newspaper occuring in the DN 2010-2020 dataset was labeled from start to end of that particular newspaper, all remaining labels were sampled using random sampling from a much larger sample of all newspaper pages within the intervals of years seen in the slide.
+
+6 different classes of content were assigned, based on the type of content it conveyed. To test class confusion, all 6 classes were translated to the same class. All experiments are done using both 6 and 1 class respectively. 
+
+Caveats of the labeling strategy includes first labeling as rectangles then exporting the labels, converting them to polygons and then importing them to adjust the label to fit content that couldnt be captured using rectangles. Elements that were related but blocked by other content which was to be assigned a different instance resulted in the choice of labeling the related content as two instances. 
+
+Pages except front and back are designed to be viewed two at a time. Per page annotations resulted in what I call "Implied content", where elements such as the title or byline may be missing, but since they are known to appear on the next page, such content still counts as an instance, albeit partial. Labels were extended to the edge of the page, on the right side if the first of a multi page article, and to the left corresponding to the second page of a multipage article.
+
+Three experiments were conducted. In the first all combinations of Mask R-CNN backbones and SBERT transformers were varied. All combinations were evaluated using both 6 classes and 1 superclass.
+
+In the experiment testing impact of dataset size (which was requested by The National Library of Sweden to investigate if more labeling would result in better performance) we sample randomly from our train subset at different percentages and train vanilla resnet50-FPN Mask R-CNN 5 times each and average the performance when presented in the results.
+
+As for performance metrics we use the mean Average Precision which is a reoccuring measurement on datasets of instance segmentation. 
+
+Mean average precision is the average of precisions across each class. Precision at a certain threshold is defined as the number of True Positives divided by the True Positives plus the False Positives.

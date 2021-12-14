@@ -157,11 +157,12 @@
 \begin{frame}
   \frametitle{Why newspaper article segmentation?}
 
-  \begin{block}{Focus on digitalization of documents}
+  \begin{block}{Focus on digitization of documents}
     \begin{itemize}
     \item Pages are scanned on an image level
     \item Optical Character Recognition extracts boxes of text
-    \item Document layout analysis, reading order, article segmentation remains a challenge
+    \item Document layout analysis: Determining reading order, meaningful article segmentation remains a challenge
+    \item Meaningful segments could enable e.g. search on article level, instead of page level.
     \end{itemize}
   \end{block}
 
@@ -233,10 +234,11 @@ unimodal neural network architectures?
 \begin{subfigure}{0.8\textwidth}
   \centering
   \includegraphics[max size={0.9\textwidth}{0.9\textheight}]{figures/mask-rcnn.png}
-  \caption{Mask R-CNN architecture. [He et al 2017]}
   \label{fig:submaskrcnn}
+  %https://www.researchgate.net/publication/351426881_Objective_comparison_of_relief_visualization_techniques_with_deep_CNN_for_archaeology
 \end{subfigure}%
 \label{fig:maskrcnn}
+  \caption{Mask R-CNN architecture. [Guyot et al 2021]}
 \end{figure}
 \end{frame}
 \normalpage
@@ -248,9 +250,9 @@ unimodal neural network architectures?
 \begin{subfigure}{0.9\textwidth}
   \centering
   \includegraphics[max size={0.9\textwidth}{0.9\textheight}]{figures/mask-rcnn-examples.png}
-  \caption{Mask R-CNN output for MS COCO (Common objects in Context). [He et al 2017]}
   \label{fig:submscoco}
 \end{subfigure}%
+  \caption{Mask R-CNN output for MS COCO (Common objects in Context). [He et al 2017]}
 \label{fig:mscoco}
 \end{figure}
 \end{frame}
@@ -258,30 +260,69 @@ unimodal neural network architectures?
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
-  \frametitle{Feature Pyramid Network}
-wow
-\end{frame}
-\normalpage
+  \frametitle{Mask R-CNN Backbones used in this thesis}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-  \frametitle{Architecture modularity and pretrained weights}
-wow
+\begin{itemize}
+\item ResNet-50-FPN (r50)
+\item ResNet-101-FPN (r101)
+\item ResNeXt-101-32x4d-FPN (x101-32x4d)
+\item ResNeXt-101-32x8d-FPN (x101-32x8d)
+\item ResNeXt-101-64x4d-FPN (x101-64x4d)
+\end{itemize}
+
+
+\begin{figure}[r]
+\centering
+\begin{subfigure}{0.9\textwidth}
+  \centering
+  \includegraphics[max size={0.6\textwidth}{0.6\textheight}]{figures/fpn.png}
+\end{subfigure}%
+  \caption{Evolution of the Feature Pyramid Network (bottom right). [Lin et al 2016]}
+\label{fig:fpn}
+\end{figure}
+
 \end{frame}
 \normalpage
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
   \frametitle{What is (Sentence-) BERT?}
-wow
+\begin{figure}
+\centering
+\begin{subfigure}{0.9\textwidth}
+  \centering
+  \includegraphics[max size={0.9\textwidth}{0.9\textheight}]{figures/SBERT.png}
+  \label{fig:submscoco}
+\end{subfigure}%
+\label{fig:sbert}
+  \caption{Sentence BERT extension of the original BERT. [Reimers et al 2019]}
+\end{figure}
+
+
 \end{frame}
 \normalpage
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
   \frametitle{Sentence transformers used in this thesis}
-table
+\begin{table}[H]
+  \begin{center}
+    \caption{Sentence transformers}
+    \label{tab:modeldimensions}
+    \begin{tabular}{l|l}
+    \textbf{Model name} & \textbf{Dimensions}  \\
+    \hline
+    all-mpnet-base-v2 & 384 \\    \hline
+    all-MiniLM-L6-v2 & 384 \\    \hline
+    multi-qa-mpnet-base-dot-v1 & 384 \\    \hline
+    all-distilroberta-v1 & 384 \\    \hline
+    KBLab/sentence-bert-swedish-cased & 768 \\    \hline
+    KB/bert-base-swedish-cased & 768 \\    \hline
+    \end{tabular}
+  \end{center}
+\end{table}
 \end{frame}
+
 \normalpage
 
 
@@ -504,7 +545,24 @@ DN 2010-2020 is split (70/15/15) using random sampling.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
   \frametitle{Labeling Strategy}
-Classes, caveats
+
+Classes:
+\begin{description}
+\item[$\bullet$] News Unit
+\item[$\bullet$] Advertisement
+\item[$\bullet$] Listing
+\item[$\bullet$] Weather
+\item[$\bullet$] Death Notice
+\item[$\bullet$] Game
+\item[$\bullet$] Publication Unit (All of the above as 1 class, for testing class confusion)
+\end{description}
+
+Caveats:
+\begin{description}
+\item[$\bullet$] Rectangles to polygons
+\item[$\bullet$] Spatial blocking of content
+\item[$\bullet$] Per page annotations (Implied content)
+\end{description}
 \end{frame}
 \normalpage
 
@@ -512,11 +570,12 @@ Classes, caveats
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
   \frametitle{Experiments}
-Unimodal vs multimodal
 
-impact of class labels
-
-impact of dataset size
+\begin{description}
+\item[$\bullet$] Unimodal vs multimodal (Image vs image + text)
+\item[$\bullet$] Impact of class labels (6 classes vs 1 class)
+\item[$\bullet$] Impact of dataset size (Random sampling different \% of train data)
+\end{description}
 
 \end{frame}
 \normalpage
@@ -525,45 +584,299 @@ impact of dataset size
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
   \frametitle{Performance Metrics}
-wow
+\begin{equation}
+    IoU = \frac{Area \: Overlap}{Area \: Union}
+    \label{eqn:iou}
+\end{equation}
+
+A prediction is considered positive when above a certain threshold $\tau \in [0,1]$ of IoU.
+\begin{equation}
+    Precision @ \tau = P@\tau = \frac{TP}{(TP + FP)}
+    \label{eqn:precision}
+\end{equation}
+
+mean Average Precision:
+\begin{equation}
+mAP = \frac{1}{N} \sum_{i=1}^{N} AP_i
+    \label{eqn:map}
+\end{equation}
+
+mean Average Precision at different IoU thresholds:
+
+\begin{equation}
+mAP^{50} = mAP^{(IoU=0.5)}
+    \label{eqn:map}
+\end{equation}
+
+Metrics are reported on the segmentation mask (m) and bounding box (bb) respectively.
+
 \end{frame}
 \normalpage
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
-  \frametitle{Results}
-wow
+  \frametitle{Major results}
+  Impact of dataset size - Varying a \% of the training data using random sampling. Each experiment was repeated 5 times.
+
+  \begin{table}[H]
+  \begin{center}
+    \caption{Gradually increasing dataset size - 6 classes - In-domain test set}
+    \label{tab:dsizeallcinset}
+    \resizebox{\columnwidth}{!}{
+    \begin{tabular}{l|l|l|l|l|l|l|l}
+    \textbf{\% Train} & \textbf{$mAP_m$} & \textbf{$mAP_m^{50}$} & \textbf{$mAP_m^{75}$} & \textbf{$mAP_{bb}$} & \textbf{$mAP_{bb}^{50}$} & \textbf{$mAP_{bb}^{75}$} & \textbf{$\sigma$} \\
+    \hline
+    25\% & 0.723 & 0.848 & 0.790 & 0.688 & 0.847 & 0.781 & 0.027 \\    \hline
+    50\% & 0.883 & 0.964 & 0.945 & 0.850 & 0.965 & 0.943 & 0.003 \\    \hline
+    75\% & \textbf{0.939} & \textbf{0.989} & \textbf{0.981} & \textbf{0.927} & \textbf{0.989} & \textbf{0.980} & 0.004 \\    \hline
+    90\% & 0.934 & 0.976 & 0.963 & 0.921 & 0.975 & 0.962 & 0.006 \\    \hline
+    100\% & 0.901 & 0.960 & 0.935 & 0.895 & 0.960 & 0.934 & 0.005 \\    \hline
+
+    \end{tabular}}
+  \end{center}
+\end{table}
+The standard deviation $\sigma$ denotes the average of the standard deviations of each cell in the
+row. All results in this table derive from the model resnet-50-FPN. All prediction visualizations in this presentation are produced by the top scoring model (75\%).
+
+\end{frame}
+\normalpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+  \frametitle{Major Results 2}
+\begin{table}[H]
+  \begin{center}
+    \caption{Top 5 results - 6 classes - In-domain test set - 100\% of train data}
+    \label{tab:top5allcinset}
+    \resizebox{\columnwidth}{!}{
+    \begin{tabular}{l|l|l|l|l|l|l} %
+    \textbf{Final name} & \textbf{$mAP_m$} & \textbf{$mAP_m^{50}$} & \textbf{$mAP_m^{75}$} & \textbf{$mAP_{bb}$} & \textbf{$mAP_{bb}^{50}$} & \textbf{$mAP_{bb}^{75}$} \\
+    \hline
+x101-32x8d                     & 0.910 & 0.964 & 0.936 & 0.906 & 0.964 & 0.937 \\ \hline
+x101-32x4d                     & 0.906 & 0.957 & 0.929 & 0.901 & 0.957 & 0.932 \\ \hline
+x101-64x4d                     & 0.903 & 0.954 & 0.934 & 0.893 & 0.954 & 0.934 \\ \hline
+r101                           & 0.901 & 0.951 & 0.928 & 0.885 & 0.953 & 0.927 \\ \hline
+x101-64x4d-all-mpnet           & 0.881 & 0.952 & 0.927 & 0.868 & 0.954 & 0.929 \\ \hline
+    \end{tabular}}
+  \end{center}
+\end{table}
+\end{frame}
+\normalpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+  \frametitle{Major Results 3}
+
+  Multimodal models tended to outperform unimodal models on the out-of-domain test set when all classes are set to the same class: Publication Unit.
+
+\begin{table}[H]
+  \begin{center}
+    \caption{Top 5 results - 1 class - Out-set}
+    \label{tab:top5onecoutset}
+    \resizebox{\columnwidth}{!}{
+    \begin{tabular}{l|l|l|l|l|l|l}
+    \textbf{Final name} & \textbf{$mAP_m$} & \textbf{$mAP_m^{50}$} & \textbf{$mAP_m^{75}$} & \textbf{$mAP_{bb}$} & \textbf{$mAP_{bb}^{50}$} & \textbf{$mAP_{bb}^{75}$} \\
+    \hline
+r50-MiniLM-1c                  & 0.465 & 0.622 & 0.490 & 0.458 & 0.622 & 0.488 \\ \hline
+r50-all-mpnet-1c               & 0.455 & 0.612 & 0.480 & 0.449 & 0.611 & 0.483 \\ \hline
+x101-64x4d-all-mpnet-1c        & 0.447 & 0.588 & 0.474 & 0.441 & 0.585 & 0.474 \\ \hline
+r50-1c                         & 0.438 & 0.560 & 0.460 & 0.432 & 0.556 & 0.462 \\ \hline
+x101-all-mpnet-1c              & 0.433 & 0.564 & 0.459 & 0.426 & 0.564 & 0.456 \\ \hline
+    \end{tabular}}
+  \end{center}
+\end{table}
+\end{frame}
+\normalpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+  \frametitle{Minor Results}
+
+\begin{table}[H]
+  \begin{center}
+    \caption{Top performing class choice}
+    \label{tab:beststrat}
+    \resizebox{0.4\columnwidth}{!}{
+    \begin{tabular}{l|l}
+    \textbf{Test set} & \textbf{Number of classes} \\
+    \hline
+In-set  & 6 classes \\ \hline
+Near-set & 1 class \\ \hline
+Out-set & 6 classes \\ \hline
+    \end{tabular}}
+  \end{center}
+\end{table}
+
+
 \end{frame}
 \normalpage
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
   \frametitle{Discussion and conclusion}
-wow
+\begin{description}
+\item[$\bullet$] Higher mAP is generally required in this domain for usefulness (simpler masks)
+\item[$\bullet$] Vanilla Mask R-CNN has been shown to perform well on in-domain test sets.
+\item[$\bullet$] Increase in error in dataset size experiment can be attributed to small dataset size + more complex examples left out in 75\%, and not represented in test set. The greater the size of the training dataset, the better performance on near- and out-of-domain test sets (for both 6 classes and 1 class).
+\item[$\bullet$] 6 classes vs 1 class differs in best performance between in-, near- and out-of-domain test sets.
+\item[$\bullet$] We make no claims on the ability to generalize across typologies, but we see a consistent drop in performance proportional to 'distance' in typology and timespan.
+\item[$\bullet$] Multimodal performance could be explained by large and sparse dimensions, causing the model to ignore those dimensions. (Future work)
+\end{description}
+
 \end{frame}
 \normalpage
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
-  \frametitle{Example of OCR, Visualized embedding, Best model prediction}
-wow
+  \frametitle{Future work}
+\begin{description}
+\item[$\bullet$] Domain-specific architecture
+\item[$\bullet$] Normalization of textual embeddings
+\item[$\bullet$] Dimensionality reduction of textual embeddings
+\item[$\bullet$] Dataset specific image normalization values and training without pretrained weights.
+\item[$\bullet$] Text granularity (sentence level, word level, one hot encoding)
+\end{description}
+
 \end{frame}
 \normalpage
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
-  \frametitle{Example of OCR, Visualized embedding, Best model prediction}
-wow
+  \frametitle{Demo}
+\begin{description}
+\item[$\bullet$] Left: First 3 dimensions of all-mpnet-base-v2 vector representations normalized as RGB colors.
+\item[$\bullet$] Right: Labels produced by vanilla Mask R-CNN, trained on 75\% of the training data. Close to ground truth in segmentation mask. (0.939 $mAP_{m}$)
+\end{description}
+
 \end{frame}
 \normalpage
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
-  \frametitle{Example of OCR, Visualized embedding, Best model prediction}
-wow
+  \begin{figure}
+\centering
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=0.7\linewidth, clip=true, trim = 50mm 20mm 60mm 0mm]{figures/tf/JIefsDa.png}
+\end{subfigure}%
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=0.7\linewidth, clip=true, trim = 0mm 0mm 0mm 0mm]{figures/labels-vanilla-0.75/JIefsDa.jpg}
+\end{subfigure}
+\caption{A front page newspaper page from the DN 2010-2020 Test subset.}
+\label{fig:front}
+\end{figure}
+
 \end{frame}
 \normalpage
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+  \begin{figure}
+\centering
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=0.7\linewidth, clip=true, trim = 50mm 20mm 60mm 0mm]{figures/tf/zk6UnuL.png}
+\end{subfigure}%
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=0.7\linewidth, clip=true, trim = 0mm 0mm 0mm 0mm]{figures/labels-vanilla-0.75/zk6UnuL.jpg}
+\end{subfigure}
+\caption{A newspaper page with listing prices of funds and stocks.}
+\label{fig:stocks}
+\end{figure}
+\end{frame}
+\normalpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+  \begin{figure}
+\centering
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=0.7\linewidth, clip=true, trim = 50mm 20mm 60mm 0mm]{figures/tf/y3LXnnL.png}
+\end{subfigure}%
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=0.7\linewidth, clip=true, trim = 0mm 0mm 0mm 0mm]{figures/labels-vanilla-0.75/y3LXnnL.jpg}
+\end{subfigure}
+\caption{A newspaper page with different types of games.}
+\label{fig:stocks}
+\end{figure}
+\end{frame}
+\normalpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+  \begin{figure}
+\centering
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=0.7\linewidth, clip=true, trim = 50mm 20mm 60mm 0mm]{figures/tf/GQU6vjW.png}
+\end{subfigure}%
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=0.7\linewidth, clip=true, trim = 0mm 0mm 0mm 0mm]{figures/labels-vanilla-0.75/GQU6vjW.jpg}
+\end{subfigure}
+\caption{A newspaper page with obituaries.}
+\label{fig:obituaries}
+\end{figure}
+\end{frame}
+\normalpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+  \begin{figure}
+\centering
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=0.7\linewidth, clip=true, trim = 50mm 20mm 60mm 0mm]{figures/tf/AVThDFz.png}
+\end{subfigure}%
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=0.7\linewidth, clip=true, trim = 0mm 0mm 0mm 0mm]{figures/labels-vanilla-0.75/AVThDFz.jpg}
+\end{subfigure}
+\caption{A newspaper page consisting of news articles.}
+\label{fig:newsarticles}
+\end{figure}
+\end{frame}
+\normalpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+  \begin{figure}
+\centering
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=0.7\linewidth, clip=true, trim = 50mm 20mm 60mm 0mm]{figures/tf/1RoKim0.png}
+\end{subfigure}%
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=0.7\linewidth, clip=true, trim = 0mm 0mm 0mm 0mm]{figures/labels-vanilla-0.75/1RoKim0.jpg}
+\end{subfigure}
+\caption{A newspaper page consisting of a single large image, part of a multi-page article,}
+\label{fig:weather}
+\end{figure}
+\end{frame}
+\normalpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+  \begin{figure}
+\centering
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=0.7\linewidth, clip=true, trim = 50mm 20mm 60mm 0mm]{figures/tf/Jd55Bvg.png}
+\end{subfigure}%
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=0.7\linewidth, clip=true, trim = 0mm 0mm 0mm 0mm]{figures/labels-vanilla-0.75/Jd55Bvg.jpg}
+\end{subfigure}
+\caption{A newspaper page consisting of weather reports and advertisement.}
+\label{fig:weather}
+\end{figure}
+\end{frame}
+\normalpage
 
 \end{document}
