@@ -194,6 +194,28 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
+\begin{figure}
+\centering
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[max size={0.95\textwidth}{0.95\textheight}]{figures/1901-ocr.jpg}
+  \caption{OCR bounding boxes visualized in red.}
+  \label{fig:raw1901}
+\end{subfigure}%
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[max size={0.95\textwidth}{0.95\textheight}]{figures/output-black-True.png}
+  \caption{OCR visualized in red without raw data.}
+  \label{fig:ocr1901}
+\end{subfigure}
+\label{fig:1901}
+\end{figure}
+
+\end{frame}
+\normalpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
   \frametitle{Problems and goals}
 
   \begin{Large}
@@ -756,13 +778,25 @@ Out-set & 6 classes \\ \hline
 \begin{frame}
   \begin{figure}
 \centering
-\begin{subfigure}{.5\textwidth}
+\begin{subfigure}{.25\textwidth}
   \centering
-  \includegraphics[width=0.7\linewidth, clip=true, trim = 50mm 20mm 60mm 0mm]{figures/tf/JIefsDa.png}
+  \includegraphics[width=0.99\linewidth, clip=true, trim = 0mm 0mm 0mm 0mm]{figures/ocr/JIefsDa.jpg}
+  \caption{OCR}
 \end{subfigure}%
-\begin{subfigure}{.5\textwidth}
+\begin{subfigure}{.25\textwidth}
   \centering
-  \includegraphics[width=0.7\linewidth, clip=true, trim = 0mm 0mm 0mm 0mm]{figures/labels-vanilla-0.75/JIefsDa.jpg}
+  \includegraphics[width=0.99\linewidth, clip=true, trim = 0mm 0mm 0mm 0mm]{figures/ocr_bbox/JIefsDa.jpg}
+  \caption{GT Label + OCR}
+\end{subfigure}%
+\begin{subfigure}{.25\textwidth}
+  \centering
+  \includegraphics[width=0.99\linewidth, clip=true, trim = 0mm 0mm 0mm 0mm]{figures/bbox/JIefsDa.jpg}
+  \caption{GT Label}
+\end{subfigure}%
+\begin{subfigure}{.25\textwidth}
+  \centering
+  \includegraphics[width=0.99\linewidth, clip=true, trim = 0mm 0mm 0mm 0mm]{figures/labels-vanilla-0.75/JIefsDa.jpg}
+  \caption{Model prediction}
 \end{subfigure}
 \caption{A front page newspaper page from the DN 2010-2020 Test subset.}
 \label{fig:front}
@@ -775,15 +809,58 @@ Out-set & 6 classes \\ \hline
 \begin{frame}
   \begin{figure}
 \centering
-\begin{subfigure}{.5\textwidth}
+\begin{subfigure}{.25\textwidth}
   \centering
-  \includegraphics[width=0.7\linewidth, clip=true, trim = 50mm 20mm 60mm 0mm]{figures/tf/zk6UnuL.png}
+  \includegraphics[width=0.99\linewidth, clip=true, trim = 0mm 0mm 0mm 0mm]{figures/ocr/zk6UnuL.jpg}
+  \caption{OCR}
 \end{subfigure}%
-\begin{subfigure}{.5\textwidth}
+\begin{subfigure}{.25\textwidth}
   \centering
-  \includegraphics[width=0.7\linewidth, clip=true, trim = 0mm 0mm 0mm 0mm]{figures/labels-vanilla-0.75/zk6UnuL.jpg}
+  \includegraphics[width=0.99\linewidth, clip=true, trim = 0mm 0mm 0mm 0mm]{figures/ocr_bbox/zk6UnuL.jpg}
+  \caption{GT Label + OCR}
+\end{subfigure}%
+\begin{subfigure}{.25\textwidth}
+  \centering
+  \includegraphics[width=0.99\linewidth, clip=true, trim = 0mm 0mm 0mm 0mm]{figures/bbox/zk6UnuL.jpg}
+  \caption{GT Label}
+\end{subfigure}%
+\begin{subfigure}{.25\textwidth}
+  \centering
+  \includegraphics[width=0.99\linewidth, clip=true, trim = 0mm 0mm 0mm 0mm]{figures/labels-vanilla-0.75/zk6UnuL.jpg}
+  \caption{Model prediction}
 \end{subfigure}
 \caption{A newspaper page with listing prices of funds and stocks.}
+\label{fig:stocks}
+\end{figure}
+\end{frame}
+\normalpage
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+  \begin{figure}
+\centering
+\begin{subfigure}{.25\textwidth}
+  \centering
+  \includegraphics[width=0.99\linewidth, clip=true, trim = 0mm 0mm 0mm 0mm]{figures/ocr/9rwJ51v.jpg}
+  \caption{OCR}
+\end{subfigure}%
+\begin{subfigure}{.25\textwidth}
+  \centering
+  \includegraphics[width=0.99\linewidth, clip=true, trim = 0mm 0mm 0mm 0mm]{figures/ocr_bbox/9rwJ51v.jpg}
+  \caption{GT Label + OCR}
+\end{subfigure}%
+\begin{subfigure}{.25\textwidth}
+  \centering
+  \includegraphics[width=0.99\linewidth, clip=true, trim = 0mm 0mm 0mm 0mm]{figures/bbox/9rwJ51v.jpg}
+  \caption{GT Label}
+\end{subfigure}%
+\begin{subfigure}{.25\textwidth}
+  \centering
+  \includegraphics[width=0.99\linewidth, clip=true, trim = 0mm 0mm 0mm 0mm]{figures/labels-vanilla-0.75/9rwJ51v.jpg}
+  \caption{Model prediction}
+\end{subfigure}
+\caption{A newspaper page with listings of TV/Radio timetables + advertisement.}
 \label{fig:stocks}
 \end{figure}
 \end{frame}
@@ -793,13 +870,25 @@ Out-set & 6 classes \\ \hline
 \begin{frame}
   \begin{figure}
 \centering
-\begin{subfigure}{.5\textwidth}
+\begin{subfigure}{.25\textwidth}
   \centering
-  \includegraphics[width=0.7\linewidth, clip=true, trim = 50mm 20mm 60mm 0mm]{figures/tf/y3LXnnL.png}
+  \includegraphics[width=0.99\linewidth, clip=true, trim = 0mm 0mm 0mm 0mm]{figures/ocr/y3LXnnL.jpg}
+  \caption{OCR}
 \end{subfigure}%
-\begin{subfigure}{.5\textwidth}
+\begin{subfigure}{.25\textwidth}
   \centering
-  \includegraphics[width=0.7\linewidth, clip=true, trim = 0mm 0mm 0mm 0mm]{figures/labels-vanilla-0.75/y3LXnnL.jpg}
+  \includegraphics[width=0.99\linewidth, clip=true, trim = 0mm 0mm 0mm 0mm]{figures/ocr_bbox/y3LXnnL.jpg}
+  \caption{GT Label + OCR}
+\end{subfigure}%
+\begin{subfigure}{.25\textwidth}
+  \centering
+  \includegraphics[width=0.99\linewidth, clip=true, trim = 0mm 0mm 0mm 0mm]{figures/bbox/y3LXnnL.jpg}
+  \caption{GT Label}
+\end{subfigure}%
+\begin{subfigure}{.25\textwidth}
+  \centering
+  \includegraphics[width=0.99\linewidth, clip=true, trim = 0mm 0mm 0mm 0mm]{figures/labels-vanilla-0.75/y3LXnnL.jpg}
+  \caption{Model prediction}
 \end{subfigure}
 \caption{A newspaper page with different types of games.}
 \label{fig:stocks}
@@ -811,13 +900,25 @@ Out-set & 6 classes \\ \hline
 \begin{frame}
   \begin{figure}
 \centering
-\begin{subfigure}{.5\textwidth}
+\begin{subfigure}{.25\textwidth}
   \centering
-  \includegraphics[width=0.7\linewidth, clip=true, trim = 50mm 20mm 60mm 0mm]{figures/tf/GQU6vjW.png}
+  \includegraphics[width=0.99\linewidth, clip=true, trim = 0mm 0mm 0mm 0mm]{figures/ocr/GQU6vjW.jpg}
+  \caption{OCR}
 \end{subfigure}%
-\begin{subfigure}{.5\textwidth}
+\begin{subfigure}{.25\textwidth}
   \centering
-  \includegraphics[width=0.7\linewidth, clip=true, trim = 0mm 0mm 0mm 0mm]{figures/labels-vanilla-0.75/GQU6vjW.jpg}
+  \includegraphics[width=0.99\linewidth, clip=true, trim = 0mm 0mm 0mm 0mm]{figures/ocr_bbox/GQU6vjW.jpg}
+  \caption{GT Label + OCR}
+\end{subfigure}%
+\begin{subfigure}{.25\textwidth}
+  \centering
+  \includegraphics[width=0.99\linewidth, clip=true, trim = 0mm 0mm 0mm 0mm]{figures/bbox/GQU6vjW.jpg}
+  \caption{GT Label}
+\end{subfigure}%
+\begin{subfigure}{.25\textwidth}
+  \centering
+  \includegraphics[width=0.99\linewidth, clip=true, trim = 0mm 0mm 0mm 0mm]{figures/labels-vanilla-0.75/GQU6vjW.jpg}
+  \caption{Model prediction}
 \end{subfigure}
 \caption{A newspaper page with obituaries.}
 \label{fig:obituaries}
@@ -829,13 +930,25 @@ Out-set & 6 classes \\ \hline
 \begin{frame}
   \begin{figure}
 \centering
-\begin{subfigure}{.5\textwidth}
+\begin{subfigure}{.25\textwidth}
   \centering
-  \includegraphics[width=0.7\linewidth, clip=true, trim = 50mm 20mm 60mm 0mm]{figures/tf/AVThDFz.png}
+  \includegraphics[width=0.99\linewidth, clip=true, trim = 0mm 0mm 0mm 0mm]{figures/ocr/AVThDFz.jpg}
+  \caption{OCR}
 \end{subfigure}%
-\begin{subfigure}{.5\textwidth}
+\begin{subfigure}{.25\textwidth}
   \centering
-  \includegraphics[width=0.7\linewidth, clip=true, trim = 0mm 0mm 0mm 0mm]{figures/labels-vanilla-0.75/AVThDFz.jpg}
+  \includegraphics[width=0.99\linewidth, clip=true, trim = 0mm 0mm 0mm 0mm]{figures/ocr_bbox/AVThDFz.jpg}
+  \caption{GT Label + OCR}
+\end{subfigure}%
+\begin{subfigure}{.25\textwidth}
+  \centering
+  \includegraphics[width=0.99\linewidth, clip=true, trim = 0mm 0mm 0mm 0mm]{figures/bbox/AVThDFz.jpg}
+  \caption{GT Label}
+\end{subfigure}%
+\begin{subfigure}{.25\textwidth}
+  \centering
+  \includegraphics[width=0.99\linewidth, clip=true, trim = 0mm 0mm 0mm 0mm]{figures/labels-vanilla-0.75/AVThDFz.jpg}
+  \caption{Model prediction}
 \end{subfigure}
 \caption{A newspaper page consisting of news articles.}
 \label{fig:newsarticles}
@@ -847,15 +960,27 @@ Out-set & 6 classes \\ \hline
 \begin{frame}
   \begin{figure}
 \centering
-\begin{subfigure}{.5\textwidth}
+\begin{subfigure}{.25\textwidth}
   \centering
-  \includegraphics[width=0.7\linewidth, clip=true, trim = 50mm 20mm 60mm 0mm]{figures/tf/1RoKim0.png}
+  \includegraphics[width=0.99\linewidth, clip=true, trim = 0mm 0mm 0mm 0mm]{figures/ocr/1RoKim0.jpg}
+  \caption{OCR}
 \end{subfigure}%
-\begin{subfigure}{.5\textwidth}
+\begin{subfigure}{.25\textwidth}
   \centering
-  \includegraphics[width=0.7\linewidth, clip=true, trim = 0mm 0mm 0mm 0mm]{figures/labels-vanilla-0.75/1RoKim0.jpg}
+  \includegraphics[width=0.99\linewidth, clip=true, trim = 0mm 0mm 0mm 0mm]{figures/ocr_bbox/1RoKim0.jpg}
+  \caption{GT Label + OCR}
+\end{subfigure}%
+\begin{subfigure}{.25\textwidth}
+  \centering
+  \includegraphics[width=0.99\linewidth, clip=true, trim = 0mm 0mm 0mm 0mm]{figures/bbox/1RoKim0.jpg}
+  \caption{GT Label}
+\end{subfigure}%
+\begin{subfigure}{.25\textwidth}
+  \centering
+  \includegraphics[width=0.99\linewidth, clip=true, trim = 0mm 0mm 0mm 0mm]{figures/labels-vanilla-0.75/1RoKim0.jpg}
+  \caption{Model prediction}
 \end{subfigure}
-\caption{A newspaper page consisting of a single large image, part of a multi-page article,}
+\caption{A newspaper page consisting of a single large image, part of a multi-page article}
 \label{fig:weather}
 \end{figure}
 \end{frame}
@@ -865,13 +990,86 @@ Out-set & 6 classes \\ \hline
 \begin{frame}
   \begin{figure}
 \centering
-\begin{subfigure}{.5\textwidth}
+\begin{subfigure}{.25\textwidth}
   \centering
-  \includegraphics[width=0.7\linewidth, clip=true, trim = 50mm 20mm 60mm 0mm]{figures/tf/Jd55Bvg.png}
+  \includegraphics[width=0.99\linewidth, clip=true, trim = 0mm 0mm 0mm 0mm]{figures/ocr/FZKQ4Zg.jpg}
+  \caption{OCR}
 \end{subfigure}%
-\begin{subfigure}{.5\textwidth}
+\begin{subfigure}{.25\textwidth}
   \centering
-  \includegraphics[width=0.7\linewidth, clip=true, trim = 0mm 0mm 0mm 0mm]{figures/labels-vanilla-0.75/Jd55Bvg.jpg}
+  \includegraphics[width=0.99\linewidth, clip=true, trim = 0mm 0mm 0mm 0mm]{figures/ocr_bbox/FZKQ4Zg.jpg}
+  \caption{GT Label + OCR}
+\end{subfigure}%
+\begin{subfigure}{.25\textwidth}
+  \centering
+  \includegraphics[width=0.99\linewidth, clip=true, trim = 0mm 0mm 0mm 0mm]{figures/bbox/FZKQ4Zg.jpg}
+  \caption{GT Label}
+\end{subfigure}%
+\begin{subfigure}{.25\textwidth}
+  \centering
+  \includegraphics[width=0.99\linewidth, clip=true, trim = 0mm 0mm 0mm 0mm]{figures/labels-vanilla-0.75/FZKQ4Zg.jpg}
+  \caption{Model prediction}
+\end{subfigure}
+\caption{A newspaper page consisting of a large news article: label extension demonstration.}
+\label{fig:extendedlabel}
+\end{figure}
+\end{frame}
+\normalpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+  \begin{figure}
+\centering
+\begin{subfigure}{.25\textwidth}
+  \centering
+  \includegraphics[width=0.99\linewidth, clip=true, trim = 0mm 0mm 0mm 0mm]{figures/ocr/kvtooQ3.jpg}
+  \caption{OCR}
+\end{subfigure}%
+\begin{subfigure}{.25\textwidth}
+  \centering
+  \includegraphics[width=0.99\linewidth, clip=true, trim = 0mm 0mm 0mm 0mm]{figures/ocr_bbox/kvtooQ3.jpg}
+  \caption{GT Label + OCR}
+\end{subfigure}%
+\begin{subfigure}{.25\textwidth}
+  \centering
+  \includegraphics[width=0.99\linewidth, clip=true, trim = 0mm 0mm 0mm 0mm]{figures/bbox/kvtooQ3.jpg}
+  \caption{GT Label}
+\end{subfigure}%
+\begin{subfigure}{.25\textwidth}
+  \centering
+  \includegraphics[width=0.99\linewidth, clip=true, trim = 0mm 0mm 0mm 0mm]{figures/labels-vanilla-0.75/kvtooQ3.jpg}
+  \caption{Model prediction}
+\end{subfigure}
+\caption{A newspaper page with event listings.}
+\label{fig:extendedlabel}
+\end{figure}
+\end{frame}
+\normalpage
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+  \begin{figure}
+\centering
+\begin{subfigure}{.25\textwidth}
+  \centering
+  \includegraphics[width=0.99\linewidth, clip=true, trim = 0mm 0mm 0mm 0mm]{figures/ocr/Jd55Bvg.jpg}
+  \caption{OCR}
+\end{subfigure}%
+\begin{subfigure}{.25\textwidth}
+  \centering
+  \includegraphics[width=0.99\linewidth, clip=true, trim = 0mm 0mm 0mm 0mm]{figures/ocr_bbox/Jd55Bvg.jpg}
+  \caption{GT Label + OCR}
+\end{subfigure}%
+\begin{subfigure}{.25\textwidth}
+  \centering
+  \includegraphics[width=0.99\linewidth, clip=true, trim = 0mm 0mm 0mm 0mm]{figures/bbox/Jd55Bvg.jpg}
+  \caption{GT Label}
+\end{subfigure}%
+\begin{subfigure}{.25\textwidth}
+  \centering
+  \includegraphics[width=0.99\linewidth, clip=true, trim = 0mm 0mm 0mm 0mm]{figures/labels-vanilla-0.75/Jd55Bvg.jpg}
+  \caption{Model prediction}
 \end{subfigure}
 \caption{A newspaper page consisting of weather reports and advertisement.}
 \label{fig:weather}

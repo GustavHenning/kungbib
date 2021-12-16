@@ -6,6 +6,8 @@ import matplotlib.patches as patches
 from PIL import Image
 
 f = open('content.json')
+WITH_RAW_DATA=False
+FILL_OCR=False
  
 data = json.load(f)
 
@@ -28,13 +30,17 @@ fig.add_axes(ax)
 
 for item in page_one:
 	print(item)
-	rect = patches.Rectangle((item["box"][0], item["box"][1]), item["box"][2], item["box"][3], linewidth=3, edgecolor='r', facecolor='none')
+	rect = patches.Rectangle((item["box"][0], item["box"][1]), item["box"][2], item["box"][3], linewidth=5, edgecolor='r', facecolor='red' if FILL_OCR else 'none')
 
 	# Add the patch to the Axes
 	ax.add_patch(rect)
 
 fig.set_size_inches(orig_width/my_dpi, orig_height/my_dpi, forward=True)
-ax.imshow(im, aspect='auto')
-#plt.show()
 
-fig.savefig("output.png")
+if WITH_RAW_DATA:
+	ax.imshow(im)
+	fig.savefig("output.png")
+else:
+	im = Image.new("RGB", (orig_width, orig_height))
+	ax.imshow(im)
+	fig.savefig("output-black-{}.png".format(FILL_OCR))
