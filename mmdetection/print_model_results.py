@@ -31,7 +31,7 @@ def format_paper_name(run_name):
         elif "-101-32x8d" in paper_name:
             return "x101-32x8d-" + paper_name.replace("-101-32x8d", "")
         elif "-101" in paper_name:
-            return "x101-" + paper_name.replace("-101", "")
+            return "r101-" + paper_name.replace("-101", "")
         else:
             return "r50-" + paper_name
     return paper_name
