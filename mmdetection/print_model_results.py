@@ -11,7 +11,9 @@ cpp = {}
 
 def format_paper_name(run_name):
     paper_name = run_name.split("/")[3] \
-        .replace("vanilla-101", "x101") \
+        .replace("vanilla-101_", "r101_") \
+        .replace("vanilla-101-tf", "r101-tf") \
+        .replace("vanilla-101-", "x101-") \
         .replace("vanilla_1", "r50") \
         .replace("bert_384_", "") \
         .replace("all-MiniLM-L6-v2", "MiniLM") \
@@ -32,7 +34,7 @@ def format_paper_name(run_name):
             return "x101-32x8d-" + paper_name.replace("-101-32x8d", "")
         elif "-101" in paper_name:
             return "r101-" + paper_name.replace("-101", "")
-        else:
+        elif not "101" in paper_name:
             return "r50-" + paper_name
     return paper_name
 
