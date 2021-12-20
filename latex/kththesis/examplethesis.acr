@@ -41,8 +41,6 @@
 \glossentry{mAP}{\glossaryentrynumbers{\relax 
 		\setentrycounter[]{page}\glsnumberformat{xv}}}%
 \glossentry{mIoU}{\glossaryentrynumbers{\relax 
-		\setentrycounter[]{page}\glsnumberformat{xv}}}%
-\glossentry{MLP}{\glossaryentrynumbers{\relax 
 		\setentrycounter[]{page}\glsnumberformat{xv}}}\glsgroupskip
 \glsgroupheading{N}\relax \glsresetentrylist %
 \glossentry{NLP}{\glossaryentrynumbers{\relax 
@@ -53,8 +51,6 @@
 		\setentrycounter[]{page}\glsnumberformat{1}}}\glsgroupskip
 \glsgroupheading{R}\relax \glsresetentrylist %
 \glossentry{R-CNN}{\glossaryentrynumbers{\relax 
-		\setentrycounter[]{page}\glsnumberformat{xv}}}%
-\glossentry{ReLU}{\glossaryentrynumbers{\relax 
 		\setentrycounter[]{page}\glsnumberformat{xv}}}%
 \glossentry{ResNet}{\glossaryentrynumbers{\relax 
 		\setentrycounter[]{page}\glsnumberformat{xv}}}%

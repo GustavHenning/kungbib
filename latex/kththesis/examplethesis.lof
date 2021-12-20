@@ -9,45 +9,25 @@
 \babel@toc {english}{}
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {2.1}{\ignorespaces Movement of the kernel within the input image or filter matrix~\cite {Kang2020DeepCN}.\relax }}{8}{figure.caption.5}%
-\contentsline {figure}{\numberline {2.2}{\ignorespaces Zero-padding~\cite {Kang2020DeepCN}.\relax }}{9}{figure.caption.6}%
-\contentsline {figure}{\numberline {2.3}{\ignorespaces Residual block~\cite {he2016deep}.\relax }}{10}{figure.caption.7}%
+\contentsline {figure}{\numberline {2.1}{\ignorespaces Movement of the kernel within the input image or filter matrix~\cite {Kang2020DeepCN}.\relax }}{9}{figure.caption.5}%
+\contentsline {figure}{\numberline {2.2}{\ignorespaces Zero-padding~\cite {Kang2020DeepCN}.\relax }}{10}{figure.caption.6}%
+\contentsline {figure}{\numberline {2.3}{\ignorespaces Residual block~\cite {he2016deep}.\relax }}{11}{figure.caption.7}%
 \contentsline {figure}{\numberline {2.4}{\ignorespaces Fully Convolutional Network architecture as depicted in the original paper~\cite {DBLP:journals/corr/LongSD14}.\relax }}{11}{figure.caption.8}%
-\contentsline {figure}{\numberline {2.5}{\ignorespaces Evolution of the Feature Pyramid Network~\cite {DBLP:journals/corr/LinDGHHB16}.\relax }}{12}{figure.caption.9}%
-\contentsline {figure}{\numberline {2.6}{\ignorespaces Mask R-CNN results on the MS COCO dataset~\cite {DBLP:journals/corr/HeGDG17}. Masks are shown in color. Bounding boxes, category and confidence are also shown. \relax }}{14}{figure.caption.10}%
-\contentsline {figure}{\numberline {2.7}{\ignorespaces Hierarchical typology of document segmentation algorithms~\cite {ESKENAZI20171}. \relax }}{16}{figure.caption.11}%
+\contentsline {figure}{\numberline {2.5}{\ignorespaces Evolution of the Feature Pyramid Network~\cite {DBLP:journals/corr/LinDGHHB16}.\relax }}{13}{figure.caption.9}%
+\contentsline {figure}{\numberline {2.6}{\ignorespaces Mask R-CNN results on the MS COCO dataset~\cite {DBLP:journals/corr/HeGDG17}. Masks are shown in color. Bounding boxes, category and confidence are also shown. \relax }}{15}{figure.caption.10}%
+\contentsline {figure}{\numberline {2.7}{\ignorespaces Hierarchical typology of document segmentation algorithms~\cite {ESKENAZI20171}. \relax }}{17}{figure.caption.11}%
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {3.1}{\ignorespaces Asymmetric extension of the label. A is labeled red, and B should belong to the same label, while C should not.\relax }}{24}{figure.caption.14}%
-\contentsline {figure}{\numberline {3.2}{\ignorespaces Example where other content (C) is blocking elements (A and B) from becoming one label.\relax }}{25}{figure.caption.15}%
-\contentsline {figure}{\numberline {3.3}{\ignorespaces \textbf {Left}: A block of ResNet. \textbf {Right}: A block of ResNeXt with cardinality = 32. ~\cite {DBLP:journals/corr/XieGDTH16}\relax }}{33}{figure.caption.20}%
-\contentsline {figure}{\numberline {3.4}{\ignorespaces \textbf {Left}: Aggregating transformations of depth = 2 \textbf {Right}: An equivalent block, which is trivially wider.~\cite {DBLP:journals/corr/XieGDTH16}\relax }}{33}{figure.caption.21}%
-\contentsline {figure}{\numberline {3.5}{\ignorespaces Distribution of annotations by squareroot area: Test subset of the DN 2010 - 2020 (In-set)\relax }}{35}{figure.caption.24}%
-\contentsline {figure}{\numberline {3.6}{\ignorespaces Distribution of annotations by squareroot area: DN SvD 2001 - 2004 (Near-set)\relax }}{36}{figure.caption.25}%
-\contentsline {figure}{\numberline {3.7}{\ignorespaces Distribution of annotations by squareroot area: Aftonbladet Expressen 2001 - 2004 (Out-set)\relax }}{36}{figure.caption.26}%
-\contentsline {figure}{\numberline {3.8}{\ignorespaces A front page newspaper page from the DN 2010-2020 Test subset. Note how large black spaces in (a) and (b) often constitute images with no text inside.\relax }}{39}{figure.caption.27}%
-\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {\centering OCR bounding boxes in red}}}{39}{subfigure.8.1}%
-\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {\centering First 3 dimensions of all-mpnet-base-v2 vector representations normalized as RGB colors.}}}{39}{subfigure.8.2}%
-\contentsline {subfigure}{\numberline {(c)}{\ignorespaces {\centering Labels produced by vanilla Mask R-CNN, trained on 75\% of the training data. See \Cref {tab:dsizeallcinset}. Teal labels are News units, purple is Advertisement.}}}{39}{subfigure.8.3}%
-\contentsline {figure}{\numberline {3.9}{\ignorespaces A newspaper page with listing prices of funds and stocks from the DN 2010-2020 Test subset.\relax }}{40}{figure.caption.28}%
-\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {\centering OCR bounding boxes in red}}}{40}{subfigure.9.1}%
-\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {\centering First 3 dimensions of all-mpnet-base-v2 vector representations normalized as RGB colors.}}}{40}{subfigure.9.2}%
-\contentsline {subfigure}{\numberline {(c)}{\ignorespaces {\centering Labels produced by vanilla Mask R-CNN, trained on 75\% of the training data. See \Cref {tab:dsizeallcinset}. Dark purple labels are Listings.}}}{40}{subfigure.9.3}%
-\contentsline {figure}{\numberline {3.10}{\ignorespaces A newspaper page with obituaries from the DN 2010-2020 Test subset.\relax }}{41}{figure.caption.29}%
-\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {\centering OCR bounding boxes in red}}}{41}{subfigure.10.1}%
-\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {\centering First 3 dimensions of all-mpnet-base-v2 vector representations normalized as RGB colors.}}}{41}{subfigure.10.2}%
-\contentsline {subfigure}{\numberline {(c)}{\ignorespaces {\centering Labels produced by vanilla Mask R-CNN, trained on 75\% of the training data. See \Cref {tab:dsizeallcinset}. Bright green labels are Death Notice (obituaries).}}}{41}{subfigure.10.3}%
-\contentsline {figure}{\numberline {3.11}{\ignorespaces A newspaper page consisting of news articles from the DN 2010-2020 Test subset.\relax }}{42}{figure.caption.30}%
-\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {\centering OCR bounding boxes in red}}}{42}{subfigure.11.1}%
-\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {\centering First 3 dimensions of all-mpnet-base-v2 vector representations normalized as RGB colors.}}}{42}{subfigure.11.2}%
-\contentsline {subfigure}{\numberline {(c)}{\ignorespaces {\centering Labels produced by vanilla Mask R-CNN, trained on 75\% of the training data. See \Cref {tab:dsizeallcinset}. Teal labels are News units.}}}{42}{subfigure.11.3}%
-\contentsline {figure}{\numberline {3.12}{\ignorespaces A newspaper page consisting of weather reports and advertisement from the DN 2010-2020 Test subset.\relax }}{43}{figure.caption.31}%
-\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {\centering OCR bounding boxes in red}}}{43}{subfigure.12.1}%
-\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {\centering First 3 dimensions of all-mpnet-base-v2 vector representations normalized as RGB colors.}}}{43}{subfigure.12.2}%
-\contentsline {subfigure}{\numberline {(c)}{\ignorespaces {\centering Labels produced by vanilla Mask R-CNN, trained on 75\% of the training data. See \Cref {tab:dsizeallcinset}. Blue label is Weather. Purple labels are Advertisement.}}}{43}{subfigure.12.3}%
-\contentsline {figure}{\numberline {3.13}{\ignorespaces A newspaper page consisting of a single large image, part of a multi-page article from the DN 2010-2020 Test subset.\relax }}{44}{figure.caption.32}%
-\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {\centering OCR bounding boxes in red}}}{44}{subfigure.13.1}%
-\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {\centering First 3 dimensions of all-mpnet-base-v2 vector representations normalized as RGB colors.}}}{44}{subfigure.13.2}%
-\contentsline {subfigure}{\numberline {(c)}{\ignorespaces {\centering Labels produced by vanilla Mask R-CNN, trained on 75\% of the training data. See \Cref {tab:dsizeallcinset}. Teal label is News unit.}}}{44}{subfigure.13.3}%
+\contentsline {figure}{\numberline {3.1}{\ignorespaces Asymmetric extension of the label. A is labeled red, and B should belong to the same label, while C should not.\relax }}{29}{figure.caption.16}%
+\contentsline {figure}{\numberline {3.2}{\ignorespaces Example where other content (C) is blocking elements (A and B) from becoming one label.\relax }}{30}{figure.caption.17}%
+\contentsline {figure}{\numberline {3.3}{\ignorespaces \textbf {Left}: A block of ResNet. \textbf {Right}: A block of ResNeXt with cardinality = 32. ~\cite {DBLP:journals/corr/XieGDTH16}\relax }}{37}{figure.caption.18}%
+\contentsline {figure}{\numberline {3.4}{\ignorespaces \textbf {Left}: Aggregating transformations of depth = 2 \textbf {Right}: An equivalent block, which is trivially wider.~\cite {DBLP:journals/corr/XieGDTH16}\relax }}{37}{figure.caption.19}%
+\contentsline {figure}{\numberline {3.5}{\ignorespaces Distribution of annotations by squareroot area. \relax }}{39}{figure.caption.22}%
 \addvspace {10\p@ }
+\contentsline {figure}{\numberline {4.1}{\ignorespaces A front page newspaper page from the DN 2010-2020 Test subset. *In (b) the first 3 dimensions of "all-mpnet-base-v2" vector representations normalized as RGB colors. in (c) and (d) Teal labels are News units, purple is Advertisement.\relax }}{53}{figure.caption.40}%
+\contentsline {figure}{\numberline {4.2}{\ignorespaces A newspaper page with listing prices of funds and stocks from the DN 2010-2020 Test subset. *In (b) the first 3 dimensions of "all-mpnet-base-v2" vector representations normalized as RGB colors. In (c) and (d) Bright purple label is Advertisement, dark purple labels are Listings.\relax }}{54}{figure.caption.41}%
+\contentsline {figure}{\numberline {4.3}{\ignorespaces A newspaper page with obituaries from the DN 2010-2020 Test subset. *In (b) the first 3 dimensions of "all-mpnet-base-v2" vector representations normalized as RGB colors. In (c) and (d) Bright green labels are Death Notice (obituaries).\relax }}{55}{figure.caption.42}%
+\contentsline {figure}{\numberline {4.4}{\ignorespaces A newspaper page consisting of news articles from the DN 2010-2020 Test subset. *In (b) the first 3 dimensions of "all-mpnet-base-v2" vector representations normalized as RGB colors. in (c) and (d) Teal labels are News units.\relax }}{56}{figure.caption.43}%
+\contentsline {figure}{\numberline {4.5}{\ignorespaces A newspaper page consisting of weather reports and advertisement from the DN 2010-2020 Test subset. *In (b) the first 3 dimensions of "all-mpnet-base-v2" vector representations normalized as RGB colors. In (c) and (d) Blue label is Weather. Purple labels are Advertisement.\relax }}{57}{figure.caption.44}%
+\contentsline {figure}{\numberline {4.6}{\ignorespaces A newspaper page consisting of a single large image, part of a multi-page article from the DN 2010-2020 Test subset. *In (b) the first 3 dimensions of "all-mpnet-base-v2" vector representations normalized as RGB colors. In (c) and (d) teal label is News unit.\relax }}{58}{figure.caption.45}%
 \addvspace {10\p@ }
 \addvspace {10\p@ }

@@ -10,29 +10,29 @@
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {table}{\numberline {3.1}{\ignorespaces Hardware specifications\relax }}{22}{table.caption.12}%
-\contentsline {table}{\numberline {3.2}{\ignorespaces Software versions\relax }}{23}{table.caption.13}%
-\contentsline {table}{\numberline {3.3}{\ignorespaces Annotated pages in the datasets\relax }}{31}{table.caption.16}%
-\contentsline {table}{\numberline {3.4}{\ignorespaces Class distribution in the DN 2010 - 2020 dataset\relax }}{31}{table.caption.17}%
-\contentsline {table}{\numberline {3.5}{\ignorespaces Class distribution in the DN SvD 2001 - 2004 dataset\relax }}{31}{table.caption.18}%
-\contentsline {table}{\numberline {3.6}{\ignorespaces Class distribution in the Aftonbladet Expressen 2001 - 2004 dataset\relax }}{31}{table.caption.19}%
-\contentsline {table}{\numberline {3.7}{\ignorespaces Object size threshold differences in pixels\relax }}{35}{table.caption.22}%
-\contentsline {table}{\numberline {3.8}{\ignorespaces Number of annotations per area group for the test sets\relax }}{35}{table.caption.23}%
-\contentsline {table}{\numberline {3.9}{\ignorespaces Sentence transformers\relax }}{45}{table.caption.33}%
-\contentsline {table}{\numberline {3.10}{\ignorespaces Class distribution in partial datasets of DN 2010 - 2020 (In-set)\relax }}{46}{table.caption.34}%
+\contentsline {table}{\numberline {3.1}{\ignorespaces Annotated pages in the datasets\relax }}{26}{table.caption.12}%
+\contentsline {table}{\numberline {3.2}{\ignorespaces Class distribution in the DN 2010 - 2020 dataset\relax }}{27}{table.caption.13}%
+\contentsline {table}{\numberline {3.3}{\ignorespaces Class distribution in the DN SvD 2001 - 2004 dataset\relax }}{27}{table.caption.14}%
+\contentsline {table}{\numberline {3.4}{\ignorespaces Class distribution in the Aftonbladet Expressen 2001 - 2004 dataset\relax }}{27}{table.caption.15}%
+\contentsline {table}{\numberline {3.5}{\ignorespaces Object size threshold differences in pixels\relax }}{39}{table.caption.20}%
+\contentsline {table}{\numberline {3.6}{\ignorespaces Number of annotations per area group for the test sets\relax }}{39}{table.caption.21}%
+\contentsline {table}{\numberline {3.7}{\ignorespaces Sentence transformers\relax }}{42}{table.caption.23}%
+\contentsline {table}{\numberline {3.8}{\ignorespaces Class distribution in partial datasets of DN 2010 - 2020 (In-set)\relax }}{43}{table.caption.24}%
+\contentsline {table}{\numberline {3.9}{\ignorespaces Hardware specifications\relax }}{44}{table.caption.25}%
+\contentsline {table}{\numberline {3.10}{\ignorespaces Software versions\relax }}{45}{table.caption.26}%
 \addvspace {10\p@ }
-\contentsline {table}{\numberline {4.1}{\ignorespaces Model names\relax }}{51}{table.caption.35}%
-\contentsline {table}{\numberline {4.2}{\ignorespaces Top 5 results - 6 classes - In-set\relax }}{52}{table.caption.36}%
-\contentsline {table}{\numberline {4.3}{\ignorespaces Top 5 results - 6 classes - Near-set\relax }}{52}{table.caption.37}%
-\contentsline {table}{\numberline {4.4}{\ignorespaces Top 5 results - 6 classes - Out-set\relax }}{52}{table.caption.38}%
-\contentsline {table}{\numberline {4.5}{\ignorespaces Top 5 results - 1 class - In-set\relax }}{53}{table.caption.39}%
-\contentsline {table}{\numberline {4.6}{\ignorespaces Top 5 results - 1 class - Near-set\relax }}{53}{table.caption.40}%
-\contentsline {table}{\numberline {4.7}{\ignorespaces Top 5 results - 1 class - Out-set\relax }}{53}{table.caption.41}%
-\contentsline {table}{\numberline {4.8}{\ignorespaces Gradually increasing dataset size - 6 classes - In-set\relax }}{54}{table.caption.42}%
-\contentsline {table}{\numberline {4.9}{\ignorespaces Gradually increasing dataset size - 6 classes - Near-set\relax }}{54}{table.caption.43}%
-\contentsline {table}{\numberline {4.10}{\ignorespaces Gradually increasing dataset size - 6 classes - Out-set\relax }}{54}{table.caption.44}%
-\contentsline {table}{\numberline {4.11}{\ignorespaces Gradually increasing dataset size - 1 class - In-set\relax }}{55}{table.caption.45}%
-\contentsline {table}{\numberline {4.12}{\ignorespaces Gradually increasing dataset size - 1 class - Near-set\relax }}{55}{table.caption.46}%
-\contentsline {table}{\numberline {4.13}{\ignorespaces Gradually increasing dataset size - 1 class - Out-set\relax }}{55}{table.caption.47}%
+\contentsline {table}{\numberline {4.1}{\ignorespaces Model names\relax }}{47}{table.caption.27}%
+\contentsline {table}{\numberline {4.2}{\ignorespaces Top 5 results - 6 classes - In-set\relax }}{48}{table.caption.28}%
+\contentsline {table}{\numberline {4.3}{\ignorespaces Top 5 results - 6 classes - Near-set\relax }}{48}{table.caption.29}%
+\contentsline {table}{\numberline {4.4}{\ignorespaces Top 5 results - 6 classes - Out-set\relax }}{48}{table.caption.30}%
+\contentsline {table}{\numberline {4.5}{\ignorespaces Top 5 results - 1 class - In-set\relax }}{49}{table.caption.31}%
+\contentsline {table}{\numberline {4.6}{\ignorespaces Top 5 results - 1 class - Near-set\relax }}{49}{table.caption.32}%
+\contentsline {table}{\numberline {4.7}{\ignorespaces Top 5 results - 1 class - Out-set\relax }}{49}{table.caption.33}%
+\contentsline {table}{\numberline {4.8}{\ignorespaces Gradually increasing dataset size - 6 classes - In-set\relax }}{50}{table.caption.34}%
+\contentsline {table}{\numberline {4.9}{\ignorespaces Gradually increasing dataset size - 6 classes - Near-set\relax }}{50}{table.caption.35}%
+\contentsline {table}{\numberline {4.10}{\ignorespaces Gradually increasing dataset size - 6 classes - Out-set\relax }}{50}{table.caption.36}%
+\contentsline {table}{\numberline {4.11}{\ignorespaces Gradually increasing dataset size - 1 class - In-set\relax }}{51}{table.caption.37}%
+\contentsline {table}{\numberline {4.12}{\ignorespaces Gradually increasing dataset size - 1 class - Near-set\relax }}{51}{table.caption.38}%
+\contentsline {table}{\numberline {4.13}{\ignorespaces Gradually increasing dataset size - 1 class - Out-set\relax }}{51}{table.caption.39}%
 \addvspace {10\p@ }
 \addvspace {10\p@ }
