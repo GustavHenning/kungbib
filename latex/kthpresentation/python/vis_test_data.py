@@ -29,7 +29,10 @@ IMAGES_FOR_THESIS = ["dark-10120707_part01_page006_TFE3FSf.jpg",
 "dark-6733161_part04_page033_GqEyiAA.jpg",
 "dark-6745860_part04_page037_1RoKim0.jpg",
 "dark-6748921_part04_page009_kvtooQ3.jpg",
-"dark-6749981_part02_page031_PuwcAOD.jpg"]
+"dark-6749981_part02_page031_PuwcAOD.jpg",
+"dark-6745364_part05_page001_7vqUVUu.jpg",
+"dark-5009648_part03_page001_axCUOek.jpg",
+"dark-10120960_part01_page001_eL02GFP.jpg"]
 
 ocr_data_loc = "/data/gustav/datalab_data/model/dn-2010-2020/text/" 
 

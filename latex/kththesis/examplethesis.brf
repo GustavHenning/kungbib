@@ -57,8 +57,8 @@
 \backcite {zhang2009average}{{23}{2.4.3}{subsection.2.4.3}}
 \backcite {DBLP:journals/corr/HeGDG17}{{36}{3.2}{section.3.2}}
 \backcite {DBLP:journals/corr/XieGDTH16}{{36}{3.2.1}{subsection.3.2.1}}
-\backcite {DBLP:journals/corr/XieGDTH16}{{37}{3.3}{figure.caption.18}}
 \backcite {DBLP:journals/corr/XieGDTH16}{{37}{3.4}{figure.caption.19}}
+\backcite {DBLP:journals/corr/XieGDTH16}{{37}{3.5}{figure.caption.20}}
 \backcite {DBLP:journals/corr/GoyalDGNWKTJH17}{{40}{3.2.2.2}{subsubsection.3.2.2.2}}
 \backcite {jdmdh:7097}{{41}{3.2.3}{subsection.3.2.3}}
 \backcite {DBLP:journals/corr/YangYAKKG17}{{41}{3.2.3}{subsection.3.2.3}}
@@ -66,11 +66,11 @@
 \backcite {DBLP:journals/corr/YangYAKKG17}{{41}{3.2.3}{subsection.3.2.3}}
 \backcite {swedish-bert}{{42}{3.2.3.2}{subsubsection.3.2.3.2}}
 \backcite {reimers-2019-sentence-bert, reimers-2020-multilingual-sentence-bert}{{42}{3.2.3.2}{subsubsection.3.2.3.2}}
-\backcite {reimers-2019-sentence-bert, reimers-2020-multilingual-sentence-bert}{{42}{3.7}{table.caption.23}}
-\backcite {reimers-2019-sentence-bert, reimers-2020-multilingual-sentence-bert}{{42}{3.7}{table.caption.23}}
-\backcite {reimers-2019-sentence-bert, reimers-2020-multilingual-sentence-bert}{{42}{3.7}{table.caption.23}}
-\backcite {reimers-2019-sentence-bert, reimers-2020-multilingual-sentence-bert}{{42}{3.7}{table.caption.23}}
-\backcite {swedish-bert}{{42}{3.7}{table.caption.23}}
-\backcite {swedish-bert}{{42}{3.7}{table.caption.23}}
+\backcite {reimers-2019-sentence-bert, reimers-2020-multilingual-sentence-bert}{{42}{3.7}{table.caption.24}}
+\backcite {reimers-2019-sentence-bert, reimers-2020-multilingual-sentence-bert}{{42}{3.7}{table.caption.24}}
+\backcite {reimers-2019-sentence-bert, reimers-2020-multilingual-sentence-bert}{{42}{3.7}{table.caption.24}}
+\backcite {reimers-2019-sentence-bert, reimers-2020-multilingual-sentence-bert}{{42}{3.7}{table.caption.24}}
+\backcite {swedish-bert}{{42}{3.7}{table.caption.24}}
+\backcite {swedish-bert}{{42}{3.7}{table.caption.24}}
 \backcite {DBLP:journals/corr/abs-1906-07155}{{44}{3.4.2.1}{subsubsection.3.4.2.1}}
 \backcite {Label_Studio}{{44}{3.4.2.2}{subsubsection.3.4.2.2}}

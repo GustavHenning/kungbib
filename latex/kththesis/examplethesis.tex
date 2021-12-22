@@ -475,12 +475,12 @@ Obituaries will be blurred if included as visual examples in the thesis. No furt
 
 \section{Structure of the thesis}
 
-In \Cref{ch:background}, we introduce the historical background to understand the subject matter, the preliminaries for grasping the proposed solution, and recap the previous work in document segmentation.
-
-\Cref{ch:method} begins with a detailed description of the dataset created from the data accessed at the National Library of Sweden.
-Next, the neural network employed in the study is introduced in \Cref{sec:modelarch}, and the relevant adaptations to the pre-processing and manipulation of the data is explained.
-What follows is a description of the experiments conducted to test our formulated goals in \Cref{sec:experiments}, as well as the tools used to perform them in \Cref{sec:sysdoc}.
+In \Cref{ch:background}, we introduce the historical background to understand the subject matter, the data we are about to label, the preliminaries for grasping the proposed solution, and recap the previous work in document segmentation as well as language models.
 Finally the metrics used to quantitatively describe the results are detailed.
+
+\Cref{ch:method} details the sampling of data and the labeling strategy of the dataset created from the data accessed at the National Library of Sweden.
+Next, the neural network employed in the study is described in terms of implementation in \Cref{sec:modelarch}, and the relevant adaptations to the pre-processing and manipulation of the data is explained.
+What follows is a description of the experiments conducted to test our formulated goals in \Cref{sec:experiments}, as well as the tools used to perform them in \Cref{sec:sysdoc}.
 
 The results are presented in \Cref{ch:results} and discussed in \Cref{ch:disc},
 while outlining potential avenues for future work.
@@ -498,7 +498,7 @@ In this chapter, the history of digitization of historical documents will be rev
 Libraries and other memory institutions across the world house a large collection of diverse media, often printed. Serious efforts have been made in the past decades to digitize this content by scanning printed pages into images. Beyond this large feat in preservation and accessibility, these scanned images need further processing before becoming searchable to the end library user.
 
 Today these image pages are searchable at the level of individual text block detected by the OCR. Metadata is however missing relating these elements to each other, and classfying them by their semantic information.
-In order to open up these volumes to metadata-based information retrieval, these digitized print media pages have to be segmented into semantically connected components, i.e. articles. Since even a single page can contain a variety of different types of content, retrieval based on articles (instead of whole pages) allow for more complex types of queries that are related to a single artifact. To be able to query on facets such as author, section, content type or other metadata, further processing of these documents is required to attain this information.
+In order to open up these volumes to metadata-based information retrieval, these digitized print media pages can be be segmented into semantically connected components, i.e. articles. Since even a single page can contain a variety of different types of content, retrieval based on articles (instead of whole pages) allow for more complex types of queries that are related to a single artifact. To be able to query on facets such as author, section, content type or other metadata, further processing of these documents is required to attain this information.
 
 Even though humans have shown exceptional ability to segment different types of elements into related components, even in languages foreign to them~\cite{8270006}, this task has proven difficult for computers.
 
@@ -789,7 +789,7 @@ Recognizing objects at vastly different scales is one of the fundamental challen
 
 Previous approaches similar to the FPN also leverage the pyramid scheme to predict objects at different resolutions. However, as in the case of Featurized image pyramid a) in \autoref{fig:fpn}, inference time could increase by up to four times making the approach impractical for real world applications.
 
-Convolutional neural networks typically narrow it’s hidden layers in common architectures, either to make a prediction based on high-level features as in the case of the common heads used in the R-CNN family of networks, or in the case of FCNs, where the layers typically decrease in size only to increase towards the output layers in order to produce a proposal of equal dimensions as the input layer. FPNs exploit the architecture of the CNNs by using the existing hidden layers at different resolutions to predict bounding boxes and classes directly from the hidden layers, reducing the overhead of the FPN backbone, and thus becoming a feasible option for real world applications.
+Convolutional neural networks typically narrow it’s hidden layers in common architectures, either to make a prediction based on high-level features as in the case of the common backbones used in the R-CNN family of networks, or in the case of FCNs, where the layers typically decrease in size only to increase towards the output layers in order to produce a proposal of equal dimensions as the input layer. FPNs exploit the architecture of the CNNs by using the existing hidden layers at different resolutions to predict bounding boxes and classes directly from the hidden layers, reducing the overhead of the FPN backbone, and thus becoming a feasible option for real world applications.
 
 \begin{figure}[H]
   \begin{center}
@@ -964,7 +964,7 @@ Pre-trained BERT models can be fine-tuned with just one additional output layer 
 
 \subsubsection{Sentence-BERT}
 
-Sentence-BERT~\cite{reimers-2019-sentence-bert, reimers-2020-multilingual-sentence-bert} (SBERT) is a modification of the pretrained BERT model that uses siamese and triplet network structures to derive semantically meaningful sentence embeddings that can be compared using cosine-similarity for tasks of Semantic Textual Similarity (STS). 
+Sentence-BERT~\cite{reimers-2019-sentence-bert, reimers-2020-multilingual-sentence-bert} (SBERT) is a modification of the pretrained BERT model that uses siamese and triplet network structures to derive semantically meaningful sentence embeddings that can be compared using cosine-similarity for tasks of Semantic Textual Similarity. 
 
 Sentence-BERT is the chosen architecture for generating sentence embeddings in this thesis. As a final note for this section, on the topic of what a \textit{sentence} is in the context of BERT:
 
@@ -973,7 +973,6 @@ Sentence-BERT is the chosen architecture for generating sentence embeddings in t
 Throughout this work, a “sentence” can be an arbitrary span of contiguous text, rather than an actual linguistic sentence.~\cite{devlin2018bert}
 \end{displayquote}
 
-\textbf{TODO abbreviations for this section}
 
 
 \clearpage
@@ -1111,6 +1110,7 @@ We denote each dataset as categorized by being
 As can be seen in time-periods denoted for each dataset in the following subsections, the near- and out-of-domain test sets are of different time-periods compared to the in-domain test set.
 
 \subsubsection{DN 2010 - 2020 (In-set)}
+\label{subsub:inset}
 
 Sampled from Dagens Nyheter in the time period 2010 to 2020,
 this dataset contains plenty of articles with rich graphics such as visualizations of data related to the content.
@@ -1133,6 +1133,7 @@ Sampling ratio is 70/15/15 for Train/Test/Validation respectively.
 \end{table}
 
 \subsubsection{DN SvD 2001 - 2004 (Near-set)}
+\label{subsub:nearset}
 
 This dataset was sampled for two newspapers: Dagens Nyheter and Svenska Dagbladet. The font size is generally smaller on these newspaper pages, and the content denser. In addition, there are less large graphics compared to the training dataset. There were fewer multi-page articles found in this dataset.
 
@@ -1149,6 +1150,7 @@ This dataset was sampled for two newspapers: Dagens Nyheter and Svenska Dagblade
 \end{table}
 
 \subsubsection{Aftonbladet Expressen 2001 - 2004 (Out-set)}
+\label{subsub:outset}
 
 In this dataset many of the pages have a pink background color. Multi-page articles are frequent similar to the training dataset. As can bee sen in \autoref{tab:outsetclassdist}, no death notices were sampled. 
 
@@ -1397,6 +1399,28 @@ The bounding box for the instance will include the game itself, any text related
 
 In order to investigate the impact of classes on the performance of the model, we perform the same experiments where all annotations are set to the same class.
 Therefore, if a pixel or a group of pixels are assigned any class (except background) previously mentioned in \Cref{subs:finalclasses}, they will be labeled as a "Publication unit" in the experiments where class confusion is investigated.
+A visual example of this procedure can be seen in \Cref{fig:pubunit}.
+
+\begin{figure}[H]
+\begin{adjustbox}{center}
+\parbox{1\textwidth}{\lineskip=0pt
+\begin{subfigure}{0.5\textwidth}
+  \centering
+  \includegraphics[width=\linewidth, clip=true, trim = 0mm 0mm 0mm 0mm]{figures/bbox/kvtooQ3.jpg}
+  \caption{6 total classes (3 present)}
+  \label{fig:1RoKim0_orig}
+\end{subfigure}%
+\begin{subfigure}{0.5\textwidth}
+  \centering
+  \includegraphics[width=\linewidth, clip=true, trim = 0mm 0mm 0mm 0mm]{figures/1c_bbox/kvtooQ3.jpg}
+  \caption{Publication Units}
+  \label{fig:kvtooQ3_1c}
+\end{subfigure}}
+\end{adjustbox}
+  \caption{Ground truth label comparison between labels for 6 classes versus labels using the Publication Unit superclass. Both figures a) and b) depict the labels of the same newspaper image, an image from the DN 2010-2020 Test subset. \Cref{subsub:inset}}
+\label{fig:pubunit}
+\end{figure}
+
 
 \subsubsection{Delimitations}
 
@@ -1424,25 +1448,24 @@ Our objective is to segment newspaper images and to classify detected segments o
 \textbf{Network modularity}. The Mask R-CNN architecture is made up of modular networks, which can be varied. The modules are:
 
 \begin{description}
-\item[$\bullet$ Head] Used for bounding-box recognition (classification and regression) and mask prediction that is applied separately to each RoI. Referred to as \textit{neck} in MMDetection.
+\item[$\bullet$ Head] Used for bounding-box recognition (classification and regression) and mask prediction that is applied separately to each RoI. Referred to as \textit{neck} in MMDetection. Standard heads are used in this thesis.
 \item[$\bullet$ Backbone] Used for feature extraction of an entire image
 \end{description}
 
-\textbf{Head}. Heads used in this thesis:
+\textbf{Backbone}. Partial backbone combinations used in this thesis:
 
 \begin{itemize}
-\item ResNet-50
-\item ResNet-101
-\item ResNeXt-101 32x4d 
-\item ResNeXt-101 32x8d
-\item ResNeXt-101 64x4d
+\item ResNet-50-FPN
+\item ResNet-101-FPN
+\item ResNeXt-101-32x4d-FPN 
+\item ResNeXt-101-32x8d-FPN
+\item ResNeXt-101-64x4d-FPN
 \end{itemize}
 
+In this thesis we used the Feature Pyramid Network (FPN) backbone module. Among the alternatives are C4 and C5. In the original Mask R-CNN paper the FPN backbone module outperforms the alternatives. 
 
-\textbf{Backbone}. In this thesis we used the FPN backbone. Among the alternatives are C4 and C5. In the original Mask R-CNN paper the FPN backbone outperforms the alternatives. 
 
-
-In the last 3 heads, $N$x$M$d refers to the total number of paths in the convolutional transformation (\textit{cardinality}=$N$)~\cite{DBLP:journals/corr/XieGDTH16} and \textit{depth}=$M$ which denotes the number of convolutions before aggregation if necessary. See \autoref{fig:cardinality} and \autoref{fig:depth} for a visual description.
+In the last 3 backbones, $N$x$M$d refers to the total number of paths in the convolutional transformation (\textit{cardinality}=$N$)~\cite{DBLP:journals/corr/XieGDTH16} and \textit{depth}=$M$ which denotes the number of convolutions before aggregation if necessary. See \autoref{fig:cardinality} and \autoref{fig:depth} for a visual description.
 
 \begin{figure}[H]
   \begin{center}
@@ -1769,49 +1792,49 @@ Throughout these results, we will divide each section to show results using the 
     \begin{adjustbox}{width=1.2\textwidth,center=\textwidth}
     \resizebox{\columnwidth}{!}{
     \begin{tabular}{l|l|l|l|p{1.5cm}}
-    \textbf{Final name} & \textbf{Head} & \textbf{Backbone} & \textbf{Sentence transformer} & \textbf{Text embeddings length} \\
+    \textbf{Final name} & \textbf{Backbone} & \textbf{Sentence transformer} & \textbf{Text embeddings length} \\
     \hline
-    r50 & resnet50 & FPN & None & 0 \\    \hline
-    r101 & resnet101 & FPN & None & 0 \\    \hline
-    x101-32x4d & resnext101-32x4d & FPN & None & 0 \\    \hline
-    x101-32x8d & resnext101-32x8d & FPN & None & 0 \\    \hline
-    x101-64x4d & resnext101-64x4d & FPN & None & 0 \\     \hline
+    r50 & resnet50-FPN & None & 0 \\    \hline
+    r101 & resnet101-FPN & None & 0 \\    \hline
+    x101-32x4d & resnext101-32x4d-FPN & None & 0 \\    \hline
+    x101-32x8d & resnext101-32x8d-FPN & None & 0 \\    \hline
+    x101-64x4d & resnext101-64x4d-FPN & None & 0 \\     \hline
 
-    r50-MiniLM & resnet50 & FPN & all-MiniLM-L6-v2 & 384 \\     \hline
-    r101-MiniLM & resnet101 & FPN & all-MiniLM-L6-v2 & 384 \\     \hline
-    x101-32x4d-MiniLM & resnext101-32x4d & FPN & all-MiniLM-L6-v2 & 384 \\     \hline
-    x101-32x8d-MiniLM & resnext101-32x8d & FPN & all-MiniLM-L6-v2 & 384 \\     \hline
-    x101-64x4d-MiniLM & resnext101-64x4d & FPN & all-MiniLM-L6-v2 & 384 \\     \hline
+    r50-MiniLM & resnet50-FPN & all-MiniLM-L6-v2 & 384 \\     \hline
+    r101-MiniLM & resnet101-FPN & all-MiniLM-L6-v2 & 384 \\     \hline
+    x101-32x4d-MiniLM & resnext101-32x4d-FPN & all-MiniLM-L6-v2 & 384 \\     \hline
+    x101-32x8d-MiniLM & resnext101-32x8d-FPN & all-MiniLM-L6-v2 & 384 \\     \hline
+    x101-64x4d-MiniLM & resnext101-64x4d-FPN & all-MiniLM-L6-v2 & 384 \\     \hline
 
-    r50-all-mpnet & resnet50 & FPN & all-mpnet-base-v2 & 384 \\     \hline
-    r101-all-mpnet & resnet101 & FPN & all-mpnet-base-v2 & 384 \\     \hline
-    x101-32x4d-all-mpnet & resnext101-32x4d & FPN & all-mpnet-base-v2 & 384 \\     \hline
-    x101-32x8d-all-mpnet & resnext101-32x8d & FPN & all-mpnet-base-v2 & 384 \\     \hline
-    x101-64x4d-all-mpnet & resnext101-64x4d & FPN & all-mpnet-base-v2 & 384 \\     \hline
+    r50-all-mpnet & resnet50-FPN & all-mpnet-base-v2 & 384 \\     \hline
+    r101-all-mpnet & resnet101-FPN & all-mpnet-base-v2 & 384 \\     \hline
+    x101-32x4d-all-mpnet & resnext101-32x4d-FPN & all-mpnet-base-v2 & 384 \\     \hline
+    x101-32x8d-all-mpnet & resnext101-32x8d-FPN & all-mpnet-base-v2 & 384 \\     \hline
+    x101-64x4d-all-mpnet & resnext101-64x4d-FPN & all-mpnet-base-v2 & 384 \\     \hline
 
-    r50-mq-mpnet & resnet50 & FPN & multi-qa-mpnet-base-dot-v1 & 384 \\     \hline
-    r101-mq-mpnet & resnet101 & FPN & multi-qa-mpnet-base-dot-v1 & 384 \\     \hline
-    x101-32x4d-mq-mpnet & resnext101-32x4d & FPN & multi-qa-mpnet-base-dot-v1 & 384 \\     \hline
-    x101-32x8d-mq-mpnet & resnext101-32x8d & FPN & multi-qa-mpnet-base-dot-v1 & 384 \\     \hline
-    x101-64x4d-mq-mpnet & resnext101-64x4d & FPN & multi-qa-mpnet-base-dot-v1 & 384 \\     \hline
+    r50-mq-mpnet & resnet50-FPN & multi-qa-mpnet-base-dot-v1 & 384 \\     \hline
+    r101-mq-mpnet & resnet101-FPN & multi-qa-mpnet-base-dot-v1 & 384 \\     \hline
+    x101-32x4d-mq-mpnet & resnext101-32x4d-FPN & multi-qa-mpnet-base-dot-v1 & 384 \\     \hline
+    x101-32x8d-mq-mpnet & resnext101-32x8d-FPN & multi-qa-mpnet-base-dot-v1 & 384 \\     \hline
+    x101-64x4d-mq-mpnet & resnext101-64x4d-FPN & multi-qa-mpnet-base-dot-v1 & 384 \\     \hline
 
-    r50-distilroberta & resnet50 & FPN & all-distilroberta-v1 & 384 \\     \hline
-    r101-distilroberta & resnet101 & FPN & all-distilroberta-v1 & 384 \\     \hline
-    x101-32x4d-distilroberta & resnext101-32x4d& FPN & all-distilroberta-v1 & 384 \\     \hline
-    x101-32x8d-distilroberta & resnext101-32x8d& FPN & all-distilroberta-v1 & 384 \\     \hline
-    x101-64x4d-distilroberta & resnext101-64x4d & FPN & all-distilroberta-v1 & 384 \\     \hline
+    r50-distilroberta & resnet50-FPN & all-distilroberta-v1 & 384 \\     \hline
+    r101-distilroberta & resnet101-FPN & all-distilroberta-v1 & 384 \\     \hline
+    x101-32x4d-distilroberta & resnext101-32x4d-FPN & all-distilroberta-v1 & 384 \\     \hline
+    x101-32x8d-distilroberta & resnext101-32x8d-FPN & all-distilroberta-v1 & 384 \\     \hline
+    x101-64x4d-distilroberta & resnext101-64x4d-FPN & all-distilroberta-v1 & 384 \\     \hline
 
-    r50-KBLab & resnet50 & FPN & KBLab/sentence-bert-swedish-cased & 768 \\     \hline
-    r101-KBLab & resnet101 & FPN & KBLab/sentence-bert-swedish-cased & 768 \\     \hline
-    x101-32x4d-KBLab & resnext101-32x4d & FPN & KBLab/sentence-bert-swedish-cased & 768 \\     \hline
-    x101-32x8d-KBLab & resnext101-32x8d & FPN & KBLab/sentence-bert-swedish-cased & 768 \\     \hline
-    x101-64x4d-KBLab & resnext101-64x4d & FPN & KBLab/sentence-bert-swedish-cased & 768 \\     \hline
+    r50-KBLab & resnet50-FPN & KBLab/sentence-bert-swedish-cased & 768 \\     \hline
+    r101-KBLab & resnet101-FPN & KBLab/sentence-bert-swedish-cased & 768 \\     \hline
+    x101-32x4d-KBLab & resnext101-32x4d-FPN & KBLab/sentence-bert-swedish-cased & 768 \\     \hline
+    x101-32x8d-KBLab & resnext101-32x8d-FPN & KBLab/sentence-bert-swedish-cased & 768 \\     \hline
+    x101-64x4d-KBLab & resnext101-64x4d-FPN & KBLab/sentence-bert-swedish-cased & 768 \\     \hline
 
-    r50-KB & resnet50 & FPN & KB/bert-base-swedish-cased & 768 \\     \hline
-    r101-KB & resnet101 & FPN & KB/bert-base-swedish-cased & 768 \\     \hline
-    x101-32x4d-KB & resnext101-32x4d & FPN & KB/bert-base-swedish-cased & 768 \\     \hline
-    x101-32x8d-KB & resnext101-32x8d & FPN & KB/bert-base-swedish-cased & 768 \\     \hline
-    x101-64x4d-KB & resnext101-64x4d & FPN & KB/bert-base-swedish-cased & 768 \\     \hline
+    r50-KB & resnet50-FPN & KB/bert-base-swedish-cased & 768 \\     \hline
+    r101-KB & resnet101-FPN & KB/bert-base-swedish-cased & 768 \\     \hline
+    x101-32x4d-KB & resnext101-32x4d-FPN & KB/bert-base-swedish-cased & 768 \\     \hline
+    x101-32x8d-KB & resnext101-32x8d-FPN & KB/bert-base-swedish-cased & 768 \\     \hline
+    x101-64x4d-KB & resnext101-64x4d-FPN & KB/bert-base-swedish-cased & 768 \\     \hline
     \end{tabular}
     }
     \end{adjustbox} 
@@ -1830,7 +1853,7 @@ All model results in this section are sorted by the \textbf{$mAP_m$}, the mean A
 
 \begin{table}[H]
   \begin{center}
-    \caption{Top 5 results - 6 classes - In-set}
+    \caption{Top 5 results - 6 classes - In-set (\Cref{subsub:inset})}
     \label{tab:top5allcinset}
     \resizebox{\columnwidth}{!}{
     \begin{tabular}{l|l|l|l|l|l|l} %
@@ -1847,7 +1870,7 @@ x101-64x4d-all-mpnet           & 0.881 & 0.952 & 0.927 & 0.868 & 0.954 & 0.929 \
 
 \begin{table}[H]
   \begin{center}
-    \caption{Top 5 results - 6 classes - Near-set}
+    \caption{Top 5 results - 6 classes - Near-set (\Cref{subsub:nearset})}
     \label{tab:top5allcnearset}
     \resizebox{\columnwidth}{!}{
     \begin{tabular}{l|l|l|l|l|l|l}
@@ -1865,7 +1888,7 @@ r101                           & 0.408 & 0.470 & 0.433 & 0.405 & 0.468 & 0.430 \
 
 \begin{table}[H]
   \begin{center}
-    \caption{Top 5 results - 6 classes - Out-set}
+    \caption{Top 5 results - 6 classes - Out-set (\Cref{subsub:outset})}
     \label{tab:top5allcoutset}
     \resizebox{\columnwidth}{!}{
     \begin{tabular}{l|l|l|l|l|l|l}
@@ -1888,7 +1911,7 @@ All model results in this section are sorted by the \textbf{$mAP_m$}, the mean A
 
 \begin{table}[H]
   \begin{center}
-    \caption{Top 5 results - 1 class - In-set}
+    \caption{Top 5 results - 1 class - In-set (\Cref{subsub:inset})}
     \label{tab:top5onecinset}
     \resizebox{\columnwidth}{!}{
     \begin{tabular}{l|l|l|l|l|l|l} %
@@ -1905,7 +1928,7 @@ r101-1c                        & 0.840 & 0.917 & 0.862 & 0.832 & 0.917 & 0.862 \
 
 \begin{table}[H]
   \begin{center}
-    \caption{Top 5 results - 1 class - Near-set}
+    \caption{Top 5 results - 1 class - Near-set (\Cref{subsub:nearset})}
     \label{tab:top5onecnearset}
     \resizebox{\columnwidth}{!}{
     \begin{tabular}{l|l|l|l|l|l|l}
@@ -1922,7 +1945,7 @@ r50-distilroberta-1c           & 0.508 & 0.636 & 0.548 & 0.498 & 0.636 & 0.534 \
 
 \begin{table}[H]
   \begin{center}
-    \caption{Top 5 results - 1 class - Out-set}
+    \caption{Top 5 results - 1 class - Out-set (\Cref{subsub:outset})}
     \label{tab:top5onecoutset}
     \resizebox{\columnwidth}{!}{
     \begin{tabular}{l|l|l|l|l|l|l}
@@ -1949,7 +1972,7 @@ All results reported in this section are averaged over 5 runs. The standard devi
 
 \begin{table}[H]
   \begin{center}
-    \caption{Gradually increasing dataset size - 6 classes - In-set}
+    \caption{Gradually increasing dataset size - 6 classes - In-set (\Cref{subsub:inset})}
     \label{tab:dsizeallcinset}
     \resizebox{\columnwidth}{!}{
     \begin{tabular}{l|l|l|l|l|l|l|l}
@@ -1967,7 +1990,7 @@ All results reported in this section are averaged over 5 runs. The standard devi
 
 \begin{table}[H]
   \begin{center}
-    \caption{Gradually increasing dataset size - 6 classes - Near-set}
+    \caption{Gradually increasing dataset size - 6 classes - Near-set (\Cref{subsub:nearset})}
     \label{tab:dsizeallcnearset}
     \resizebox{\columnwidth}{!}{
     \begin{tabular}{l|l|l|l|l|l|l|l}
@@ -1985,7 +2008,7 @@ All results reported in this section are averaged over 5 runs. The standard devi
 
 \begin{table}[H]
   \begin{center}
-    \caption{Gradually increasing dataset size - 6 classes - Out-set}
+    \caption{Gradually increasing dataset size - 6 classes - Out-set (\Cref{subsub:outset})}
     \label{tab:dsizeallcoutset}
     \resizebox{\columnwidth}{!}{
     \begin{tabular}{l|l|l|l|l|l|l|l}
@@ -2007,7 +2030,7 @@ All results reported in this section are averaged over 5 runs. The standard devi
 
 \begin{table}[H]
   \begin{center}
-    \caption{Gradually increasing dataset size - 1 class - In-set}
+    \caption{Gradually increasing dataset size - 1 class - In-set (\Cref{subsub:inset})}
     \label{tab:dsizeonecinset}
     \resizebox{\columnwidth}{!}{
     \begin{tabular}{l|l|l|l|l|l|l|l}
@@ -2026,7 +2049,7 @@ All results reported in this section are averaged over 5 runs. The standard devi
 
 \begin{table}[H]
   \begin{center}
-    \caption{Gradually increasing dataset size - 1 class - Near-set}
+    \caption{Gradually increasing dataset size - 1 class - Near-set (\Cref{subsub:nearset})}
     \label{tab:dsizeonecnearset}
     \resizebox{\columnwidth}{!}{
     \begin{tabular}{l|l|l|l|l|l|l|l}
@@ -2045,7 +2068,7 @@ All results reported in this section are averaged over 5 runs. The standard devi
 
 \begin{table}[H]
   \begin{center}
-    \caption{Gradually increasing dataset size - 1 class - Out-set}
+    \caption{Gradually increasing dataset size - 1 class - Out-set (\Cref{subsub:outset})}
     \label{tab:dsizeonecoutset}
     \resizebox{\columnwidth}{!}{
     \begin{tabular}{l|l|l|l|l|l|l|l}
@@ -2089,15 +2112,15 @@ The following pages features the following visualizations as 4 subfigures:
 \begin{figure}[!htb]
 \begin{adjustbox}{center,max size={\textwidth}{0.9\textheight}}
 \parbox{1.5\textwidth}{\lineskip=0pt
-\begin{subfigure}{0.75\textwidth}
+\begin{subfigure}{0.6\textwidth}
   \centering
-  \includegraphics[width=\linewidth, clip=true, trim = 20mm 20mm 30mm 0mm]{figures/ocr/JIefsDa.png}
+  \includegraphics[width=\linewidth, clip=true, trim = 0mm 0mm 0mm 0mm]{figures/ocr/JIefsDa.jpg}
   \caption{OCR bounding boxes in red}
   \label{fig:JIefsDa_OCR}
 \end{subfigure}%
-\begin{subfigure}{0.75\textwidth}
+\begin{subfigure}{0.6\textwidth}
   \centering
-  \includegraphics[width=\linewidth, clip=true, trim = 20mm 20mm 30mm 0mm]{figures/tf/JIefsDa.png}
+  \includegraphics[width=\linewidth, clip=true, trim = 0mm 0mm 0mm 0mm]{figures/tf/JIefsDa.jpg}
   \caption{Text Embeddings*}
   \label{fig:JIefsDa_TF}
 \end{subfigure}
@@ -2125,15 +2148,15 @@ The following pages features the following visualizations as 4 subfigures:
 \begin{figure}[!htb]
 \begin{adjustbox}{center,max size={\textwidth}{0.9\textheight}}
 \parbox{1.5\textwidth}{\lineskip=0pt
-\begin{subfigure}{0.75\textwidth}
+\begin{subfigure}{0.6\textwidth}
   \centering
-  \includegraphics[width=\linewidth, clip=true, trim = 20mm 20mm 30mm 0mm]{figures/ocr/zk6UnuL.png}
+  \includegraphics[width=\linewidth, clip=true, trim = 0mm 0mm 0mm 0mm]{figures/ocr/zk6UnuL.jpg}
   \caption{OCR bounding boxes in red}
   \label{fig:zk6UnuL_OCR}
 \end{subfigure}%
-\begin{subfigure}{0.75\textwidth}
+\begin{subfigure}{0.6\textwidth}
   \centering
-  \includegraphics[width=\linewidth, clip=true, trim = 20mm 20mm 30mm 0mm]{figures/tf/zk6UnuL.png}
+  \includegraphics[width=\linewidth, clip=true, trim = 0mm 0mm 0mm 0mm]{figures/tf/zk6UnuL.jpg}
   \caption{Text Embeddings*}
   \label{fig:zk6UnuL_TF}
 \end{subfigure}
@@ -2161,15 +2184,15 @@ The following pages features the following visualizations as 4 subfigures:
 \begin{figure}[!htb]
 \begin{adjustbox}{center,max size={\textwidth}{0.9\textheight}}
 \parbox{1.5\textwidth}{\lineskip=0pt
-\begin{subfigure}{0.75\textwidth}
+\begin{subfigure}{0.6\textwidth}
   \centering
-  \includegraphics[width=\linewidth, clip=true, trim = 20mm 20mm 30mm 0mm]{figures/ocr/GQU6vjW.png}
+  \includegraphics[width=\linewidth, clip=true, trim = 0mm 0mm 0mm 0mm]{figures/ocr/GQU6vjW.jpg}
   \caption{OCR bounding boxes in red}
   \label{fig:GQU6vjW_OCR}
 \end{subfigure}%
-\begin{subfigure}{0.75\textwidth}
+\begin{subfigure}{0.6\textwidth}
   \centering
-  \includegraphics[width=\linewidth, clip=true, trim = 20mm 20mm 30mm 0mm]{figures/tf/GQU6vjW.png}
+  \includegraphics[width=\linewidth, clip=true, trim = 0mm 0mm 0mm 0mm]{figures/tf/GQU6vjW.jpg}
   \caption{Text Embeddings*}
   \label{fig:GQU6vjW_TF}
 \end{subfigure}
@@ -2198,15 +2221,15 @@ The following pages features the following visualizations as 4 subfigures:
 \begin{figure}[!htb]
 \begin{adjustbox}{center,max size={\textwidth}{0.9\textheight}}
 \parbox{1.5\textwidth}{\lineskip=0pt
-\begin{subfigure}{0.75\textwidth}
+\begin{subfigure}{0.6\textwidth}
   \centering
-  \includegraphics[width=\linewidth, clip=true, trim = 20mm 20mm 30mm 0mm]{figures/ocr/AVThDFz.png}
+  \includegraphics[width=\linewidth, clip=true, trim = 0mm 0mm 0mm 0mm]{figures/ocr/AVThDFz.jpg}
   \caption{OCR bounding boxes in red}
   \label{fig:AVThDFz_OCR}
 \end{subfigure}%
-\begin{subfigure}{0.75\textwidth}
+\begin{subfigure}{0.6\textwidth}
   \centering
-  \includegraphics[width=\linewidth, clip=true, trim = 20mm 20mm 30mm 0mm]{figures/tf/AVThDFz.png}
+  \includegraphics[width=\linewidth, clip=true, trim = 0mm 0mm 0mm 0mm]{figures/tf/AVThDFz.jpg}
   \caption{Text Embeddings*}
   \label{fig:AVThDFz_TF}
 \end{subfigure}
@@ -2234,15 +2257,15 @@ The following pages features the following visualizations as 4 subfigures:
 \begin{figure}[!htb]
 \begin{adjustbox}{center,max size={\textwidth}{0.9\textheight}}
 \parbox{1.5\textwidth}{\lineskip=0pt
-\begin{subfigure}{0.75\textwidth}
+\begin{subfigure}{0.6\textwidth}
   \centering
-  \includegraphics[width=\linewidth, clip=true, trim = 20mm 20mm 30mm 0mm]{figures/ocr/Jd55Bvg.png}
+  \includegraphics[width=\linewidth, clip=true, trim = 0mm 0mm 0mm 0mm]{figures/ocr/Jd55Bvg.jpg}
   \caption{OCR bounding boxes in red}
   \label{fig:Jd55Bvg_OCR}
 \end{subfigure}%
-\begin{subfigure}{0.75\textwidth}
+\begin{subfigure}{0.6\textwidth}
   \centering
-  \includegraphics[width=\linewidth, clip=true, trim = 20mm 20mm 30mm 0mm]{figures/tf/Jd55Bvg.png}
+  \includegraphics[width=\linewidth, clip=true, trim = 0mm 0mm 0mm 0mm]{figures/tf/Jd55Bvg.jpg}
   \caption{Text Embeddings*}
   \label{fig:Jd55Bvg_TF}
 \end{subfigure}
@@ -2270,15 +2293,15 @@ The following pages features the following visualizations as 4 subfigures:
 \begin{figure}[!htb]
 \begin{adjustbox}{center}
 \parbox{1.5\textwidth}{\lineskip=0pt
-\begin{subfigure}{0.75\textwidth}
+\begin{subfigure}{0.6\textwidth}
   \centering
-  \includegraphics[width=\linewidth, clip=true, trim = 20mm 20mm 30mm 0mm]{figures/ocr/1RoKim0.png}
+  \includegraphics[width=\linewidth, clip=true, trim = 0mm 0mm 0mm 0mm]{figures/ocr/1RoKim0.jpg}
   \caption{OCR bounding boxes in red}
   \label{fig:1RoKim0_OCR}
 \end{subfigure}%
-\begin{subfigure}{0.75\textwidth}
+\begin{subfigure}{0.6\textwidth}
   \centering
-  \includegraphics[width=\linewidth, clip=true, trim = 20mm 20mm 30mm 0mm]{figures/tf/1RoKim0.png}
+  \includegraphics[width=\linewidth, clip=true, trim = 0mm 0mm 0mm 0mm]{figures/tf/1RoKim0.jpg}
   \caption{Text Embeddings*}
   \label{fig:1RoKim0_TF}
 \end{subfigure}
@@ -2325,7 +2348,7 @@ Some importance was encoded into the textual features. In \Cref{subsec:static}, 
 \label{subsub:ads}
 
 Some advertisements are made to look like news articles, but with a small warning suggesting that it is in fact an advertisement. One could argue to support both that they should be labeled
-as "Advertisement" (because they truly are ads), and that they should be labeled as "News Unit" (because they look like news articles). In this thesis we regard these examples are news articles, because they look like news articles. 
+as "Advertisement" (because they truly are ads), and that they should be labeled as "News Unit" (because they look like news articles). In this thesis we regard these examples as news articles, because they look like news articles. 
 
 \subsubsection{Listings}
 \label{subsub:listings}
