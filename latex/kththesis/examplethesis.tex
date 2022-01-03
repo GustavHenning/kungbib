@@ -1626,9 +1626,76 @@ We define this process formally as follows. Given an image of size $H$ $x$ $W$ a
 
 where $E(t)$ is a mapping of $t \rightarrow {\rm I\!R}^N$ corresponding for example to a paragraph embedding, and $0^N$ is a null vector in case there is no text in the corresponding pixel. Each pixel overlapping with a bounding box produced by the OCR process is therefore mapped to its corresponding embedding. In this thesis, if bounding boxes are overlapping the text embedding of the last bounding box will be placed in the overlapping area, where last refers to the order of the elements as they appear in the input. 
 
-The result is a text embedding map, i.e. a three-dimensional matrix where the first two dimensions correspond to the image-localized representation of the text, and the third to the embedding itself. Given that the resulting matrix has the same width and height as the original image, it lends itself to easily extend the image input layer to accept more than its 3 original channels (RGB), that is to also fit an N-dimensional vector behind each pixel in a preprocessing step. The final number of channels of the input layer is therefore $3+N$, where the first 3 dimensions of each pixel contain the original RGB values of the input image.
+The result is a text embedding map, i.e. a three-dimensional matrix where the first two dimensions correspond to the image-localized representation of the text, and the third to the embedding itself. Given that the resulting matrix has the same width and height as the original image, it lends itself to easily extend the image input layer to accept more than its 3 original channels (RGB), that is to also fit an N-dimensional vector behind each pixel in a preprocessing step. The final number of channels of the input layer is therefore $3+N$, where the first 3 dimensions of each pixel contain the original RGB values of the input image.~\Cref{fig:JIefsDa_tf},~\Cref{fig:GQU6vjW_tf} and~\Cref{fig:AVThDFz_tf} depict the textual embeddings. 
 
 
+\clearpage 
+
+\begin{figure}[!htb]
+\begin{adjustbox}{center,max size={\textwidth}{0.9\textheight}}
+\parbox{1.5\textwidth}{\lineskip=0pt
+\begin{subfigure}{0.75\textwidth}
+  \centering
+  \includegraphics[width=\linewidth, clip=true, trim = 0mm 0mm 0mm 0mm]{figures/ocr/JIefsDa.jpg}
+  \caption{OCR bounding boxes in red.}
+  \label{fig:JIefsDa_OCR_tf}
+\end{subfigure}%
+\begin{subfigure}{0.75\textwidth}
+  \centering
+  \includegraphics[width=\linewidth, clip=true, trim = 0mm 0mm 0mm 0mm]{figures/tf/JIefsDa.jpg}
+  \caption{Text Features* RGB representation.}
+  \label{fig:JIefsDa_tf}
+\end{subfigure}}
+\end{adjustbox}
+  \caption{A front page newspaper page from the DN 2010-2020 Test subset. *In (b) the first 3 dimensions of "all-mpnet-base-v2" vector representations normalized as RGB colors.}
+\label{fig:JIefsDa_tf}
+\end{figure}
+
+\clearpage 
+
+\begin{figure}[!htb]
+\begin{adjustbox}{center,max size={\textwidth}{0.9\textheight}}
+\parbox{1.5\textwidth}{\lineskip=0pt
+\begin{subfigure}{0.75\textwidth}
+  \centering
+  \includegraphics[width=\linewidth, clip=true, trim = 0mm 0mm 0mm 0mm]{figures/ocr/GQU6vjW.jpg}
+  \caption{OCR bounding boxes in red.}
+  \label{fig:GQU6vjW_OCR_tf}
+\end{subfigure}%
+\begin{subfigure}{0.75\textwidth}
+  \centering
+  \includegraphics[width=\linewidth, clip=true, trim = 0mm 0mm 0mm 0mm]{figures/tf/GQU6vjW.jpg}
+  \caption{Text Features* RGB representation.}
+  \label{fig:GQU6vjW_tf}
+\end{subfigure}}
+\end{adjustbox}
+  \caption{A newspaper page with obituaries from the DN 2010-2020 Test subset. *In (b) the first 3 dimensions of "all-mpnet-base-v2" vector representations normalized as RGB colors.}
+\label{fig:GQU6vjW_tf}
+\end{figure}
+
+\clearpage
+
+\begin{figure}[!htb]
+\begin{adjustbox}{center,max size={\textwidth}{0.9\textheight}}
+\parbox{1.5\textwidth}{\lineskip=0pt
+\begin{subfigure}{0.75\textwidth}
+  \centering
+  \includegraphics[width=\linewidth, clip=true, trim = 0mm 0mm 0mm 0mm]{figures/ocr/AVThDFz.jpg}
+  \caption{OCR bounding boxes in red.}
+  \label{fig:AVThDFz_OCR_tf}
+\end{subfigure}%
+\begin{subfigure}{0.75\textwidth}
+  \centering
+  \includegraphics[width=\linewidth, clip=true, trim = 0mm 0mm 0mm 0mm]{figures/tf/AVThDFz.jpg}
+  \caption{Text Features* RGB representation.}
+  \label{fig:AVThDFz_tf}
+\end{subfigure}}
+\end{adjustbox}
+  \caption{A newspaper page with news articles from the DN 2010-2020 Test subset. *In (b) the first 3 dimensions of "all-mpnet-base-v2" vector representations normalized as RGB colors.}
+\label{fig:AVThDFz_tf}
+\end{figure}
+
+\clearpage
 
 \subsubsection{Text embedding strategy}
 \label{subs:textembeddingstrat}
@@ -1849,7 +1916,7 @@ Note: All models have the equivalent configuration for 1 class training and eval
 
 \subsection{6 classes}
 
-All model results in this section are sorted by the \textbf{$mAP_m$}, the mean Average Precision for the segmentation mask. \textbf{TODO Not all results are in}
+All model results in this section are sorted by the \textbf{$mAP_m$}, the mean Average Precision for the segmentation mask. 
 
 \begin{table}[H]
   \begin{center}
@@ -1864,6 +1931,7 @@ x101-32x4d                     & 0.906 & 0.957 & 0.929 & 0.901 & 0.957 & 0.932 \
 x101-64x4d                     & 0.903 & 0.954 & 0.934 & 0.893 & 0.954 & 0.934 \\ \hline
 r101                           & 0.901 & 0.951 & 0.928 & 0.885 & 0.953 & 0.927 \\ \hline
 x101-64x4d-all-mpnet           & 0.881 & 0.952 & 0.927 & 0.868 & 0.954 & 0.929 \\ \hline
+
     \end{tabular}}
   \end{center}
 \end{table}
@@ -1881,6 +1949,7 @@ x101-32x4d                     & 0.417 & 0.493 & 0.425 & 0.407 & 0.493 & 0.424 \
 x101-64x4d                     & 0.416 & 0.509 & 0.414 & 0.406 & 0.491 & 0.412 \\ \hline
 x101-32x8d                     & 0.413 & 0.489 & 0.421 & 0.402 & 0.496 & 0.419 \\ \hline
 r101                           & 0.408 & 0.470 & 0.433 & 0.405 & 0.468 & 0.430 \\ \hline
+
 
     \end{tabular}}
   \end{center}
@@ -1907,7 +1976,7 @@ x101-32x8d-MiniLM              & 0.468 & 0.578 & 0.508 & 0.456 & 0.576 & 0.506 \
 
 \subsection{1 class}
 
-All model results in this section are sorted by the \textbf{$mAP_m$}, the mean Average Precision for the segmentation mask. \textbf{TODO Not all results are in}
+All model results in this section are sorted by the \textbf{$mAP_m$}, the mean Average Precision for the segmentation mask. 
 
 \begin{table}[H]
   \begin{center}
@@ -1954,8 +2023,8 @@ r50-distilroberta-1c           & 0.508 & 0.636 & 0.548 & 0.498 & 0.636 & 0.534 \
 r50-MiniLM-1c                  & 0.465 & 0.622 & 0.490 & 0.458 & 0.622 & 0.488 \\ \hline
 r50-distilroberta-1c           & 0.463 & 0.624 & 0.488 & 0.456 & 0.619 & 0.483 \\ \hline
 r50-all-mpnet-1c               & 0.455 & 0.612 & 0.480 & 0.449 & 0.611 & 0.483 \\ \hline
+x101-64x4d-distilroberta-1c    & 0.448 & 0.584 & 0.476 & 0.439 & 0.580 & 0.469 \\ \hline
 x101-64x4d-all-mpnet-1c        & 0.447 & 0.588 & 0.474 & 0.441 & 0.585 & 0.474 \\ \hline
-r50-1c                         & 0.438 & 0.560 & 0.460 & 0.432 & 0.556 & 0.462 \\ \hline
     \end{tabular}}
   \end{center}
 \end{table}
@@ -2092,7 +2161,58 @@ All results reported in this section are averaged over 5 runs. The standard devi
 
 \section{Impact of classes}
 
-\textbf{TODO show some class confusion matrices.}
+In ~\Cref{tab:dsizeallcinset} we observe a performance drop when increasing the sample size of the training set. To investigate this matter, we plot the confusion matrix between classes as seen in~\Cref{fig:oneclassconfusions}, ~\Cref{fig:vanilla_0.75_inset_cm} and~\Cref{fig:vanilla_1.0_inset_cm}, which depict confusion matrices on the In-domain test set for 75\% and 100\% of the training data respectively. From these figures we can observe a drop in performance both between certain classes (News Unit vs Advertisement vs Listing), (Weather vs Game), as well as a general performance drop in relation to the background class (which is predicted passively by the models, inferred indirectly from not assigning a class to a particular set of pixels). Note that the bottom row comparing a class to the background is the error where a class has been predicted yet no such ground truth label was present (false positive), and the right-most column is the error where a class prediction wasnt made but a label was present (false negative). 
+
+In both cases of 6 classes vs 1 class, a performance drop can be observed where the model increasingly erroniously predicts background instead of the assigned class (for 1 class experiments: 98\% vs 1\% at 75\% of the training data, and 93\% vs 6\% for 100\% of the training data).
+
+\begin{figure}[!htb]
+\begin{adjustbox}{center,max size={\textwidth}{0.9\textheight}}
+\parbox{1.5\textwidth}{\lineskip=0pt
+\begin{subfigure}{0.75\textwidth}
+  \centering
+  \includegraphics[width=\linewidth, clip=true, trim = 0mm 0mm 0mm 0mm]{figures/confusions/vanilla_1c_0.75_inset.png}
+  \caption{1 class - r50 Mask R-CNN 75\%. See \Cref{tab:dsizeonecinset}.}
+  \label{fig:vanilla_1c_0.75_inset}
+\end{subfigure}%
+\begin{subfigure}{0.75\textwidth}
+  \centering
+  \includegraphics[width=\linewidth, clip=true, trim = 0mm 0mm 0mm 0mm]{figures/confusions/vanilla_1c_1.0_inset.png}
+  \caption{1 class - r50 Mask R-CNN 100\%. See \Cref{tab:dsizeonecinset}.}
+  \label{fig:vanilla_1c_1.0_inset}
+\end{subfigure}}
+\end{adjustbox}
+  \caption{Normalized confusion matrices for the one class experiment on the In-domain test set found in \Cref{tab:dsizeonecinset}. Percentages are rounded down.}
+\label{fig:oneclassconfusions}
+\end{figure}
+
+
+\begin{figure}[H]
+\begin{adjustbox}{center,max size={\textwidth}{0.9\textheight}}
+\parbox{1.5\textwidth}{\lineskip=0pt
+%\begin{subfigure}{1.5\textwidth}
+  \centering
+  \includegraphics[width=\linewidth, clip=true, trim = 0mm 0mm 0mm 0mm]{figures/confusions/vanilla_0.75_inset.png}
+%\end{subfigure}
+}
+\end{adjustbox}
+  \caption{Normalized confusion matrix for r50 Mask R-CNN 75\%. See \Cref{tab:dsizeallcinset}. Percentages are rounded down.}
+\label{fig:vanilla_0.75_inset_cm}
+\end{figure}
+
+\begin{figure}[H]
+\begin{adjustbox}{center,max size={\textwidth}{0.9\textheight}}
+\parbox{1.5\textwidth}{\lineskip=0pt
+%\begin{subfigure}{1.5\textwidth}
+  \centering
+  \includegraphics[width=\linewidth, clip=true, trim = 0mm 0mm 0mm 0mm]{figures/confusions/vanilla_1.0_inset.png}
+%\end{subfigure}
+}
+\end{adjustbox}
+  \caption{Normalized confusion matrix for r50 Mask R-CNN 100\%. See \Cref{tab:dsizeallcinset}. Percentages are rounded down.}
+\label{fig:vanilla_1.0_inset_cm}
+\end{figure}
+
+\clearpage 
 
 \section{Visual examples}
 \label{sec:visex}
@@ -2102,8 +2222,8 @@ Each of the following examples were predictions made by the best performing mode
 The following pages features the following visualizations as 4 subfigures: 
 \begin{enumerate}
 \item Visualizations of OCR text bounding boxes. The OCR output does contain coordinates for recognized images, this image positioning data is omitted in these figures. 
-\item The first 3 dimensions of "all-mpnet-base-v2" vector representations normalized as RGB colors.
-\item The Ground Truth label bounding boxes visualized on a black background. Colors correspond to class.
+\item The Ground Truth label bounding boxes visualized on a black background. Colors of the ground truth labels correspond to class.
+\item The Ground Truth label bounding boxes visualized on a black background with the corresponding OCR bounding boxes overlayed in red. Colors of the ground truth labels correspond to class.
 \item The vanilla Mask R-CNN (resnet50-FPN) predictions visualized on a black background. The model was trained on 75\% of the training data, see the third row of \Cref{tab:dsizeallcinset}, corresponding to the best performing model in that table. The predicted class and confidence is depicted in the top left corner of each predicted bounding box.
 \end{enumerate}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
@@ -2115,21 +2235,21 @@ The following pages features the following visualizations as 4 subfigures:
 \begin{subfigure}{0.6\textwidth}
   \centering
   \includegraphics[width=\linewidth, clip=true, trim = 0mm 0mm 0mm 0mm]{figures/ocr/JIefsDa.jpg}
-  \caption{OCR bounding boxes in red}
+  \caption{OCR bounding boxes in red.}
   \label{fig:JIefsDa_OCR}
 \end{subfigure}%
 \begin{subfigure}{0.6\textwidth}
   \centering
-  \includegraphics[width=\linewidth, clip=true, trim = 0mm 0mm 0mm 0mm]{figures/tf/JIefsDa.jpg}
-  \caption{Text Embeddings*}
-  \label{fig:JIefsDa_TF}
+  \includegraphics[width=\linewidth, clip=true, trim = 0mm 0mm 0mm 0mm]{figures/bbox/JIefsDa.jpg}
+  \caption{Ground truth labels.}
+  \label{fig:JIefsDa_GT}
 \end{subfigure}
   \centering
 \begin{subfigure}{0.6\textwidth}
   \centering
 \includegraphics[width=\linewidth]{figures/ocr_bbox/JIefsDa.jpg}
   \caption{OCR bounding boxes over Ground truth labels.}
-  \label{fig:JIefsDa_GT}
+  \label{fig:JIefsDa_GTbb}
 \end{subfigure}
 \begin{subfigure}{0.6\textwidth}
   \centering
@@ -2138,7 +2258,7 @@ The following pages features the following visualizations as 4 subfigures:
   \label{fig:JIefsDa_pred}
 \end{subfigure}}
 \end{adjustbox}
-  \caption{A front page newspaper page from the DN 2010-2020 Test subset. *In (b) the first 3 dimensions of "all-mpnet-base-v2" vector representations normalized as RGB colors. in (c) and (d) Teal labels are News units, purple is Advertisement.}
+  \caption{A front page newspaper page from the DN 2010-2020 Test subset. *In (b) the first 3 dimensions of "all-mpnet-base-v2" vector representations normalized as RGB colors. in (c) and (d) the teal labels are News units, and the purple is Advertisement.}
 \label{fig:JIefsDa}
 \end{figure}
 
@@ -2156,16 +2276,16 @@ The following pages features the following visualizations as 4 subfigures:
 \end{subfigure}%
 \begin{subfigure}{0.6\textwidth}
   \centering
-  \includegraphics[width=\linewidth, clip=true, trim = 0mm 0mm 0mm 0mm]{figures/tf/zk6UnuL.jpg}
-  \caption{Text Embeddings*}
-  \label{fig:zk6UnuL_TF}
+  \includegraphics[width=\linewidth, clip=true, trim = 0mm 0mm 0mm 0mm]{figures/bbox/zk6UnuL.jpg}
+  \caption{Ground truth labels.}
+  \label{fig:zk6UnuL_GT}
 \end{subfigure}
   \centering
 \begin{subfigure}{0.6\textwidth}
   \centering
 \includegraphics[width=\linewidth]{figures/ocr_bbox/zk6UnuL.jpg}
   \caption{OCR bounding boxes over Ground truth labels.}
-  \label{fig:zk6UnuL_GT}
+  \label{fig:zk6UnuL_GTbb}
 \end{subfigure}
 \begin{subfigure}{0.6\textwidth}
   \centering
@@ -2174,7 +2294,7 @@ The following pages features the following visualizations as 4 subfigures:
   \label{fig:zk6UnuL_pred}
 \end{subfigure}}
 \end{adjustbox}
-  \caption{A newspaper page with listing prices of funds and stocks from the DN 2010-2020 Test subset. *In (b) the first 3 dimensions of "all-mpnet-base-v2" vector representations normalized as RGB colors. In (c) and (d) Bright purple label is Advertisement, dark purple labels are Listings.}
+  \caption{A newspaper page with listing prices of funds and stocks from the DN 2010-2020 Test subset. In subfigures (b), (c) and (d) the bright purple label is Advertisement, and the dark purple labels are Listings.}
 \label{fig:zk6UnuL}
 \end{figure}
 
@@ -2192,16 +2312,16 @@ The following pages features the following visualizations as 4 subfigures:
 \end{subfigure}%
 \begin{subfigure}{0.6\textwidth}
   \centering
-  \includegraphics[width=\linewidth, clip=true, trim = 0mm 0mm 0mm 0mm]{figures/tf/GQU6vjW.jpg}
-  \caption{Text Embeddings*}
-  \label{fig:GQU6vjW_TF}
+  \includegraphics[width=\linewidth, clip=true, trim = 0mm 0mm 0mm 0mm]{figures/bbox/GQU6vjW.jpg}
+  \caption{Ground truth labels.}
+  \label{fig:GQU6vjW_GT}
 \end{subfigure}
   \centering
 \begin{subfigure}{0.6\textwidth}
   \centering
 \includegraphics[width=\linewidth]{figures/ocr_bbox/GQU6vjW.jpg}
   \caption{OCR bounding boxes over Ground truth labels.}
-  \label{fig:GQU6vjW_GT}
+  \label{fig:GQU6vjW_GTbb}
 \end{subfigure}
 \begin{subfigure}{0.6\textwidth}
   \centering
@@ -2210,7 +2330,7 @@ The following pages features the following visualizations as 4 subfigures:
   \label{fig:GQU6vjW_pred}
 \end{subfigure}}
 \end{adjustbox}
-  \caption{A newspaper page with obituaries from the DN 2010-2020 Test subset. *In (b) the first 3 dimensions of "all-mpnet-base-v2" vector representations normalized as RGB colors. In (c) and (d) Bright green labels are Death Notice (obituaries).}
+  \caption{A newspaper page with obituaries from the DN 2010-2020 Test subset. In subfigures (b), (c) and (d) the bright green labels are Death Notice (obituaries).}
 \label{fig:GQU6vjW}
 \end{figure}
 
@@ -2229,16 +2349,16 @@ The following pages features the following visualizations as 4 subfigures:
 \end{subfigure}%
 \begin{subfigure}{0.6\textwidth}
   \centering
-  \includegraphics[width=\linewidth, clip=true, trim = 0mm 0mm 0mm 0mm]{figures/tf/AVThDFz.jpg}
-  \caption{Text Embeddings*}
-  \label{fig:AVThDFz_TF}
+  \includegraphics[width=\linewidth, clip=true, trim = 0mm 0mm 0mm 0mm]{figures/bbox/AVThDFz.jpg}
+  \caption{Ground truth labels.}
+  \label{fig:AVThDFz_GT}
 \end{subfigure}
   \centering
 \begin{subfigure}{0.6\textwidth}
   \centering
 \includegraphics[width=\linewidth]{figures/ocr_bbox/AVThDFz.jpg}
   \caption{OCR bounding boxes over Ground truth labels.}
-  \label{fig:AVThDFz_GT}
+  \label{fig:AVThDFz_GTbb}
 \end{subfigure}
 \begin{subfigure}{0.6\textwidth}
   \centering
@@ -2247,7 +2367,7 @@ The following pages features the following visualizations as 4 subfigures:
   \label{fig:AVThDFz_pred}
 \end{subfigure}}
 \end{adjustbox}
-  \caption{A newspaper page consisting of news articles from the DN 2010-2020 Test subset. *In (b) the first 3 dimensions of "all-mpnet-base-v2" vector representations normalized as RGB colors. in (c) and (d) Teal labels are News units.}
+  \caption{A newspaper page consisting of news articles from the DN 2010-2020 Test subset. In subfigures (b), (c) and (d) the teal labels are News Units.}
 \label{fig:AVThDFz}
 \end{figure}
 
@@ -2265,16 +2385,16 @@ The following pages features the following visualizations as 4 subfigures:
 \end{subfigure}%
 \begin{subfigure}{0.6\textwidth}
   \centering
-  \includegraphics[width=\linewidth, clip=true, trim = 0mm 0mm 0mm 0mm]{figures/tf/Jd55Bvg.jpg}
-  \caption{Text Embeddings*}
-  \label{fig:Jd55Bvg_TF}
+  \includegraphics[width=\linewidth, clip=true, trim = 0mm 0mm 0mm 0mm]{figures/bbox/Jd55Bvg.jpg}
+  \caption{Ground truth labels.}
+  \label{fig:Jd55Bvg_GT}
 \end{subfigure}
   \centering
 \begin{subfigure}{0.6\textwidth}
   \centering
 \includegraphics[width=\linewidth]{figures/ocr_bbox/Jd55Bvg.jpg}
   \caption{OCR bounding boxes over Ground truth labels.}
-  \label{fig:Jd55Bvg_GT}
+  \label{fig:Jd55Bvg_GTbb}
 \end{subfigure}
 \begin{subfigure}{0.6\textwidth}
   \centering
@@ -2283,7 +2403,7 @@ The following pages features the following visualizations as 4 subfigures:
   \label{fig:1RoKim0_pred}
 \end{subfigure}}
 \end{adjustbox}
-  \caption{A newspaper page consisting of weather reports and advertisement from the DN 2010-2020 Test subset. *In (b) the first 3 dimensions of "all-mpnet-base-v2" vector representations normalized as RGB colors. In (c) and (d) Blue label is Weather. Purple labels are Advertisement.}
+  \caption{A newspaper page consisting of weather reports and advertisement from the DN 2010-2020 Test subset. In subfigures (b), (c) and (d) the blue label is Weather. Purple labels are Advertisement.}
 \label{fig:Jd55Bvg}
 \end{figure}
 \clearpage
@@ -2293,23 +2413,23 @@ The following pages features the following visualizations as 4 subfigures:
 \begin{figure}[!htb]
 \begin{adjustbox}{center}
 \parbox{1.5\textwidth}{\lineskip=0pt
-\begin{subfigure}{0.6\textwidth}
+\begin{subfigure}{0.75\textwidth}
   \centering
   \includegraphics[width=\linewidth, clip=true, trim = 0mm 0mm 0mm 0mm]{figures/ocr/1RoKim0.jpg}
   \caption{OCR bounding boxes in red}
   \label{fig:1RoKim0_OCR}
 \end{subfigure}%
-\begin{subfigure}{0.6\textwidth}
+\begin{subfigure}{0.75\textwidth}
   \centering
-  \includegraphics[width=\linewidth, clip=true, trim = 0mm 0mm 0mm 0mm]{figures/tf/1RoKim0.jpg}
-  \caption{Text Embeddings*}
-  \label{fig:1RoKim0_TF}
+  \includegraphics[width=\linewidth, clip=true, trim = 0mm 0mm 0mm 0mm]{figures/bbox/1RoKim0.jpg}
+  \caption{Ground truth labels.}
+  \label{fig:1RoKim0_GT}
 \end{subfigure}
 \begin{subfigure}{0.75\textwidth}
   \centering
 \includegraphics[width=\linewidth]{figures/ocr_bbox/1RoKim0.jpg}
   \caption{OCR bounding boxes over Ground truth labels.}
-  \label{fig:1RoKim0_GT}
+  \label{fig:1RoKim0_GTbb}
 \end{subfigure}
 \begin{subfigure}{0.75\textwidth}
   \centering
@@ -2318,7 +2438,7 @@ The following pages features the following visualizations as 4 subfigures:
   \label{fig:1RoKim0_pred}
 \end{subfigure}}
 \end{adjustbox}
-  \caption{A newspaper page consisting of a single large image, part of a multi-page article from the DN 2010-2020 Test subset. *In (b) the first 3 dimensions of "all-mpnet-base-v2" vector representations normalized as RGB colors. In (c) and (d) teal label is News unit.}
+  \caption{A newspaper page consisting of a single large image, part of a multi-page article from the DN 2010-2020 Test subset. In subfigures (b), (c) and (d) the teal label is News unit.}
 \label{fig:1RoKim0}
 \end{figure}
 
@@ -2328,7 +2448,7 @@ The following pages features the following visualizations as 4 subfigures:
 
 \section{Labeling strategy and choices of classes}
 
-There is always a certain level of ambiguity when deciding what classes and labels are appropriate. Perhaps less so in the example of MS COCO than in this thesis. This is due to the fact that we attempt to create and label elements based on their semantic features, as opposed to purely the visual properties of objects. 
+There is always a certain level of ambiguity when deciding what classes and labels are appropriate. Perhaps less so in the example of MS COCO than in this thesis. This is due to the fact that we attempt to create labels based on the semantic features of elements, as opposed to purely the visual properties of objects. 
 
 The importance, as deemed by the model weights, of features that can be extracted for the input may depend on these decisions. There are a number of factors that might bias the spatial features to gain more importance than the textual ones. Examples include:
 

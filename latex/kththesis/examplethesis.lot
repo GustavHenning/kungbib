@@ -16,23 +16,23 @@
 \contentsline {table}{\numberline {3.4}{\ignorespaces Class distribution in the Aftonbladet Expressen 2001 - 2004 dataset\relax }}{27}{table.caption.15}%
 \contentsline {table}{\numberline {3.5}{\ignorespaces Object size threshold differences in pixels\relax }}{39}{table.caption.21}%
 \contentsline {table}{\numberline {3.6}{\ignorespaces Number of annotations per area group for the test sets\relax }}{39}{table.caption.22}%
-\contentsline {table}{\numberline {3.7}{\ignorespaces Sentence transformers\relax }}{42}{table.caption.24}%
-\contentsline {table}{\numberline {3.8}{\ignorespaces Class distribution in partial datasets of DN 2010 - 2020 (In-set)\relax }}{43}{table.caption.25}%
-\contentsline {table}{\numberline {3.9}{\ignorespaces Hardware specifications\relax }}{44}{table.caption.26}%
-\contentsline {table}{\numberline {3.10}{\ignorespaces Software versions\relax }}{45}{table.caption.27}%
+\contentsline {table}{\numberline {3.7}{\ignorespaces Sentence transformers\relax }}{45}{table.caption.27}%
+\contentsline {table}{\numberline {3.8}{\ignorespaces Class distribution in partial datasets of DN 2010 - 2020 (In-set)\relax }}{46}{table.caption.28}%
+\contentsline {table}{\numberline {3.9}{\ignorespaces Hardware specifications\relax }}{47}{table.caption.29}%
+\contentsline {table}{\numberline {3.10}{\ignorespaces Software versions\relax }}{48}{table.caption.30}%
 \addvspace {10\p@ }
-\contentsline {table}{\numberline {4.1}{\ignorespaces Model names\relax }}{47}{table.caption.28}%
-\contentsline {table}{\numberline {4.2}{\ignorespaces Top 5 results - 6 classes - In-set (\Cref {subsub:inset})\relax }}{48}{table.caption.29}%
-\contentsline {table}{\numberline {4.3}{\ignorespaces Top 5 results - 6 classes - Near-set (\Cref {subsub:nearset})\relax }}{48}{table.caption.30}%
-\contentsline {table}{\numberline {4.4}{\ignorespaces Top 5 results - 6 classes - Out-set (\Cref {subsub:outset})\relax }}{48}{table.caption.31}%
-\contentsline {table}{\numberline {4.5}{\ignorespaces Top 5 results - 1 class - In-set (\Cref {subsub:inset})\relax }}{49}{table.caption.32}%
-\contentsline {table}{\numberline {4.6}{\ignorespaces Top 5 results - 1 class - Near-set (\Cref {subsub:nearset})\relax }}{49}{table.caption.33}%
-\contentsline {table}{\numberline {4.7}{\ignorespaces Top 5 results - 1 class - Out-set (\Cref {subsub:outset})\relax }}{49}{table.caption.34}%
-\contentsline {table}{\numberline {4.8}{\ignorespaces Gradually increasing dataset size - 6 classes - In-set (\Cref {subsub:inset})\relax }}{50}{table.caption.35}%
-\contentsline {table}{\numberline {4.9}{\ignorespaces Gradually increasing dataset size - 6 classes - Near-set (\Cref {subsub:nearset})\relax }}{50}{table.caption.36}%
-\contentsline {table}{\numberline {4.10}{\ignorespaces Gradually increasing dataset size - 6 classes - Out-set (\Cref {subsub:outset})\relax }}{50}{table.caption.37}%
-\contentsline {table}{\numberline {4.11}{\ignorespaces Gradually increasing dataset size - 1 class - In-set (\Cref {subsub:inset})\relax }}{51}{table.caption.38}%
-\contentsline {table}{\numberline {4.12}{\ignorespaces Gradually increasing dataset size - 1 class - Near-set (\Cref {subsub:nearset})\relax }}{51}{table.caption.39}%
-\contentsline {table}{\numberline {4.13}{\ignorespaces Gradually increasing dataset size - 1 class - Out-set (\Cref {subsub:outset})\relax }}{51}{table.caption.40}%
+\contentsline {table}{\numberline {4.1}{\ignorespaces Model names\relax }}{50}{table.caption.31}%
+\contentsline {table}{\numberline {4.2}{\ignorespaces Top 5 results - 6 classes - In-set (\Cref {subsub:inset})\relax }}{51}{table.caption.32}%
+\contentsline {table}{\numberline {4.3}{\ignorespaces Top 5 results - 6 classes - Near-set (\Cref {subsub:nearset})\relax }}{51}{table.caption.33}%
+\contentsline {table}{\numberline {4.4}{\ignorespaces Top 5 results - 6 classes - Out-set (\Cref {subsub:outset})\relax }}{51}{table.caption.34}%
+\contentsline {table}{\numberline {4.5}{\ignorespaces Top 5 results - 1 class - In-set (\Cref {subsub:inset})\relax }}{52}{table.caption.35}%
+\contentsline {table}{\numberline {4.6}{\ignorespaces Top 5 results - 1 class - Near-set (\Cref {subsub:nearset})\relax }}{52}{table.caption.36}%
+\contentsline {table}{\numberline {4.7}{\ignorespaces Top 5 results - 1 class - Out-set (\Cref {subsub:outset})\relax }}{52}{table.caption.37}%
+\contentsline {table}{\numberline {4.8}{\ignorespaces Gradually increasing dataset size - 6 classes - In-set (\Cref {subsub:inset})\relax }}{53}{table.caption.38}%
+\contentsline {table}{\numberline {4.9}{\ignorespaces Gradually increasing dataset size - 6 classes - Near-set (\Cref {subsub:nearset})\relax }}{53}{table.caption.39}%
+\contentsline {table}{\numberline {4.10}{\ignorespaces Gradually increasing dataset size - 6 classes - Out-set (\Cref {subsub:outset})\relax }}{53}{table.caption.40}%
+\contentsline {table}{\numberline {4.11}{\ignorespaces Gradually increasing dataset size - 1 class - In-set (\Cref {subsub:inset})\relax }}{54}{table.caption.41}%
+\contentsline {table}{\numberline {4.12}{\ignorespaces Gradually increasing dataset size - 1 class - Near-set (\Cref {subsub:nearset})\relax }}{54}{table.caption.42}%
+\contentsline {table}{\numberline {4.13}{\ignorespaces Gradually increasing dataset size - 1 class - Out-set (\Cref {subsub:outset})\relax }}{54}{table.caption.43}%
 \addvspace {10\p@ }
 \addvspace {10\p@ }
