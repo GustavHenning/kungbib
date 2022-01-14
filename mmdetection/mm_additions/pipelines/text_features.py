@@ -37,7 +37,10 @@ IMAGES_FOR_THESIS = ["images/dark-10120707_part01_page006_TFE3FSf.jpg",
 "images/dark-6733161_part04_page033_GqEyiAA.jpg",
 "images/dark-6745860_part04_page037_1RoKim0.jpg",
 "images/dark-6748921_part04_page009_kvtooQ3.jpg",
-"images/dark-6749981_part02_page031_PuwcAOD.jpg"]
+"images/dark-6749981_part02_page031_PuwcAOD.jpg",
+"images/dark-6745364_part05_page001_7vqUVUu.jpg",
+"images/dark-5009648_part03_page001_axCUOek.jpg",
+"images/dark-10120960_part01_page001_eL02GFP.jpg"]
 
 @PIPELINES.register_module()
 class TextFeatures:
@@ -130,13 +133,17 @@ class TextFeatures:
         results["img"] = text_feature_array
 
         if VISUALIZE_EMBEDDINGS and results["img_info"]["file_name"] in IMAGES_FOR_THESIS:
-            self.visualize(results["img"])
+            self.visualize(results["img"], results)
 
         if self.should_show_debug_img(results) and SIMPLE_VIZ_WITH_TF:
             print(np.shape(results["img"][:,:,3:6]))
             ax.imshow(np.abs(self.normalize_3d_non_zero(results["img"][:,:,3:6])))
 
+
         if self.should_show_debug_img(results):
+
+            plt.axis('off')
+            fig.savefig("/home/gush/vis/{}/{}".format("tf" if SIMPLE_VIZ_WITH_TF else "normal", results["img_info"]["file_name"].split("_")[-1]), bbox_inches="tight")
             self.show_plot()
 
         if DEBUG_TIME:
@@ -177,7 +184,7 @@ class TextFeatures:
             return 
         plt.show()
     
-    def visualize(self, m):
+    def visualize(self, m, results):
         fig = plt.figure(figsize=(12,12))
         ax = fig.add_subplot(projection="3d")
         x, y = np.ogrid[0:m.shape[0], 0:m.shape[1]]
@@ -187,6 +194,8 @@ class TextFeatures:
         tf_colors=np.abs(self.normalize_3d(m[:,:,3:6]))
 
         ax.plot_surface(x, y, np.full((np.shape(x)[0], np.shape(y)[1]), 0.0, dtype=float), rstride=5, cstride=5, facecolors=(tf_colors))
+        plt.axis('off')
+        fig.savefig("/home/gush/vis/3d/{}".format(results["img_info"]["file_name"].split("_")[-1]), bbox_inches="tight")
         plt.show()
         plt.pause(1000)
 

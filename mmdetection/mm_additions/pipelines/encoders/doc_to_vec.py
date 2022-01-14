@@ -10,6 +10,7 @@ from tqdm import tqdm
 class Doc2Vec(Encoder):
     def __init__(self, dimensions, texts_location="/data/gustav/datalab_data/model/text", model_name=""):
         print("initializing Doc2Vec")
+        self.model_name = model_name
         # ((0?1?[1-9]|1[0-2])(:|.)[0-5][0-9])* matches for example 18.00 or 18:00
         # the rest captures sentences
         self.pattern = re.compile('(^|[\s])(((0?1?[1-9]|1[0-2])(:|.)[0-5][0-9])*[^.!?]*)([.!?]|$)')
@@ -50,7 +51,11 @@ class Doc2Vec(Encoder):
                 subbed = re.sub(r'[^a-zA-Z0-9ÅÄÖåäö_]+', '', word)
                 if len(subbed) > 0:
                     tokens.append(subbed)
-        return self.model.infer_vector(tokens)
+        vec = self.model.infer_vector(tokens)
+        
+        if self.model_name == "boolean":
+            vec.fill(1.0)
+        return vec
 
     def extract_sentences(self, text):
         sentences = []
