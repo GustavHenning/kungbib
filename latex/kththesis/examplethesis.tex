@@ -413,8 +413,8 @@ As we will see in this chapter and the next, there are many challenges yet to be
 
 The processing of historical newspapers consists of three steps:
 \begin{itemize}
-\item Facsimile processing: Deriving the structure and the text from the document images via document layout analysis, commonly using Optical Character Recognition (\gls{OCR})
-\item Content enrichment: Extracting and connecting relevant information from both the textual and visual components of the contents
+\item Facsimile processing: Deriving the structure and the text from the document images via document layout analysis, commonly using Optical Character Recognition (\gls{OCR}).
+\item Content enrichment: Extracting and connecting relevant information from both the textual and visual components of the contents.
 \item Exploration support: To enable searching and visualizing the contents.
 \end{itemize}
 
@@ -1055,7 +1055,7 @@ mAP = \frac{1}{N} \sum_{i=1}^{N} AP_i
     \label{eqn:map}
 \end{equation}
 
-\textbf{TODO explain maP superscript and subscript as seen in the results.}
+Results reported in this thesis follow the notation $mAP^{b}_{a}$ where \textit{b} refers to either the segmentation mask (m) or bounding box (bb), and \textit{a} refers to the threshold at which the Intersection over Union should count as a successful recognition. For example, $mAP^{50}_{bb}$ is the accuracy for the mean average precision of the bounding boxes that overlap with an IoU=50, that is more than 50\% overlap between the predicted bounding box and the ground truth bounding box of the instance.
 
 \chapter{Method}
 \label{ch:method}
@@ -1186,11 +1186,10 @@ This labeling strategy and the classes made for this thesis were constructed by 
 Some elements of the newspaper do not by themselves convey any news. One example are elements used for navigating the newspaper itself.
 Such elements include section titles and subsection titles. Another example could be instructions for participating in debate, or footers that present the newspaper publishing team.
 
-This type of content may not be completely static: In a footer the names of publishers may vary across time. The core idea is that this type of information does not propagate news by itself.
+This type of content may not be completely static: In a footer the names of publishers may vary across time. The core idea is that this type of information does not propagate news by itself. These elements are considered \textit{static} and receive no label in this thesis.
+
 
 Following this assertion, all other content which is not static should receive a label and a class.
-
-These elements are considered \textit{static} and receive no label in this thesis.
 
 \subsubsection{Overlapping labels}
 \label{subsub:overlappinglabels}
@@ -1645,7 +1644,7 @@ The result is a text embedding map, i.e. a three-dimensional matrix where the fi
 \begin{subfigure}{0.75\textwidth}
   \centering
   \includegraphics[width=\linewidth, clip=true, trim = 0mm 0mm 0mm 0mm]{figures/tf/JIefsDa.jpg}
-  \caption{Text Features* RGB representation.}
+  \caption{Text Embeddings* RGB representation.}
   \label{fig:JIefsDa_tf}
 \end{subfigure}}
 \end{adjustbox}
@@ -1667,7 +1666,7 @@ The result is a text embedding map, i.e. a three-dimensional matrix where the fi
 \begin{subfigure}{0.75\textwidth}
   \centering
   \includegraphics[width=\linewidth, clip=true, trim = 0mm 0mm 0mm 0mm]{figures/tf/GQU6vjW.jpg}
-  \caption{Text Features* RGB representation.}
+  \caption{Text Embeddings* RGB representation.}
   \label{fig:GQU6vjW_tf}
 \end{subfigure}}
 \end{adjustbox}
@@ -1689,7 +1688,7 @@ The result is a text embedding map, i.e. a three-dimensional matrix where the fi
 \begin{subfigure}{0.75\textwidth}
   \centering
   \includegraphics[width=\linewidth, clip=true, trim = 0mm 0mm 0mm 0mm]{figures/tf/AVThDFz.jpg}
-  \caption{Text Features* RGB representation.}
+  \caption{Text Embeddings* RGB representation.}
   \label{fig:AVThDFz_tf}
 \end{subfigure}}
 \end{adjustbox}
@@ -2505,13 +2504,13 @@ The impressive results on the in-domain test set indicate that the newspaper typ
 
 \subsection{Large text embeddings} 
 
-As seen \autoref{tab:modeldimensions}, the sentence transformers output their vectors of size $768$ or $384$. This adds a significant number of channels to the input if inserted without alteration. The consequence is a large memory footprint. \textbf{TODO about the sparsity and distribution of the vector representation.}
+As seen \autoref{tab:modeldimensions}, the sentence transformers output their vectors of size $768$ or $384$. This adds a significant number of channels to the input if inserted without alteration. The consequence is a large memory footprint. For instance, the final text embedding matrix size of a language model producing text embedding vectors of length $768$, is equal to that of $256$ RGB images.  
 
 \section{Impact of dataset size}
 
 As seen in \Cref{tab:dsizeallcinset} and \Cref{tab:dsizeonecinset}, performance peaks at 75\% training size. Part of the explanation could be the curious distribution produced by random sampling as seen in \Cref{tab:partialdist}. Another explanation could be that the 75\% subset better represents the distribution of the test subset. Because of the size of the test subset (109 newspaper images), it is more than possible that the test subset does not necessary reflect the diversity of the full dataset from which it was sampled. See \Cref{fig:size_dist_annotations_in} for a notion of the distribution in regards to annotation area.
 
-As we can see in \Cref{tab:dsizeallcnearset}, \Cref{tab:dsizeallcoutset}, \Cref{tab:dsizeonecnearset}, \Cref{tab:dsizeonecoutset}, performance in near- and out-of-domain test sets improves with increasing train dataset size. This supports the aforementioned theory that there are more diverse examples left out of the 75\% subset.
+As we can see in \Cref{tab:dsizeallcnearset,tab:dsizeallcoutset,tab:dsizeonecnearset,tab:dsizeonecoutset}, performance in near- and out-of-domain test sets improves with increasing train dataset size. This supports the aforementioned theory that there are more diverse examples left out of the 75\% subset.
 
 \section{Combining other methods}
 
@@ -2540,9 +2539,9 @@ Given the results on the near- and out-of-domain test sets (DN SvD 2001-2004, Af
 
 We can only speak to the method proposed in this thesis in conjunction with the labeling strategy outlined and datasets found in this thesis. We were unable to show that multimodal ANNs generally outperform unimodal ANNs. Considering that there are many ways to adapt a neural network to several modalities, we cannot conclude a definite answer based on the results produced in this thesis. 
 
-As for the second goal, given that the results for the out-of-domain test set consistently features multimodal networks to a larger extent than the in- and near-domain test sets suggests that the representations learned by the multimodal networks are more generally applicable than the unimodal varaints when trained on a limited topology. We cannot support such a conclusion for more diverse training sets.
+As for the second goal, given that the results for the out-of-domain test set (\Cref{tab:top5allcoutset,tab:top5onecoutset}) consistently features multimodal networks to a larger extent than the in- and near-domain test sets suggests that the representations learned by the multimodal networks are more generally applicable than the unimodal varaints when trained on a limited topology. We cannot support such a conclusion for more diverse training sets.
 
-As for the third goal, we report increasing performance on near- and out-of-domain test sets with increasing dataset size. \textbf{TODO reference tables}
+As for the third goal, we report increasing performance on near- and out-of-domain test sets (\Cref{tab:dsizeallcnearset,tab:dsizeallcoutset,tab:dsizeonecnearset,tab:dsizeonecoutset}) with increasing dataset size. 
 
 \section{Limitations}
 
