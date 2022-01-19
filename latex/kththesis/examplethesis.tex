@@ -1055,7 +1055,7 @@ mAP = \frac{1}{N} \sum_{i=1}^{N} AP_i
     \label{eqn:map}
 \end{equation}
 
-Results reported in this thesis follow the notation $mAP^{b}_{a}$ where \textit{b} refers to either the segmentation mask (m) or bounding box (bb), and \textit{a} refers to the threshold at which the Intersection over Union should count as a successful recognition. For example, $mAP^{50}_{bb}$ is the accuracy for the mean average precision of the bounding boxes that overlap with an IoU=50, that is more than 50\% overlap between the predicted bounding box and the ground truth bounding box of the instance.
+Results reported in this thesis follow the notation $mAP^{a}_{b}$ where \textit{a} refers to the threshold at which the Intersection over Union should count as a successful recognition, and \textit{b} refers to either the segmentation mask (m) or bounding box (bb). For example, $mAP^{50}_{bb}$ is the accuracy for the mean average precision of the bounding boxes that overlap with an IoU=50, that is more than 50\% overlap between the predicted bounding box and the ground truth bounding box of the instance.
 
 \chapter{Method}
 \label{ch:method}
