@@ -19,7 +19,7 @@
 \addvspace {10\p@ }
 \contentsline {figure}{\numberline {3.1}{\ignorespaces Asymmetric extension of the label. A is labeled red, and B should belong to the same label, while C should not.\relax }}{29}{figure.caption.16}%
 \contentsline {figure}{\numberline {3.2}{\ignorespaces Example where other content (C) is blocking elements (A and B) from becoming one label.\relax }}{30}{figure.caption.17}%
-\contentsline {figure}{\numberline {3.3}{\ignorespaces Ground truth label comparison between labels for 6 classes versus labels using the Publication Unit superclass. Both figures a) and b) depict the labels of the same newspaper image, an image from the DN 2010-2020 Test subset. \Cref {subsub:inset}\relax }}{35}{figure.caption.18}%
+\contentsline {figure}{\numberline {3.3}{\ignorespaces Ground truth label comparison between labels for 6 classes versus labels using the Publication Unit superclass. Both figures a) and b) depict the labels of the same newspaper image, an image from the DN 2010-2020 Test subset (\Cref {subsub:inset}). \relax }}{35}{figure.caption.18}%
 \contentsline {figure}{\numberline {3.4}{\ignorespaces \textbf {Left}: A block of ResNet. \textbf {Right}: A block of ResNeXt with cardinality = 32. ~\cite {DBLP:journals/corr/XieGDTH16}\relax }}{37}{figure.caption.19}%
 \contentsline {figure}{\numberline {3.5}{\ignorespaces \textbf {Left}: Aggregating transformations of depth = 2 \textbf {Right}: An equivalent block, which is trivially wider.~\cite {DBLP:journals/corr/XieGDTH16}\relax }}{37}{figure.caption.20}%
 \contentsline {figure}{\numberline {3.6}{\ignorespaces Distribution of annotations by squareroot area. \relax }}{39}{figure.caption.23}%
