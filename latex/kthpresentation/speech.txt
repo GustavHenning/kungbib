@@ -54,4 +54,16 @@ In the experiment testing impact of dataset size (which was requested by The Nat
 
 As for performance metrics we use the mean Average Precision which is a reoccuring measurement on datasets of instance segmentation. 
 
-Mean average precision is the average of precisions across each class. Precision at a certain threshold is defined as the number of True Positives divided by the True Positives plus the False Positives, where the threshold is defined by if a prediction is positive by exceeding a theshold of Intersection over Union comparing the ground truth label area with the predicted area. 
+Mean average precision is the average of precisions averaged over each class. Precision at a certain threshold is defined as the number of True Positives divided by the True Positives plus the False Positives, where the threshold is defined by if a prediction is positive by exceeding a theshold of Intersection over Union comparing the ground truth label area with the predicted area. 
+
+In the experiment investigating impact of dataset size we find that the best performance on the in domain test set is yielded from the 75% sample of the training data. Later we are going to reason about why this is the case. However, this mean Average Precision score is very impressive considering the fact that these are results from unimodal models. 
+
+Using a 100% of the training data, we ran combinations of backbones and sentence transformers and present the top five performing models for the in domain test dataset. In this case, the unimodal models outperformed the multimodal models, reaching above a mean average precision of 0.9 for the segmentation mask.
+
+Multimodal models outperformed unimodal models when evaluated on the out-of-domain testset, however by a small margin. 
+
+As for the question of 6 classes vs 1, we saw consistent outperformance depending on which test set was evaluated. The difference between the classes was about 0.1 mAP on average.
+
+
+
+

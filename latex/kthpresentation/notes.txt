@@ -68,4 +68,6 @@ SBERT is trained for STS. Left: Training with softmax class, right: cosine sim f
 
 publically available pretrained weights. 
 
----
+--------------------------------
+
+
