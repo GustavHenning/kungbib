@@ -1,0 +1,40 @@
+total 164
+drwxrwxr-x 6 gush gush 4096 jan 20 14:54 ./
+drwxrwxr-x 9 gush gush 4096 jan 20 14:17 ../
+-rw-rw-r-- 1 gush gush   39 sep 21 14:23 activate.sh
+drwxrwxr-x 2 gush gush 4096 dec 30 10:52 analysis/
+-rw-rw-r-- 1 gush gush  156 dec  2 11:39 analyze_customs.sh
+-rw-rw-r-- 1 gush gush  175 dec  2 11:41 analyze_ratios.sh
+-rw-rw-r-- 1 gush gush 1846 dec  2 15:49 analyze.sh
+-rw-rw-r-- 1 gush gush  107 nov 12 14:08 analyze_vanilla.sh
+lrwxrwxrwx 1 gush gush   24 sep 13 14:08 checkpoints -> /data/gustav/checkpoints/
+-rw-rw-r-- 1 gush gush 2365 dec  8 13:18 combine_result_graphs.py
+lrwxrwxrwx 1 gush gush   84 sep 13 14:07 configs -> /data/gustav/anaconda3/envs/openmmlab/lib/python3.8/site-packages/mmdet/.mim/configs/
+-rw-rw-r-- 1 gush gush 1131 jan 20 12:43 confusions.sh
+drwxrwxr-x 2 gush gush 4096 sep 13 14:11 demo/
+-rw-rw-r-- 1 gush gush  211 sep 21 14:23 install.txt
+-rw-rw-r-- 1 gush gush  658 sep 27 15:24 mask-ls-data.py
+drwxrwxr-x 7 gush gush 4096 okt 14 16:08 mm_additions/
+lrwxrwxrwx 1 gush gush   90 sep 17 15:24 pipelines -> /data/gustav/anaconda3/envs/openmmlab/lib/python3.8/site-packages/mmdet/datasets/pipelines/
+-rw-rw-r-- 1 gush gush 4958 dec 17 16:19 print_model_results.py
+-rw-rw-r-- 1 gush gush 3368 dec  3 12:59 print_results_ratio.py
+-rw-rw-r-- 1 gush gush  530 dec 13 16:38 print.sh
+-rw-rw-r-- 1 gush gush 6410 dec  3 17:31 ratio_experiment_train.sh
+-rw-rw-r-- 1 gush gush  527 dec  3 17:35 ratio_experiment_train_vanilla.sh
+drwxrwxr-x 2 gush gush 4096 dec 30 10:52 results/
+-rw-rw-r-- 1 gush gush    0 jan 20 14:54 symlinks.txt
+-rw-rw-r-- 1 gush gush  799 sep 29 13:05 tf-mask-ls-data.py
+lrwxrwxrwx 1 gush gush   82 sep 13 15:27 tools -> /data/gustav/anaconda3/envs/openmmlab/lib/python3.8/site-packages/mmdet/.mim/tools/
+-rw-rw-r-- 1 gush gush 1398 dec  7 12:46 top_models.py
+-rw-rw-r-- 1 gush gush  183 nov 26 15:07 train_101_vanilla.sh
+-rw-rw-r-- 1 gush gush  287 nov 30 19:18 train_32x_vanilla.sh
+-rw-rw-r-- 1 gush gush  219 nov 26 15:07 train_64x_vanilla.sh
+-rw-rw-r-- 1 gush gush 2055 dec 22 17:12 train_custom_poly_768.sh
+-rw-rw-r-- 1 gush gush 2059 dec 13 19:11 train_custom_poly.sh
+-rw-rw-r-- 1 gush gush 1731 jan 13 10:27 train_doc2vec.sh
+-rw-rw-r-- 1 gush gush 6100 dec  3 11:19 train.sh
+-rw-rw-r-- 1 gush gush 7972 dec  3 17:31 train_tf.sh
+-rw-rw-r-- 1 gush gush  656 dec  2 16:02 train_vanilla_all.sh
+-rw-rw-r-- 1 gush gush  207 nov 19 16:21 train_vanilla.sh
+-rw-rw-r-- 1 gush gush  690 sep 13 14:25 verify.py
+-rw-rw-r-- 1 gush gush  531 dec  8 15:19 visualize_vectors.py

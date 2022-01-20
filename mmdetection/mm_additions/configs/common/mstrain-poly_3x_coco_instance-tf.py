@@ -6,8 +6,9 @@ data_root = "/data/gustav/datalab_data/model/dn-2010-2020/"
 MAX_EPOCHS=48
 EVAL_INTERVAL=3
 REPEAT_TRAIN=1
+SAMPLES_PER_GPU=1 # TODO was 2 but 768 too big
 
-LEARNING_RATE=0.0025
+LEARNING_RATE=0.00125 # TODO was 0.0025 but 768 too big
 MOMENTUM=0.9
 WEIGHT_DECAY=0.0001
 STEP_LENGTH=24
@@ -68,7 +69,7 @@ OUT_SET_FOLDERS="/data/gustav/datalab_data/model/ab-ex-2001-2004/"
 
 data = dict(
     max_epochs=MAX_EPOCHS,
-    samples_per_gpu=2,  
+    samples_per_gpu=SAMPLES_PER_GPU,  
     workers_per_gpu=10, 
     train=dict(    
         type='RepeatDataset',
