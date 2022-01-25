@@ -9,6 +9,7 @@
 \usepackage{subcaption}
 
 \usepackage{tikz}
+\usepackage{array}
 
 \usepackage[export]{adjustbox}
 
@@ -151,21 +152,19 @@
   \end{small}
 \end{frame}
 
-
 \normalpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
-  \frametitle{Why newspaper article segmentation?}
-
-  \begin{block}{Focus on digitization of documents}
-    \begin{itemize}
-    \item Pages are scanned on an image level
-    \item Optical Character Recognition extracts boxes of text
-    \item Document layout analysis: Determining reading order, meaningful article segmentation remains a challenge
-    \item Meaningful segments could enable e.g. search on article level, instead of page level.
-    \end{itemize}
-  \end{block}
-
+\begin{figure}
+\centering
+\begin{subfigure}{0.9\textwidth}
+  \centering
+  \includegraphics[max size={1.0\textwidth}{1.0\textheight}]{figures/articlesegm.png}
+  \label{fig:submscoco}
+\end{subfigure}%
+  \caption{Example of newspaper article segmentation. [Bansal et al 2014]}
+\label{fig:articlesegm}
+\end{figure}
 \end{frame}
 \normalpage
 
@@ -174,23 +173,36 @@
 \begin{frame}
 \begin{figure}
 \centering
-\begin{subfigure}{.5\textwidth}
+\begin{subfigure}{0.9\textwidth}
   \centering
-  \includegraphics[max size={0.95\textwidth}{0.95\textheight}]{figures/1901.jpg}
-  \caption{A newspaper page from 1901.}
-  \label{fig:raw1901}
+  \includegraphics[max size={0.9\textwidth}{0.9\textheight}]{figures/mask-rcnn-examples.png}
+  \label{fig:submscoco}
 \end{subfigure}%
-\begin{subfigure}{.5\textwidth}
-  \centering
-  \includegraphics[max size={0.95\textwidth}{0.95\textheight}]{figures/1901-ocr.jpg}
-  \caption{OCR bounding boxes visualized in red.}
-  \label{fig:ocr1901}
-\end{subfigure}
-\label{fig:1901}
+  \caption{Mask R-CNN output for MS COCO (Common objects in Context). [He et al 2017]}
+\label{fig:mscoco}
 \end{figure}
-
 \end{frame}
 \normalpage
+
+\begin{frame}
+  \frametitle{Is this feasible?}
+
+
+\begin{center}
+\begin{tabular}{ |m{15em}|m{5em}|m{15em}| } 
+ \hline
+ What we require in newspaper article segmentation & Can Mask R-CNN do this? & How? \\ 
+ \hline
+ Detecting multiple instances of the same class & Yes & Region Proposal Network \\ 
+ Detecting objects at different scales & Yes & Feature Pyramid Network \\ 
+ Representing several elements as one instance & ? (Yes) & Convolutional Neural Network \\ 
+ Comparing texts based on semantics & No & - \\ 
+ \hline
+\end{tabular}
+\end{center}
+
+\end{frame}
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
@@ -213,6 +225,77 @@
 
 \end{frame}
 \normalpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+  \begin{figure}
+\centering
+\begin{subfigure}{.25\textwidth}
+  \centering
+  \includegraphics[width=0.99\linewidth, clip=true, trim = 0mm 0mm 0mm 0mm]{figures/ocr/AVThDFz.jpg}
+  \caption{OCR}
+\end{subfigure}%
+\begin{subfigure}{.25\textwidth}
+  \centering
+  \includegraphics[width=0.99\linewidth, clip=true, trim = 0mm 0mm 0mm 0mm]{figures/ocr_bbox/AVThDFz.jpg}
+  \caption{GT Label + OCR}
+\end{subfigure}%
+\begin{subfigure}{.25\textwidth}
+  \centering
+  \includegraphics[width=0.99\linewidth, clip=true, trim = 0mm 0mm 0mm 0mm]{figures/bbox/AVThDFz.jpg}
+  \caption{GT Label}
+\end{subfigure}%
+\begin{subfigure}{.25\textwidth}
+  \centering
+  \includegraphics[width=0.99\linewidth, clip=true, trim = 0mm 0mm 0mm 0mm]{figures/labels-vanilla-0.75/AVThDFz.jpg}
+  \caption{Model prediction}
+\end{subfigure}
+\caption{A newspaper page consisting of news articles.}
+\label{fig:newsarticles}
+\end{figure}
+\end{frame}
+\normalpage
+
+\normalpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+  \frametitle{Why newspaper article segmentation?}
+
+  \begin{block}{Focus on digitization of documents}
+    \begin{itemize}
+    \item Pages are scanned on an image level
+    \item Optical Character Recognition extracts boxes of text
+    \item Document layout analysis: Determining reading order, meaningful article segmentation remains a challenge
+    \item Meaningful segments could enable e.g. search on article level, instead of page level.
+    \end{itemize}
+  \end{block}
+
+\end{frame}
+\normalpage
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\begin{frame}
+%\begin{figure}
+%\centering
+%\begin{subfigure}{.5\textwidth}
+%  \centering
+%  \includegraphics[max size={0.95\textwidth}{0.95\textheight}]{figures/1901.jpg}
+%  \caption{A newspaper page from 1901.}
+%  \label{fig:raw1901}
+%\end{subfigure}%
+%\begin{subfigure}{.5\textwidth}
+%  \centering
+%  \includegraphics[max size={0.95\textwidth}{0.95\textheight}]{figures/1901-ocr.jpg}
+%  \caption{OCR bounding boxes visualized in red.}
+%  \label{fig:ocr1901}
+%\end{subfigure}
+%\label{fig:1901}
+%\end{figure}
+
+%\end{frame}
+%\normalpage
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
@@ -253,6 +336,11 @@ unimodal neural network architectures?
   \frametitle{What is Mask R-CNN?}
 \begin{figure}
 \centering
+\begin{subfigure}{0.2\textwidth}
+  \centering
+  \includegraphics[max size={0.9\textwidth}{0.9\textheight}]{figures/fpnonly.png}
+  \label{fig:fpnonly}
+\end{subfigure}%
 \begin{subfigure}{0.8\textwidth}
   \centering
   \includegraphics[max size={0.9\textwidth}{0.9\textheight}]{figures/mask-rcnn.png}
@@ -265,87 +353,6 @@ unimodal neural network architectures?
 \end{frame}
 \normalpage
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\begin{figure}
-\centering
-\begin{subfigure}{0.9\textwidth}
-  \centering
-  \includegraphics[max size={0.9\textwidth}{0.9\textheight}]{figures/mask-rcnn-examples.png}
-  \label{fig:submscoco}
-\end{subfigure}%
-  \caption{Mask R-CNN output for MS COCO (Common objects in Context). [He et al 2017]}
-\label{fig:mscoco}
-\end{figure}
-\end{frame}
-\normalpage
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-  \frametitle{Mask R-CNN Backbones used in this thesis}
-
-\begin{itemize}
-\item ResNet-50-FPN (r50)
-\item ResNet-101-FPN (r101)
-\item ResNeXt-101-32x4d-FPN (x101-32x4d)
-\item ResNeXt-101-32x8d-FPN (x101-32x8d)
-\item ResNeXt-101-64x4d-FPN (x101-64x4d)
-\end{itemize}
-
-
-\begin{figure}[r]
-\centering
-\begin{subfigure}{0.9\textwidth}
-  \centering
-  \includegraphics[max size={0.6\textwidth}{0.6\textheight}]{figures/fpn.png}
-\end{subfigure}%
-  \caption{Evolution of the Feature Pyramid Network (bottom right). [Lin et al 2016]}
-\label{fig:fpn}
-\end{figure}
-
-\end{frame}
-\normalpage
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-  \frametitle{What is (Sentence-) BERT?}
-\begin{figure}
-\centering
-\begin{subfigure}{0.9\textwidth}
-  \centering
-  \includegraphics[max size={0.9\textwidth}{0.9\textheight}]{figures/SBERT.png}
-  \label{fig:submscoco}
-\end{subfigure}%
-\label{fig:sbert}
-  \caption{Sentence BERT extension of the original BERT. [Reimers et al 2019]}
-\end{figure}
-
-
-\end{frame}
-\normalpage
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-  \frametitle{Sentence transformers used in this thesis}
-\begin{table}[H]
-  \begin{center}
-    \caption{Sentence transformers}
-    \label{tab:modeldimensions}
-    \begin{tabular}{l|l}
-    \textbf{Model name} & \textbf{Dimensions}  \\
-    \hline
-    all-mpnet-base-v2 & 384 \\    \hline
-    all-MiniLM-L6-v2 & 384 \\    \hline
-    multi-qa-mpnet-base-dot-v1 & 384 \\    \hline
-    all-distilroberta-v1 & 384 \\    \hline
-    KBLab/sentence-bert-swedish-cased & 768 \\    \hline
-    KB/bert-base-swedish-cased & 768 \\    \hline
-    \end{tabular}
-  \end{center}
-\end{table}
-\end{frame}
-
-\normalpage
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -482,6 +489,48 @@ unimodal neural network architectures?
 
 3 native RGB channels + 3 text embedding channels
 \end{small}
+\end{frame}
+\normalpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+  \frametitle{Sentence transformers used in this thesis}
+\begin{table}[H]
+  \begin{center}
+    \caption{Sentence transformers}
+    \label{tab:modeldimensions}
+    \begin{tabular}{l|l}
+    \textbf{Model name} & \textbf{Dimensions}  \\
+    \hline
+    all-mpnet-base-v2 & 384 \\    \hline
+    all-MiniLM-L6-v2 & 384 \\    \hline
+    multi-qa-mpnet-base-dot-v1 & 384 \\    \hline
+    all-distilroberta-v1 & 384 \\    \hline
+    KBLab/sentence-bert-swedish-cased & 768 \\    \hline
+    KB/bert-base-swedish-cased & 768 \\    \hline
+    \end{tabular}
+  \end{center}
+\end{table}
+\end{frame}
+
+\normalpage
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+  \frametitle{What is (Sentence-) BERT?}
+\begin{figure}
+\centering
+\begin{subfigure}{0.9\textwidth}
+  \centering
+  \includegraphics[max size={0.9\textwidth}{0.9\textheight}]{figures/SBERT.png}
+  \label{fig:submscoco}
+\end{subfigure}%
+\label{fig:sbert}
+  \caption{Sentence BERT extension of the original BERT. [Reimers et al 2019]}
+\end{figure}
+
+
 \end{frame}
 \normalpage
 
