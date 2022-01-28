@@ -139,7 +139,7 @@
   \vspace{0.02\textheight}
   
   \begin{Large}
-    Newspaper article segmentation \\
+    News article segmentation using multimodal input \\
     using Mask R-CNN and Sentence-BERT
   \end{Large}
 
@@ -319,12 +319,9 @@ segmentation?
 
   \begin{small}
     \begin{itemize}
-    \item Do multimodal neural network architectures outperform unimodal neural
-network architectures, using image and text input as opposed to only
-using image input, in the field of instance segmentation?
-    \item Is there a difference in how well multimodal neural network architectures
-perform in periods of changing typographic design as opposed to
-unimodal neural network architectures?
+\item Do multimodal ANNs outperform unimodal ANNs, using image and text input versus only using image input, in the field of instance segmentation?
+\item Is there a difference in how well ANNs perform in periods of changing typographic design with respect to modality?
+\item What effect does increasing the amount of annotated data have on model performance and its ability to generalize on previously unseen data?
     \end{itemize}
   \end{small}
 
@@ -787,9 +784,10 @@ Out-set & 6 classes \\ \hline
 \begin{frame}
   \frametitle{Discussion and conclusion}
 \begin{description}
-\item[$\bullet$] Higher mAP is generally required in this domain for usefulness (simpler masks)
+\item[$\bullet$] Higher mAP is required in this domain for usefulness (simpler masks)
 \item[$\bullet$] Vanilla Mask R-CNN has been shown to perform well on in-domain test sets.
-\item[$\bullet$] Increase in error in dataset size experiment can be attributed to small dataset size + more complex examples left out in 75\%, and not represented in test set. The greater the size of the training dataset, the better performance on near- and out-of-domain test sets (for both 6 classes and 1 class).
+\item[$\bullet$] Increase in error in dataset size experiment? Small dataset size + more complex examples left out in 75\%, and not represented in test set. 
+\item[$\bullet$]The greater the size of the training dataset, the better performance on near- and out-of-domain test sets (for both 6 classes and 1 class).
 \item[$\bullet$] 6 classes vs 1 class differs in best performance between in-, near- and out-of-domain test sets.
 \item[$\bullet$] We make no claims on the ability to generalize across typologies, but we see a consistent drop in performance proportional to 'distance' in typology and timespan.
 \item[$\bullet$] Multimodal performance could be explained by large and sparse dimensions, causing the model to ignore those dimensions. (Future work)
@@ -1123,6 +1121,13 @@ Out-set & 6 classes \\ \hline
 \caption{A newspaper page consisting of weather reports and advertisement.}
 \label{fig:weather}
 \end{figure}
+\end{frame}
+\normalpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+  Thanks for listening.
+
 \end{frame}
 \normalpage
 

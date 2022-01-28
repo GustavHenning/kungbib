@@ -1,16 +1,16 @@
 
-
+\UseRawInputEncoding
 %%
 %% forked from https://gits-15.sys.kth.se/giampi/kthlatex kthlatex-0.2rc4 on 2020-02-13
 %% expanded upon by Gerald Q. Maguire Jr.
-%% This template has been adapted by Anders Sjögren to the University
+%% This template has been adapted by Anders Sj\"ogren to the University
 %% Engineering Program in Computer Science at KTH ICT. Adaptation is the
 %% translation of English headings into Swedish as the addition of Swedish
 %% text. Original body text is deliberately left in English.
 
 %% Conventions for todo notes:
 % \todo[inline]{Comments/directions/... in English}
-% \todo[inline, backgroundcolor=kth-lightblue]{Text på svenska}
+% \todo[inline, backgroundcolor=kth-lightblue]{Text p\aa  svenska}
 % \todo[inline, backgroundcolor=kth-lightgreen]{English descriptions about formatting}
 
 %% The template is designed to handle a thesis in English or Swedish
@@ -20,6 +20,7 @@
 \documentclass[oneside, english, bibtex]{kththesis}
 %\documentclass[oneside, swedish, biblatex]{kththesis}
 \usepackage[activate={true,nocompatibility},final,tracking=true,kerning=true,spacing=true,factor=1100,stretch=10,shrink=10]{microtype}
+\usepackage[utf8]{inputenc}
 \usepackage{tikz}
 \usepackage{float}
 \usepackage{adjustbox}
@@ -144,8 +145,8 @@
 \subtitle{Using Mask R-CNN and sentence transformers}
 
 % give the alternative title - i.e., if the thesis is in English, then give a Swedish title
-\alttitle{Artikelsegmentering med multimodala artificiella neuronnätverk}
-\altsubtitle{Med hjälp av Mask R-CNN och sentence transformers}
+\alttitle{Artikelsegmentering med multimodala artificiella neuronn\"atverk}
+\altsubtitle{Med hj\"alp av Mask R-CNN och sentence transformers}
 % alternative, if the thesis is in Swedish, then give an English title
 %\alttitle{This is the English translation of the title}
 %\altsubtitle{This is the English translation of the subtitle}
@@ -166,8 +167,8 @@
 \supervisorAsSchool{\schoolAcronym{EECS}}
 \supervisorAsDepartment{Computer Science}
 
-\examinersLastname{Aristides}
-\examinersFirstname{Gionis}
+\examinersLastname{Gionis}
+\examinersFirstname{Aristides}
 \examinersEmail{argioni@kth.se}
 % If the examiner is from within KTH add their KTHID, School and Department info
 \examinersKTHID{argioni}
@@ -196,13 +197,13 @@
 %% Add this information once your examiner has scheduled your oral presentation
 \presentationDateAndTimeISO{2021-03-15 13:00}
 \presentationLanguage{eng}
-\presentationRoom{via Zoom https://kth-se.zoom.us/j/ddddddddddd}
-\presentationAddress{Isafjordsgatan 22 (Kistagången 16)}
+\presentationRoom{via Zoom https://kth-se.zoom.us/j/64146298953}
+\presentationAddress{Drottning Kristinas v\"ag 4, 114 28 Stockholm}
 \presentationCity{Stockholm}
 
 % When there are multiple opponents, separate their names with '\&'
 % Opponent's information
-\opponentsNames{A. B. Normal \& A. X. E. Normalè}
+\opponentsNames{Nadir Ait Lahmouch}
 
 %%%%% for DiVA's National Subject Category information
 %%% Enter one or more 3 or 5 digit codes
@@ -212,15 +213,15 @@
 %%%% Some examples of these codes are shown below:
 % 102 Data- och informationsvetenskap (Datateknik)    Computer and Information Sciences
 % 10201 Datavetenskap (datalogi) Computer Sciences
-% 10202 Systemvetenskap, informationssystem och informatik (samhällsvetenskaplig inriktning under 50804)
+% 10202 Systemvetenskap, informationssystem och informatik (samh\"allsvetenskaplig inriktning under 50804)
 % Information Systems (Social aspects to be 50804)
-% 10203 Bioinformatik (beräkningsbiologi) (tillämpningar under 10610)
+% 10203 Bioinformatik (ber\"akningsbiologi) (till\"ampningar under 10610)
 % Bioinformatics (Computational Biology) (applications to be 10610)
-% 10204 Människa-datorinteraktion (interaktionsdesign) (Samhällsvetenskapliga aspekter under 50803) Human Computer Interaction (Social aspects to be 50803)
+% 10204 M\"anniska-datorinteraktion (interaktionsdesign) (Samh\"allsvetenskapliga aspekter under 50803) Human Computer Interaction (Social aspects to be 50803)
 % 10205 Programvaruteknik Software Engineering
 % 10206 Datorteknik Computer Engineering
 % 10207 Datorseende och robotik (autonoma system) Computer Vision and Robotics (Autonomous Systems)
-% 10208 Språkteknologi (språkvetenskaplig databehandling) Language Technology (Computational Linguistics)
+% 10208 Spr\aa kteknologi (spr\aa kvetenskaplig databehandling) Language Technology (Computational Linguistics)
 % 10209 Medieteknik Media and Communication Technology
 % 10299 Annan data- och informationsvetenskap Other Computer and Information Science
 %%%
@@ -231,7 +232,7 @@
 % 20204 Telekommunikation Telecommunications
 % 20205 Signalbehandling Signal Processing
 % 20206 Datorsystem Computer Systems
-% 20207 Inbäddad systemteknik Embedded Systems
+% 20207 Inb\"addad systemteknik Embedded Systems
 % 20299 Annan elektroteknik och elektronik Other Electrical Engineering, Electronic Engineering, Information Engineering
 %% Example for a thesis in Computer Science and Computer Systems
 \nationalsubjectcategories{10201, 10207}
@@ -240,7 +241,7 @@
 % following the respective abstract.
 % Try to put the words in the same order in both languages to facilitate matching. For example:
 \EnglishKeywords{Historical newspapers, Image segmentation, Multimodal learning, Deep learning, Digital humanities, Mask R-CNN}
-\SwedishKeywords{Historiska tidningar, Bildsegmentering, Multimodal inlärning, Djupinlärning, Digital humaniora, Mask R-CNN}
+\SwedishKeywords{Historiska tidningar, Bildsegmentering, Multimodal inl\"arning, Djupinl\"arning, Digital humaniora, Mask R-CNN}
 
 % Put the title, author, and keyword information into the PDF meta information TODO
 \include{lib/pdf_related_includes}
@@ -273,7 +274,7 @@
 \setcounter{page}{1}
 \begin{abstract}
 % The first abstract should be in the language of the thesis.
-% Abstract fungerar på svenska också.
+% Abstract fungerar p\aa  svenska ocks\aa .
   \markboth{\abstractname}{}
 \begin{scontents}[store-env=lang]
 eng
@@ -316,22 +317,22 @@ Based on newspapers from the National Library of Sweden, we investigate the pred
 \begin{abstract}
     \markboth{\abstractname}{}
 \begin{scontents}[store-env=lang]
-Historiska tidningar, Bildsegmentering, Multimodal inlärning, Djupinlärning, Digital humaniora, Mask R-CNN
+Historiska tidningar, Bildsegmentering, Multimodal inl\"arning, Djupinl\"arning, Digital humaniora, Mask R-CNN
 \end{scontents}
 \begin{scontents}[store-env=abstracts,print-env=true]
 
-I detta och det förra århundradet har kraftiga åtaganden gjorts för att digitalisera traditionellt medieinnehåll som tidigare endast tryckts i pappersformat. För att kunna stödja sökningar och fasetter i detta innehåll krävs bearbetning på semantisk nivå, det vill säga att innehållet styckas upp på artikelnivå, istället för per sida. Trots att människor har lätt att dela upp innehåll på semantisk nivå, även på ett främmande språk, fortsätter arbetet för automatisering av denna uppgift.
+I detta och det f\"orra \aa rhundradet har kraftiga \aa taganden gjorts f\"or att digitalisera traditionellt medieinneh\aa ll som tidigare endast tryckts i pappersformat. F\"or att kunna st\"odja s\"okningar och fasetter i detta inneh\aa ll kr\"avs bearbetning p\aa  semantisk niv\aa , det vill s\"aga att inneh\aa llet styckas upp p\aa  artikelniv\aa , ist\"allet f\"or per sida. Trots att m\"anniskor har l\"att att dela upp inneh\aa ll p\aa  semantisk niv\aa , \"aven p\aa  ett fr\"ammande spr\aa k, forts\"atter arbetet f\"or automatisering av denna uppgift.
 
-Utmaningen i att segmentera nyhetsartiklar återfinns i mångfalden av utseende och format. Innehållet är även detta  mångfaldigt, där man återfinner allt ifrån faktamässiga artiklar, till debatter, listor av fakta och upplysningar, reklam och väder bland annat. Stora framsteg har gjorts inom djupinlärning just för objektdetektering och semantisk segmentering bara de senaste årtiondet. Frågan vi ställer oss är: \textit{Kan samma metodik appliceras inom domänen nyhetsartiklar?}
+Utmaningen i att segmentera nyhetsartiklar \aa terfinns i m\aa ngfalden av utseende och format. Inneh\aa llet \"ar \"aven detta  m\aa ngfaldigt, d\"ar man \aa terfinner allt ifr\aa n faktam\"assiga artiklar, till debatter, listor av fakta och upplysningar, reklam och v\"ader bland annat. Stora framsteg har gjorts inom djupinl\"arning just f\"or objektdetektering och semantisk segmentering bara de senaste \aa rtiondet. Fr\aa gan vi st\"aller oss \"ar: \textit{Kan samma metodik appliceras inom dom\"anen nyhetsartiklar?}
 
-Dessa modeller är skapta för att klassificera världsliga ting. I denna domän har vi tillgång till texten och dess koordinater via en potentiellt bristfällig optisk teckenigenkänning. Vi undersöker ett sätt att utnyttja denna textinformation i ett försök att förbättra resultatet i denna specifika domän. Baserat på data från Kungliga Biblioteket undersöker vi hur väl denna metod lämpar sig för uppstyckandet av innehåll i tidningar längsmed tidsperioder där designen förändrar sig markant. Resultaten visar att Mask R-CNN lämpar sig väl för användning inom domänen nyhetsartikelsegmentering, \textit{även utan texten som input till modellen}.
+Dessa modeller \"ar skapta f\"or att klassificera v\"arldsliga ting. I denna dom\"an har vi tillg\aa ng till texten och dess koordinater via en potentiellt bristf\"allig optisk teckenigenk\"anning. Vi unders\"oker ett s\"att att utnyttja denna textinformation i ett f\"ors\"ok att f\"orb\"attra resultatet i denna specifika dom\"an. Baserat p\aa  data fr\aa n Kungliga Biblioteket unders\"oker vi hur v\"al denna metod l\"ampar sig f\"or uppstyckandet av inneh\aa ll i tidningar l\"angsmed tidsperioder d\"ar designen f\"or\"andrar sig markant. Resultaten visar att Mask R-CNN l\"ampar sig v\"al f\"or anv\"andning inom dom\"anen nyhetsartikelsegmentering, \textit{\"aven utan texten som input till modellen}.
 
 \end{scontents}
 \subsection*{Nyckelord}
 \begin{scontents}[store-env=keywords,print-env=true]
 % SwedishKeywords were set earlier, hence we can use alternative 2
 \InsertKeywords{swedish}
-%\todo[inline, backgroundcolor=kth-lightblue]{Nyckelord som beskriver innehållet i uppsatsrapporten}
+%\todo[inline, backgroundcolor=kth-lightblue]{Nyckelord som beskriver inneh\aa llet i uppsatsrapporten}
 \end{scontents}
 \end{abstract}
 \babelpolyLangStop{swedish}
@@ -517,7 +518,7 @@ In this section we will attempt to give a systematic overview of the types of co
 
 \subsubsection{Summary pages}
 
-The \textbf{placard}\footnote{Swedish translation of placard: Löpsedel}, usually found as advertisement for the newspaper itself, typically consists of a single page containing the main story headline and is included in the datasets.
+The \textbf{placard}\footnote{Swedish translation of placard: L\"opsedel}, usually found as advertisement for the newspaper itself, typically consists of a single page containing the main story headline and is included in the datasets.
 
 The \textbf{front page} of a newspaper generally contains one or more logos of the newspaper,
 the date of publication, a “main story” consisting of a headline, a subhead, a body text, and a reference page number.
@@ -1369,7 +1370,7 @@ and in others right after the last line of the previous list.
 
 Movie advertisements sometimes lists available movie information in a list-like format within their advertisement space. Due to reasons of not overlapping labels as seen in \Cref{subsub:overlappinglabels}, such movie advertisements are labeled as "Advertisement". 
 
-A newspaper section called "Kungörelser"\footnote{English translation of Kungörelser: Announcement or Notification}, user and company submitted notifications are listed in a list-like format. These elements are labeled as "Listing" with the exception of if self-advertisements appear. These self-advertisement elements are labeled as "Advertisement".  
+A newspaper section called "Kung\"orelser"\footnote{English translation of Kung\"orelser: Announcement or Notification}, user and company submitted notifications are listed in a list-like format. These elements are labeled as "Listing" with the exception of if self-advertisements appear. These self-advertisement elements are labeled as "Advertisement".  
 
 See \Cref{subsub:listings} for a more thorough discussion.
 
@@ -2479,9 +2480,9 @@ In the case of movie advertisement, depending on the style of presentation the f
 However, these types of lists (of movie dates, theaters etc) vary from very detailed information to single words appearing in a dotted list without line breaking.
 Because these elements should belong to one instance of a label as seen in \Cref{subsub:overlappinglabels}, they are labeled as "Advertisement".
 
-Another form of content that can easily border between "Listing" and "Advertisement" is the “Kungörelser” section (English: Announcement or notification).
+Another form of content that can easily border between "Listing" and "Advertisement" is the “Kung\"orelser” section (English: Announcement or notification).
 Sometimes containing advertisements, the format is usually very dense and a brief language is used.
-“Kungörelser” are labeled as "Listing",
+“Kung\"orelser” are labeled as "Listing",
 although their individual subheadings remain unlabeled similar to the labeling strategy of "Listing". All elements under the subheadings are labeled as "Listing" with the exception of self advertisement by the newspaper, labled as "Advertisement".
 
 \subsection{Results of class impact}
@@ -2626,7 +2627,7 @@ An \textbf{image caption} or a \textbf{video caption} is a title or brief explan
 \clearpage
 \fancyhead{}  % Do not use header on this extra page or pages
 % TODO diva stuff
-%\section*{For DIVA}
-%\lstset{numbers=none} %% remove any list line numbering
-%\divainfo{pg:lastPageofPreface}{pg:lastPageofMainmatter}
+\section*{For DIVA}
+\lstset{numbers=none} %% remove any list line numbering
+\divainfo{pg:lastPageofPreface}{pg:lastPageofMainmatter}
 \end{document}
