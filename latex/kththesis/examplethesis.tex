@@ -2505,7 +2505,7 @@ The impressive results on the in-domain test set indicate that the newspaper typ
 
 \subsection{Large text embeddings} 
 
-As seen \autoref{tab:modeldimensions}, the sentence transformers output their vectors of size $768$ or $384$. This adds a significant number of channels to the input if inserted without alteration. The consequence is a large memory footprint. For instance, the final text embedding matrix size of a language model producing text embedding vectors of length $768$, is equal to that of $256$ RGB images.  
+As seen \autoref{tab:modeldimensions}, the sentence transformers output their vectors of size $768$ or $384$. This adds a significant number of channels to the input if inserted without alteration. The consequence is a large memory footprint. For instance, the final text embedding matrix size of a language model producing text embedding vectors of length $768$, is equal to that of $256$ RGB images. It should be stressed that an increased input size consequently increases training time and thus energy consumption, leading to a greater environmental impact overall.
 
 \section{Impact of dataset size}
 
